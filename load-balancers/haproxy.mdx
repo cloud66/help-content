@@ -6,7 +6,7 @@ import {Callout} from '@/components/ui/callout.tsx';
 
 ## Overview
 
-HAProxy CustomConfig allows you to configure an HAproxy load balancer via the Cloud 66 Dashboard. In addition to the
+HAProxy CustomConfig allows you to configure an HAProxy load balancer via the Cloud 66 Dashboard. In addition to the
 settings described below, you could also refer to the [HAProxy documentation](https://www.haproxy.org#docs) for more
 information about configurations.
 
@@ -38,14 +38,14 @@ The following variables are available to use in HAProxy CustomConfig.
 
 | Variable Name    | Type   | Description                                                                     |
 |------------------|--------|---------------------------------------------------------------------------------|
-| haproxy_username | string | Your HAProxy username                                                           |
-| haproxy_password | string | Your HAProxy password                                                           |
-| httpchk          | string | Default value is "HEAD / HTTP/1.0" unless specified in your manifest file       |
-| balance          | array  | Default value is "roundrobin" unless specified in your manifest file            |
-| errorfile_lines  | array  | Default is empty array unless specified in your manifest file                   |
-| servers          | array  | Array of "server" objects that are to be load balanced (see below)              |
-| server.ext_ipv4  | string | External IPv4 address (server is one of the items in the "servers" array above) |
-| server.int_ipv4  | string | Internal IPv4 address (server is one of the items in the "servers" array above) |
+| `haproxy_username` | string | Your HAProxy username                                                           |
+| `haproxy_password` | string | Your HAProxy password                                                           |
+| `httpchk`          | string | Default value is "HEAD / HTTP/1.0" unless specified in your manifest file       |
+| `balance`          | array  | Default value is "roundrobin" unless specified in your manifest file            |
+| `errorfile_lines`  | array  | Default is empty array unless specified in your manifest file                   |
+| `servers`          | array  | Array of "server" objects that are to be load balanced (see below)              |
+| `server.ext_ipv4`  | string | External IPv4 address (server is one of the items in the "servers" array above) |
+| `server.int_ipv4`  | string | Internal IPv4 address (server is one of the items in the "servers" array above) |
 
 ## Commit HAProxy CustomConfig
 
@@ -58,13 +58,14 @@ Editing and committing HAProxy CustomConfig will do the following steps for your
 
 This process will be stopped if an error is encountered.
 
-<Callout type="warning" title="Take extra care with config" description={`
+<Callout type="warning" title="Take extra care with config">
 A bad HAProxy configuration might stop your HAProxy server from working. Take extra care to make sure the configuration
-is correct`}/>
+is correct
+</Callout>
 
 ## Configuring HAProxy for maintenance mode
 
-For **containerized applications** you can set your HAproxy to show a maintenance page when it cannot connect to the
+For **containerized applications** you can set your HAProxy to show a maintenance page when it cannot connect to the
 container.
 
 * Create custom maintenance page

@@ -6,7 +6,7 @@ category: security
 
 ## Overview
 
-Some applications require multiple SSL certificates to function (for example if they serve multiple domains). To configure HAproxy as a termination point for multiple certificates, follow the steps below. Remember to replace placeholder (e.g. `websitename`) with your own values.
+Some applications require multiple SSL certificates to function (for example if they serve multiple domains). To configure HAProxy as a termination point for multiple certificates, follow the steps below. Remember to replace placeholder (e.g. `websitename`) with your own values.
 
 This guide assumes you are familiar with Cloud 66 Toolbelt. If you aren't we have a [quick guide](/docs/toolbelt/using-cloud66-toolbelt) to get you up and running.
 
@@ -27,7 +27,7 @@ cx upload -s app_name --server haproxy_server_name websitename1.pem_PATH website
 cx upload -s app_name --server haproxy_server_name websitename2.pem_PATH websitename2.pem
 ```
 
-### 3. Log into your HAproxy server
+### 3. Log into your HAProxy server
 
 ```shell
 cx ssh -s app_name haproxy_server_name
@@ -40,9 +40,9 @@ sudo cp /tmp/websitename1.pem /etc/ssl/private/websitename1.pem
 sudo cp /tmp/websitename2.pem /etc/ssl/private/websitename2.pem
 ```
 
-### 5. Change the settings in your HAproxy config
+### 5. Change the settings in your HAProxy config
 
-In the UI Find the following line in your HAproxy config page:
+In the UI Find the following line in your HAProxy config page:
 
 `bind 0.0.0.0:{{port[0]}} ssl crt` 
 

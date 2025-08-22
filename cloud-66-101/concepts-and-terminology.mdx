@@ -383,18 +383,18 @@ Whether upgrading, building from scratch or scaling horizontally, we focus on ma
 Cloud 66 supports several levels and methods of balancing the load on an application:
 
 1. External load balancing via cloud services / providers
-2. Load balancing across your application’s own hosts via Nginx or HAproxy
+2. Load balancing across your application’s own hosts via Nginx or HAProxy
 3. Load balancing across the containers and Pods running within the application via Kubernetes
 
 All of these methods share the same goal - ensuring that your application is able to cope with the influx of users and traffic without degrading in performance or running out of resources completely.
 
-This documentation addresses the configuration of cloud-based load balancers, Nginx and HAproxy, but there are dozens of other platforms and methods that can help you manage the load on your application.
+This documentation addresses the configuration of cloud-based load balancers, Nginx and HAProxy, but there are dozens of other platforms and methods that can help you manage the load on your application.
 
 If you are interested in learning more about this subject, Matt Klein has written [an excellent introduction](https://blog.envoyproxy.io/introduction-to-modern-network-load-balancing-and-proxying-a57f6ff80236) to load balancing.
 
 ### Proxies and SSL / TLS termination
 
-Both Nginx and HAproxy can be set up to handle SSL / TLS termination - in other words, they act as the public face of an application and provide a route to your SSL certificates. This saves you from having to set up multiple instances of your certificates throughout your infrastructure and allows for more advanced load balancing features like X-Forwarded HTTP headers (XFF).
+Both Nginx and HAProxy can be set up to handle SSL / TLS termination - in other words, they act as the public face of an application and provide a route to your SSL certificates. This saves you from having to set up multiple instances of your certificates throughout your infrastructure and allows for more advanced load balancing features like X-Forwarded HTTP headers (XFF).
 
 ## What is StackScore?
 
