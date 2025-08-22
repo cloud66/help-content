@@ -1,0 +1,30 @@
+---
+category: toolbelt
+---
+Remove a gateway from a Cloud 66 account.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx gateways remove --name <gateway name>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--name <gateway name>` | yes | — | The name of the gateway |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx gateways remove --name aws_bastion
+```
+
+</TabsContent>
+</Tabs>

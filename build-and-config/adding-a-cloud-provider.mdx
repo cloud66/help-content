@@ -1,0 +1,128 @@
+---
+title: Adding a cloud provider
+products: all
+category: build-and-config
+---
+
+import Aws from '@/docs/partials/_aws.mdx'
+import AwsStatic from '@/docs/partials/_aws-static.mdx'
+import Azure from '@/docs/partials/_azure.mdx'
+import AzureStatic from '@/docs/partials/_azure-static.mdx'
+import Do from '@/docs/partials/_do.mdx'
+import DoStatic from '@/docs/partials/_do-static.mdx'
+import Gce from '@/docs/partials/_gce.mdx'
+import GceStatic from '@/docs/partials/_gce-static.mdx'
+import Hetzner from '@/docs/partials/_hetzner.mdx'
+import Latitudesh from '@/docs/partials/_latitudesh.mdx'
+import Linode from '@/docs/partials/_linode.mdx'
+import LinodeStatic from '@/docs/partials/_linode-static.mdx'
+import Ovh from '@/docs/partials/_ovh.mdx'
+import Packet from '@/docs/partials/_packet.mdx'
+import Vultr from '@/docs/partials/_vultr.mdx'
+
+## Overview
+
+You can add a cloud provider account to Cloud 66 in one of two ways:
+
+1. During initial app set up (Click the *New Application* button to get started)
+2. Via **Account Settings**
+
+To add a cloud account via Account Settings:
+
+1. Click on your avatar (top right) and select *Account Settings*
+2. Click on Cloud Platforms in the Settings panel (on the left)
+3. Click the *+ Add Cloud* button
+4. Add the cloud account details to the drawer that opens from the left 
+5. Click *Add Cloud*
+
+Follow the instructions for your prefered cloud provider below to grant Cloud 66 access to your account.
+
+
+## AWS (Amazon Web Services)
+
+<PerProduct includes={["deploy","rails"]}>
+<Aws />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+<AwsStatic />
+</PerProduct> 
+
+## Azure
+
+<PerProduct includes={["deploy","rails"]}>
+<Azure />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+<AzureStatic />
+</PerProduct>
+
+## Digital Ocean
+
+<PerProduct includes={["deploy","rails"]}>
+<Do />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+<DoStatic />
+</PerProduct>
+
+## Google Cloud (GCE)
+
+<PerProduct includes={["deploy","rails"]}>
+<Gce />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+<GceStatic />
+</PerProduct>
+
+## Hetzner Cloud
+<PerProduct includes={["deploy","rails"]}>
+<Hetzner />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+Hetzner does not currently support static site deployments.
+</PerProduct>
+
+## Latitude.sh
+<PerProduct includes={["deploy","rails"]}>
+<Latitudesh />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+Latitude.sh does not currently support static site deployments.
+</PerProduct>
+
+## Linode
+
+<PerProduct includes={["deploy","rails"]}>
+<Linode />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+<LinodeStatic />
+</PerProduct>
+
+## OVH
+<PerProduct includes={["deploy","rails"]}>
+<Ovh />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+OVH does not currently support static site deployments.
+</PerProduct>
+
+## Packet
+<Packet />
+
+## Vultr
+<PerProduct includes={["deploy","rails"]}>
+<Vultr />
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+Vultr does not currently support static site deployments.
+</PerProduct>

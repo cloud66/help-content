@@ -1,0 +1,57 @@
+---
+title: Manually managing database configuration
+lead: >-
+  How to stop Cloud 66 from automatically updating configurations for managed
+  databases
+products:
+  - rails
+category: databases
+---
+
+If your Rails/Rack application uses a MySQL, Postgres or MongoDB instance that is managed by Cloud 66, then we will (by default) automatically amend your configuration files (specifically `database.yml`) to ensure that they have the correct username and password (where appropriate) and server address (should your server address change due to instance resizing or fixed IP allocation). 
+
+We will automatically track these changes and insert the correct details on the next deployment. These automatic changes happen at the deployment step named `deploy:tamper:db_configs`. 
+
+<Callout type="info" title="Custom database configs">
+If you have significantly customised your `database.yml` (for example with multiple databases and/or external databases) and you have not disabled our "tampering" (see below) then you are highly likely to encounter issues. Our automated updates will tend to strip out the other databases or cause errors in their configuration.
+</Callout>
+
+## Disabling automated config updates
+
+If you would prefer to manage these configurations manually you can add this line to your manifest.yml file: `
+
+```shell
+tamper_with_yml: false
+```
+This will prevent our system from making any automated changes to the configuration files (including `database.yml`).
+
+<Callout type="warning" title="Check your configs carefully">
+Adding this setting means that you need to ensure that the contents of your database configuration(s) are correct as Cloud 66 will no longer be able to update the file(s).
+</Callout>
+
+## Examples
+
+The location of this setting depends on the database type. For example:
+
+### MySQL
+
+```yaml
+  mysql:
+    configuration:
+      tamper_with_yml: false
+```
+
+### Postgres
+```yaml
+  postgresql:
+    configuration:
+      tamper_with_yml: false
+```
+
+### MongoDB
+
+```yaml
+  mongodb:
+    configuration:
+      tamper_with_yml: false
+```

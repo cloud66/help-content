@@ -1,0 +1,35 @@
+---
+category: toolbelt
+---
+List all the services and running containers of a whole application or a specific server.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx services list --stack <application name> [--server <server name>] [<service name>]
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--stack, -s <application name>` | yes | — | Name of the application |
+| `--server <server name>` | no | — | The name of a server to query |
+| `<service name>` | no | — | The service to query |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx services list -s mystack
+$ cx services list -s mystack --server orca
+$ cx services list -s mystack --server orca --service web
+$ cx services list -s mystack --service web
+```
+
+</TabsContent>
+</Tabs>

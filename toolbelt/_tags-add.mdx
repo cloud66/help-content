@@ -1,0 +1,32 @@
+---
+category: toolbelt
+---
+Add tags to a given entity.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx tags add --entity <entity type> --id <entity ID> --tags <tag>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--entity <entity type>` | yes | — | The type of the entity |
+| `--id <entity ID>` | yes | — | The id of the entity |
+| `--tags <tag>` | yes | — | Tags to add to the given entity (can be multiple) |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx tags add --entity stack --id 12 --tags foo --tags bar
+```
+
+</TabsContent>
+</Tabs>

@@ -1,0 +1,68 @@
+---
+category: partials
+---
+import Aws from '@/docs/partials/_aws.mdx'
+import Azure from '@/docs/partials/_azure.mdx'
+import Do from '@/docs/partials/_do.mdx'
+import Gce from '@/docs/partials/_gce.mdx'
+import Hetzner from '@/docs/partials/_hetzner.mdx'
+import Latitudesh from '@/docs/partials/_latitudesh.mdx'
+import Linode from '@/docs/partials/_linode.mdx'
+import Ovh from '@/docs/partials/_ovh.mdx'
+import Packet from '@/docs/partials/_packet.mdx'
+import Vultr from '@/docs/partials/_vultr.mdx'
+
+<Tabs defaultValue="adding-a-cloud-provider">
+    <TabsList>
+        <TabsTrigger value="adding-a-cloud-provider">Adding a Cloud Provider</TabsTrigger>
+        <TabsTrigger value="adding-your-own-server">Adding Your Own Server</TabsTrigger>
+    </TabsList>
+    <TabsContent value="adding-a-cloud-provider">
+        <FilteredContentBox 
+            labels={["AWS", "Azure", "DigitalOcean", "Google", "Hetzner Cloud", "Latitude.sh", "Linode", "OVHcloud", "Packet", "Vultr"]}
+            placeholder="Select a cloud provider"
+        >
+            <FilteredContent filter="AWS">
+                <Aws />
+            </FilteredContent>
+            <FilteredContent filter="Azure">
+                <Azure />
+            </FilteredContent>
+            <FilteredContent filter="DigitalOcean">
+                <Do />
+            </FilteredContent>
+            <FilteredContent filter="Google">
+                <Gce />
+            </FilteredContent>
+            <FilteredContent filter="Hetzner Cloud">
+                <Hetzner />
+            </FilteredContent>
+            <FilteredContent filter="Latitude.sh">
+                <Latitudesh />
+            </FilteredContent>
+            <FilteredContent filter="Linode">
+                <Linode />
+            </FilteredContent>
+            <FilteredContent filter="OVHcloud">
+                <Ovh />
+            </FilteredContent>
+            <FilteredContent filter="Packet">
+                <Packet />
+            </FilteredContent>
+            <FilteredContent filter="Vultr">
+                <Vultr />
+            </FilteredContent>
+        </FilteredContentBox>
+        
+        <Callout type="warning" title="Server deletion">
+            If you delete your application from Cloud 66, your servers **will not be deleted on your cloud provider** unless the physical server deletion setting is turned on.
+        </Callout>
+    </TabsContent>
+    <TabsContent value="adding-your-own-server">
+
+[Registered servers](/docs/servers/registered-servers) are a great way for operations teams to manage and allocate physical server resources for consumption by dev teams. 
+
+Registered servers are a pool of your own servers (on a private or public cloud) that can be used for any application and configuration. For more information on how to add your own registered servers, [read our guide](/docs/servers/registered-servers).
+
+</TabsContent>
+</Tabs>

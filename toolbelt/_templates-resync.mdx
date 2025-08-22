@@ -1,0 +1,30 @@
+---
+category: toolbelt
+---
+Pulls the latest code from the stencil template repository for a specific template.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx templates resync --template <template UID>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--template <template UID>` | yes | — | The UID of the template that will be refreshed |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx templates resync --template 'bt-2e0810a17c33ab35d7970ff330b1f916'
+```
+
+</TabsContent>
+</Tabs>

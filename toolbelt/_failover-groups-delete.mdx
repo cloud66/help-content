@@ -1,0 +1,31 @@
+---
+category: toolbelt
+---
+Deletes an existing Failover Group from a Cloud 66 account.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx failover-groups delete --uid <failover UID>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Arguments | Required? | Default | Description |
+| --- | --- | --- | --- |
+| `--uid <failover UID>` | yes | — | The UID of the Failover Group to be deleted. |
+
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx failover-groups delete --uid "5999b763474b0eafa5fafb64bff0ba80"
+```
+
+</TabsContent>
+</Tabs>

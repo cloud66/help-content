@@ -1,0 +1,30 @@
+---
+category: toolbelt
+---
+List all the available configurations on an application.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx stacks configuration list --stack <application name>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--stack, -s <application name>` | yes | — | Name of the application |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx stacks configuration list -s my-app
+```
+
+</TabsContent>
+</Tabs>

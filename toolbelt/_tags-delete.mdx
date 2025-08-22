@@ -1,0 +1,32 @@
+---
+category: toolbelt
+---
+Remove tags from a given entity.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx tags delete --entity <entity type> --id <entity ID> --tags <tag>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--entity <entity type>` | yes | — | The type of the entity |
+| `--id <entity ID>` | yes | — | The id of the entity |
+| `--tags <tag>` | yes | — | Tags to remove from the given entity (can be multiple) |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx tags delete --entity stack --id 45 --tags buzz --tags fuzz
+```
+
+</TabsContent>
+</Tabs>

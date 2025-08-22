@@ -1,0 +1,33 @@
+---
+category: toolbelt
+---
+Runs the given job once with the given parameters.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx jobs run --stack <application name> --arg [--arg option --arg option] <job name>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--stack, -s <application name>` | yes | — | Full or partial name of the application |
+| `<job name>` | yes | — | The name of the job |
+| `--arg [--arg option --arg option]` | no | — | Parameters to be passed to the job |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx job run -s "My Awesome App" my_job
+$ cx job run -s "My Awesome App" --arg "arg1" --arg "arg2" my_job
+```
+
+</TabsContent>
+</Tabs>

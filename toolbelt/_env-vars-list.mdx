@@ -1,0 +1,34 @@
+---
+category: toolbelt
+---
+Prints environment variables (both keys and values) for your application to terminal. If environment variable keys are specified, the list will be limited to those keys. The `--history` option lists any recent changes to each variable.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx env-vars list --stack <application name> <environment variables> [--history]
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--stack, -s <application name>` | yes | — | Name of your application |
+| `<environment variables>` | yes | — | A space separated list of environment variable keys |
+| `--history` | no | — | Displays a list of recent changes to each variable |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx env-vars list -s mystack
+$ cx env-vars list -s mystack RAILS_ENV
+$ cx env-vars list -s mystack RAILS_ENV ANOTHER_VARIABLE --history
+```
+
+</TabsContent>
+</Tabs>

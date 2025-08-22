@@ -1,0 +1,30 @@
+---
+category: toolbelt
+---
+Sends a restart signal to all application components. This means different things for different components. For a web server, it means a restart of nginx. For an application server, this might be a restart of the worker processes. 
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx stacks restart --stack <application name>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--stack, -s <application name>` | yes | — | The application name |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx stacks restart -s my-app
+```
+
+</TabsContent>
+</Tabs>

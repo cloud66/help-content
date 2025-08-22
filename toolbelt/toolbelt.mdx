@@ -1,0 +1,719 @@
+---
+title: Cloud 66 Toolbelt
+lead: Reference guide for Cloud 66 Toolbelt commands
+products: all
+category: toolbelt
+---
+
+import BackupsList from '@/docs/toolbelt/_backups-list.mdx'
+import BackupsDownload from '@/docs/toolbelt/_backups-download.mdx'
+import BackupsNew from '@/docs/toolbelt/_backups-new.mdx'
+import ContainersList from '@/docs/toolbelt/_containers-list.mdx'
+import ContainersAttach from '@/docs/toolbelt/_containers-attach.mdx'
+import ContainersStop from '@/docs/toolbelt/_containers-stop.mdx'
+import ContainersRestart from '@/docs/toolbelt/_containers-restart.mdx'
+import DatabasesPromoteSlave from '@/docs/toolbelt/_databases-promote-slave.mdx'
+import DatabasesResyncSlave from '@/docs/toolbelt/_databases-resync-slave.mdx'
+import Download from '@/docs/toolbelt/_download.mdx'
+import DumpToken from '@/docs/toolbelt/_dump-token.mdx'
+import EnvVarsList from '@/docs/toolbelt/_env-vars-list.mdx'
+import EnvVarsDownload from '@/docs/toolbelt/_env-vars-download.mdx'
+import EnvVarsSet from '@/docs/toolbelt/_env-vars-set.mdx'
+import EnvVarsUpload from '@/docs/toolbelt/_env-vars-upload.mdx'
+import FailoverGroupsList from '@/docs/toolbelt/_failover-groups-list.mdx'
+import FailoverGroupsAdd from '@/docs/toolbelt/_failover-groups-add.mdx'
+import FailoverGroupsDelete from '@/docs/toolbelt/_failover-groups-delete.mdx'
+import FailoverGroupsUpdate from '@/docs/toolbelt/_failover-groups-update.mdx'
+import FormationsList from '@/docs/toolbelt/_formations-list.mdx'
+import FormationsCommit from '@/docs/toolbelt/_formations-commit.mdx'
+import FormationsCreate from '@/docs/toolbelt/_formations-create.mdx'
+import FormationsDeploy from '@/docs/toolbelt/_formations-deploy.mdx'
+import FormationsFetch from '@/docs/toolbelt/_formations-fetch.mdx'
+import FormationsStencilsList from '@/docs/toolbelt/_formations-stencils-list.mdx'
+import GatewaysList from '@/docs/toolbelt/_gateways-list.mdx'
+import GatewaysAdd from '@/docs/toolbelt/_gateways-add.mdx'
+import GatewaysClose from '@/docs/toolbelt/_gateways-close.mdx'
+import GatewaysOpen from '@/docs/toolbelt/_gateways-open.mdx'
+import GatewaysRemove from '@/docs/toolbelt/_gateways-remove.mdx'
+import Help from '@/docs/toolbelt/_help.mdx'
+import Info from '@/docs/toolbelt/_info.mdx'
+import JobsList from '@/docs/toolbelt/_jobs-list.mdx'
+import JobsRun from '@/docs/toolbelt/_jobs-run.mdx'
+import Lease from '@/docs/toolbelt/_lease.mdx'
+import Login from '@/docs/toolbelt/_login.mdx'
+import NotificationsDownload from '@/docs/toolbelt/_notifications-download.mdx'
+import NotificationsUpload from '@/docs/toolbelt/_notifications-upload.mdx'
+import Open from '@/docs/toolbelt/_open.mdx'
+import ProcessesList from '@/docs/toolbelt/_processes-list.mdx'
+import ProcessesPause from '@/docs/toolbelt/_processes-pause.mdx'
+import ProcessesRestart from '@/docs/toolbelt/_processes-restart.mdx'
+import ProcessesResume from '@/docs/toolbelt/_processes-resume.mdx'
+import ProcessesScale from '@/docs/toolbelt/_processes-scale.mdx'
+import Redeploy from '@/docs/toolbelt/_redeploy.mdx'
+import RegisterServer from '@/docs/toolbelt/_register-server.mdx'
+import Run from '@/docs/toolbelt/_run.mdx'
+import ServersList from '@/docs/toolbelt/_servers-list.mdx'
+import ServersReboot from '@/docs/toolbelt/_servers-reboot.mdx'
+import ServersSettingsList from '@/docs/toolbelt/_servers-settings-list.mdx'
+import ServicesInfo from '@/docs/toolbelt/_services-info.mdx'
+import ServicesList from '@/docs/toolbelt/_services-list.mdx'
+import ServicesPause from '@/docs/toolbelt/_services-pause.mdx'
+import ServicesRestart from '@/docs/toolbelt/_services-restart.mdx'
+import ServicesResume from '@/docs/toolbelt/_services-resume.mdx'
+import ServicesScale from '@/docs/toolbelt/_services-scale.mdx'
+import ServicesStop from '@/docs/toolbelt/_services-stop.mdx'
+import SettingsList from '@/docs/toolbelt/_settings-list.mdx'
+import SettingsSet from '@/docs/toolbelt/_settings-set.mdx'
+import SkycapListen from '@/docs/toolbelt/_skycap-listen.mdx'
+import SnapshotsList from '@/docs/toolbelt/_snapshots-list.mdx'
+import SnapshotsRender from '@/docs/toolbelt/_snapshots-render.mdx'
+import Ssh from '@/docs/toolbelt/_ssh.mdx'
+import SshConfig from '@/docs/toolbelt/_ssh_config.mdx'
+import StacksClearCaches from '@/docs/toolbelt/_stacks-clear-caches.mdx'
+import StacksConfigureDownload from '@/docs/toolbelt/_stacks-configure-download.mdx'
+import StacksConfigureListVersions from '@/docs/toolbelt/_stacks-configure-list-versions.mdx'
+import StacksConfigureUpload from '@/docs/toolbelt/_stacks-configure-upload.mdx'
+import StacksConfigurationList from '@/docs/toolbelt/_stacks-configuration-list.mdx'
+import StacksConfigurationApply from '@/docs/toolbelt/_stacks-configuration-apply.mdx'
+import StacksConfigurationDownload from '@/docs/toolbelt/_stacks-configuration-download.mdx'
+import StacksConfigurationUpload from '@/docs/toolbelt/_stacks-configuration-upload.mdx'
+import StacksList from '@/docs/toolbelt/_stacks-list.mdx'
+import StacksCreate from '@/docs/toolbelt/_stacks-create.mdx'
+import StacksListen from '@/docs/toolbelt/_stacks-listen.mdx'
+import StacksReboot from '@/docs/toolbelt/_stacks-reboot.mdx'
+import StacksRestart from '@/docs/toolbelt/_stacks-restart.mdx'
+import StacksSsl from '@/docs/toolbelt/_stacks-ssl.mdx'
+import TagsAdd from '@/docs/toolbelt/_tags-add.mdx'
+import TagsDelete from '@/docs/toolbelt/_tags-delete.mdx'
+import Tail from '@/docs/toolbelt/_tail.mdx'
+import TemplatesList from '@/docs/toolbelt/_templates-list.mdx'
+import TemplatesResync from '@/docs/toolbelt/_templates-resync.mdx'
+import TemplatesShow from '@/docs/toolbelt/_templates-show.mdx'
+import Test from '@/docs/toolbelt/_test.mdx'
+import Tunnel from '@/docs/toolbelt/_tunnel.mdx'
+import Update from '@/docs/toolbelt/_update.mdx'
+import Upload from '@/docs/toolbelt/_upload.mdx'
+import UsersList from '@/docs/toolbelt/_users-list.mdx'
+import UsersApplyProfile from '@/docs/toolbelt/_users-apply-profile.mdx'
+import UsersShow from '@/docs/toolbelt/_users-show.mdx'
+
+# Configuring Toolbelt
+
+## Installation
+
+1. Download the [cx executable](https://app.cloud66.com/toolbelt) to a directory in your PATH
+2. Initialize it by running `cx stacks list`  
+3. Authenticate using your browser
+
+For more detailed help on installation please refer to our [Getting Started](/docs/toolbelt/using-cloud66-toolbelt) guide.
+
+### Installing on a server (headless)
+
+To install Toolbelt on a server (without a browser):
+
+1. Install and authenticate `cx` on your local machine (see above)
+2. Log into your server via your terminal and move to the `.cloud66` directory (under `home`) 
+3. Create a file named `cx.json` in that folder
+4. Go to the terminal on your local machine, where you already have Toolbelt authorised and execute `cx dump-token`, which will give you your authorisation token
+5. Copy this token and paste it into the (remote) `cx.json` file that you created in Step 3
+6. Save the file and then run `cx stacks list` on the server to confirm that Toolbelt is initialised
+
+## Running Toolbelt inside a Docker container
+
+You can run the Cloud 66 Toolbelt inside a Docker container, although this is not officially supported. 
+
+#### Step 1: Start an ubuntu container
+
+We start a generic Ubuntu container (Cloud 66 runs on Ubuntu servers) 
+
+```shell
+$ docker run -it ubuntu:latest /bin/bash
+```
+
+#### Step 2: Install required/useful tools
+
+Toolbelt relies on three tools - curl, nano and ssh - so we install these packages.
+
+```shell
+$ apt update
+```
+
+```shell
+$ apt install curl nano ssh -y
+```
+
+#### Step 3: Create some default folders
+
+We need to create some default folders to support Toolbelt’s requirements.
+
+```shell
+$ mkdir -p ~/.ssh
+```
+
+```shell
+$ mkdir -p ~/.cloud66
+```
+
+#### Step 4: Install Toolbelt
+
+Now we install the Toolbelt by CURLing the installation shell script on S3:
+
+```shell
+$ curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_install.sh | bash
+```
+
+#### Step 5: Register Toolbelt
+
+Finally we need to register Toolbelt:
+
+1. Install and authenticate `cx` on your local machine
+2. SSH into your container and move to the `.cloud66` directory (under `home`)
+3. Create a file named `cx.json` in that folder
+4. Go to the terminal on your local machine, where you already have Toolbelt authorised and execute `cx dump-token`, which will give you your authorisation token
+5. Copy this token and paste it into the (container’s) `cx.json` file that you created in Step 3
+6. Save the file and then run `cx stacks list` from inside the container to confirm that Toolbelt is initialised
+
+After this, you should be able to use `cx` commands inside the container.
+
+## Shortcuts
+
+Toolbelt has some useful shortcuts to help speed up your workflow.
+
+### Running cx in a git directory
+
+To make life easier for you, the Cloud 66 toolbelt **detects the Git URL and branch for each directory it is run in**. As such, you won’t have to specify which application you want to run the toolbelt on if you’re in the git folder and branch of one of your applications.
+
+### Naming shortcuts
+
+We apply naming shortcuts to both application and server names, as well as server roles in the toolbelt, so you don’t have to type their full names. We just need you to type enough of a name for it to be unique. 
+
+For example, if you only have one application that starts with *m*, you can simply type *m*. Similarly, if you only have one web server, you can type *w* instead of *web*
+
+## Toolbelt commands
+
+These commands are listed alphabetically by top level command name. 
+
+### backups list
+<BackupsList />
+
+### backups download
+<BackupsDownload />
+
+### backups new
+<BackupsNew />
+
+### config
+Allows you to configure multiple profiles in cx to support multiple Cloud 66 accounts.
+
+### containers list
+Alias: `container list`
+
+<ContainersList />
+
+### containers attach
+Alias: `container attach`
+
+<ContainersAttach />
+
+### containers stop
+Alias: `container stop`
+
+<ContainersStop />
+
+### containers restart
+Alias: `container restart`
+
+<ContainersRestart />
+
+### databases promote-replica
+Alias: `database promote-replica` 
+Alias: `database promote-slave` (deprecated) 
+Alias: `databases promote-slave` (deprecated)
+
+<DatabasesPromoteSlave />
+
+### databases resync-replica
+Alias: `database resync-replica` 
+Alias: `database resync-slave` (deprecated) 
+Alias: `databases resync-slave` (deprecated)
+
+<DatabasesResyncSlave />
+
+### download
+
+<Download />
+
+### dump-token
+
+<DumpToken />
+
+### env-vars list
+
+<EnvVarsList />
+
+### env-vars download
+
+<EnvVarsDownload />
+
+### env-vars set
+
+<EnvVarsSet />
+
+### env-vars upload
+
+<EnvVarsUpload />
+
+### failover-groups list
+<FailoverGroupsList />
+
+### failover-groups add
+<FailoverGroupsAdd />
+
+### failover-groups delete
+<FailoverGroupsDelete />
+
+### failover-groups update
+<FailoverGroupsUpdate />
+
+<PerProduct includes={["deploy"]}>
+### formations list
+Alias: `formation list`
+
+<FormationsList />
+
+### formations commit
+Alias: `formation commit`
+
+<FormationsCommit />
+
+### formations create
+Alias: `formation create`
+
+<FormationsCreate />
+
+### formations deploy
+Alias: `formation deploy`
+
+<FormationsDeploy />
+
+### formations fetch
+Alias: `formation fetch`
+
+<FormationsFetch />
+
+### formations stencils list
+Alias: `formation stencils list`
+
+<FormationsStencilsList />
+</PerProduct>
+<PerProduct includes={["rails"]}>
+### gateways list
+
+<GatewaysList />
+
+### gateways add
+
+<GatewaysAdd />
+
+### gateways close
+
+<GatewaysClose />
+
+### gateways open
+
+<GatewaysOpen />
+
+### gateways remove
+
+<GatewaysRemove />
+</PerProduct>
+### help
+
+<Help />
+
+### info
+
+<Info />
+
+### init
+Initializes the Toolbelt.
+
+### init agent
+Initializes the Toolbelt as a standalone (headless) agent.
+
+### jobs list
+Alias: `job list`
+
+<JobsList />
+
+### jobs run
+Alias: `job run`
+
+<JobsRun />
+
+### lease
+
+<Lease />
+
+### login
+
+<Login />
+
+### notifications download
+
+<NotificationsDownload />
+
+### notifications upload
+
+<NotificationsUpload />
+
+### open
+
+<Open />
+
+### processes list
+Alias: `process list`
+
+<ProcessesList />
+
+### processes pause
+Alias: `process pause`
+
+<ProcessesPause />
+
+### processes restart
+Alias: `process restart`
+
+<ProcessesRestart />
+
+### processes resume
+Alias: `process resume`
+
+<ProcessesResume />
+
+### processes scale
+Alias: `process scale`
+
+<ProcessesScale />
+
+### redeploy
+Alias: `stacks redeploy`
+
+<Redeploy />
+
+### register-server
+
+<RegisterServer />
+
+### run
+
+<Run />
+
+### servers list
+Alias: `server list`
+
+<ServersList />
+
+### servers reboot
+Alias: `server reboot`
+
+<ServersReboot />
+
+### servers settings list
+Alias: `server settings list`
+
+<ServersSettingsList />
+
+### services info
+Alias: `service info`
+
+<ServicesInfo />
+
+### services list
+Alias: `service list`
+
+<ServicesList />
+
+### services pause
+Alias: `service pause`
+
+<ServicesPause />
+
+### services restart
+Alias: `service restart`
+
+<ServicesRestart />
+
+### services resume
+Alias: `service resume`
+
+<ServicesResume />
+
+### services scale
+Alias: `service scale`
+
+<ServicesScale />
+
+### services stop
+Alias: `service stop`
+
+<ServicesStop />
+
+### settings list
+Alias: `setting list`
+
+<SettingsList />
+
+### settings set
+Alias: `setting set`
+
+<SettingsSet />
+
+<PerProduct includes={["deploy"]}>
+### skycap listen
+
+<SkycapListen />
+
+### snapshots list
+
+<SnapshotsList />
+
+### snapshots render
+
+<SnapshotsRender />
+
+</PerProduct>
+
+### ssh
+
+<Ssh />
+
+### ssh-config
+
+<SshConfig />
+
+### stacks clear-caches
+Alias: `stack clear-caches`
+
+<StacksClearCaches />
+
+### stacks configure download
+Alias: `stack configure download`
+
+<StacksConfigureDownload />
+
+### stacks configure list-versions
+Alias: `stack configure list-versions`
+
+<StacksConfigureListVersions />
+
+### stacks configure upload
+Alias: `stack configure upload`
+
+<StacksConfigureUpload />
+
+### stacks configuration list
+Alias: `stack configuration list`
+
+<StacksConfigurationList />
+
+### stacks configuration apply
+Alias: `stack configuration apply`
+
+<StacksConfigurationApply />
+
+### stacks configuration download
+Alias: `stack configuration download`
+
+<StacksConfigurationDownload />
+
+### stacks configuration upload
+Alias: `stack configuration upload`
+
+<StacksConfigurationUpload />
+
+### stacks list
+Alias: `stack list`
+
+<StacksList />
+
+### stacks create
+Alias: `stack create`
+
+<StacksCreate />
+
+### stacks listen
+Alias: `stack listen`
+
+<StacksListen />
+
+### stacks reboot
+Alias: `stack reboot`
+
+<StacksReboot />
+
+### stacks redeploy
+Alias: `stack redeploy`
+
+Triggers the deployment of an application. Alias of `redeploy` function.
+
+### stacks restart
+Alias: `stack restart`
+
+<StacksRestart />
+
+### stacks ssl
+Alias: `stack ssl`
+
+<StacksSsl />
+
+### tags add
+
+<TagsAdd />
+
+### tags delete
+
+<TagsDelete />
+
+### tail
+
+<Tail />
+
+<PerProduct includes={["deploy"]}>
+### templates list
+
+<TemplatesList />
+
+### templates resync
+
+<TemplatesResync />
+
+### templates show
+
+<TemplatesShow />
+</PerProduct>
+### test
+
+<Test />
+
+### tunnel
+
+<Tunnel />
+
+### update
+
+<Update />
+
+### upload
+
+<Upload />
+
+### users list
+
+<UsersList />
+
+### users apply-profile
+
+<UsersApplyProfile />
+
+### users show
+
+<UsersShow />
+
+## Configuration profile commands
+
+You can configure your Toolbelt to work with multiple Cloud 66 accounts and/or organizations using configuration profiles.
+
+### config create
+
+Creates a new configuration profile
+
+```shell
+$ cx config create <name> [--org <org name>]
+```
+### config use
+
+Switches to using the named configuration profile.
+
+```shell
+$ cx config use <name>
+```
+
+### config rename
+
+Renames an existing configuration profile.
+
+```shell
+$ cx config rename <old name> <new name>
+```
+
+### config delete
+
+Delete a configuration profile.
+
+```shell
+$ cx config delete <name>
+```
+
+### config list
+
+Lists all your configuration profiles.
+
+```shell
+$ cx config list
+```
+
+### config show
+
+Show the details for a profile
+
+```shell
+$ cx config show <name>
+```
+
+### config update
+
+Set a configuration profile to point to an organization.
+
+```shell
+cx config update NAME [--org <org name>]
+```
+
+## Setting up a profile:
+
+1. Run `cx config create <name>` where `<name>` is your chosen profile name
+2. Run `cx config use <name>` to switch to the new profile and initialize it by running  `cx stacks list` 
+3. Authenticate using your browser (be sure to log into the correct account)
+
+For more detailed help on installation please refer to our [Getting Started](/docs/toolbelt/using-cloud66-toolbelt) guide.
+
+<Callout type="info" title="Default profile">
+You always have a `default` profile which cannot be deleted or renamed.
+</Callout>
+
+## Switching between profiles
+
+To switch between profiles, use `cx config use <name>`
+
+All commands from that point onwards will run against the `<name>` profile. This is persisted between different terminal sessions until it's changed.
+
+### Setting Profile per command
+
+If you would like to run a command with a different profile other than the current profile, you can use the `--profile` argument with all commands:
+
+```shell
+cx --profile NAME stacks list
+```
+
+### Using profiles with organizations
+
+When you create a profile you can specify the organization to which this new profile should be linked. For example:
+
+```shell
+cx config create hobby --org my_private_sandbox
+```
+
+...will create a profile named "hobby" that is linked to a Cloud 66 organization named "my_private_sandbox".
+
+If you're unsure about the name of an organization you can run the `cx info` command and looking at the `Name` field. You can also see this by logging into your Dashboard, visiting Account Settings and clicking on Organisations in the Account panel on the left. 
+

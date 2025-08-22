@@ -1,0 +1,31 @@
+---
+category: toolbelt
+---
+Reboot a specific server.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx servers reboot --stack <application name> --server <server name>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--stack, -s <application name>` | yes | — | Name of the application |
+| `--server <server name>` | yes | — | The name of the server to reboot |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx server reboot --stack my-app --server lion
+```
+
+</TabsContent>
+</Tabs>

@@ -1,0 +1,30 @@
+---
+category: toolbelt
+---
+Shows a single template repository and its stencils.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx templates show --name <repo name>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--name <repo name>` | yes | — | The name of the template repository |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx templates show --name 'my repo'
+```
+
+</TabsContent>
+</Tabs>

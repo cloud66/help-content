@@ -1,0 +1,33 @@
+---
+category: toolbelt
+---
+List all the stencils in a formation.
+
+<Tabs defaultValue="usage">
+    <TabsList>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+        <TabsTrigger value="arguments">arguments</TabsTrigger>
+        <TabsTrigger value="examples">examples</TabsTrigger>
+    </TabsList>
+    <TabsContent value="usage">
+
+```shell
+$ cx formations stencils list --formation <formation name> --output <view>
+```
+</TabsContent>
+    <TabsContent value="arguments">
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--stack, -s <application name>` | yes | — | Full or partial name of the application |
+| `--formation <formation name>` | yes | — | The name of the Formation to which the Stencils belong. |
+| `--output <view>` | no | standard | Tailor the output view (standard or wide) |
+</TabsContent>
+    <TabsContent value="examples">
+
+```shell
+$ cx formations stencils list --formation foo 
+$ cx formations stencils list --formation bar --output wide
+```
+
+</TabsContent>
+</Tabs>
