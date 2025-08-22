@@ -165,13 +165,13 @@ Tabular format:
 ## Figure Component
 
 <Figure
-    src="/placeholder-image.jpg"
+    src="/images/about-rails-app.png"
     alt="Example figure"
     caption="This is a figure with a caption explaining the image"
 />
 
 <Figure
-    src="/another-image.jpg"
+    src="/images/about_static_app.png"
     alt="Figure without caption"
 />
 
@@ -231,11 +231,12 @@ Using Astro's Code component:
     <Code code={`# Deploy with Cloud 66 CLI
 cx stacks deploy --stack my-app
 
-                                                                # Check deployment status
-                                                                cx stacks show my-app --status
+                                                                                        # Check deployment status
+                                                                                        cx stacks show my-app --status
 
-                                                                # View application logs
-                                                                cx logs --stack my-app --tail`} lang="bash"/>
+                                                                                        # View application logs
+                                                                                        cx logs --stack my-app --tail`}
+          lang="bash"/>
 </div>
 
 ## Combining Components
