@@ -205,75 +205,228 @@ Here are some interactive button components:
     <Button variant="destructive">Destructive Button</Button>
 </div>
 
-## Code Blocks
+## Code Blocks with Shiki Syntax Highlighting
 
-Standard markdown code block:
+### Bash
+```bash
+#!/bin/bash
+# Deploy with Cloud 66 CLI
 
-```javascript
-// JavaScript example
-function deployApplication(config) {
-  const stack = new Cloud66Stack(config);
-  return stack.deploy();
-}
-
-const config = {
-  name: 'my-app',
-  environment: 'production',
-  region: 'us-east-1'
-};
-
-deployApplication(config);
-```
-
-Using Astro's Code component:
-
-<div className="my-6">
-    <Code code={`# Deploy with Cloud 66 CLI
+# Deploy the stack
 cx stacks deploy --stack my-app
 
-                                                                                        # Check deployment status
-                                                                                        cx stacks show my-app --status
+# Check deployment status
+cx stacks show my-app --status
 
-                                                                                        # View application logs
-                                                                                        cx logs --stack my-app --tail`}
-          lang="bash"/>
-</div>
+# View application logs
+cx logs --stack my-app --tail
+```
 
-## Combining Components
+### YAML
+```yaml
+# Docker Compose configuration
+version: '3.8'
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./public:/usr/share/nginx/html
+  
+  app:
+    build: .
+    environment:
+      - RAILS_ENV=production
+      - DATABASE_URL=postgresql://user:pass@db:5432/myapp
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_PASSWORD=secretpass
+```
 
-You can combine multiple components together:
+### JSON
+```json
+{
+  "name": "my-cloud66-app",
+  "version": "1.0.0",
+  "description": "Cloud66 deployment configuration",
+  "scripts": {
+    "start": "node server.js",
+    "deploy": "cx stacks deploy --stack production"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "dotenv": "^16.0.0"
+  }
+}
+```
 
-<Collapsible title="Product-specific collapsible content">
-    <PerProduct includes={["foo"]}>
-        <Callout type="info" title="Foo Product Info">
-            This callout only shows for the foo product inside a collapsible!
-        </Callout>
-    </PerProduct>
+### Dockerfile
+```dockerfile
+# Multi-stage Dockerfile example
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
 
-    <PerProduct includes={["bar"]}>
-        <Callout type="warning" title="Bar Product Warning">
-            This callout only shows for the bar product inside a collapsible!
-        </Callout>
-    </PerProduct>
-</Collapsible>
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY . .
+EXPOSE 3000
+USER node
+CMD ["node", "server.js"]
+```
 
-<div className="bg-gray-50 border rounded-lg p-6 my-8">
-    <h3 className="text-lg font-semibold mb-4">Component Test Summary</h3>
-    <p className="mb-4">All components on this page should be rendering correctly. This includes:</p>
-    <ul className="list-disc list-inside space-y-1">
-        <li>Callout (all variants)</li>
-        <li>PerProduct (conditional rendering)</li>
-        <li>Tabs and Tab</li>
-        <li>Table</li>
-        <li>Collapsible</li>
-        <li>Hint</li>
-        <li>Glyph</li>
-        <li>Pill</li>
-        <li>ComponentVersion</li>
-        <li>IpList</li>
-        <li>Figure</li>
-        <li>FilteredContentBox and FilteredContent</li>
-    </ul>
-</div>
+## Direct CodeBlock Component Usage
+
+You can also use the CodeBlock component directly for more control over the display:
+
+### Basic CodeBlock with title
+
+<CodeBlock language="javascript" title="example.js">
+{`// Direct CodeBlock component usage
+const greeting = "Hello, World!";
+
+function sayHello(name) {
+    return \`Hello, \${name}!\`;
+}
+
+console.log(sayHello("Cloud66"));`}
+</CodeBlock>
+
+### CodeBlock with line numbers
+
+<CodeBlock
+    language="python"
+    title="app.py"
+    showLineNumbers={true}
+>
+{`# Python example with line numbers
+import os
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return "Hello from Cloud66!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)`}
+</CodeBlock>
+
+### CodeBlock with line numbers (longer example)
+
+<CodeBlock
+    language="javascript"
+    title="server.js"
+    showLineNumbers={true}
+>
+{`// Express server example with line numbers
+const express = require('express');
+const path = require('path');
+const helmet = require('helmet');
+const cors = require('cors');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(helmet());
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Routes
+app.get('/', (req, res) => {
+    res.json({ message: 'Welcome to Cloud66 API' });
+});
+
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'healthy' });
+});
+
+// Error handling
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
+// Start server
+app.listen(PORT, () => {
+    console.log(\`Server is running on port \${PORT}\`);
+});`}
+</CodeBlock>
+
+### CodeBlock with Shiki transformers
+
+<CodeBlock
+    language="typescript"
+    title="advanced.ts">
+    {`// TypeScript example with highlighted lines
+interface User {
+  id: number       // Line 3 - highlighted
+  name: string     // Line 4 - highlighted
+  email: string    // Line 5 - highlighted
+  active: boolean
+}
+
+function getUser(id: number): User {
+  return {
+        id,
+        name: "John Doe",
+        email: "john@example.com",
+        active: true
+    }
+}`}
+</CodeBlock>
+
+### CodeBlock with custom theme
+
+<CodeBlock
+    language="javascript"
+    title="custom-theme.js">
+    {`// Using a different theme (min-light)
+const config = loadConfig();
+
+function processData(data) {
+    return data.map(item => item * 2);
+}
+
+export { processData };`}
+</CodeBlock>
+
+### CodeBlock with multiple Shiki features
+
+<CodeBlock
+    language="typescript"
+    title="full-example.ts">
+    {`// First line will be bold
+function greet(name) {
+    console.log(\`Hello, \${name}!\`);
+}
+
+greet("Cloud66");`}
+</CodeBlock>
+
+### CodeBlock without copy button
+
+<CodeBlock
+    language="bash"
+    showCopyButton={false}
+    title="Terminal Output"
+>
+    {`$ cx stacks list
+NAME            STATUS    CREATED
+my-app          Running   2024-01-15
+staging-app     Stopped   2024-01-10
+production      Running   2024-01-01`}
+</CodeBlock>
 
 ---
