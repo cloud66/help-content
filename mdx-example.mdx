@@ -2,7 +2,6 @@
 title: 'MDX Components Test Page'
 description: 'Test page for all MDX components'
 lead: 'Testing all available MDX components'
-products: ['rails', 'sites']
 category: 'root'
 ---
 
@@ -23,19 +22,19 @@ This page tests all available MDX components that are globally available through
 ## Callout Component
 
 <Callout type="info" title="Information Callout">
-This is an info callout with a description. It provides helpful information to users.
+    This is an info callout with a description. It provides helpful information to users.
 </Callout>
 
 <Callout type="warning" title="Warning Callout">
-This is a warning callout. It alerts users to potential issues or important considerations.
+    This is a warning callout. It alerts users to potential issues or important considerations.
 </Callout>
 
 <Callout type="error" title="Error Callout">
-This is an error callout. It highlights critical issues or errors.
+    This is an error callout. It highlights critical issues or errors.
 </Callout>
 
 <Callout type="info" title="Another Info Example">
-You can have multiple callouts of the same type with different content.
+    You can have multiple callouts of the same type with different content.
 </Callout>
 
 <Callout type="warning" title="Empty Description Test">
@@ -84,8 +83,8 @@ You can have multiple callouts of the same type with different content.
         This is the content of the third tab.
 
         <Callout type="info" title="Nested Components">
-You can even nest other components inside tabs!
-</Callout>
+            You can even nest other components inside tabs!
+        </Callout>
     </TabsContent>
 </Tabs>
 
@@ -113,8 +112,8 @@ You can even nest other components inside tabs!
     Even other components:
 
     <Callout type="info" title="Nested in Collapsible">
-Components can be nested inside collapsibles!
-</Callout>
+        Components can be nested inside collapsibles!
+    </Callout>
 </Collapsible>
 
 ### An indented collapsible section
@@ -136,11 +135,13 @@ Here's some text with a <Hint caption="This is additional information that appea
 
 Here are some glyphs with different colors:
 
-- Default glyph: <Glyph icon="default" />
-- Blue glyph: <Glyph icon="info" color="blue" />
-- Green glyph: <Glyph icon="success" color="green" />
-- Red glyph: <Glyph icon="error" color="red" />
-- Yellow glyph: <Glyph icon="warning" color="yellow" />
+- Check glyph: <Glyph icon="check" color="green" />
+- Warning glyph: <Glyph icon="warning" color="amber" />
+- Book glyph: <Glyph icon="book" color="green" />
+- Help glyph: <Glyph icon="help" color="green" />
+- Build glyph: <Glyph icon="build" color="blue" />
+- Upgrade glyph: <Glyph icon="upgrade" color="blue" />
+- Redeploy glyph: <Glyph icon="redeploy" color="red" />
 
 ## Pill Component
 
@@ -151,11 +152,11 @@ Status indicators using pills:
 
 ## ComponentVersion Component
 
-Current component version: <ComponentVersion />
+With specific names: <ComponentVersion names={["redis"]}/>
 
-With specific names: <ComponentVersion names={["rails", "node", "python"]} />
+Tabular format:
 
-Tabular format: <ComponentVersion tabular={true} names={["rails", "node"]} />
+<ComponentVersion tabular={true} names={["redis", "mongodb"]}/>
 
 ## IpList Component
 
@@ -176,7 +177,7 @@ Tabular format: <ComponentVersion tabular={true} names={["rails", "node"]} />
 
 ## FilteredContentBox and FilteredContent
 
-<FilteredContentBox 
+<FilteredContentBox
     labels={["production", "staging", "development"]}
     placeholder="Select environment"
 >
@@ -230,11 +231,11 @@ Using Astro's Code component:
     <Code code={`# Deploy with Cloud 66 CLI
 cx stacks deploy --stack my-app
 
-                                        # Check deployment status
-                                        cx stacks show my-app --status
+                                                                # Check deployment status
+                                                                cx stacks show my-app --status
 
-                                        # View application logs
-                                        cx logs --stack my-app --tail`} lang="bash"/>
+                                                                # View application logs
+                                                                cx logs --stack my-app --tail`} lang="bash"/>
 </div>
 
 ## Combining Components
@@ -244,14 +245,14 @@ You can combine multiple components together:
 <Collapsible title="Product-specific collapsible content">
     <PerProduct includes={["foo"]}>
         <Callout type="info" title="Foo Product Info">
-This callout only shows for the foo product inside a collapsible!
-</Callout>
+            This callout only shows for the foo product inside a collapsible!
+        </Callout>
     </PerProduct>
 
     <PerProduct includes={["bar"]}>
         <Callout type="warning" title="Bar Product Warning">
-This callout only shows for the bar product inside a collapsible!
-</Callout>
+            This callout only shows for the bar product inside a collapsible!
+        </Callout>
     </PerProduct>
 </Collapsible>
 
