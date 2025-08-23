@@ -410,7 +410,6 @@ The deployment process is divided into a number of steps, and hook points allow 
 
 The table below is arranged in the order in which each hook point occurs in the deployment process (from earliest to latest):
 
-<Table>
 |Hook point|Description|
 |--- |--- |
 |first_thing|The first thing that will happen on the server after the operating system is installed. A common use-case for this hook is to install custom packages that your application relies on.|
@@ -438,7 +437,6 @@ The table below is arranged in the order in which each hook point occurs in the 
 |before_processes|Runs before any custom processes (i.e. Procfile or simmilar)|
 |after_processes|Runs after any custom processes|
 |last_thing|This hook will run as the last thing that happens on your server. If you have multiple servers, this hook will only trigger when all of them reach this point.|
-</Table>
 
 * * *
 
@@ -472,7 +470,6 @@ Each hook type has a different set of hook fields available, with some shared fi
 Please make sure you read the `run_on` section, if your target is not `any`
 </Callout>
 
-<Table>
 |Field|Description|
 |--- |--- |
 |**HOOK TYPE: Snippets**||
@@ -487,11 +484,9 @@ If the application already contains this env var it will be overridden with the 
 |run_on  (single server)|If you have multiple servers in the same group (e.g. scaled-up Rails servers), you can specify whether you want the deploy hook action to occur just once or once against each server in that group. Valid values are: `single_server` or `all_servers`. If you've specified `target: any` above, this will apply to all servers|
 |run_as  (server user)|If you execute a file on your target server, specify which user you would like the file to be executed as Note: you can't specify both this and `sudo`|
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
-</Table>
 
 ### Hook fields: commands
 
-<Table>
 |Field|Description|
 |--- |--- |
 |**HOOK TYPE: Commands**||
@@ -506,11 +501,11 @@ If the application already contains this env var it will be overridden with the 
 |run_on  (single server)|If you have multiple servers in the same group (e.g. scaled-up Rails servers), you can specify whether you want the deploy hook action to occur just once or once against each server in that group. Valid values are: `single_server` or `all_servers`. If you've specified `target: any` above, this will apply to all servers|
 |run_as  (server user)|If you execute a file on your target server, specify which user you would like the file to be executed as Note: you can't specify both this and `sudo`|
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
-</Table>
+
 
 ### Hook fields: inline scripts
 
-<Table>
+
 |Field|Description|
 |--- |--- |
 |**HOOK TYPE: Inline Scripts**||
@@ -528,12 +523,12 @@ If the application already contains this env var it will be overridden with the 
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
 |parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/docs/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
 |owner  (your server user)|Ownership permissions for the file (and destination folder) on the target server. An example could be `user:group`|
-</Table>
+
 
 
 ### Hook fields: existing scripts
 
-<Table>
+
 |Field|Description|
 |--- |--- |
 |**HOOK TYPE: Existing Scripts (Rails applications only)**||
@@ -551,4 +546,4 @@ If the application already contains this env var it will be overridden with the 
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
 |parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/docs/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
 |owner  (your server user)|Ownership permissions for the file (and destination folder) on the target server. An example could be `user:group`|
-</Table>
+
