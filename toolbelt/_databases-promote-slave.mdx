@@ -1,7 +1,13 @@
 ---
 category: toolbelt
 ---
-Promotes the specified replica database server to a standalone master. The replica will be reconfigured as the new standalone DB. Providing the database type is optional and is only necessary for shared servers where we can’t automatically determine the target database type.
+
+### databases promote-replica
+Alias: `database promote-replica` 
+Alias: `database promote-slave` (deprecated) 
+Alias: `databases promote-slave` (deprecated)
+
+Promotes the specified replica database server to a standalone master. The replica will be reconfigured as the new standalone DB. Providing the database type is optional and is only necessary for shared servers where we can't automatically determine the target database type.
 
 <Callout type="warning" title="Could result in downtime">
 This action could result in application downtime, it is advisable to choose a low traffic time to perform this action, and to place your application in maintenance mode.
