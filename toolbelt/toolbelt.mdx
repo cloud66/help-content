@@ -1,23 +1,11 @@
 ---
-title: Cloud 66 Toolbelt
-lead: Reference guide for Cloud 66 Toolbelt commands
+title: Running Toolbelt in different environments
+lead: How to install and run Cloud 66 Toolbelt on a server or inside a Docker container
 products: all
 category: toolbelt
 ---
 
-import ToolbeltCommands from '@/components/toolbelt/ToolbeltCommands'
-
-# Configuring Toolbelt
-
-## Installation
-
-1. Download the [cx executable](https://app.cloud66.com/toolbelt) to a directory in your PATH
-2. Initialize it by running `cx stacks list`  
-3. Authenticate using your browser
-
-For more detailed help on installation please refer to our [Getting Started](/docs/toolbelt/using-cloud66-toolbelt) guide.
-
-### Installing on a server (headless)
+## Installing on a server (headless)
 
 To install Toolbelt on a server (without a browser):
 
@@ -74,7 +62,7 @@ $ curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_in
 
 #### Step 5: Register Toolbelt
 
-Finally we need to register Toolbelt:
+Finally, we need to register Toolbelt:
 
 1. Install and authenticate `cx` on your local machine
 2. SSH into your container and move to the `.cloud66` directory (under `home`)
@@ -85,134 +73,4 @@ Finally we need to register Toolbelt:
 
 After this, you should be able to use `cx` commands inside the container.
 
-## Shortcuts
-
-Toolbelt has some useful shortcuts to help speed up your workflow.
-
-### Running cx in a git directory
-
-To make life easier for you, the Cloud 66 toolbelt **detects the Git URL and branch for each directory it is run in**. As such, you won’t have to specify which application you want to run the toolbelt on if you’re in the git folder and branch of one of your applications.
-
-### Naming shortcuts
-
-We apply naming shortcuts to both application and server names, as well as server roles in the toolbelt, so you don’t have to type their full names. We just need you to type enough of a name for it to be unique. 
-
-For example, if you only have one application that starts with *m*, you can simply type *m*. Similarly, if you only have one web server, you can type *w* instead of *web*
-
-## Toolbelt commands
-
-These commands are listed alphabetically by top level command name. 
-
-<ToolbeltCommands />
-
-### config
-Allows you to configure multiple profiles in cx to support multiple Cloud 66 accounts.
-
-### init
-Initializes the Toolbelt.
-
-### init agent
-Initializes the Toolbelt as a standalone (headless) agent.
-
-### stacks redeploy
-Alias: `stack redeploy`
-
-Triggers the deployment of an application. Alias of `redeploy` function.
-
-## Configuration profile commands
-
-You can configure your Toolbelt to work with multiple Cloud 66 accounts and/or organizations using configuration profiles.
-
-### config create
-
-Creates a new configuration profile
-
-```shell
-$ cx config create <name> [--org <org name>]
-```
-### config use
-
-Switches to using the named configuration profile.
-
-```shell
-$ cx config use <name>
-```
-
-### config rename
-
-Renames an existing configuration profile.
-
-```shell
-$ cx config rename <old name> <new name>
-```
-
-### config delete
-
-Delete a configuration profile.
-
-```shell
-$ cx config delete <name>
-```
-
-### config list
-
-Lists all your configuration profiles.
-
-```shell
-$ cx config list
-```
-
-### config show
-
-Show the details for a profile
-
-```shell
-$ cx config show <name>
-```
-
-### config update
-
-Set a configuration profile to point to an organization.
-
-```shell
-cx config update NAME [--org <org name>]
-```
-
-## Setting up a profile:
-
-1. Run `cx config create <name>` where `<name>` is your chosen profile name
-2. Run `cx config use <name>` to switch to the new profile and initialize it by running  `cx stacks list` 
-3. Authenticate using your browser (be sure to log into the correct account)
-
-For more detailed help on installation please refer to our [Getting Started](/docs/toolbelt/using-cloud66-toolbelt) guide.
-
-<Callout type="info" title="Default profile">
-You always have a `default` profile which cannot be deleted or renamed.
-</Callout>
-
-## Switching between profiles
-
-To switch between profiles, use `cx config use <name>`
-
-All commands from that point onwards will run against the `<name>` profile. This is persisted between different terminal sessions until it's changed.
-
-### Setting Profile per command
-
-If you would like to run a command with a different profile other than the current profile, you can use the `--profile` argument with all commands:
-
-```shell
-cx --profile NAME stacks list
-```
-
-### Using profiles with organizations
-
-When you create a profile you can specify the organization to which this new profile should be linked. For example:
-
-```shell
-cx config create hobby --org my_private_sandbox
-```
-
-...will create a profile named "hobby" that is linked to a Cloud 66 organization named "my_private_sandbox".
-
-If you're unsure about the name of an organization you can run the `cx info` command and looking at the `Name` field. You can also see this by logging into your Dashboard, visiting Account Settings and clicking on Organisations in the Account panel on the left. 
 
