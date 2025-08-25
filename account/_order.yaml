@@ -1,0 +1,9 @@
+# Order configuration for Account category
+# Priority pages appear first
+
+pages:
+  - account-management
+  - team-accounts
+  - service-accounts
+  - notifications
+  - slack-notifications

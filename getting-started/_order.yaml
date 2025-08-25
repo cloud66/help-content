@@ -1,0 +1,10 @@
+# Order configuration for Getting Started category
+# Pages listed here will appear first in the navigation
+# Any pages not listed will appear alphabetically after the ordered pages
+
+pages:
+  - deploy-your-first-app
+  - getting-started-with-clusters
+  - migrate-from-heroku
+  - migrate-from-forge
+  - import-netlify
