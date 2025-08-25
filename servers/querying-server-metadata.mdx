@@ -9,7 +9,7 @@ Although your Cloud 66 Dashboard provides a complete view of all your applicatio
 
 ## How to query metadata from a server
 
-In order to manually query a server's metadata, you must first [log into the server via SSH](/docs/servers/ssh-to-server). Once you are logged in, you can use the following command:
+In order to manually query a server's metadata, you must first [log into the server via SSH](/:product/:version?/servers/ssh-to-server). Once you are logged in, you can use the following command:
 
 ```shell
 `curl -s -H "Accept: application/json" https://$CLOUD66_ACCOUNT_API_KEY:X@app.cloud66.com/api/tooling/metadata/$CLOUD66_APPLICATION_API_KEY
@@ -127,7 +127,7 @@ apt install -y jq
 
 ## Using metadata in a workflow
 
-One handy way to call this method is via a [deploy hook](/docs/deploy-hooks/deploy-hooks). For example, you might want to fetch the name of the person who deployed to a server and pass it to a task tracking or audit logging system.
+One handy way to call this method is via a [deploy hook](/:product/:version?/deploy-hooks/deploy-hooks). For example, you might want to fetch the name of the person who deployed to a server and pass it to a task tracking or audit logging system.
 
 The deploy hook to achieve that would look something like this:
 

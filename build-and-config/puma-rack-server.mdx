@@ -15,7 +15,7 @@ To run a Puma web server, add a line to your Procfile labeled as `custom_web`. H
 custom_web: bundle exec puma
 ```
 
-You can change freely between [other supported servers](/docs/servers/custom-web-servers) by simply updating your Gems and Procfile.
+You can change freely between [other supported servers](/rails/servers/custom-web-servers) by simply updating your Gems and Procfile.
 
 ### Don't daemonize custom_web
 
@@ -63,9 +63,9 @@ The default shutdown command for Puma servers on Cloud 66 is `USR2` and the defa
 term, 90, kill
 ```
 
-If you need your web server to shut down using a different command, or in a particular sequence, or with longer or shorter delays, you can define a custom restart sequence in the [procfile_metadata](/docs/manifest/building-a-manifest-file#processes) section of your [Manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial).
+If you need your web server to shut down using a different command, or in a particular sequence, or with longer or shorter delays, you can define a custom restart sequence in the [procfile_metadata](/rails/manifest/building-a-manifest-file#processes) section of your [Manifest file](/rails/manifest/building-a-manifest-file#manifest-tutorial).
 
-For non-web process signals, please consult our [systemd guide](/docs/servers/systemd#process-signals).
+For non-web process signals, please consult our [systemd guide](/rails/servers/systemd#process-signals).
 
 ## Achieving zero downtime reloads
 
@@ -93,7 +93,7 @@ An important caveat here: this will not apply when you make changes to environme
 
 ## Controlling Puma via your terminal
 
-Cloud 66 uses the following signals to control Puma via [systemd](/docs/servers/systemd):
+Cloud 66 uses the following signals to control Puma via [systemd](/rails/servers/systemd):
 
 #### Stop the web server
 ```shell

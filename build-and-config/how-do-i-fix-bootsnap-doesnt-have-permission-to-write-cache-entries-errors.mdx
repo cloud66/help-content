@@ -12,13 +12,13 @@ Version 1.4.2 of Bootsnap has [a bug](https://github.com/Shopify/bootsnap/issues
 There are two ways to resolve this issue (in order of preference):
 
 * Upgrade Bootsnap to version 1.4.3 (in which the bug is fixed) or above (you can also downgrade to v1.4.1).
-* Add a [deploy hook](/docs/deploy-hooks/deploy-hooks) at the `after_symlink` hook point that creates the creates the cache folder with the correct permissions (see below).
+* Add a [deploy hook](/:product/:version?/deploy-hooks/deploy-hooks) at the `after_symlink` hook point that creates the creates the cache folder with the correct permissions (see below).
 
 In either case we strongly recommend you redeploy your application rather than manually CHMOD-ing any files or directories (see below).
 
 ### Example of a deploy hook
 
-The [hook point](/docs/deploy-hooks/deploy-hooks#hook-points) for this deploy hook is `after_symlink`
+The [hook point](/:product/:version?/deploy-hooks/deploy-hooks#hook-points) for this deploy hook is `after_symlink`
 
 Add a deploy hook to your `deploy_hooks.yml` with the following command:
 

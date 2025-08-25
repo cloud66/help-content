@@ -46,7 +46,7 @@ Under this section, you can see all your services are listed. You can choose one
 
 <PerProduct includes={["deploy"]}>
 - **Parallel Deployment**: Complete deployment of all services
-- [**Fast Deployment**](/docs/deployment/parallel-deployment#fast-deployments): Deploys only changes to code and/or images.
+- [**Fast Deployment**](/:product/:version?/deployment/parallel-deployment#fast-deployments): Deploys only changes to code and/or images.
 </PerProduct>
 
 <PerProduct includes={["rails"]}>
@@ -54,7 +54,7 @@ Under this section, you can see all your services are listed. You can choose one
 - **Serial Deployment**:   Deploy to your servers sequentially.
 - **Rolling Deployment**:   Deploy to your servers in two batches 
 
-For more information on how these strategies work, please read our [detailed guide to deployment strategies](/docs/deployment/parallel-deployment).
+For more information on how these strategies work, please read our [detailed guide to deployment strategies](/:product/:version?/deployment/parallel-deployment).
 </PerProduct>
 
 ### Pause Jobs
@@ -72,13 +72,13 @@ You can choose to pause all your server and application jobs while you’re depl
 <PerProduct includes={["rails"]}>
 ### Database migration
 
-You can choose whether or not to run database migrations as part of deployments that use this profile. Read our [database management guide](/docs/databases/database-management#control-your-rails-database-migrations) for more info. 
+You can choose whether or not to run database migrations as part of deployments that use this profile. Read our [database management guide](/:product/:version?/databases/database-management#control-your-rails-database-migrations) for more info. 
 
 ### Upgrades
 
 You can choose to upgrade the components and packages that your servers are using as part of a deployment. 
 
-This is quite likely to result in some downtime. We strongly recommend reading [our guide to the subject](/docs/servers/applying-upgrades) before doing this.
+This is quite likely to result in some downtime. We strongly recommend reading [our guide to the subject](/:product/:version?/servers/applying-upgrades) before doing this.
 
 - **Apply Security Upgrades**: Install the latest Ubuntu security packages immediately (they are applied once a day by default).
 - **Apply Ruby/Node upgrades**: Upgrade the version(s) of Ruby and Node to the latest stable version. 
@@ -87,4 +87,4 @@ This is quite likely to result in some downtime. We strongly recommend reading [
 
 ## Calling a deployment profile via a redeployment hook
 
-Redeployment hooks allow you to initiate a deployment simply by calling a URI. These hooks can be combined with deployment profiles to completely automate the deployment pipeline. Read our [how-to guide on redeployment hooks](/docs/deployment/redeployment-hook#calling-a-deployment-profile-via-a-redeployment-hook) for details on how to achieve this.
+Redeployment hooks allow you to initiate a deployment simply by calling a URI. These hooks can be combined with deployment profiles to completely automate the deployment pipeline. Read our [how-to guide on redeployment hooks](/:product/:version?/deployment/redeployment-hook#calling-a-deployment-profile-via-a-redeployment-hook) for details on how to achieve this.

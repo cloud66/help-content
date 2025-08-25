@@ -6,7 +6,7 @@ products:
 category: build-and-config
 ---
 
-Cloud 66 supports applications based on the [Padrino framework](https://www.padrinorb.com/), a light-weight web framework built upon [Sinatra](/docs/build-and-config/sinatra-stacks).
+Cloud 66 supports applications based on the [Padrino framework](https://www.padrinorb.com/), a light-weight web framework built upon [Sinatra](/rails/build-and-config/sinatra-stacks).
 
 ## Custom commands
 
@@ -15,7 +15,7 @@ Given that Padrino applications can have different database frameworks, we allow
   - **Custom build command** &mdash; This command will run every time until the first build is successful. Example: `bundle exec rake db:seed`
   - **Custom deploy command** &mdash; This command will run on every deployment (including initial build). Example: `bundle exec rake db:migrate`
     
-These commands can be set via [Toolbelt](/docs/toolbelt/toolbelt#settings-set),
+These commands can be set via [Toolbelt](/rails/toolbelt/toolbelt#settings-set),
 
 ```shell
 $ cx settings set -s my_app custom.build.command "rake db:seed"
@@ -23,7 +23,7 @@ $ cx settings set -s my_app custom.build.command "rake db:seed"
 $ cx settings set -s my_app custom.deploy.command "rake db:migrate"
 ```
 
-But also in your [manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial).
+But also in your [manifest file](/rails/manifest/building-a-manifest-file#manifest-tutorial).
 
 ```yaml
 development:
