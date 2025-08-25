@@ -112,10 +112,10 @@ If you’re unsure of which kind of app you have, you should [read the official 
 
 If you need to add another service to your app that is not included in your Dockerfile:
 
-1. Click the * +Add New Service * button at the top right of the **Services** panel
+1. Click the *+Add New Service* button at the top right of the **Services** panel
 2. Name the service
 3. Specify a source for the service.This can be a Github repo, or any other git repo, or an image repository(for pre - built images)
-4. Click * Analyze Source *.
+4. Click *Analyze Source*.
 
 You’ll need to configure each service using the steps below.
 
@@ -127,10 +127,10 @@ Next we need to configure network access and(where needed) storage for each of y
 
 To configure the internal and external ports for a service:
 
-1. Click the * Configure Ports * link in the **Network** column
-2. Set the ** Container Port **, **HTTP Port** and **HTTPS port**
+1. Click the *Configure Ports* link in the **Network** column
+2. Set the **Container Port**, **HTTP Port** and **HTTPS port**
 3. You can also add traffic matching arguments if needed
-4. Click * Save Service *
+4. Click *Save Service*
 
 If you're using our sample application you should set the HTTP port to `80` and the Container port to `5000`.
 
@@ -149,7 +149,7 @@ To configure storage volumes for a service:
 2. Specify the path on the host server where the data will actually be stored
 3. You can use the Add Volume button to specify additional storage volumes
 
-Once all your storage volumes are configured, click * Save Service *.
+Once all your storage volumes are configured, click *Save Service*.
 
 #### C.Set the desired number of instances
 
@@ -160,7 +160,7 @@ To add instances of a service:
 1. Click on the number in the **Desired instances** column
 2. Change the number in the **Desired Count** input box
 3. You can also add a start command to your service if required
-4. Click * Save Service *
+4. Click *Save Service*
 
 ### Add and confirm environment variables
 
@@ -170,7 +170,7 @@ During initial analysis we automatically generate environment variables based on
 
 Additionally, if we detect environment variables used directly in your code, we will present you with a list of the detected variables.Here you can either supply values for the variables, check the * Allow empty value * box(we will save the variable with a blank value) or, delete them( in which case we will then ignore them).
 
-Once your app is completely configured, click the * Next →* button.
+Once your app is completely configured, click the *Next →* button.
 
 </PerProduct>
 
