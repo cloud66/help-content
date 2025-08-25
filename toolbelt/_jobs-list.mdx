@@ -1,38 +1,28 @@
 ---
 category: toolbelt
+title: jobs list
+alias: job list
 ---
 
-### jobs list
-Alias: `job list`
 Lists all automated (scheduled) jobs on an application or a server.
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
-
-```shell
+```bash
 $ cx jobs list --stack <application name> --server <server name>|<server ip>|<server role> --service <service name>
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Full or partial name of the application |
 | `--server <server name>\|<server ip>\|<server role>` | no | — | The name, IP address or role of the server. |
 | `--service <service name>` | no | — | The name of the service  |
-</TabsContent>
-    <TabsContent value="examples">
 
-```shell
+#### Examples
+
+```bash
 $ cx jobs list -s my-app
 $ cx jobs list -s my-app --server orca
 $ cx jobs list -s my-app --server 168.123.448.56 --service web
 $ cx jobs list -s my-app --service web
 ```
-
-</TabsContent>
-</Tabs>

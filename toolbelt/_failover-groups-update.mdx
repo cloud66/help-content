@@ -1,21 +1,16 @@
 ---
 category: toolbelt
+title: failover groups update
 ---
-Updates an existing Failover Group on a Cloud 66 account. 
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
+Updates an existing Failover Group on a Cloud 66 account.
 
 ```shell
 $ cx failover-group update --uid <failover UID> [--primary <primary app>] [--secondary <secondary app>] [--current <app pointer>] [--no-primary] [--no-secondary]
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 | --- | --- | --- | --- |
 | `--uid <failover UID>` | yes | — | The UID of the Failover Group to be updated. |
@@ -25,12 +20,8 @@ $ cx failover-group update --uid <failover UID> [--primary <primary app>] [--sec
 | `--no-primary` | no | — | Remove the current primary application from the Failover Group |
 | `--no-secondary` | no | — | Remove the current secondary application from the Failover Group |
 
-</TabsContent>
-    <TabsContent value="examples">
+#### Examples
 
 ```shell
 $ cx failover-group update --uid "5999b763474b0eafa5fafb64bff0ba80" -p my-main-app -s my-backup-app --current 2
 ```
-
-</TabsContent>
-</Tabs>

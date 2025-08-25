@@ -1,31 +1,23 @@
 ---
 category: toolbelt
+title: users show
 ---
-Returns details about a user. You can dump these as a json file for use with the `users apply-profile` function.
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
+Returns details about a user. You can dump these as a json file for use with the `users apply-profile` function.
 
 ```shell
 $ cx users show <user email> --json <filename>
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `<user email>` | yes | — | The email address associated with the user's Cloud 66 account |
 | `--json <filename>` | no | — | Dumps the profile data as a json formatted file. |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx users show jim@gmail.com --json /tmp/jim_profile.json
 ```
-
-</TabsContent>
-</Tabs>

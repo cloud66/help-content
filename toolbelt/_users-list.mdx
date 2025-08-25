@@ -1,30 +1,22 @@
 ---
 category: toolbelt
+title: users list
 ---
-Shows a list of all the users in an organization that you have rights to manage. You can find your `<organization name>` by using `cx info`.
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
+Shows a list of all the users in an organization that you have rights to manage. You can find your `<organization name>` by using `cx info`.
 
 ```shell
 $ cx --org <organization name> users list
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--org <organization name>` | yes | — | The email address associated with the user's Cloud 66 account |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx --org my-org users list
 ```
-
-</TabsContent>
-</Tabs>

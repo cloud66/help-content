@@ -1,32 +1,24 @@
 ---
 category: toolbelt
+title: stacks create
 ---
-Creates a new Cloud 66 application based on a service definition (`service.yml`) and an optional application Manifest (`manifest.yml`).
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
+Creates a new Cloud 66 application based on a service definition (`service.yml`) and an optional application Manifest (`manifest.yml`).
 
 ```shell
 $ cx stacks create --name <new application name> --service_yaml <service definition>
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--name, -n <new application name>` | yes | — | Name for the new application |
 | `--service_yaml <service definition>` | yes | — | The YAML formatted service definition file  |
 | `--manifest_yaml, -m` | no | — | Manifest definition for the new application (YAML formatted file) |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx stacks create --name my_cloud66_app --service_yaml service.yml --manifest_yaml manifest.yml
 ```
-
-</TabsContent>
-</Tabs>

@@ -1,30 +1,22 @@
 ---
 category: toolbelt
+title: stacks listen
 ---
-Acts like a `tail` for all the deployment logs for an application (to tail a specific log file, see the function below).
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
+Acts like a `tail` for all the deployment logs for an application (to tail a specific log file, see the function below).
 
 ```shell
 $ cx stacks listen --stack <application name>
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | The application name |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx stacks listen -s my-app
 ```
-
-</TabsContent>
-</Tabs>

@@ -1,31 +1,23 @@
 ---
 category: toolbelt
+title: gateways list
 ---
-Lists all the gateway servers attached to a Cloud 66 account or organization.
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
+Lists all the gateway servers attached to a Cloud 66 account or organization.
 
 ```shell
 $ cx --org <organization_name> gateways list [--verbose]
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--org <organization_name>` | no | — | The name of an organization in your Cloud 66 account |
 | `--verbose` | no | — | Display more detail about the gateways |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx --org my-compay gateways list --verbose
 ```
-
-</TabsContent>
-</Tabs>

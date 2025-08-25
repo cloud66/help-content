@@ -1,28 +1,23 @@
 ---
 category: toolbelt
+title: settings set
 ---
-Sets and applies the value of a setting to an application.
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
+Sets and applies the value of a setting to an application.
 
 ```shell
 $ cx settings set --stack <application name> <setting> <values>
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
 | `<setting>` | yes | — | The setting(s) to query (can be used multiple times) |
 | `<values>` | yes | — | The values to apply to the setting |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx settings set -s mystack git.branch dev
@@ -31,9 +26,6 @@ $ cx settings set -s mystack allowed.web.source anywhere
 $ cx settings set -s mystack maintenance.mode  1|true|on|enable
 $ cx settings set -s mystack maintenance.mode  0|false|off|disable
 ```
-
-</TabsContent>
-</Tabs>
 
 #### Available settings
 

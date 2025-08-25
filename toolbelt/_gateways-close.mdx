@@ -1,30 +1,22 @@
 ---
 category: toolbelt
+title: gateways close
 ---
-Close a gateway (prevents traffic flowing via the gateway).
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
+Close a gateway (prevents traffic flowing via the gateway).
 
 ```shell
 $ cx gateways close --name <gateway name>
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--name <gateway name>` | yes | — | The name of the gateway |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx gateways close --name aws_bastion
 ```
-
-</TabsContent>
-</Tabs>

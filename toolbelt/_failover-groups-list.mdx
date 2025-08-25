@@ -1,32 +1,22 @@
 ---
 category: toolbelt
+title: failover-groups list
 ---
 
-### failover-groups list
 Lists the Failover Groups for a Cloud 66 account. Info includes the Failover Group ID, address, attached applications and current active application.
-
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
 
 ```shell
 $ cx failover-groups list [--output <view>]
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Arguments | Required? | Default | Description |
 | --- | --- | --- | --- |
 | `--output, -o <view>` | no | standard | Tailor the output view (standard or wide) |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx failover-groups list -o wide
 ```
-
-</TabsContent>
-</Tabs>

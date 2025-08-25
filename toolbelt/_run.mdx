@@ -1,6 +1,8 @@
 ---
 category: toolbelt
+title: run
 ---
+
 Execute a command directly on a remote server, in a service, or in a existing container. To do this it: 
 
 1. Opens the firewall for SSH from your IP address temporarily (20 minutes)
@@ -13,19 +15,12 @@ You need to [add your public (local) SSH key](/docs/servers/ssh-to-server#adding
 
 This command is only supported on Linux and OS X clients (for Windows you can run this in a virtual machine if necessary)
 
-<Tabs defaultValue="usage">
-    <TabsList>
-        <TabsTrigger value="usage">Usage</TabsTrigger>
-        <TabsTrigger value="arguments">arguments</TabsTrigger>
-        <TabsTrigger value="examples">examples</TabsTrigger>
-    </TabsList>
-    <TabsContent value="usage">
-
 ```shell
 $ cx run --stack <application name> [--server <server name> | <IP address>] [--service <service name>] [--container <container name>] [--interactive] '<commands>'
 ```
-</TabsContent>
-    <TabsContent value="arguments">
+
+#### Options
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
@@ -34,8 +29,8 @@ $ cx run --stack <application name> [--server <server name> | <IP address>] [--s
 | `--container, --cnt <container name>` | either/or | — | (containerized apps only) Name of the pod/container in which to run the command  |
 | `--interactive, -i` | no | — | Set the session to interactive mode |
 | `<commands>` | yes | — | The linux commands to run.  |
-</TabsContent>
-    <TabsContent value="examples">
+
+#### Examples
 
 ```shell
 $ cx run -s mystack --server lion 'ls -la'
@@ -44,6 +39,3 @@ $ cx run -s mystack --svc webapp 'ls -la'
 $ cx run -s mystack --service api --interactive 'bundle exec rails c'
 $ cx run -s mystack --container web-123 -i 'bundle exec rails c'
 ```
-
-</TabsContent>
-</Tabs>
