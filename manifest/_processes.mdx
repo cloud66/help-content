@@ -1,0 +1,71 @@
+---
+title: Processes Configuration
+products: ["rails"]
+category: manifest
+---
+
+## Processes
+
+[Background processes](/:product/:version?/servers/systemd) can be deployed and managed by Cloud 66. Any process in a `Procfile` will be picked up, deployed and monitored by the system.
+
+If you would like more flexibility over the signals used to control the processes, you can use the `procfile_metadata` section. Here is an example:
+
+```yaml
+procfile_metadata:
+  worker:
+    stop_sequence: ttin, 120, term, 5, kill
+  web:
+    restart_signal: usr1
+    stop_sequence: usr1, 30, kill
+  nsq:
+    restart_on_deploy: false
+```
+
+In this example, a process called `worker` is stopped using a `TTIN` signal first. After waiting for 120 seconds, if the process is still running, a `TERM` signal will be sent. If it is still running after 5 seconds, it will be killed.
+
+As for `web` or `custom_web` processes, you can specify a `restart_signal` which will be sent to the process serving web. This is useful for web servers that can do "phased" or zero-downtime restarts.
+
+All processes restart during each redeployment of the application. If you want to avoid this, you can set `restart_on_deploy` to `false`.
+
+The default values for **process signals** depend on which web server and/or process manager you are using.
+
+For the default signals for web servers, click the links below:
+
+- [Puma](/:product/:version?/build-and-config/puma-rack-server#customizing-shutdown-and-reload-signals)
+- [Unicorn](/:product/:version?/build-and-config/unicorn-rack-server#customizing-shutdown-and-reload-signals)
+- [Thin](/:product/:version?/build-and-config/thin-rack-server#customizing-shutdown-and-reload-signals)
+
+For non-web processes:
+
+- [systemd](/:product/:version?/servers/systemd) (our default process manager)
+- [Bluepill](/:product/:version?/servers/bluepill-legacy) (legacy pre-June 2020)
+
+## Process Signal Options
+
+### stop_sequence
+
+Defines the sequence of signals sent to stop a process. Format: `signal, wait_time, signal, wait_time, ...`
+
+Example:
+```yaml
+stop_sequence: term, 30, int, 10, kill
+```
+This sends TERM, waits 30 seconds, sends INT, waits 10 seconds, then sends KILL.
+
+### restart_signal
+
+Specifies a single signal to restart the process (useful for zero-downtime restarts).
+
+Example:
+```yaml
+restart_signal: usr1
+```
+
+### restart_on_deploy
+
+Controls whether the process restarts during deployment.
+
+Example:
+```yaml
+restart_on_deploy: false  # Process won't restart on deploy
+```

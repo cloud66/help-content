@@ -1,0 +1,34 @@
+# Order configuration for Manifest category
+# Priority pages appear first
+
+pages:
+  - what-is-a-manifest-file
+  - structure
+  - understanding-manifest-files
+  - getting-started
+  - manifest
+  - _server-definitions
+  - _vpc-configuration
+  - _registered-servers
+  - _shared-external-servers
+  - _rails-rack
+  - _docker
+  - _nginx
+  - _gateway
+  - _mysql
+  - _postgresql
+  - _mongodb
+  - _redis
+  - _elasticsearch
+  - _memcached
+  - _glusterfs
+  - _database-groups
+  - _load-balancer-aws
+  - _load-balancer-gce
+  - _load-balancer-haproxy
+  - _load-balancer-others
+  - _environment-variables
+  - _processes
+  - _health-checks
+  - _custom-livelogs
+  - _bundle-options
