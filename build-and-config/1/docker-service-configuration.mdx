@@ -242,35 +242,28 @@ Bear in mind that this service account will first need to be created on your clu
 
 Below is a table of the available configurations for a given service with a brief description. For more detailed information about an option, click the link provided.
 
-|Option|Description|
+|**Option**|**Description**|
 |--- |--- |
-|[annotations](/deploy/:version?/build-and-config/service-tags-annotations#service-annotations)|Annotations for your services in key/value format - these will also become annotations on your Kubernetes resources|
-|[build_command](/deploy/:version?/build-and-config/building-your-service#build-command)|Specifies the command you would like to run during application build.|
-|[build_root](/deploy/:version?/build-and-config/building-your-service#build-root)|Specifies the directory of your repository in which you wish to run your Docker build.|
-|[command](/deploy/:version?/build-and-config/building-your-service#command)|Specifies the command used to start your container.|
-|[constraints](/deploy/:version?/build-and-config/service-resources)|Limits the [allocates services to nodes](/deploy/:version?/build-and-config/service-resources#limiting-the-number-of-containers) number of containers or the [resource usage](/deploy/:version?/build-and-config/service-resources) of a service across the cluster, or based on [names and/or tags](/deploy/:version?/build-and-config/service-resources#allocating-services-to-nodes).|
-|constraints/tolerations|This is an optional hash for advanced configuration of [Kubernetes Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).|
-|[deploy_command](/deploy/:version?/build-and-config/building-your-service#deploy-command)|Specifies the command you would like to run during application deploy (runs once per service).|
-|[dns_behaviour](/deploy/:version?/networking/service-networking#dns-behaviour)|Specifies the dns behaviour for this service. Accepted values: *versioned*, *non-versioned*. Defaults to *versioned*.|
-|[dockerfile_path](/deploy/:version?/build-and-config/building-your-service#dockerfile-path)|Specifies the location of the Dockerfile to be used for building this service, eg. *docker/Dockerfile*.|
-|[git_url](/deploy/:version?/build-and-config/building-your-service#git-url)|The URL for the Git repository from which your Docker image will be built.|
-|[git_branch](/deploy/:version?/build-and-config/building-your-service#git-branch)|The Git repository branch your Docker image will be based on.|
-|[use_habitus](#using-habitus-for-builds)|Use [Habitus](https://www.habitus.io) build workflow|
-|[use_habitus_step](#using-habitus-for-builds)|The [Habitus](https://www.habitus.io) step to use for the build.|
-|[health](/deploy/:version?/build-and-config/service-lifecycle-management#health)|One of the values: *default*, *none* or a hash. Use this to configure *Readiness*, *Liveness*, and *Startup* probes|
-|[image](/deploy/:version?/build-and-config/building-your-service#image)|The image you would typically run `docker pull` from.|
-|[load_balancing](/deploy/:version?/networking/service-networking#load-balancing)|Specifies the load balancing method for this service. Accepted values: *roundrobin*, *sticky*, *closest*. Default value is *roundrobin*|
-|log_folder|Specify the folder on your container in which your services will save logs. This folder is mounted to `/var/log/containers/NAMESPACE/SERVICE_NAME` on the host filesystem. (more about [namespace and service name](/deploy/:version?/build-and-config/connecting-between-containerized-services))|
-|[ports](/deploy/:version?/networking/service-networking)|The ports that are running within the container, as well as their corresponding external ports.|
-|[post_start_command](/deploy/:version?/build-and-config/service-lifecycle-management#pre-start-command)|This command runs immediately after a container is created.|
-|[pre_stop_command](/deploy/:version?/build-and-config/service-lifecycle-management#pre-stop-command)|This command runs immediately before a container is terminated.|
-|[requires](/deploy/:version?/build-and-config/service-lifecycle-management#requires)|Array of other defined service names that should be started before this service during build and deployment.|
-|[restart_on_deploy](/deploy/:version?/build-and-config/service-lifecycle-management#restart-on-deploy) *(default: true)*|Boolean value to indicate whether the containers of this service should be restarted during deployment.|
-|security_context|This is an optional hash for advanced configuration of Kubernetes Security Context. Valid keys are: *fs_group, host_ipc, host_network, host_pid, privileged, run_as_group, run_as_non_root, run_as_user, supplemental_groups*.|
-|[service_account_name](#setting-a-service-account-name)|Assigns the service to a specific Kubernetes Service Account. The default value is `default`|
-|[stop_grace](/deploy/:version?/build-and-config/service-lifecycle-management#stop-grace)|Duration between the Docker `TERM` and `KILL` signals when Docker stop is run and a container is stopped.|
-|[traffic_matches](/deploy/:version?/networking/service-networking#traffic-matching)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
-|[tags](/deploy/:version?/build-and-config/service-tags-annotations)|Arbitrary text tags for your services - these will also become labels on your Kubernetes resources|
-|type|Specifies the type of service being defined. Accepted values: `service`, `deployment`, `daemon_set`|
-|[volumes](/deploy/:version?/build-and-config/service-storage)|The volumes that are mounted from your host into your container.  <Glyph icon="warning" color="red" />You must use absolute paths.|
+|[build_command](/deploy/1/build-and-config/building-your-service)|Specifies the command you would like to run during application build.|
+|[build_root](/deploy/1/build-and-config/building-your-service)|Specifies the directory of your repository in which you wish to run your Docker build.|
+|[command](/deploy/1/build-and-config/building-your-service)|Specifies the command used to start your container.|
+|[deploy_command](/deploy/1/build-and-config/building-your-service)|Specifies the command you would like to run during application deploy (runs once per service).|
+|[dns_behaviour](/deploy/1/networking/network-configuration#dns_behaviour)|Specifies the dns behaviour for this service. Accepted values: *versioned*, *non-versioned*. Defaults to *versioned*.|
+|[dockerfile_path](/deploy/1/build-and-config/building-your-service#dockerfile_path)|Specifies the location of the Dockerfile to be used for building this service, eg. *docker/Dockerfile*.|
+|tags|Arbitrary tags for services|
+|[git_url](/deploy/1/build-and-config/building-your-service)|The URL for the Git repository from which your Docker image will be built.|
+|[git_branch](/deploy/1/build-and-config/building-your-service#git-branch)|The Git repository branch your Docker image will be based on.|
+|[use_habitus](/deploy/1/build-and-config/building-your-service#using-habitus-for-builds)|Use [Habitus](https://www.habitus.io) build workflow|
+|[use_habitus_step](/deploy/1/build-and-config/building-your-service#using-habitus-for-builds)|The [Habitus](https://www.habitus.io) step to use for the build.|
+|[health](/deploy/:version?/build-and-config/service-lifecycle-management#health)|One of the values: *default*, *none* or a hash containing at least one of *type*, *endpoint*, *protocol*, *accept* or *timeout*.|
+|[image](/deploy/1/build-and-config/building-your-service#image)|The image you would typically run `docker pull` from.|
+|[load_balancing](/deploy/1/networking/network-configuration#load-balancing)|Specifies the load balancing method for this service. Accepted values: *roundrobin*, *sticky*, *closest*. Default value is *roundrobin*|
+|log_folder|Folder your services logs to, mounted to `/var/log/containers/service` on the host filesystem.|
+|[ports](/deploy/1/networking/network-configuration#ports)|The ports that are running within the container, as well as their corresponding external ports.|
+|privileged *(default: false)*|Boolean value to indicate whether the container should be [run with extended privileges](https://docs.docker.com/engine/reference/run#runtime-privilege-and-linux-capabilities).|
+|[requires](/deploy/1/networking/network-configuration#requires)|Array of other defined service names that should be started before this service during build and deployment.|
+|[restart_on_deploy](/deploy/1/networking/network-configuration#restart) *(default: true)*|Boolean value to indicate whether the containers of this service should be restarted during deployment.|
+|[stop_grace](/deploy/1/networking/network-configuration#stop_grace)|Duration between the Docker `TERM` and `KILL` signals when Docker stop is run and a container is stopped.|
+|[traffic_matches](/deploy/1/networking/network-configuration#traffic_matches)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
+|volumes|Volumes mounted from host into container. Syntax: Array of absolute paths, with the format `HOST_FOLDER:CONTAINER_FOLDER`. Optional 'ro' on the end for read-only. e.g. `/tmp/host:/tmp/container:ro`|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|

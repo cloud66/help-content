@@ -110,7 +110,8 @@ If your application uses an externally hosted (self-managed) database, **we will
 
 To add your own values to the analyzed variables, click on the *Add Environment Variables* button and then click the *Override* link next to each of the variables you wish to update. Remember, for **external databases**, we will discard any variables which do not have values set manually.
 </PerProduct>
-<PerProduct includes={["deploy"]}>
+
+<PerProduct includes={["deploy"]} excludeVersions={['1']}>
 ## Connecting your container to your DB
 
 Databases in Cloud 66 run as separate components and aren't containerized. Even though they may be running on the same private network as your cluster servers, you will not be able to connect to them via localhost because of the nature of containers (which are, by definition, abstracted from operating the system).
@@ -155,9 +156,13 @@ A similar setup for a Postgres server would look something like this:
 $ postgresql://username:password@service_name/database
 ```
 
-## Connecting your app to your DB in Cloud 66 Container Service V1
+</PerProduct>
 
-To connect to a database in Version 1 of Cloud 66 Container Management Service (CSv1), you should use its ElasticDNS address. Please read our [full guide on ElasticDNS](/:product/:version?/legacy/service-network-configuration#elasticdns) for more details.
+<PerProduct includes={["deploy"]} includeVersions={['1']}>
+
+## Connecting your app to your DB
+
+To connect to a database use the ElasticDNS address. Please read our [full guide on ElasticDNS](/deploy/1/networking/service-networking#elasticdns) for more details.
 </PerProduct>
 
 ## Database deployment types
