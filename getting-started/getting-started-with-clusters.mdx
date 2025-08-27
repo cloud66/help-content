@@ -33,9 +33,9 @@ You can also use your own server - although you will need to [register it](/depl
 
 Depending on which cloud or registered server you selected above, we can now choose options for our new cluster, such as region and capacity. In this example we'll choose *3* servers with 2GB of RAM each in the Amsterdam 3 Region.
 
-<PerProduct excludeVersions={["3"]} product="deploy">
+<PerProduct includeVersions={["2"]} product="deploy">
     <Callout type="info" title="First server is always the master node">
-        The first server in your cluster will always be your Kubernetes master node. You can decide later if you would like\n    this server to share application workloads or only run Kubernetes management tasks.
+        The first server in your cluster will always be your Kubernetes master node. You can decide later if you would like this server to share application workloads or only run Kubernetes management tasks.
     </Callout>
 </PerProduct>
 
