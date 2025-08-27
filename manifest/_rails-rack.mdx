@@ -8,7 +8,6 @@ category: manifest
 
 A Rails application type in the manifest file gives you fine control over things like the Ruby version or the server the rails application is deployed on.
 
-
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`activeprotect`|<Glyph icon="redeploy" />|The parent node for ActiveProtect settings (see `whitelist` and `http_ban_rate` below)|All|
@@ -36,7 +35,6 @@ A Rails application type in the manifest file gives you fine control over things
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/:product/:version?/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`vn_name`|<Glyph icon="build" />|The name of the Virtual Network in which you would like to create your servers.|Azure|
 |`vpc_id`|<Glyph icon="build" />|**ID** or **name** of the VPC in which you would like to create your servers.|AWS, Azure, DigitalOcean, Hetzner|
-
 
 <Callout type="warning" title="AWS VPC requires subnet_id">
 In order to use an AWS *vpc_id*, you must provide *subnet_id* for all servers used by your application.
@@ -71,7 +69,6 @@ rails:
 
 These checks define tests to confirm whether your application has been successfully deployed, and to mark a deployment as "failed" if any do not pass. For more details on health checks please read our [how-to guide](/:product/:version?/servers/application-health-checks#deployment-success-checks). Health Checks have the following Manifest options:
 
-
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`protocol`|<Glyph icon="redeploy" />|The protocol(s) to use when running the check(s). Acceptable values are `http` or `https`.|All|
@@ -81,7 +78,6 @@ These checks define tests to confirm whether your application has been successfu
 |`accept`|<Glyph icon="redeploy" />|A comma separated list of the HTTP response codes that should be considered as a "pass" of this check. All values must be enclosed in quotes.  Ranges can be defined with dashes and both the first and last port numbers must be included. For example `["200-201", "300-305"]`|All|
 |`follow_redirects`|<Glyph icon="redeploy" />|Whether to follow redirects when performing the check. The default value is true.|All|
 |`timeout`|<Glyph icon="redeploy" />|The wait, in seconds, before the check will time out. The max is 120.|All|
-
 
 ### Example YAML for Deployment Success Checks
 
@@ -115,7 +111,6 @@ rails:
 ```
 
 If you need a newer version of Node, you can install one using the same method above. We support any version of Node that is supported by our [version manager](https://github.com/tj/n) (which itself supports the [Node distribution list](https://nodejs.org/dist/)).
-
 
 <Callout type="warning" title="Applying changes">
 To apply changes to the Node version you need to update your manifest file, then deploy-with-options and select the **Apply Ruby/Node upgrades** option.

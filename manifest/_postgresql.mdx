@@ -10,7 +10,6 @@ category: manifest
 
 The following settings are available via the Manifest file :
 
-
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`encoding`|<Glyph icon="build" />|Specify the encoding (AKA charset) for the database. Valid values can be found in the [Postgres character set docs](https://www.postgresql.org/docs/current/multibyte#MULTIBYTE-CHARSET-SUPPORTED).|All|
@@ -25,7 +24,6 @@ The following settings are available via the Manifest file :
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/:product/:version?/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`tamper_with_yml`|<Glyph icon="redeploy" />|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
 |`version`|<Glyph icon="build" />|Specify the version of Postgres you want to install. NOTE: You can use [database groups](/:product/:version?/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-
 
 ### Example YAML for Postgres
 

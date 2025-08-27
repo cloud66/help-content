@@ -57,7 +57,6 @@ Please see the [official Kubernetes documentation](https://kubernetes.io/docs/ta
 
 The options below are available for all health checks. Note that you aren't required to configure all the options. Any options not configured will use their default values.
 
-
 -  **type** (*string, defaults to 'http'*): Accepted values are **http**, **https**, **tcp**, and **exec**.
 
 -  **endpoint** (*string, defaults to '/'*): The endpoint tested for status. Only for the **http**, and the **https** types.
@@ -77,7 +76,6 @@ The options below are available for all health checks. Note that you aren't requ
 -  **port** (*integer, defaults to container port*): The port to run the health check against. Only for the **http**, **https**, and **tcp** types.
 
 -  **http_headers** (*array, defaults to []*): Custom headers to add for HTTP traffic. Only for the **http**, and **https** types. Contains an array of hashes with the **name** and **value** keys, both of string type.
-
 
 ```yaml
 services:
@@ -115,13 +113,11 @@ A healthy container would be expected to POST `{"ready":true}` as its payload, w
 
 The rules below are available to health checks - note that you aren't required to specify all options. Any options not used will use their default values.
 
-
 - **type** (*defaults to inbound*): Accepted values are `inbound` or `outbound`.
 - **endpoint** (*defaults to `/`*): The endpoint tested for status.
 - **protocol** (*defaults to HTTP*): Accepted values are `HTTP` or `HTTPS`.
 - **timeout** (*defaults to 30s*): Maximum time to wait for a container to start, in seconds.
 - **accept** (*defaults to 200 and 300-399*): HTTP response codes to accept.
-
 
 ```yaml
 services:
@@ -138,7 +134,6 @@ You can also use the default health rules with `health: default`, or explicitly 
 
 </TabsContent>
 </Tabs>
-
 
 ### Pre-start command
 
@@ -173,7 +168,6 @@ services:
 </TabsContent>
 </Tabs>
 
-
 ### Pre-stop sequence
 <Tabs defaultValue="cloud-66-container-service-v2">
     <TabsList>
@@ -206,7 +200,6 @@ Valid time values are `s` for seconds, `m` for minutes and `h` for hours. Valid 
 
 </TabsContent>
 </Tabs>
-
 
 ### Requires
 <Tabs defaultValue="cloud-66-container-service-v2">

@@ -397,7 +397,6 @@ For more info on doing this for external databases, read our separate guide to [
 
 </PerProduct>
 
-
 ## Debugging deploy hooks
 
 Automating deploy hooks can sometimes be tricky. To avoid issues, it's good practice to run each of your commands manually to see that they complete successfully.
@@ -502,9 +501,7 @@ If the application already contains this env var it will be overridden with the 
 |run_as  (server user)|If you execute a file on your target server, specify which user you would like the file to be executed as Note: you can't specify both this and `sudo`|
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
 
-
 ### Hook fields: inline scripts
-
 
 |Field|Description|
 |--- |--- |
@@ -524,10 +521,7 @@ If the application already contains this env var it will be overridden with the 
 |parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/:product/:version?/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
 |owner  (your server user)|Ownership permissions for the file (and destination folder) on the target server. An example could be `user:group`|
 
-
-
 ### Hook fields: existing scripts
-
 
 |Field|Description|
 |--- |--- |

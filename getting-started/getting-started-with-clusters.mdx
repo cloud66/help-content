@@ -7,8 +7,6 @@ excludeVersions:
   - '1'
 ---
 
-import PerProduct from "@/components/PerProduct"
-import Callout from "@/components/ui/callout"
 import CloudProviderOrOwnServerTabs from '@/docs/partials/_cloud_provider_or_own_server_tabs.mdx'
 
 A Cloud 66 Cluster is a "blank" instance of Kubernetes infrastructure - i.e. with no application specific components installed. You can use a Cluster to deploy multiple applications to the same set of servers.
@@ -34,7 +32,6 @@ Next, give your cluster a name that will make it easy to identify. Then, choose 
 You can also use your own server - although you will need to [register it](/deploy/:version?/servers/registered-servers#register-a-server) first. In our example we're choosing to deploy to Digital Ocean.
 
 Depending on which cloud or registered server you selected above, we can now choose options for our new cluster, such as region and capacity. In this example we'll choose *3* servers with 2GB of RAM each in the Amsterdam 3 Region.
-
 
 <PerProduct excludeVersions={["3"]} product="deploy">
     <Callout type="info" title="First server is always the master node">

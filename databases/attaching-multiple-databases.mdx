@@ -14,7 +14,6 @@ Database Groups allow you to attach multiple databases to a single application.
 If you’d prefer to add another <Hint caption="logical database">i.e. the tables & data structures rather than the "physical" database server ([full definition](/:product/:version?/databases/adding-database#logical-databases-vs-physical-databases)</Hint> to an existing database group rather than creating a new database group, please read [our guide on the subject](/:product/:version?/databases/adding-database). This guide only deals with adding additional physical databases to your application in the form of database groups.
 </Callout>
 
-
 <PerProduct includes={["rails"]}>
 
 If you are using the **native** Rails multiDB feature (i.e. multiple databases with Active Record) then please read our [Rails MultiDB guide](/:product/:version?/databases/rails-multidb). (The feature actually uses Database Groups, but does so via another method).
@@ -138,7 +137,6 @@ If you can't see the source database in the import list, ensure that you've set 
 <Callout type="warning" title="Text backups required to move some databases">
 For MySQL and Postgres databases, only text backups can be restored **between different applications**. Binary backups will only allow restoring within the same application. Bear in mind that text backups only contain the default <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) </Hint> for a database group.
 </Callout>
-
 
 ## Replicating data between database groups
 

@@ -319,7 +319,6 @@ $ gulp your-task-name
 </TabsContent>
 </Tabs>
 
-
 ## Persistent storage
 
 Node-based applications run inside containers on Cloud 66, which means they are mortal and ephemeral (in other words they can disappear and be replaced by new copies). To store files persistently, you can mount volumes from your container to the host server(s). 
@@ -343,7 +342,6 @@ If your Express app requires that users with different roles have access to a sh
 ### Persistent storage for multi-server apps
 
 If your application runs across multiple application servers and requires persistent storage, one option is to use an object storage service like [Amazon S3](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-creating-buckets.html) or Google Cloud Storage. All of the major cloud storage services have Node SDKs that make integrating them into your code quite simple. This isn’t a perfect replacement for a disk mounted at server level, but it is a viable solution for a wide variety of use cases.
-
 
 ## Allowing users to write to disk 
 

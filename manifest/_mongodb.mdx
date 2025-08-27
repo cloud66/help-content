@@ -10,7 +10,6 @@ category: manifest
 
 The following settings are available via the Manifest file :
 
-
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/:product/:version?/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
@@ -22,7 +21,6 @@ The following settings are available via the Manifest file :
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/:product/:version?/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`tamper_with_yml`|<Glyph icon="redeploy" />|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
 |`version`|<Glyph icon="build" />|Specify the version of MongoDB you want to install. NOTE: You can use [database groups](/:product/:version?/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-
 
 ### Example YAML for MongoDB
 
