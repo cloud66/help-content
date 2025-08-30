@@ -13,7 +13,7 @@ Cloud 66 automatically monitors resource usage on all servers deployed via our s
 
 This allows you to check whether your servers are experiencing high load and to diagnose any issues more quickly. Server Metrics are automatically collected and require no configuration. 
 
-For more in-depth monitoring, we offer a [native Datadog integration](/docs/servers/datadog-integration). 
+For more in-depth monitoring, we offer a [native Datadog integration](/:product/:version?/servers/datadog-integration). 
 
 ## Where to find server metrics
 
@@ -42,22 +42,22 @@ Cloud 66 supports any third-party resource monitoring solution that is compatibl
 
 ## Adding external monitoring services to your app
 
-We offer a [native Datadog integration](/docs/servers/datadog-integration) for more in-depth and feature rich application monitoring. 
+We offer a [native Datadog integration](/:product/:version?/servers/datadog-integration) for more in-depth and feature rich application monitoring. 
 
 If you'd prefer to use another external monitoring service, you can add it to your application in one of two ways:
 
-1. Using a [deploy hook](/docs/deploy-hooks/deploy-hooks)
-2. Manually, [via SSH](/docs/servers/ssh-to-server)
+1. Using a [deploy hook](/:product/:version?/deploy-hooks/deploy-hooks)
+2. Manually, [via SSH](/:product/:version?/servers/ssh-to-server)
 
 Deploy hooks are generally the best choice because they integrate the monitoring tool into your deployment pipeline and ensure it will be rolled out to every server in your application when you scale up, and that the latest version will be fetched whenever you redeploy. 
 
-If you use a deploy hook, you should consider using Cloud 66's [custom environment variables](/docs/build-and-config/env-vars) feature to manage the configuration variables for the service. This will allow you to control configuration without having to commit sensitive config files to your repo. 
+If you use a deploy hook, you should consider using Cloud 66's [custom environment variables](/:product/:version?/build-and-config/env-vars) feature to manage the configuration variables for the service. This will allow you to control configuration without having to commit sensitive config files to your repo. 
 
 ## Common monitoring solutions
 
 There are several excellent monitoring platforms on the market. For example:
 
-* [Datadog](/docs/servers/datadog-integration)
+* [Datadog](/:product/:version?/servers/datadog-integration)
 * [Scout](https://scoutapp.com/)
 * [New Relic](https://newrelic.com/)
 * [Prometheus](https://prometheus.io/)

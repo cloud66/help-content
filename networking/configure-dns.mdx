@@ -81,7 +81,7 @@ Some cloud providers automatically assign a new IP address to restarted servers.
 
 ### Failover hostnames
 
-In addition to unique hostnames per server, Cloud 66 also offers [Failover Groups](/docs/failover-groups/failover-groups) - managed, quick-response DNS addresses that automatically follow the web endpoints of applications.
+In addition to unique hostnames per server, Cloud 66 also offers [Failover Groups](/:product/:version?/failover-groups/failover-groups) - managed, quick-response DNS addresses that automatically follow the web endpoints of applications.
 
 Each Failover Group has a unique hostname with a 9 digit prefix (subdomain). For example `958-797-516.cloud66.net`. For maximum reliability, you should point your DNS at a Failover Group address.
 
@@ -103,7 +103,7 @@ This involves using an `A` record to point your root domain at your load balance
 
 1.  Create a CNAME record for `www` pointing at the [Cloud 66 hostname](#cloud-66-hostnames) of your load balancer.
 2.  Create an `A` record for your root domain (e.g. `example.com`) pointing at your load balancer IP address.
-3.  ​Use [network redirects](/docs/networking/setting-up-redirect) to permanently redirect all traffic from `example.com` to `www.example.com`.
+3.  ​Use [network redirects](/:product/:version?/networking/setting-up-redirect) to permanently redirect all traffic from `example.com` to `www.example.com`.
 
 ### 3. Subdomain redirection
 
@@ -140,9 +140,9 @@ Furthermore, if required, the load balancer is updated to serve the new IP addre
 
 ## What’s next?
 
-* Learn how to set up a [Failover Group](/docs/failover-groups/failover-groups)
-* Learn how to [configure network access](/docs/networking/network-configuration) to your application
-* Learn how to [add a load balancer](/docs/load-balancers/load-balancer) to your application
+* Learn how to set up a [Failover Group](/:product/:version?/failover-groups/failover-groups)
+* Learn how to [configure network access](/:product/:version?/networking/network-configuration) to your application
+* Learn how to [add a load balancer](/:product/:version?/load-balancers/load-balancer) to your application
 
 </PerProduct>
 
@@ -228,7 +228,7 @@ You can update your custom domain at any time by clicking the *Edit* button and 
 
 ## What's next?
 
-- Configuring continuous deployment using [redeployment hooks](/docs/deployment/redeployment-hook)
-- Setting up [preview deployments](/docs/deployment/preview-deployments)
+- Configuring continuous deployment using [redeployment hooks](/:product/:version?/deployment/redeployment-hook)
+- Setting up [preview deployments](/:product/:version?/deployment/preview-deployments)
 
 </PerProduct>

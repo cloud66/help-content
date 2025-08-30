@@ -16,11 +16,11 @@ Multi-tenancy is only supported by containerised applications - it is not applic
 
 ## Overview
 
-Sometimes you need to run multiple applications on the same server (aka multi-tenancy). This could be because none of those applications has enough load to justify having a dedicated server for itself or it could be because all the apps on the server share many resources. Whatever the reason, you can achieve multi-tenancy for your application using [containers](/docs/cloud-66-101/concepts-and-terminology).
+Sometimes you need to run multiple applications on the same server (aka multi-tenancy). This could be because none of those applications has enough load to justify having a dedicated server for itself or it could be because all the apps on the server share many resources. Whatever the reason, you can achieve multi-tenancy for your application using [containers](/:product/:version?/cloud-66-101/concepts-and-terminology).
 
 ## Defining Multiple Services
 
-To host multiple applications on the same server, we need to define each one as a separate service. This can be done using the [service.yml](/docs/build-and-config/docker-service-configuration) file:
+To host multiple applications on the same server, we need to define each one as a separate service. This can be done using the [service.yml](/:product/:version?/build-and-config/docker-service-configuration) file:
 
 ```yaml
 services:
@@ -81,5 +81,5 @@ services:
 
 In this example, we split the traffic based on the requested domain. As you can see you can match traffic based on multiple domains as well as wildcard (`*`) subdomains.
 
-See [Custom Service Configuration](/docs/build-and-config/docker-service-configuration) for more information on `service.yml`.
+See [Custom Service Configuration](/:product/:version?/build-and-config/docker-service-configuration) for more information on `service.yml`.
 

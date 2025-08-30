@@ -7,7 +7,7 @@ lead: "Manage processes and background workers in your application"
 
 By default Cloud 66 uses [**systemd**](https://manpages.ubuntu.com/manpages/bionic/man1/systemd.1/) to monitor and manage processes on all new servers. It is automatically installed on all servers provisioned through Cloud 66. 
 
-The only exception to this is for some legacy servers deployed before June 2020. These servers may use [bluepill](https://github.com/bluepill-rb/bluepill). If you need help migrating from bluepill please see our [separate (legacy) guide](/docs/servers/bluepill-legacy). 
+The only exception to this is for some legacy servers deployed before June 2020. These servers may use [bluepill](https://github.com/bluepill-rb/bluepill). If you need help migrating from bluepill please see our [separate (legacy) guide](/:product/:version?/servers/bluepill-legacy). 
 
 ## Using systemd
 
@@ -117,9 +117,9 @@ The generic web process restart (reload) signal is `restart_signal`: `hup`
 
 For the default signals for specific web servers, click the links below:
 
-- [Puma](/docs/build-and-config/puma-rack-server#customizing-shutdown-and-reload-signals)
-- [Unicorn](/docs/build-and-config/unicorn-rack-server#customizing-shutdown-and-reload-signals)
-- [Thin](/docs/build-and-config/thin-rack-server#customizing-shutdown-and-reload-signals)
+- [Puma](/:product/:version?/build-and-config/puma-rack-server#customizing-shutdown-and-reload-signals)
+- [Unicorn](/:product/:version?/build-and-config/unicorn-rack-server#customizing-shutdown-and-reload-signals)
+- [Thin](/:product/:version?/build-and-config/thin-rack-server#customizing-shutdown-and-reload-signals)
 
 ### Non-Web processes
 
@@ -133,4 +133,4 @@ For the default signals for specific web servers, click the links below:
 
 ### Specifying custom signals
 
-If you'd like to specify custom process signals you can do this in [your Manifest file](/docs/manifest/building-a-manifest-file#processes).
+If you'd like to specify custom process signals you can do this in [your Manifest file](/:product/:version?/manifest/building-a-manifest-file#processes).

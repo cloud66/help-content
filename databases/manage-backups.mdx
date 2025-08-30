@@ -10,7 +10,7 @@ There are two methods for restoring databases:
 * Automated via the Cloud 66 dashboard
 * Manually via command line
 
-We recommend using the [managed database backup service](/docs/databases/database-backups) to manage and restore database backups, but you can also manage them manually. This includes downloading the backup, decompressing it, moving it to another server and restoring it. 
+We recommend using the [managed database backup service](/:product/:version?/databases/database-backups) to manage and restore database backups, but you can also manage them manually. This includes downloading the backup, decompressing it, moving it to another server and restoring it. 
 
 ## Automated database restore method
 
@@ -30,7 +30,7 @@ Restoring a backup **will** disrupt the target database - we do not recommend re
 If you need to manually download and/or restore a backup, please read our in-depth guide below.
 
 <Callout type="info" title="Text backups only contain the default logical database">
-If you restore a [text backup](/docs/databases/database-backups#backup-format) of a database, bear in mind it only contains the default logical database from the source physical database. To import all logical databases you will need to use binary backups.
+If you restore a [text backup](/:product/:version?/databases/database-backups#backup-format) of a database, bear in mind it only contains the default logical database from the source physical database. To import all logical databases you will need to use binary backups.
 </Callout>
 
 ## Manually restoring a backup
@@ -39,7 +39,7 @@ The first step in manually restoring a backup is to download the backup files. Y
 
 ### 1. Using Cloud 66 Toolbelt
 
-If you are using managed backups, you can retrieve your database backup by using [Cloud 66 Toolbelt](/docs/toolbelt/toolbelt#backups-download). Your backup may be bigger than 350 MB, in which case it will be divided into several files. By using the toolbelt, the files are downloaded and concatenated automatically for you.
+If you are using managed backups, you can retrieve your database backup by using [Cloud 66 Toolbelt](/:product/:version?/toolbelt/toolbelt#backups-download). Your backup may be bigger than 350 MB, in which case it will be divided into several files. By using the toolbelt, the files are downloaded and concatenated automatically for you.
 
 ### 2. From your Cloud 66 Dashboard
 
@@ -466,7 +466,7 @@ This only applies to migrations between applications - restores to the original 
 
 To migrate data between applications:
 
-1. Add a new [database group](/docs/databases/attaching-multiple-databases) of the same type (e.g. MySQL) to the destination application
+1. Add a new [database group](/:product/:version?/databases/attaching-multiple-databases) of the same type (e.g. MySQL) to the destination application
 2. Click *Data Sources* in the left-hand nav, and then the name of the destination database
 3. Click the down arrow next to the target database server and select **Import Database**
 4. Choose the source application and database (i.e. where you're pulling the backup from) and click *Import* - this will automatically "restore" the latest database backup to your new server.

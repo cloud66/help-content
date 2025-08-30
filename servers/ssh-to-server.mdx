@@ -8,7 +8,7 @@ import SshKeysPartial from '../partials/_ssh_keys.mdx';
 
 ## Overview
 
-You can access any of your servers (that are being managed by Cloud 66) directly via SSH. For security reasons we only allow access using [SSH keys](/docs/cloud-66-101/ssh-keys), and not usernames and passwords. See below for how to add your key to Cloud 66. 
+You can access any of your servers (that are being managed by Cloud 66) directly via SSH. For security reasons we only allow access using [SSH keys](/:product/:version?/cloud-66-101/ssh-keys), and not usernames and passwords. See below for how to add your key to Cloud 66. 
 
 <DoNotConfigureServersManuallyPartial />
 
@@ -37,9 +37,9 @@ If any of your servers are unreachable by Cloud 66 when you add your SSH key, th
 
 ## SSH using Cloud 66 toolbelt (CLI)
 
-You can use [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt) to easily SSH to your servers. In order to use this function you need to:
+You can use [Cloud 66 Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt) to easily SSH to your servers. In order to use this function you need to:
 
-1. [Install the Toolbelt](/docs/toolbelt/using-cloud66-toolbelt#install-toolbelt) on your local machine
+1. [Install the Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt#install-toolbelt) on your local machine
 2. Ensure you have [added your public SSH key](#adding-your-ssh-key-to-your-cloud-66-account) to your Cloud 66 account
 3. Run one of the commands below
 
@@ -72,15 +72,15 @@ cx ssh -s "My Awesome App" Lion -e production
 ```
 </PerProduct>
 
-See [toolbelt shortcuts](/docs/toolbelt/using-cloud66-toolbelt), for information on to do this via our CLI.
+See [toolbelt shortcuts](/:product/:version?/toolbelt/using-cloud66-toolbelt), for information on to do this via our CLI.
 
 ## Manual SSH access
 
 You can access your servers manually via SSH from any Linux-based operating system (including Mac OS X). To do this:
 
-1. [Create an SSH key pair](/docs/cloud-66-101/ssh-keys) on your local machine (or re-use an existing one) 
+1. [Create an SSH key pair](/:product/:version?/cloud-66-101/ssh-keys) on your local machine (or re-use an existing one) 
 2. [Add your public SSH key](#adding-your-ssh-key-to-your-cloud-66-account) to your Cloud 66 account
-3. **[Add a firewall rule](/docs/security/firewall-rule#adding-a-custom-firewall-rule)** to your application to open port 22 to your own IP address (it is closed to outside traffic by default).
+3. **[Add a firewall rule](/:product/:version?/security/firewall-rule#adding-a-custom-firewall-rule)** to your application to open port 22 to your own IP address (it is closed to outside traffic by default).
 4. Open your terminal and SSH to your server using this command format:
 
 ```bash
@@ -106,7 +106,7 @@ If any of your servers are unreachable when you add your SSH key to your Cloud 6
 - Servers that are offline for any reason (paused, unavailable etc)
 - Servers behind gateways
 
-To solve this issue, you need to use the [Toolbelt command](/docs/toolbelt/toolbelt#ssh-config) below to sync the key with your server and make manual SSH possible again.
+To solve this issue, you need to use the [Toolbelt command](/:product/:version?/toolbelt/toolbelt#ssh-config) below to sync the key with your server and make manual SSH possible again.
 
 ```bash
 $ cx ssh-config set-public-key --public-key "<full public key>”
@@ -114,7 +114,7 @@ $ cx ssh-config set-public-key --public-key "<full public key>”
 
 ### Update your toolbelt version
 
-Toolbelt updates are normally applied automatically in the background, but in some cases these may not work. If so, you may need to [update the toolbelt manually](/docs/toolbelt/using-cloud66-toolbelt#update-the-toolbelt).
+Toolbelt updates are normally applied automatically in the background, but in some cases these may not work. If so, you may need to [update the toolbelt manually](/:product/:version?/toolbelt/using-cloud66-toolbelt#update-the-toolbelt).
 
 ### Toolbelt SSH asking for password
 

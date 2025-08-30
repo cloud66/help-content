@@ -145,7 +145,7 @@ Check out the [Habitus website](https://www.habitus.io/) for more information ab
 
 ## Adding a DaemonSet
 
-A DaemonSet ensures that a (single) copy of a specific Pod is added to every Node. This is useful for running background processes (aka daemons) but has many other uses. For more detail pleased read our [explanatory doc](/docs/cloud-66-101/concepts-and-terminology#daemonsets) on the subject.
+A DaemonSet ensures that a (single) copy of a specific Pod is added to every Node. This is useful for running background processes (aka daemons) but has many other uses. For more detail pleased read our [explanatory doc](/:product/:version?/cloud-66-101/concepts-and-terminology#daemonsets) on the subject.
 
 To create a DaemonSet we simply set the `type` of any service to `daemon_set`. For example:
 
@@ -181,7 +181,7 @@ services:
 
 ## Environment variables
 
-Any [environment variable](/docs/build-and-config/env-vars) defined in your application will be made available within your service container.
+Any [environment variable](/:product/:version?/build-and-config/env-vars) defined in your application will be made available within your service container.
 
 The syntax for defining environment variables in a service definition is:
 
@@ -192,13 +192,13 @@ services:
   VAR1: _env(VALUE_OF_VARIABLE)
 ```
 
-You can also reference environment variable in other applications or services. For more info please read our [detailed guide](/docs/build-and-config/env-vars#syntax-examples) to the sharing env vars between apps and services.
+You can also reference environment variable in other applications or services. For more info please read our [detailed guide](/:product/:version?/build-and-config/env-vars#syntax-examples) to the sharing env vars between apps and services.
 
 ### Handling complex env_vars
 
-Complex environment variables are variables that [reference other applications](/docs/build-and-config/env-vars#intra-app-referencing-syntax) or [services](/docs/build-and-config/env-vars#intra-service-referencing). For example: `_env(STACK[543247533d756a39a1f516f103c62efa].SERVICE[nginx].FOO)`
+Complex environment variables are variables that [reference other applications](/:product/:version?/build-and-config/env-vars#intra-app-referencing-syntax) or [services](/:product/:version?/build-and-config/env-vars#intra-service-referencing). For example: `_env(STACK[543247533d756a39a1f516f103c62efa].SERVICE[nginx].FOO)`
 
-If you need to reference a complex environment variable in your `service.yml`, you need to define it first, either in the `env_vars` block or in [your app’s Dashboard](/docs/build-and-config/env-vars#adding-an-environmental-variable).
+If you need to reference a complex environment variable in your `service.yml`, you need to define it first, either in the `env_vars` block or in [your app’s Dashboard](/:product/:version?/build-and-config/env-vars#adding-an-environmental-variable).
 
 For example, if we want to use the complex variable above in our Service we would do the following:
 
@@ -249,35 +249,35 @@ Below is a table of the available configurations for a given service with a brie
 
 |Option|Description|
 |--- |--- |
-|[annotations](/docs/build-and-config/service-tags-annotations#service-annotations)|Annotations for your services in key/value format - these will also become annotations on your Kubernetes resources|
-|[build_command](/docs/build-and-config/building-your-service#build-command)|Specifies the command you would like to run during application build.|
-|[build_root](/docs/build-and-config/building-your-service#build-root)|Specifies the directory of your repository in which you wish to run your Docker build.|
-|[command](/docs/build-and-config/building-your-service#command)|Specifies the command used to start your container.|
-|[constraints](/docs/build-and-config/service-resources)|Limits the [allocates services to nodes](/docs/build-and-config/service-resources#limiting-the-number-of-containers) number of containers or the [resource usage](/docs/build-and-config/service-resources) of a service across the cluster, or based on [names and/or tags](/docs/build-and-config/service-resources#allocating-services-to-nodes).|
+|[annotations](/:product/:version?/build-and-config/service-tags-annotations#service-annotations)|Annotations for your services in key/value format - these will also become annotations on your Kubernetes resources|
+|[build_command](/:product/:version?/build-and-config/building-your-service#build-command)|Specifies the command you would like to run during application build.|
+|[build_root](/:product/:version?/build-and-config/building-your-service#build-root)|Specifies the directory of your repository in which you wish to run your Docker build.|
+|[command](/:product/:version?/build-and-config/building-your-service#command)|Specifies the command used to start your container.|
+|[constraints](/:product/:version?/build-and-config/service-resources)|Limits the [allocates services to nodes](/:product/:version?/build-and-config/service-resources#limiting-the-number-of-containers) number of containers or the [resource usage](/:product/:version?/build-and-config/service-resources) of a service across the cluster, or based on [names and/or tags](/:product/:version?/build-and-config/service-resources#allocating-services-to-nodes).|
 |constraints/tolerations|This is an optional hash for advanced configuration of [Kubernetes Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/).|
-|[deploy_command](/docs/build-and-config/building-your-service#deploy-command)|Specifies the command you would like to run during application deploy (runs once per service).|
-|[dns_behaviour](/docs/networking/service-networking#dns-behaviour)|Specifies the dns behaviour for this service. Accepted values: *versioned*, *non-versioned*. Defaults to *versioned*.|
-|[dockerfile_path](/docs/build-and-config/building-your-service#dockerfile-path)|Specifies the location of the Dockerfile to be used for building this service, eg. *docker/Dockerfile*.|
-|[git_url](/docs/build-and-config/building-your-service#git-url)|The URL for the Git repository from which your Docker image will be built.|
-|[git_branch](/docs/build-and-config/building-your-service#git-branch)|The Git repository branch your Docker image will be based on.|
+|[deploy_command](/:product/:version?/build-and-config/building-your-service#deploy-command)|Specifies the command you would like to run during application deploy (runs once per service).|
+|[dns_behaviour](/:product/:version?/networking/service-networking#dns-behaviour)|Specifies the dns behaviour for this service. Accepted values: *versioned*, *non-versioned*. Defaults to *versioned*.|
+|[dockerfile_path](/:product/:version?/build-and-config/building-your-service#dockerfile-path)|Specifies the location of the Dockerfile to be used for building this service, eg. *docker/Dockerfile*.|
+|[git_url](/:product/:version?/build-and-config/building-your-service#git-url)|The URL for the Git repository from which your Docker image will be built.|
+|[git_branch](/:product/:version?/build-and-config/building-your-service#git-branch)|The Git repository branch your Docker image will be based on.|
 |[use_habitus](#using-habitus-for-builds)|Use [Habitus](https://www.habitus.io) build workflow|
 |[use_habitus_step](#using-habitus-for-builds)|The [Habitus](https://www.habitus.io) step to use for the build.|
-|[health](/docs/build-and-config/service-lifecycle-management#health)|One of the values: *default*, *none* or a hash. Use this to configure *Readiness*, *Liveness*, and *Startup* probes|
-|[image](/docs/build-and-config/building-your-service#image)|The image you would typically run `docker pull` from.|
-|[load_balancing](/docs/networking/service-networking#load-balancing)|Specifies the load balancing method for this service. Accepted values: *roundrobin*, *sticky*, *closest*. Default value is *roundrobin*|
-|log_folder|Specify the folder on your container in which your services will save logs. This folder is mounted to `/var/log/containers/NAMESPACE/SERVICE_NAME` on the host filesystem. (more about [namespace and service name](/docs/build-and-config/connecting-between-containerized-services))|
-|[ports](/docs/networking/service-networking)|The ports that are running within the container, as well as their corresponding external ports.|
-|[post_start_command](/docs/build-and-config/service-lifecycle-management#pre-start-command)|This command runs immediately after a container is created.|
-|[pre_stop_command](/docs/build-and-config/service-lifecycle-management#pre-stop-command)|This command runs immediately before a container is terminated.|
-|[requires](/docs/build-and-config/service-lifecycle-management#requires)|Array of other defined service names that should be started before this service during build and deployment.|
-|[restart_on_deploy](/docs/build-and-config/service-lifecycle-management#restart-on-deploy) *(default: true)*|Boolean value to indicate whether the containers of this service should be restarted during deployment.|
+|[health](/:product/:version?/build-and-config/service-lifecycle-management#health)|One of the values: *default*, *none* or a hash. Use this to configure *Readiness*, *Liveness*, and *Startup* probes|
+|[image](/:product/:version?/build-and-config/building-your-service#image)|The image you would typically run `docker pull` from.|
+|[load_balancing](/:product/:version?/networking/service-networking#load-balancing)|Specifies the load balancing method for this service. Accepted values: *roundrobin*, *sticky*, *closest*. Default value is *roundrobin*|
+|log_folder|Specify the folder on your container in which your services will save logs. This folder is mounted to `/var/log/containers/NAMESPACE/SERVICE_NAME` on the host filesystem. (more about [namespace and service name](/:product/:version?/build-and-config/connecting-between-containerized-services))|
+|[ports](/:product/:version?/networking/service-networking)|The ports that are running within the container, as well as their corresponding external ports.|
+|[post_start_command](/:product/:version?/build-and-config/service-lifecycle-management#pre-start-command)|This command runs immediately after a container is created.|
+|[pre_stop_command](/:product/:version?/build-and-config/service-lifecycle-management#pre-stop-command)|This command runs immediately before a container is terminated.|
+|[requires](/:product/:version?/build-and-config/service-lifecycle-management#requires)|Array of other defined service names that should be started before this service during build and deployment.|
+|[restart_on_deploy](/:product/:version?/build-and-config/service-lifecycle-management#restart-on-deploy) *(default: true)*|Boolean value to indicate whether the containers of this service should be restarted during deployment.|
 |security_context|This is an optional hash for advanced configuration of Kubernetes Security Context. Valid keys are: *fs_group, host_ipc, host_network, host_pid, privileged, run_as_group, run_as_non_root, run_as_user, supplemental_groups*.|
 |[service_account_name](#setting-a-service-account-name)|Assigns the service to a specific Kubernetes Service Account. The default value is `default`|
-|[stop_grace](/docs/build-and-config/service-lifecycle-management#stop-grace)|Duration between the Docker `TERM` and `KILL` signals when Docker stop is run and a container is stopped.|
-|[traffic_matches](/docs/networking/service-networking#traffic-matching)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
-|[tags](/docs/build-and-config/service-tags-annotations)|Arbitrary text tags for your services - these will also become labels on your Kubernetes resources|
+|[stop_grace](/:product/:version?/build-and-config/service-lifecycle-management#stop-grace)|Duration between the Docker `TERM` and `KILL` signals when Docker stop is run and a container is stopped.|
+|[traffic_matches](/:product/:version?/networking/service-networking#traffic-matching)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
+|[tags](/:product/:version?/build-and-config/service-tags-annotations)|Arbitrary text tags for your services - these will also become labels on your Kubernetes resources|
 |type|Specifies the type of service being defined. Accepted values: `service`, `deployment`, `daemon_set`|
-|[volumes](/docs/build-and-config/service-storage)|The volumes that are mounted from your host into your container.  <Glyph icon="warning" color="red" />You must use absolute paths.|
+|[volumes](/:product/:version?/build-and-config/service-storage)|The volumes that are mounted from your host into your container.  <Glyph icon="warning" color="red" />You must use absolute paths.|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|
 
 </TabsContent>
@@ -285,27 +285,27 @@ Below is a table of the available configurations for a given service with a brie
 
 |**Option**|**Description**|
 |--- |--- |
-|[build_command](/docs/legacy/legacy-building-your-service-csv1)|Specifies the command you would like to run during application build.|
-|[build_root](/docs/legacy/legacy-building-your-service-csv1)|Specifies the directory of your repository in which you wish to run your Docker build.|
-|[command](/docs/legacy/legacy-building-your-service-csv1)|Specifies the command used to start your container.|
-|[deploy_command](/docs/legacy/legacy-building-your-service-csv1)|Specifies the command you would like to run during application deploy (runs once per service).|
-|[dns_behaviour](/docs/legacy/service-network-configuration#dns_behaviour)|Specifies the dns behaviour for this service. Accepted values: *versioned*, *non-versioned*. Defaults to *versioned*.|
-|[dockerfile_path](/docs/legacy/legacy-building-your-service-csv1#dockerfile_path)|Specifies the location of the Dockerfile to be used for building this service, eg. *docker/Dockerfile*.|
+|[build_command](/:product/:version?/legacy/legacy-building-your-service-csv1)|Specifies the command you would like to run during application build.|
+|[build_root](/:product/:version?/legacy/legacy-building-your-service-csv1)|Specifies the directory of your repository in which you wish to run your Docker build.|
+|[command](/:product/:version?/legacy/legacy-building-your-service-csv1)|Specifies the command used to start your container.|
+|[deploy_command](/:product/:version?/legacy/legacy-building-your-service-csv1)|Specifies the command you would like to run during application deploy (runs once per service).|
+|[dns_behaviour](/:product/:version?/legacy/service-network-configuration#dns_behaviour)|Specifies the dns behaviour for this service. Accepted values: *versioned*, *non-versioned*. Defaults to *versioned*.|
+|[dockerfile_path](/:product/:version?/legacy/legacy-building-your-service-csv1#dockerfile_path)|Specifies the location of the Dockerfile to be used for building this service, eg. *docker/Dockerfile*.|
 |tags|Arbitrary tags for services|
-|[git_url](/docs/legacy/legacy-building-your-service-csv1)|The URL for the Git repository from which your Docker image will be built.|
-|[git_branch](/docs/legacy/legacy-building-your-service-csv1#git-branch)|The Git repository branch your Docker image will be based on.|
-|[use_habitus](/docs/legacy/legacy-building-your-service-csv1#using-habitus-for-builds)|Use [Habitus](https://www.habitus.io) build workflow|
-|[use_habitus_step](/docs/legacy/legacy-building-your-service-csv1#using-habitus-for-builds)|The [Habitus](https://www.habitus.io) step to use for the build.|
-|[health](/docs/build-and-config/service-lifecycle-management#health)|One of the values: *default*, *none* or a hash containing at least one of *type*, *endpoint*, *protocol*, *accept* or *timeout*.|
-|[image](/docs/legacy/legacy-building-your-service-csv1#image)|The image you would typically run `docker pull` from.|
-|[load_balancing](/docs/legacy/service-network-configuration#load-balancing)|Specifies the load balancing method for this service. Accepted values: *roundrobin*, *sticky*, *closest*. Default value is *roundrobin*|
+|[git_url](/:product/:version?/legacy/legacy-building-your-service-csv1)|The URL for the Git repository from which your Docker image will be built.|
+|[git_branch](/:product/:version?/legacy/legacy-building-your-service-csv1#git-branch)|The Git repository branch your Docker image will be based on.|
+|[use_habitus](/:product/:version?/legacy/legacy-building-your-service-csv1#using-habitus-for-builds)|Use [Habitus](https://www.habitus.io) build workflow|
+|[use_habitus_step](/:product/:version?/legacy/legacy-building-your-service-csv1#using-habitus-for-builds)|The [Habitus](https://www.habitus.io) step to use for the build.|
+|[health](/:product/:version?/build-and-config/service-lifecycle-management#health)|One of the values: *default*, *none* or a hash containing at least one of *type*, *endpoint*, *protocol*, *accept* or *timeout*.|
+|[image](/:product/:version?/legacy/legacy-building-your-service-csv1#image)|The image you would typically run `docker pull` from.|
+|[load_balancing](/:product/:version?/legacy/service-network-configuration#load-balancing)|Specifies the load balancing method for this service. Accepted values: *roundrobin*, *sticky*, *closest*. Default value is *roundrobin*|
 |log_folder|Folder your services logs to, mounted to `/var/log/containers/service` on the host filesystem.|
-|[ports](/docs/legacy/service-network-configuration#ports)|The ports that are running within the container, as well as their corresponding external ports.|
+|[ports](/:product/:version?/legacy/service-network-configuration#ports)|The ports that are running within the container, as well as their corresponding external ports.|
 |privileged *(default: false)*|Boolean value to indicate whether the container should be [run with extended privileges](https://docs.docker.com/engine/reference/run#runtime-privilege-and-linux-capabilities).|
-|[requires](/docs/legacy/service-network-configuration#requires)|Array of other defined service names that should be started before this service during build and deployment.|
-|[restart_on_deploy](/docs/legacy/service-network-configuration#restart) *(default: true)*|Boolean value to indicate whether the containers of this service should be restarted during deployment.|
-|[stop_grace](/docs/legacy/service-network-configuration#stop_grace)|Duration between the Docker `TERM` and `KILL` signals when Docker stop is run and a container is stopped.|
-|[traffic_matches](/docs/legacy/service-network-configuration#traffic_matches)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
+|[requires](/:product/:version?/legacy/service-network-configuration#requires)|Array of other defined service names that should be started before this service during build and deployment.|
+|[restart_on_deploy](/:product/:version?/legacy/service-network-configuration#restart) *(default: true)*|Boolean value to indicate whether the containers of this service should be restarted during deployment.|
+|[stop_grace](/:product/:version?/legacy/service-network-configuration#stop_grace)|Duration between the Docker `TERM` and `KILL` signals when Docker stop is run and a container is stopped.|
+|[traffic_matches](/:product/:version?/legacy/service-network-configuration#traffic_matches)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
 |volumes|Volumes mounted from host into container. Syntax: Array of absolute paths, with the format `HOST_FOLDER:CONTAINER_FOLDER`. Optional 'ro' on the end for read-only. e.g. `/tmp/host:/tmp/container:ro`|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|
 

@@ -26,7 +26,7 @@ To ensure correct boolean condition checks within your template, always explicit
 
 When there is a problem with your upstream server (ie. a container), requests will be passed to the default Cloud 66 error page. From there, you can visit the problematic server page in Cloud 66 dashboard to troubleshoot. 
 
-You can customise this page by following [this guide](/docs/servers/nginx#customizing-nginx-configurations).
+You can customise this page by following [this guide](/:product/:version?/servers/nginx#customizing-nginx-configurations).
 
 ## Default Nginx configuration
 
@@ -109,7 +109,7 @@ The following variables are available for use in your Nginx CustomConfig.
 
 We calculate the value for `passenger_pool_max` as follows:
 
-passenger_pool_max = ( server's memory - reserved_server_memory ) / [passenger_process_memory](/docs/manifest/building-a-manifest-file#rails)
+passenger_pool_max = ( server's memory - reserved_server_memory ) / [passenger_process_memory](/:product/:version?/manifest/building-a-manifest-file#rails)
 
 ...and this is rounded down to the nearest integer. So if your server has 4GB of free RAM and each process uses 600MB the your `passenger_pool_max` will be 6. 
 

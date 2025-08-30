@@ -27,13 +27,13 @@ To add a custom environment variable to your application:
 
 ### Testing your change
 
-The best way to check whether your new variable has been applied to your server is to log into it via SSH. [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) is the quickest way to do this. 
+The best way to check whether your new variable has been applied to your server is to log into it via SSH. [Cloud 66 Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) is the quickest way to do this. 
 
 Once you are connected to your server, enter this command `printenv FOO`. The server will responed with `BAR`. If it does not, check you have followed all the steps above.
 
 ## Editing an existing variable
 
-You can edit / update any custom variables you have added to Cloud 66, as well as some of the default variables. A good example would be changing the password for your [database server](/docs/databases/adding-database). 
+You can edit / update any custom variables you have added to Cloud 66, as well as some of the default variables. A good example would be changing the password for your [database server](/:product/:version?/databases/adding-database). 
 
 To do this:
 
@@ -43,7 +43,7 @@ To do this:
 4. Find the key you'd like to change, for example `MYSQL_PASSWORD` and update the value
 5. Save and redeploy as you did above
 
-You can test this by accessing your server via SSH using [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) and logging into MySQL with the new password.  
+You can test this by accessing your server via SSH using [Cloud 66 Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) and logging into MySQL with the new password.  
 
 <Callout type="warning" title="Be careful when changing env vars!">
 Updating default environment variables can cause an application to break unless it has been coded to cope with such changes. Proceed carefully! 
@@ -115,12 +115,12 @@ Using this, you can safely commit your env file to your git repository without e
 
 ## Managing environment variables using Toolbelt
 
-You can also manage your environment variables using your [Cloud 66 Toolbelt](/docs/toolbelt/toolbelt). There are four methods for managing env vars via Toolbelt:
+You can also manage your environment variables using your [Cloud 66 Toolbelt](/:product/:version?/toolbelt/toolbelt). There are four methods for managing env vars via Toolbelt:
 
-- [Listing environment variables](/docs/toolbelt/toolbelt#env-vars-list)
-- [Downloading variables](/docs/toolbelt/toolbelt#env-vars-download) as a file
-- [Setting individual variables](/docs/toolbelt/toolbelt#env-vars-set)
-- Setting variables in bulk by [uploading a file](/docs/toolbelt/toolbelt#env-vars-upload)
+- [Listing environment variables](/:product/:version?/toolbelt/toolbelt#env-vars-list)
+- [Downloading variables](/:product/:version?/toolbelt/toolbelt#env-vars-download) as a file
+- [Setting individual variables](/:product/:version?/toolbelt/toolbelt#env-vars-set)
+- Setting variables in bulk by [uploading a file](/:product/:version?/toolbelt/toolbelt#env-vars-upload)
 
 Please click on the links above for detailed instructions on each of these methods.
 
@@ -202,7 +202,7 @@ or
 
 ## Defining environment variables in a service
 
-Environment variables can be used in a Cloud 66 service definition (`service.yml` file) to pass variables between application components. Read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help.
+Environment variables can be used in a Cloud 66 service definition (`service.yml` file) to pass variables between application components. Read [our guide to using service.yml](/:product/:version?/build-and-config/docker-service-configuration) for more help.
 
 The syntax for defining environment variables in a service definition is:
 
@@ -262,7 +262,7 @@ services:
    DATABASES_DBNAME: _env(POSTGRESQL_DATABASE)
    PGBOUNCER_LISTEN_PORT: 5439
 ```
-Read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help.
+Read [our guide to using service.yml](/:product/:version?/build-and-config/docker-service-configuration) for more help.
 
 
 ## Calling env vars in a Dockerfile

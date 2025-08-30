@@ -38,7 +38,7 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 
 ### Before you start the process
 
-- Check the [Manifest](/docs/manifest/building-a-manifest-file) for your application to ensure you haven’t specified a version of Ubuntu in any of your component configurations. Either remove any mention of operating system version, or update to a version of Ubuntu that is still in LTS.
+- Check the [Manifest](/:product/:version?/manifest/building-a-manifest-file) for your application to ensure you haven’t specified a version of Ubuntu in any of your component configurations. Either remove any mention of operating system version, or update to a version of Ubuntu that is still in LTS.
 - Check both your Manifest and your other configuration or package dependency files (e.g. `Gemfile` or `package.json`) and confirm that the package versions are compatible with the latest version of Ubuntu. Where they are not, update the versions to achieve compatibility.
 - Replication is generally not possible between different (minor and major) versions of database engines. If your new servers will need to use a significantly different version of the engine, you will need to upgrade manually - [see our section below](#how-to-upgrade-databases-between-versions).
 - We strongly advise you to test a version of your application locally on the same version of Ubuntu that will be deployed.
@@ -47,16 +47,16 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 
 ### How to upgrade Ubuntu using the scaling up method
 
-1. Configure a [Web Success Check](/docs/servers/application-health-checks#configuring-web-success-checks) in your application’s Manifest file
+1. Configure a [Web Success Check](/:product/:version?/servers/application-health-checks#configuring-web-success-checks) in your application’s Manifest file
 2. Log into your Dashboard and click through to the application 
-3. [Add a load balancer](/docs/load-balancers/load-balancer) to your application if you don’t already have one
+3. [Add a load balancer](/:product/:version?/load-balancers/load-balancer) to your application if you don’t already have one
 4. Click on *Web* in the left-hand nav
 5. Click *+ Add Web Server* and add a new server - ideally of the same size and type as the existing server (be sure you have updated your manifest to use a newer version of Ubuntu before you do this)
-6. Once the new application server has been successfully deployed, remove the older server from the load balancer and test that your application is still working. If not, add back the old server and remove the new one. You can still reach the new server via the [Cloud 66 internal DNS](/docs/networking/configure-dns#browsing-your-app-via-cloud-66-dns) and this could be helpful for debugging.
-7. Next, set up [managed database backups](/docs/databases/database-backups) and back up each of your database types
-8. Add [new database groups](/docs/databases/attaching-multiple-databases) for each of your database types 
-9. If your database versions will remain the same between servers you can [set up replication](/docs/databases/database-replication#how-it-works) between your new database groups and the original groups. Otherwise you will need to follow our database upgrade section below.
-10. Configure your new application servers to [point at your new database group(s)](/docs/databases/attaching-multiple-databases#accessing-database-groups-from-an-app) 
+6. Once the new application server has been successfully deployed, remove the older server from the load balancer and test that your application is still working. If not, add back the old server and remove the new one. You can still reach the new server via the [Cloud 66 internal DNS](/:product/:version?/networking/configure-dns#browsing-your-app-via-cloud-66-dns) and this could be helpful for debugging.
+7. Next, set up [managed database backups](/:product/:version?/databases/database-backups) and back up each of your database types
+8. Add [new database groups](/:product/:version?/databases/attaching-multiple-databases) for each of your database types 
+9. If your database versions will remain the same between servers you can [set up replication](/:product/:version?/databases/database-replication#how-it-works) between your new database groups and the original groups. Otherwise you will need to follow our database upgrade section below.
+10. Configure your new application servers to [point at your new database group(s)](/:product/:version?/databases/attaching-multiple-databases#accessing-database-groups-from-an-app) 
 11. Test your live application thoroughly (consider leaving your old servers in place for a few hours to allow for rapid rollback if needed)
 12. Once you are comfortable that things are running smoothly, scale down your old servers
 
@@ -67,11 +67,11 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 ### How to upgrade Ubuntu using the scaling up method
 
 1. Log into your Dashboard and click through to the application 
-2. Follow our [How to upgrade Kubernetes clusters](/docs/build-and-config/upgrading-cluster#upgrading-your-cluster-without-downtime) guide to bring your Kubernetes cluster up to a version that is supported by the newer version of Ubuntu you will be deploying. Depending on how old your versions are, you may have to do this in stages because Kubernetes does not support every version of Ubuntu and vice versa. In this case you will need to upgrade Kubernetes a few steps, then add a new master using a newer version of Ubuntu. 
-3. Set up [managed database backups](/docs/databases/database-backups) and backup each of your database types
-4. Add [new database groups](/docs/databases/attaching-multiple-databases) for each of your database types 
-5. If your database versions will remain the same between servers you can [set up replication](/docs/databases/database-replication#how-it-works) between your new database groups and the original groups. Otherwise you will need to follow our database upgrade section below.
-6. Configure your new application servers to [point at your new database group(s)](/docs/databases/attaching-multiple-databases#accessing-database-groups-from-an-app) 
+2. Follow our [How to upgrade Kubernetes clusters](/:product/:version?/build-and-config/upgrading-cluster#upgrading-your-cluster-without-downtime) guide to bring your Kubernetes cluster up to a version that is supported by the newer version of Ubuntu you will be deploying. Depending on how old your versions are, you may have to do this in stages because Kubernetes does not support every version of Ubuntu and vice versa. In this case you will need to upgrade Kubernetes a few steps, then add a new master using a newer version of Ubuntu. 
+3. Set up [managed database backups](/:product/:version?/databases/database-backups) and backup each of your database types
+4. Add [new database groups](/:product/:version?/databases/attaching-multiple-databases) for each of your database types 
+5. If your database versions will remain the same between servers you can [set up replication](/:product/:version?/databases/database-replication#how-it-works) between your new database groups and the original groups. Otherwise you will need to follow our database upgrade section below.
+6. Configure your new application servers to [point at your new database group(s)](/:product/:version?/databases/attaching-multiple-databases#accessing-database-groups-from-an-app) 
 7. Test your live application thoroughly (consider leaving your old servers in place for a few hours to allow for rapid rollback if needed)
 8. Once you are comfortable that things are running smoothly, scale down your old servers
 
@@ -82,17 +82,17 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 Once you are ready, you can upgrade your version of Ubuntu as follows:
 
 1. Log into your Dashboard 
-2. (Optional but recommended) Set up a [Failover Group](/docs/failover-groups/failover-groups) for the application you’re planning to upgrade
+2. (Optional but recommended) Set up a [Failover Group](/:product/:version?/failover-groups/failover-groups) for the application you’re planning to upgrade
 3. Click through to the application
 4. Click on *Settings* in the left-hand nav
 5. Scroll down to **Application Actions** and click the *Clone* button
 6. Give the new version of your application a name and click Clone Application
 7. Follow the build process to analyze and configure your application for deployment
 8. Deploy the clone to the cloud of your choice - the servers will automatically be provisioned with the latest LTS version of Ubuntu (or the version specified in your Manifest)
-9. Set up [database replication](/docs/databases/database-replication#between-applications) between your existing application and your clone
+9. Set up [database replication](/:product/:version?/databases/database-replication#between-applications) between your existing application and your clone
 10. Test your cloned application thoroughly 
 11. Once you are satisfied, switch your Failover Group to point at the cloned application 
-12. Deactivate database replication and [promote your replica database](/docs/toolbelt/toolbelt#databases-promote-replica) on the clone to master
+12. Deactivate database replication and [promote your replica database](/:product/:version?/toolbelt/toolbelt#databases-promote-replica) on the clone to master
 
 You now have a fully upgraded version of your application, and you can delete your old version of your application and the servers it relied on.
 

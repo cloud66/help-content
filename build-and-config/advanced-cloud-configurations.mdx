@@ -19,13 +19,13 @@ title: Advanced cloud provider configurations
 
 Instance profiles are a way to set specific roles on new servers that you spin up with AWS. You can read more about [creating your own instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) in the AWS docs.
 
-You can use your instance profiles via Cloud 66 by calling them in the [manifest file](/docs/manifest/building-a-manifest-file) of your application. You can set a different profile for each component of an application (e.g. MySQL or Redis). We will then use that profile whenever we provision a server for that component.
+You can use your instance profiles via Cloud 66 by calling them in the [manifest file](/:product/:version?/manifest/building-a-manifest-file) of your application. You can set a different profile for each component of an application (e.g. MySQL or Redis). We will then use that profile whenever we provision a server for that component.
 
 ## Cloud 66 Security Groups on AWS
 
 Whenever we provision servers for a new application on AWS, we configure separate AWS Security Groups for each type of server (e.g. application servers or database servers).
 
-This requires Cloud 66 to have IAM permissions on your AWS account, so please be sure to set them up as explained in our [Deploying Your First App](/docs/getting-started/deploy-your-first-app) guide.
+This requires Cloud 66 to have IAM permissions on your AWS account, so please be sure to set them up as explained in our [Deploying Your First App](/:product/:version?/getting-started/deploy-your-first-app) guide.
 
 If new servers are added to a group on Cloud 66 (e.g. scaling up your web servers), then they are added to the corresponding Security Group on AWS. If servers are removed from Cloud 66, they are also removed from their Security Group on AWS.
 
@@ -44,7 +44,7 @@ EC2 Classic is now [completely deprecated](https://aws.amazon.com/blogs/aws/ec2-
 
 A [service account](https://cloud.google.com/iam/docs/service-accounts#types) is a GCE identity that Google Cloud can use to run API requests on your behalf. If you’ve never used a GCE service account before, please read [Google’s documentation](https://cloud.google.com/iam/docs/service-accounts#types) before starting.
 
-To use a GCE service account with a Cloud 66 application, you must add the name of the account to your [manifest](/docs/manifest/building-a-manifest-file) using the format `configuration/instance_service_account_name`. For example, this would configure MySQL to use the GCE service account named `mysql-user@my-project-name.iam.gserviceaccount.com`:
+To use a GCE service account with a Cloud 66 application, you must add the name of the account to your [manifest](/:product/:version?/manifest/building-a-manifest-file) using the format `configuration/instance_service_account_name`. For example, this would configure MySQL to use the GCE service account named `mysql-user@my-project-name.iam.gserviceaccount.com`:
 
 ```yaml
 mysql:

@@ -8,11 +8,11 @@ There are a number of factors that can lead your application to stop serving con
 
 ## Check you can SSH to your server
 
-Start by checking if you can SSH to your server - follow our [SSH guide](/docs/servers/ssh-to-server) if you need help. If you’re able to SSH to the server, try the steps below. If not, we recommend that you use your cloud vendor dashboard to try to connect to the server. Our separate guide to [troubleshooting server issues](/docs/servers/troubleshooting-server-connection) may be of some help here. 
+Start by checking if you can SSH to your server - follow our [SSH guide](/:product/:version?/servers/ssh-to-server) if you need help. If you’re able to SSH to the server, try the steps below. If not, we recommend that you use your cloud vendor dashboard to try to connect to the server. Our separate guide to [troubleshooting server issues](/:product/:version?/servers/troubleshooting-server-connection) may be of some help here. 
 
 ## Run a Health Check
 
-You can run a [quick health check](/docs/servers/application-health-checks#global-availability-checks) from your Cloud 66 dashboard. This will tell you if your application is responding to HTTP requests from our testing servers in four different regions. This will reveal (or rule out) any network connectivity issues between your own computer and your application.
+You can run a [quick health check](/:product/:version?/servers/application-health-checks#global-availability-checks) from your Cloud 66 dashboard. This will tell you if your application is responding to HTTP requests from our testing servers in four different regions. This will reveal (or rule out) any network connectivity issues between your own computer and your application.
 
 To run a quick health check:
 
@@ -34,7 +34,7 @@ $ curl -I http://www.site.com
 
 The output of this command provides you with lots of useful information, for example response codes, redirects and more. 
 
-Additionally, an *immediate bounce* of this command indicates that there is no server listening, whereas a more *lengthy response* could indicate a [firewall](/docs/security/firewall-rule) issue.
+Additionally, an *immediate bounce* of this command indicates that there is no server listening, whereas a more *lengthy response* could indicate a [firewall](/:product/:version?/security/firewall-rule) issue.
 
 ## Restart Nginx
 
@@ -46,7 +46,7 @@ This should determine whether or not Nginx is having issues starting or serving 
 $ $STACK_PATH/log/nginx_error.log
 ```
 
-It may be worth checking your [Nginx CustomConfig](/docs/custom-config/custom-config#accessing-custom-config) history to see if any recent configuration changes are causing issues.
+It may be worth checking your [Nginx CustomConfig](/:product/:version?/custom-config/custom-config#accessing-custom-config) history to see if any recent configuration changes are causing issues.
 
 ## Check web server logs
 

@@ -26,7 +26,7 @@ Standard certificates use Let's Encrypt to provision certificates for your domai
 To add a standard certificate:
 
 <PerProduct includes={["rails"]}>
-1. If you have not already done so, you must add (or update) your [DNS records](/docs/networking/configure-dns) to point to your application (either directly, or via your load balancer) 
+1. If you have not already done so, you must add (or update) your [DNS records](/:product/:version?/networking/configure-dns) to point to your application (either directly, or via your load balancer) 
 2. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
 3. Click on *Web* → *SSL Certificate* in the left-hand nav 
 4. Click *Add SSL Certificate*
@@ -36,7 +36,7 @@ To add a standard certificate:
 </PerProduct>
 
 <PerProduct includes={["deploy"]}>
-1. If you have not already done so, you must add (or update) your [DNS records](/docs/networking/configure-dns) to point to your application (either directly, or via your load balancer) 
+1. If you have not already done so, you must add (or update) your [DNS records](/:product/:version?/networking/configure-dns) to point to your application (either directly, or via your load balancer) 
 2. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
 3. Click on *Application* → *SSL Certificate* in the left-hand nav 
 4. Click *Add SSL Certificate*
@@ -47,7 +47,7 @@ To add a standard certificate:
 
 Cloud 66 will now attempt to add a standard certificate based on your configuration. Watch the timeline to see the outcome. 
 
-**Cloudflare** users need to [add a Page Rule](/docs/security/troubleshooting-ssl#configuring-let-s-encrypt-with-cloudflare) to their Cloudflare configuration in order for the process described above to work.  If you run into any other problems, consult our [troubleshooting doc](/docs/security/troubleshooting-ssl).
+**Cloudflare** users need to [add a Page Rule](/:product/:version?/security/troubleshooting-ssl#configuring-let-s-encrypt-with-cloudflare) to their Cloudflare configuration in order for the process described above to work.  If you run into any other problems, consult our [troubleshooting doc](/:product/:version?/security/troubleshooting-ssl).
 
 <Callout type="warning" title="Certificates require updates every 3 months">
 Let's Encrypt needs to be updated every 3 months, so you should keep this configuration in place to allow for automatic renewal. 

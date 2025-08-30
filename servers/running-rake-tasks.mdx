@@ -6,11 +6,11 @@ title: Running Rake tasks
 You can choose to run your Rake tasks automatically or manually. Running them automatically involves either scheduling them by using the Rake task add-on or by using deploy hooks. Alternatively, you can run them manually on your server.
 
 ## Scheduling Rake tasks
-Read more about [Rake Jobs](/docs/servers/rake-task) in the documentation.
+Read more about [Rake Jobs](/:product/:version?/servers/rake-task) in the documentation.
 
 ## Using deploy hooks
 
-You can use [deploy hooks](/docs/deploy-hooks/deploy-hooks) to execute your rake task at any point of your deployment.
+You can use [deploy hooks](/:product/:version?/deploy-hooks/deploy-hooks) to execute your rake task at any point of your deployment.
 
 Simply add a bash script to the application that contains the rake task. For example, create the file `/.cloud66/scripts/rake_task.sh` as below:
 
@@ -35,7 +35,7 @@ production:
 ```
 
 ## Manually
-This is done by starting a [terminal connection to your server](/docs/servers/ssh-to-server) and executing your rake task.
+This is done by starting a [terminal connection to your server](/:product/:version?/servers/ssh-to-server) and executing your rake task.
 
 ```shell
 $ cd $STACK_PATH

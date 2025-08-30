@@ -7,9 +7,9 @@ products: ['rails', 'deploy']
 
 You can configure NGINX to route traffic to different services in a containerized application, based on variables like DNS matches and ports, using a combination of the `service.yml` file and the NGINX Custom Config file. 
 
-NGINX configurations for Cloud 66 applications use [templatized config files](/docs/custom-config/custom-config) (written in [Liquid template language](https://shopify.github.io/liquid/)), which are hydrated based on the underlying application and service configurations. 
+NGINX configurations for Cloud 66 applications use [templatized config files](/:product/:version?/custom-config/custom-config) (written in [Liquid template language](https://shopify.github.io/liquid/)), which are hydrated based on the underlying application and service configurations. 
 
-The [service configuration](/docs/build-and-config/docker-service-configuration) options relevant to the NGINX configuration are the service's name, as well as its `ports` and `traffic_matches`.
+The [service configuration](/:product/:version?/build-and-config/docker-service-configuration) options relevant to the NGINX configuration are the service's name, as well as its `ports` and `traffic_matches`.
 
 
 ## High level overview

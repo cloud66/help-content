@@ -25,7 +25,7 @@ Success Checks monitor whether your code has been deployed properly by checking 
 - Load balancer Success Checks
 - Process success checks
 
-Depending on your deployment strategy, the deployment process will stop if a server fails its Deployment Success Check. This can help to catch deployments that don’t throw any errors, but are problematic for other reasons (such as issues at the code or database level). This is particularly useful for serial or rolling [deployment strategies](/docs/deployment/parallel-deployment) to ensure that bad code doesn’t bring your entire application down.
+Depending on your deployment strategy, the deployment process will stop if a server fails its Deployment Success Check. This can help to catch deployments that don’t throw any errors, but are problematic for other reasons (such as issues at the code or database level). This is particularly useful for serial or rolling [deployment strategies](/:product/:version?/deployment/parallel-deployment) to ensure that bad code doesn’t bring your entire application down.
 
 ### Deployment Success Checks
 
@@ -35,7 +35,7 @@ The deployment process will stop if a server fails its Deployment Success Check.
 
 ### Load balancer success checks
 
-There may occasionally be a lag between adding web servers back to a load balancer during a [phased deployment](/docs/deployment/parallel-deployment) (e.g. rolling) and the load balancer completing its own health checks, meaning that traffic is actually flowing to the server.
+There may occasionally be a lag between adding web servers back to a load balancer during a [phased deployment](/:product/:version?/deployment/parallel-deployment) (e.g. rolling) and the load balancer completing its own health checks, meaning that traffic is actually flowing to the server.
 
 You can configure your application to wait for the load balancer to confirm that the web servers are “healthy” before removing the next batch of web servers. This will slow deployments down slightly.
 
@@ -47,14 +47,14 @@ If your application uses a custom web server such as Puma, Unicorn or Thin (i.e.
 
 We use two methods to ensure your application is healthy:
 
-- We check if [systemd](/docs/servers/systemd) is reporting that your application is healthy
+- We check if [systemd](/:product/:version?/servers/systemd) is reporting that your application is healthy
 - We check that your application process IDs change in some way on redeployment.
 
 If either of these two checks fail, we mark the deployment as failed. This is particularly useful for rolling deployments because it will stop the deployment process and ensure the other servers are not brought down by the same issue.
 
 ## Configuring Deployment Success Checks
 
-Deployment Success Checks are defined either in your application’s **[manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial)** or via the Dashboard.
+Deployment Success Checks are defined either in your application’s **[manifest file](/:product/:version?/manifest/building-a-manifest-file#manifest-tutorial)** or via the Dashboard.
 
 ### Configuring Deployment Success Checks via Dashboard
 
@@ -86,7 +86,7 @@ rails:
       timeout: 30
 ```
 
-The values above are the default values and are all optional. Any options that are excluded will simply use the defaults above. You can see a complete list of supported options in our **[detailed manifest guide](/docs/manifest/building-a-manifest-file)**.
+The values above are the default values and are all optional. Any options that are excluded will simply use the defaults above. You can see a complete list of supported options in our **[detailed manifest guide](/:product/:version?/manifest/building-a-manifest-file)**.
 
 To simply use all these defaults with no changes, you can set:
 
@@ -112,7 +112,7 @@ In particular you should check that your application correctly reports response 
 
 When a load balancer is set up it will begin to ping your web endpoints to check their health. By default load balancers ping the root path of your application (`/`) and if they receive a `200` response code, they will consider a server healthy.
 
-If your application does not have a valid endpoint or route set for `/` then you can specify a custom path under the `httpchk` option in your **[manifest file](/docs/manifest/building-a-manifest-file#manifest-settings-for-load-balancers)** to ensure your application responds appropriately. We will configure the load balancer to ping that path rather than the root.
+If your application does not have a valid endpoint or route set for `/` then you can specify a custom path under the `httpchk` option in your **[manifest file](/:product/:version?/manifest/building-a-manifest-file#manifest-settings-for-load-balancers)** to ensure your application responds appropriately. We will configure the load balancer to ping that path rather than the root.
 
 If your web servers respond positively to the ping test, the load balancer will distribute the load between them. If any of these ping tests fail, the load balancer will not distribute traffic to those servers that failed this test.
 
@@ -135,7 +135,7 @@ This will open a drawer from the left of the screen which will show you the resu
 You can configure your application to run a health check after each deployment. There are two ways to configure these checks:
 
 1. Via the Dashboard interface (documented below)
-2. Via your Manifest file (please see the [Manifest reference guide](/docs/manifest/building-a-manifest-file#post-deployment-health-checks))
+2. Via your Manifest file (please see the [Manifest reference guide](/:product/:version?/manifest/building-a-manifest-file#post-deployment-health-checks))
 
 Post-deployment health checks have the following options:
 
@@ -186,5 +186,5 @@ This testing uses our open source project, **[Watchman](https://github.com/clou
 
 Service Checks in **Cloud 66** allow you to specify different types of checks on your containers - **readiness checks**, **liveness checks**, and **startup checks**. These checks define a set of rules that determine whether your application is currently healthy. For instance, you can check whether an application is responding on an HTTP endpoint, or if a post-initialization file is present.
 
-Service Checks are configured via your `service.yml` file. For more information please read our separate guide to setting up [Service Checks in Cloud 66](/docs/build-and-config/service-lifecycle-management#health).
+Service Checks are configured via your `service.yml` file. For more information please read our separate guide to setting up [Service Checks in Cloud 66](/:product/:version?/build-and-config/service-lifecycle-management#health).
 </PerProduct>

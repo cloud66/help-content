@@ -70,7 +70,7 @@ We'll now build another server for your cluster. You can repeat this step as man
 
 Next, transfer your data from your existing Elasticsearch instance to your new group. We recommend following the [official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) to do so - be sure to select the correct version of your (existing) instance. 
 
-You can use [Toolbelt (cx) commands](/docs/toolbelt/toolbelt) like `ssh` , `download` and `upload` to make the process easier, or `scp` directly between your servers if you're more comfortable with that.
+You can use [Toolbelt (cx) commands](/:product/:version?/toolbelt/toolbelt) like `ssh` , `download` and `upload` to make the process easier, or `scp` directly between your servers if you're more comfortable with that.
 
 ### Step 4: Promote your new group to "default"
 
@@ -86,7 +86,7 @@ If your application relies on Elasticsearch to function, **we recommend putting 
 Finally, redeploy your application to apply all the changes. Test your application is functioning as expected and then deactivate maintenance mode if everything is working. (If not, you can promote your old cluster to default and then fix any issues you've found.)
 
 <Callout type="info" title="Does not apply to manual installations">
- This guide assumes that you have installed [Elasticsearch](/docs/servers/elasticsearch) via Cloud 66's native tools (dashboard or manifest). If you have configured the service manually then this will not apply 
+ This guide assumes that you have installed [Elasticsearch](/:product/:version?/servers/elasticsearch) via Cloud 66's native tools (dashboard or manifest). If you have configured the service manually then this will not apply 
 </Callout>
 
 ## Scaling Elasticsearch clusters

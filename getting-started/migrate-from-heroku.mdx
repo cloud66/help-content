@@ -38,9 +38,9 @@ Using Heroku, you can choose between 1X (512 MB), 2X (1 GB) and PX (6 GB) server
 
 Using the [Cloud 66 Dashboard](https://app.cloud66.com/dashboard), you can pull your code directly from your Git repository and build it into a new version of your application on your own servers. 
 
-If you need help getting started, please read our [Deploying your first Rails app](/docs/getting-started/deploy-your-first-app) guide.
+If you need help getting started, please read our [Deploying your first Rails app](/:product/:version?/getting-started/deploy-your-first-app) guide.
 
-We also have a guide to [accessing your Git repository](/docs/cloud-66-101/access-your-code).
+We also have a guide to [accessing your Git repository](/:product/:version?/cloud-66-101/access-your-code).
 
 ### 2. Data
 
@@ -62,7 +62,7 @@ Start by dumping your existing database. Refer to the [ClearDB documentation for
 $ mysqldump -u [username] -p[password] [dbname] > backup.sql 
 ```
 
-Once you have a MySQL dump file, use the [Cloud 66 toolbelt](/docs/toolbelt/toolbelt#upload) to upload the file to your application database server. Remember to replace the fields below with your values.
+Once you have a MySQL dump file, use the [Cloud 66 toolbelt](/:product/:version?/toolbelt/toolbelt#upload) to upload the file to your application database server. Remember to replace the fields below with your values.
 
 ```bash
 $ cx upload -s "[app_name]" --server [database_server_name] backup.sql /tmp/backup.sql
@@ -82,17 +82,17 @@ $ mysql -u [generated_user_name] -p [generated_password] "[database_name]" < /tm
 
 ### 3. Traffic
 
-Once you're ready to serve traffic from your Cloud 66 application, you need to direct your traffic to it. For help doing this, see [Configure your DNS](/docs/networking/configure-dns).
+Once you're ready to serve traffic from your Cloud 66 application, you need to direct your traffic to it. For help doing this, see [Configure your DNS](/:product/:version?/networking/configure-dns).
 
 ## Useful pointers
 
 ### Web server and Procfile
 
-By default, Cloud 66 will deploy your application with Phusion Passenger, but you can also choose a custom Rack server like [Puma](/docs/build-and-config/puma-rack-server), [Thin](/docs/build-and-config/thin-rack-server) or [Unicorn](/docs/build-and-config/unicorn-rack-server). You may have a `web` entry in your Procfile to do this on Heroku. Cloud 66 ignores this entry to avoid compatibility issues.
+By default, Cloud 66 will deploy your application with Phusion Passenger, but you can also choose a custom Rack server like [Puma](/:product/:version?/build-and-config/puma-rack-server), [Thin](/:product/:version?/build-and-config/thin-rack-server) or [Unicorn](/:product/:version?/build-and-config/unicorn-rack-server). You may have a `web` entry in your Procfile to do this on Heroku. Cloud 66 ignores this entry to avoid compatibility issues.
 
 To run a custom web server, we require a `custom_web` entry. It is important to set this before analyzing your application, to avoid building the application with Passenger.
 
-You can also use the [Procfile](/docs/servers/systemd) to define other background jobs.
+You can also use the [Procfile](/:product/:version?/servers/systemd) to define other background jobs.
 
 ### Dyno recycling
 
@@ -108,10 +108,10 @@ Note that this is a temporary solution, and we recommend that you use a server m
 
 ### Asset Pipeline Compilation
 
-If you haven't compiled assets locally, Heroku will attempt to run the assets:precompile task during slug compilation. Cloud 66 allows you to [specify whether or not to run this](/docs/deployment/enable-disable-asset-pipeline) during deployment.
+If you haven't compiled assets locally, Heroku will attempt to run the assets:precompile task during slug compilation. Cloud 66 allows you to [specify whether or not to run this](/:product/:version?/deployment/enable-disable-asset-pipeline) during deployment.
 
 ## What's next?
 
-* Get started with [manifest files](/docs/manifest/building-a-manifest-file#manifest-tutorial) - a powerful tool for defining your application's components
-* Learn about [CustomConfig](/docs/custom-config/custom-config) - a tool for defining and managing configuration templates
-* Learn how to use [Toolbelt](/docs/toolbelt/using-cloud66-toolbelt) - a powerful command-line interface for managing your Cloud 66 applications.
+* Get started with [manifest files](/:product/:version?/manifest/building-a-manifest-file#manifest-tutorial) - a powerful tool for defining your application's components
+* Learn about [CustomConfig](/:product/:version?/custom-config/custom-config) - a tool for defining and managing configuration templates
+* Learn how to use [Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt) - a powerful command-line interface for managing your Cloud 66 applications.

@@ -13,7 +13,7 @@ Although Cloud 66 is designed to make managing your clusters a hands-off experie
 
 ## Method 1: Connect to the server
 
-You can access you cluster directly by connecting to your cluster's master server via SSH in your terminal. The quickest and easiest way to do this is to use [Cloud 66 Toolbelt](/docs/toolbelt/toolbelt#ssh). 
+You can access you cluster directly by connecting to your cluster's master server via SSH in your terminal. The quickest and easiest way to do this is to use [Cloud 66 Toolbelt](/:product/:version?/toolbelt/toolbelt#ssh). 
 
 Once you have Toolbelt installed, run the following command, replacing the placeholder with your application's name:
 
@@ -37,7 +37,7 @@ To set this up, you first need to have Kubernetes installed on your local machin
 
 1. Open your app in Cloud 66 Dashboard
 2. Click on *Network* in the left-hand nav
-3. Set up firewall rule that allows access FROM your **own IP address** (or range) TO your **master** server using **TCP** and port **6443**. (If you need help, please read our [Firewall guide](/docs/security/firewall-rule))
+3. Set up firewall rule that allows access FROM your **own IP address** (or range) TO your **master** server using **TCP** and port **6443**. (If you need help, please read our [Firewall guide](/:product/:version?/security/firewall-rule))
 4. Click through to your master server (click the *Applications* in the left hand nav and then *Servers*)
 5. Click the *&#8615; More* button at the top right of the Master Server panel and choose *Download Kubeconfig file* 
 6. Set the environment variable using `export KUBECONFIG=/file/path`

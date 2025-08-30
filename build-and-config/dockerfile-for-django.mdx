@@ -6,13 +6,13 @@ products: ['deploy']
 
 ## Overview 
 
-If we detect that your application uses Django we will suggest a default [Dockerfile](/docs/build-and-config/writing-a-dockerfile) for you to use (see below). This file should work for most Django applications, but if your app has some unusual requirements you may need to modify it or write your own from scratch. This doc will walk you through the basics of doing so.
+If we detect that your application uses Django we will suggest a default [Dockerfile](/:product/:version?/build-and-config/writing-a-dockerfile) for you to use (see below). This file should work for most Django applications, but if your app has some unusual requirements you may need to modify it or write your own from scratch. This doc will walk you through the basics of doing so.
 
 Before following this guide, we recommend getting acquainted with [the basics of the Docker platform](https://docs.docker.com/get-started/overview/). Because you’re using Cloud 66, most of the Docker tasks and processes described will be completely automated, but it is useful to understand why a Dockerfile is necessary and what it does.
 
 ## Adding a Dockerfile to your repo
 
-A `Dockerfile` is essentially a plaintext file with no file extension that you add to the root of your repository. If for some reason you can’t have it in the root, you can specify this in your Cloud 66 [service config](/docs/build-and-config/writing-a-dockerfile#putting-a-dockerfile-in-a-sub-directory).
+A `Dockerfile` is essentially a plaintext file with no file extension that you add to the root of your repository. If for some reason you can’t have it in the root, you can specify this in your Cloud 66 [service config](/:product/:version?/build-and-config/writing-a-dockerfile#putting-a-dockerfile-in-a-sub-directory).
 
 ## Writing a custom Dockerfile for Django
 
@@ -62,4 +62,4 @@ This image is obviously missing components that you might need, but you can add 
 
 ## Where is the CMD command?
 
-Cloud 66 uses the command that you define in your [`service.yml`](/docs/build-and-config/docker-service-configuration) to run the application (overriding whatever is in the Dockerfile). Although you can omit this, and rely on the implicit command in the Dockerfile, we strongly recommended [defining commands](/docs/build-and-config/building-your-service#build-command) via your `service.yml`.
+Cloud 66 uses the command that you define in your [`service.yml`](/:product/:version?/build-and-config/docker-service-configuration) to run the application (overriding whatever is in the Dockerfile). Although you can omit this, and rely on the implicit command in the Dockerfile, we strongly recommended [defining commands](/:product/:version?/build-and-config/building-your-service#build-command) via your `service.yml`.

@@ -25,7 +25,7 @@ Once the server is ready, you can move your processes from the web server to the
 
 ## Database servers
 
-You can scale your database servers through database replication. See our [database management section](/docs/databases/database-customization) for more information.
+You can scale your database servers through database replication. See our [database management section](/:product/:version?/databases/database-customization) for more information.
 
 <PerProduct includes={["deploy"]} includeVersions={["1"]}>
 
@@ -69,7 +69,7 @@ Scaling vertically on AWS with the instructions above will therefore only work w
 
 Delete Protection stops servers from being accidentally deleted from an account - for example when you scale down your application. This helps you to prevent your applications from accidentally going down and gives more control over your server mix, including avoiding deletion of servers when scaling down via the API.
 
-To enable Delete Protection feature on any server, simply [add a `c66.delete.protection` tag](/docs/servers/reserved-tags) to that server. When Delete Protection is enabled on a server, it will be not deleted if a server group is scaled down via the API. Any specific requests to delete the server (via web or API) will also be rejected until the tag is removed.
+To enable Delete Protection feature on any server, simply [add a `c66.delete.protection` tag](/:product/:version?/servers/reserved-tags) to that server. When Delete Protection is enabled on a server, it will be not deleted if a server group is scaled down via the API. Any specific requests to delete the server (via web or API) will also be rejected until the tag is removed.
 
 ### Adding and removing Delete Protection
 

@@ -12,15 +12,15 @@ Cloud 66 supports two types of backups: _managed_ and _unmanaged_.
 Using managed backups has several benefits:
 
 <PerProduct includes={["rails"]}>
-- You can easily [restore](/docs/databases/manage-backups) or download database backups using the Dashboard or [Toolbelt](/docs/toolbelt/toolbelt#backups-download) (CLI)
-- [Backup verifiers](/docs/databases/backup-verifiers) ensure that your backups actually contain what you expect
-- Allows you to use [database replication](/docs/databases/database-replication) to scale your databases
+- You can easily [restore](/:product/:version?/databases/manage-backups) or download database backups using the Dashboard or [Toolbelt](/:product/:version?/toolbelt/toolbelt#backups-download) (CLI)
+- [Backup verifiers](/:product/:version?/databases/backup-verifiers) ensure that your backups actually contain what you expect
+- Allows you to use [database replication](/:product/:version?/databases/database-replication) to scale your databases
 - Managed Backups are stored in Cloud 66's secure storage
 </PerProduct>
 
 <PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 - You can easily restore or download database backups using the Dashboard or Toolbelt (CLI)
-- Allows you to use [database replication](/docs/databases/database-replication) to scale your databases
+- Allows you to use [database replication](/:product/:version?/databases/database-replication) to scale your databases
 - Managed Backups are stored in Cloud 66's [secure storage](#managed-backup-storage-locations)
 </PerProduct>
 
@@ -85,7 +85,7 @@ Your server may have outdated or unneeded files (logs are a common culprit). A h
 
 ### 3. Disable backup size checks
 
-If you are confident that you have enough space and the first option is not possible, you can use the [Cloud 66 Toolbelt](/docs/toolbelt/toolbelt#settings-set) to run `"cx settings set -s STACK_NAME db.check.backup.size false"` where `STACK_NAME` is the name of your application. This will disable backup size checks.
+If you are confident that you have enough space and the first option is not possible, you can use the [Cloud 66 Toolbelt](/:product/:version?/toolbelt/toolbelt#settings-set) to run `"cx settings set -s STACK_NAME db.check.backup.size false"` where `STACK_NAME` is the name of your application. This will disable backup size checks.
 
 <Callout type="info" title="Check disk space first">
  If your server does not have enough space to accommodate the backup, this setting could cause the backup to fail, or the server disk to be fully utilised
@@ -106,7 +106,7 @@ We recommend using the automated restore process to restore backups. To do this:
 
 Restoring a backup **will** disrupt the target database - we do not recommend restoring to a live database, particularly in production.
 
-If you need to manually download and/or restore a backup, please read our in-depth guide on [manually restoring database backups](/docs/databases/manage-backups#manually-restoring-a-backup).
+If you need to manually download and/or restore a backup, please read our in-depth guide on [manually restoring database backups](/:product/:version?/databases/manage-backups#manually-restoring-a-backup).
 
 ## Backup format
 
@@ -174,7 +174,7 @@ If you delete an entire database group for which you had **managed backups** ena
 
 ## Backing up logical databases
 
-If you have [added](/docs/databases/adding-database#adding-logical-databases-to-a-server) any <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) </Hint> to any Database Group(s) you should be aware of the following:
+If you have [added](/:product/:version?/databases/adding-database#adding-logical-databases-to-a-server) any <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) </Hint> to any Database Group(s) you should be aware of the following:
 
 - Managed binary backups will include **all of your logical databases** and your **database users**. If you restore a version of your database *after* adding users to a later version these new users will effectively be lost (overwritten) by your previous users.
 - Managed text backups only include **your primary (default) logical database**. Text backups do not include users.

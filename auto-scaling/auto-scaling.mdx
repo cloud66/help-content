@@ -82,13 +82,13 @@ Your new Autoscaler will be active immediately - no need to deploy. You can chec
 In order to use queue size as a metric, your application needs to have a task queuing resource of some kind in place. We support these options for autoscaling:
 
 - Rails-based queue frameworks (Sidekiq, Resque, Delayed Job) via the [Cloud 66 gem](https://github.com/cloud66-oss/cloud66-rails)
-- [RabbitMQ](/docs/servers/rabbitmq)
+- [RabbitMQ](/:product/:version?/servers/rabbitmq)
 
 </PerProduct>
 
 <PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
-In order to use queue size as a metric, you need to [add RabbitMQ](/docs/servers/rabbitmq) to your application and actively use it as your message queue. 
+In order to use queue size as a metric, you need to [add RabbitMQ](/:product/:version?/servers/rabbitmq) to your application and actively use it as your message queue. 
 
 </PerProduct>
 
@@ -124,7 +124,7 @@ All Autoscalers have a common set of parameters:
 An Autoscaler continuously calculates the **average** of the metric (CPU, Memory, Response Time) that it monitors over the **lookback period** and, if that average breaches the threshold(s) you have specified, it either adds resources to your application or removes them.
 
 <Callout type="warning" title="Server deletion rules">
-When servers are scaled down, they will not be automatically deleted unless you have have changed the [related setting](/docs/servers/server-deletion) for your application
+When servers are scaled down, they will not be automatically deleted unless you have have changed the [related setting](/:product/:version?/servers/server-deletion) for your application
 </Callout>
 
 ### Server sizes

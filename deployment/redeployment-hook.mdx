@@ -6,7 +6,7 @@ title: Using redeployment hooks
 
 Redeployment hooks allow you to achieve continuous deployment by deploying your application whenever you push a change to your Git repository or when your continuous integration pipeline builds successfully.
 
-Cloud 66 offers several methods for achieving continuous integration. Please read our [continuous integration guide](/docs/deployment/continuous-deployment) to compare and select the ideal method to suit your requirements.
+Cloud 66 offers several methods for achieving continuous integration. Please read our [continuous integration guide](/:product/:version?/deployment/continuous-deployment) to compare and select the ideal method to suit your requirements.
 
 ## Accessing redeployment hooks
 
@@ -73,7 +73,7 @@ When a redeployment hook is invoked:
 
 ## Calling a deployment profile via a redeployment hook
 
-[Deployment profiles](/docs/deployment/deploy-profiles) allow you to customise the deployment process depending on your requirements - for example deploying some components and not others. You can also call deployment profiles directly via redeployment hooks using the following syntax:
+[Deployment profiles](/:product/:version?/deployment/deploy-profiles) allow you to customise the deployment process depending on your requirements - for example deploying some components and not others. You can also call deployment profiles directly via redeployment hooks using the following syntax:
 
 ```shell
 https://hooks.cloud66.com/stacks/redeploy/xxxx/yyyy/?deployment_profile=name_of_deployment_profile
@@ -85,7 +85,7 @@ The name of the profile can be found via your app Dashboard under ⚙️ *Settin
 
 Users who have signed in through Github (and who have enough access to create and edit deployment events for their applications on GitHub) can activate continuous deployments on GitHub. 
 
-To do this: access your [Application settings](/docs/toolbelt/toolbelt#settings-set) via the toolbelt and set **continuous.deploy** to _true_.
+To do this: access your [Application settings](/:product/:version?/toolbelt/toolbelt#settings-set) via the toolbelt and set **continuous.deploy** to _true_.
 
 ```shell
 $ cx settings set -s my_app_name continuous.deploy true
@@ -147,6 +147,6 @@ curl -X POST [your redeployment hook URL]?git_ref=...
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 <Callout type="info" title="Deploying via command line">
- If you are manually invoking redeployments you should consider using [Cloud 66 Toolbelt](/docs/toolbelt/toolbelt#redeploy-your-stack) instead, as it has additional features! 
+ If you are manually invoking redeployments you should consider using [Cloud 66 Toolbelt](/:product/:version?/toolbelt/toolbelt#redeploy-your-stack) instead, as it has additional features! 
 </Callout>
 </PerProduct>

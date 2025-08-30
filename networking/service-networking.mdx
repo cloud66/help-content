@@ -9,7 +9,7 @@ In Cloud 66, your services run inside containers. For a service to be available 
 
 This is not limited to HTTP or web traffic. The same concepts apply if your container serves non-HTTP traffic (like web sockets, DB containers or custom TCP / UDP traffic).
 
-Port mapping is a small (but important) part of a core system that underpins container management - *service networking*. If you need an introduction to the concept of Service Networking, you can find one [here](/docs/cloud-66-101/concepts-and-terminology#service-networking).
+Port mapping is a small (but important) part of a core system that underpins container management - *service networking*. If you need an introduction to the concept of Service Networking, you can find one [here](/:product/:version?/cloud-66-101/concepts-and-terminology#service-networking).
 
 This guide also covers more advanced configurations like using [Non-HTTP ports](#non-http-ports-tcp-and-udp), [mapping multiple ports](#mapping-multiple-ports) and [traffic matching](#traffic-matching).
 
@@ -24,7 +24,7 @@ In this document, "outside" is used for any client of your service that's not in
 Before you start, please check you have the following:
 
 * **A Cloud 66 Account** &mdash; If you don't already have one, [sign up for a Cloud 66 account](https://app.cloud66.com/users/sign_up). Your first server is free, no credit card required.
-* **An existing containerized application set up** &mdash; To make the most of this tutorial you need to have an app already set up in Cloud 66. Follow our [Getting Started guide](/docs/getting-started/deploy-your-first-app) if you're not sure how to do this.
+* **An existing containerized application set up** &mdash; To make the most of this tutorial you need to have an app already set up in Cloud 66. Follow our [Getting Started guide](/:product/:version?/getting-started/deploy-your-first-app) if you're not sure how to do this.
 
 <Callout type="info" title="Demo application">
 This tutorial uses the [simple visit counter application](https://github.com/cloud66/maestro-demo.git) we've supplied on Github as a working example. 
@@ -32,7 +32,7 @@ This tutorial uses the [simple visit counter application](https://github.com/clo
 
 ## Mapping container ports
 
-When we set up our *demo-app* service we [configured our ports](/docs/getting-started/deploy-your-first-app#configure-your-services) so that our internal port `5000` was mapped to the public port `80`. 
+When we set up our *demo-app* service we [configured our ports](/:product/:version?/getting-started/deploy-your-first-app#configure-your-services) so that our internal port `5000` was mapped to the public port `80`. 
 
 Now imagine that your app has evolved to offer secure web (SSL / TLS) access as well as standard web access. TLS traffic typically flows over port `443`, so we need to add this to the port mapping for our application.
 
@@ -41,7 +41,7 @@ There are two ways to do this:
 * Using the standard *edit service* interface
 * Directly modifying the `service.yml` for your application (this is only recommended for advanced users)
 
-You can also read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help.
+You can also read [our guide to using service.yml](/:product/:version?/build-and-config/docker-service-configuration) for more help.
 
 ### Editing via the UI
 
@@ -82,7 +82,7 @@ If you've followed the steps above correctly, the **Services Config** panel will
 In order for these new settings to be rolled out to your service, you must click the green Apply button (above the **Services** panel) and then redeploy your application by clicking the *Deploy* button.
 
 <Callout type="warning" title="Set up SSL properly">
-If you actually need HTTPS traffic to be available to the outside world (not just as a demo) you will also need to set up [SSL certificates](/docs/security/ssl) for your application. 
+If you actually need HTTPS traffic to be available to the outside world (not just as a demo) you will also need to set up [SSL certificates](/:product/:version?/security/ssl) for your application. 
 </Callout>
 
 ### Editing config files directly
@@ -90,17 +90,17 @@ If you actually need HTTPS traffic to be available to the outside world (not jus
 Cloud 66 uses a YAML file called `service.yml` to define each service inside your application(s). You can edit the content of this file directly using the Dashboard in two ways:
 
 1. Via the *Services UI*, using the left-hand panel we described [above](#editing-via-the-ui) - but click the *YAML* tab instead of *Network & Storage*
-2. Via the [Configuration Files interface](/docs/build-and-config/docker-service-configuration#getting-started-serviceyml) 
+2. Via the [Configuration Files interface](/:product/:version?/build-and-config/docker-service-configuration#getting-started-serviceyml) 
 
 Note that with method 1 you are only editing the section of `service.yml` **specific to your context**. So in this case you would be editing the `ports` section of your  `service.yml`. To edit the file as a whole, you'll need to use method 2.
 
 ## Advanced service network configuration
 
-This section covers more complex and advanced cases of service networking for containerized applications. If you've never configured a containerized service before, consider following [our tutorial](/docs/networking/service-networking#mapping-container-ports) on port mapping first.
+This section covers more complex and advanced cases of service networking for containerized applications. If you've never configured a containerized service before, consider following [our tutorial](/:product/:version?/networking/service-networking#mapping-container-ports) on port mapping first.
 
-If you need an introduction to the concept of Service Networking, you can find one [here](/docs/cloud-66-101/concepts-and-terminology#service-networking).
+If you need an introduction to the concept of Service Networking, you can find one [here](/:product/:version?/cloud-66-101/concepts-and-terminology#service-networking).
 
-Read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help on customizing your service configuration.
+Read [our guide to using service.yml](/:product/:version?/build-and-config/docker-service-configuration) for more help on customizing your service configuration.
 
 ## Non-HTTP ports (TCP and UDP)
 

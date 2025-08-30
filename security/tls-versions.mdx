@@ -17,7 +17,7 @@ Some older components still rely on older versions of TLS. We strongly recommend
 
 Applications managed by Cloud 66 use Nginx as a combined web server and reverse proxy.  If traffic is flowing straight to your application server then we need to modify the configuration of your Nginx server.
 
-You can configure the Nginx server for an application using [Custom Config](/docs/custom-config/custom-config). In this case we want to change the following line from (for example):
+You can configure the Nginx server for an application using [Custom Config](/:product/:version?/custom-config/custom-config). In this case we want to change the following line from (for example):
 
 ```bash
 ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
@@ -37,7 +37,7 @@ Once you have made the changes, add a commit message and save. The new configura
 
 If your SSL terminates on your load balancer, then you will need to disable TLS 1.0 on the load balancer itself for this to take effect. The method for doing this differs depending on the load balancer you use. We have linked to solutions for popular load balancers below:
 
-- [HAproxy](https://www.haproxy.com/documentation/aloha/) (our default load balancer - you can configure it via [Custom Config](/docs/load-balancers/haproxy)
+- [HAproxy](https://www.haproxy.com/documentation/aloha/) (our default load balancer - you can configure it via [Custom Config](/:product/:version?/load-balancers/haproxy)
 - [Amazon ELB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener#describe-ssl-policies.)
 - [Google Cloud Load Balancing](https://cloud.google.com/load-balancing/docs/use-ssl-policies) (via SSL policies)
 - [Linode NodeBalancer](https://www.linode.com/docs/platform/nodebalancer/nodebalancer-reference-guide#tls-cipher-suites) (via cipher suites)

@@ -14,7 +14,7 @@ By default, all traffic is allowed to visit your web servers on ports `80`, `443
 5. Forcing traffic to flow via your load balancer(s) rather than hitting servers directly
 6. Blocking (or allowing) direct traffic via your app's default *.c66.me domain
 
-Cloud 66 also automatically rate limits IP addresses and will temporarily block an address that hits your application too often. Please read our [Application Surge Protection](/docs/networking/network-configuration#application-surge-protection) guide for more details.
+Cloud 66 also automatically rate limits IP addresses and will temporarily block an address that hits your application too often. Please read our [Application Surge Protection](/:product/:version?/networking/network-configuration#application-surge-protection) guide for more details.
 
 ## Configuring Traffic Filters
 
@@ -39,7 +39,7 @@ To configure traffic filters for your application:
 </PerProduct>
 
 <Callout type="info" title="Whitelisting vs Surge Protection">
-Whitelisting is not the same as removing [Application Surge Protection](/docs/networking/network-configuration#application-surge-protection). These are two separate lists with separate functions. A whitelisted IP could still be rate limited.
+Whitelisting is not the same as removing [Application Surge Protection](/:product/:version?/networking/network-configuration#application-surge-protection). These are two separate lists with separate functions. A whitelisted IP could still be rate limited.
 </Callout>
 
 ## Allowing traffic (whitelisting)
@@ -56,7 +56,7 @@ IP addresses and ranges can be entered as comma separated lists. For example:
 23.213.76.19,31.152.18.22,197.222.132.0/24
 ```
 
-You can also add lists of addresses via URLs. The URL must point to either a `txt` or `JSON` formatted document. See our [reference guide](/docs/networking/network-configuration#traffic-filters) for more details. 
+You can also add lists of addresses via URLs. The URL must point to either a `txt` or `JSON` formatted document. See our [reference guide](/:product/:version?/networking/network-configuration#traffic-filters) for more details. 
 
 ### Allowing traffic by country
 
@@ -68,7 +68,7 @@ You can also blacklist specific IPs and/or ranges from visiting the ports mentio
 
 You can test this by adding your [own IP address](https://whatsmyip.com/) to the *Deny* list and then trying to visit your application in the browser. If you've configured this correctly you will get a *403 Forbidden* error from your app's Nginx proxy. 
 
-As above, you can enter IP addresses in comma separated lists, as ranges, or a combination. You can also add lists of addresses via URLs. The URL must point to either a `txt` or `JSON` formatted document. See our [reference guide](/docs/networking/network-configuration#traffic-filters) for more details. 
+As above, you can enter IP addresses in comma separated lists, as ranges, or a combination. You can also add lists of addresses via URLs. The URL must point to either a `txt` or `JSON` formatted document. See our [reference guide](/:product/:version?/networking/network-configuration#traffic-filters) for more details. 
 
 ### Denying traffic by country
 
@@ -76,7 +76,7 @@ Works identically to whitelisting by countries [above](#whitelisting-by-country)
 
 ## Control direct web traffic to default domains
 
-We automatically provision (unique) [default (sub)domains](/docs/networking/configure-dns#cloud-66-hostnames) for every application under `c66.me`. You can control whether this domain is directly reachable or not (it is reachable by default).
+We automatically provision (unique) [default (sub)domains](/:product/:version?/networking/configure-dns#cloud-66-hostnames) for every application under `c66.me`. You can control whether this domain is directly reachable or not (it is reachable by default).
 
 To control direct access to this domain: 
 
@@ -102,7 +102,7 @@ To control direct access to this domain:
 
 By default web traffic is **allowed**, which can result in SEO penalties if search engines have found and indexed this domain.
 
-**Blocking** direct traffic will return a 404 to visitors to that domain, and display [custom error page](/docs/servers/nginx#customizing-nginx-configurations) you have configured. 
+**Blocking** direct traffic will return a 404 to visitors to that domain, and display [custom error page](/:product/:version?/servers/nginx#customizing-nginx-configurations) you have configured. 
 
 You can **redirect** any visits to another domain but the target domain needs a valid SSL certificate in order to enable this option.
 

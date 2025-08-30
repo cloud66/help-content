@@ -11,7 +11,7 @@ Whenever you update your application code, you can adjust two aspects of the way
 
 This guide is concerned with the first aspect - how the new code gets to your servers. 
 
-If you need help with the second aspect - how the new version of your application is presented to your customers - please read our separate [guide to rollout strategies](/docs/deployment/rollout-strategies).
+If you need help with the second aspect - how the new version of your application is presented to your customers - please read our separate [guide to rollout strategies](/:product/:version?/deployment/rollout-strategies).
 
 ## Types of deployment strategies
 
@@ -90,7 +90,7 @@ To **deploy** using a profile:
 1. From your app dashboard, click on the green *Deploy* button 
 2. Click on the name of the profile you'd like to use for this deployment
 
-For more information on deployment profiles, please read [our reference guide](/docs/deployment/deploy-profiles).
+For more information on deployment profiles, please read [our reference guide](/:product/:version?/deployment/deploy-profiles).
 
 ### Using the Toolbelt (command line)
 
@@ -113,7 +113,7 @@ You can also trigger a Fast Deployment using Cloud 66 Toolbelt using the followi
 ```shell
 cx stacks redeploy --deploy-strategy fast
 ```
-If you're planning to use this strategy regularly, you should consider creating a [deployment profile](/docs/deployment/deploy-profiles) to make triggering Fast Deployments quicker. You can do this via the *Deploy with Options* menu by clicking the *Save these deployment options?* link. 
+If you're planning to use this strategy regularly, you should consider creating a [deployment profile](/:product/:version?/deployment/deploy-profiles) to make triggering Fast Deployments quicker. You can do this via the *Deploy with Options* menu by clicking the *Save these deployment options?* link. 
 
 Remember you can also trigger deployment profiles using Toolbelt:
 
@@ -131,7 +131,7 @@ All the deployment strategies have a few things in common:
 - By definition all three strategies require at least some of your servers to be unavailable during deployment - the only difference is how many servers, and for how long. If your application has no redundancy, we strongly recommend scaling your application up (even temporarily).
 
 <Callout type="info" title="Add health checks to your deployment process">
-If you're planning to use parallel or rolling deployments, we recommend [adding health checks](/docs/servers/application-health-checks#deployment-success-checks) to your deployment process. 
+If you're planning to use parallel or rolling deployments, we recommend [adding health checks](/:product/:version?/servers/application-health-checks#deployment-success-checks) to your deployment process. 
 </Callout>
 
 ### Serial deployment
@@ -158,10 +158,10 @@ Rolling deployments work as follows:
 4. If either group deployment fails, it will not be added back to load balancer and deployment will stop.
 5. When deploying again, the previously failed group (if present) will always go first
 
-You can [tag your application servers](/docs/servers/tagging-components) as either `c66.deployment.group.sapphire` or `c66.deployment.group.emerald` to indicate your preference for grouping.
+You can [tag your application servers](/:product/:version?/servers/tagging-components) as either `c66.deployment.group.sapphire` or `c66.deployment.group.emerald` to indicate your preference for grouping.
 
 <Callout type="warning" title="Deployment success checks">
- We strongly recommend adding [deployment success checks](/docs/servers/application-health-checks#deployment-success-checks) to your application to help catch a wider range of errors (i.e. errors that may not disrupt code deployment but that nonetheless break your application). 
+ We strongly recommend adding [deployment success checks](/:product/:version?/servers/application-health-checks#deployment-success-checks) to your application to help catch a wider range of errors (i.e. errors that may not disrupt code deployment but that nonetheless break your application). 
 </Callout>
 
 ## Pros and cons of each deployment strategy
@@ -182,7 +182,7 @@ This can also work in the opposite direction - the load balancer may report that
 
 For many lag-tolerant applications this short delay does not matter, but some applications are more sensitive and can suffer adverse affects from this configuration lag.
 
-If your application is "lag-sensitive" we recommend adding short delays to your [load balancer configurations](/docs/manifest/building-a-manifest-file#aws-load-balancer). You can do this using the **`wait_after_adding_servers`** and **`wait_after_removing_servers`** options under the load balancers section of your application's [manifest file](/docs/manifest/building-a-manifest-file#aws-load-balancer). 
+If your application is "lag-sensitive" we recommend adding short delays to your [load balancer configurations](/:product/:version?/manifest/building-a-manifest-file#aws-load-balancer). You can do this using the **`wait_after_adding_servers`** and **`wait_after_removing_servers`** options under the load balancers section of your application's [manifest file](/:product/:version?/manifest/building-a-manifest-file#aws-load-balancer). 
 
 Bear in mind that adding these delays can slow down the deployment process significantly. For **serial deployments** the additional delay will be: 
 

@@ -4,10 +4,10 @@ title: Adding & Managing Server Jobs
 
 ## Overview
 
-Server Jobs allow you to define and schedule regular server tasks (shell commands). Under the hood, these are run as [cronjobs](/docs/servers/understanding-cron-syntax).
+Server Jobs allow you to define and schedule regular server tasks (shell commands). Under the hood, these are run as [cronjobs](/:product/:version?/servers/understanding-cron-syntax).
 
 <PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
-If you need to run a job against a Cloud 66 service (i.e. inside a container), rather than on the underlying server, you should use [Application Jobs](/docs/servers/docker-tasks) instead.
+If you need to run a job against a Cloud 66 service (i.e. inside a container), rather than on the underlying server, you should use [Application Jobs](/:product/:version?/servers/docker-tasks) instead.
 </PerProduct>
 
 ## Adding a new server job
@@ -18,7 +18,7 @@ To add a new server job:
 2. Click on the button for the type of job you wish to add
 3. Give give your new job a name
 4. Specify the command(s) you want to run and the user
-5. Set a schedule for the job - you can use [cron syntax](/docs/servers/understanding-cron-syntax) for more control over your scheduling
+5. Set a schedule for the job - you can use [cron syntax](/:product/:version?/servers/understanding-cron-syntax) for more control over your scheduling
 6. Click Save
 
 You will now see your new job listed on the Jobs page.  You can edit it, or run it on demand by clicking on the small downward arrow. Your run results (success, failure and any output) can be seen in real-time on the job detail page.
@@ -52,7 +52,7 @@ When you deploy, you can choose Deploy with Options and check the **Pause Jobs**
 
 ## Using parameters
 
-When you are running a job on demand via dashboard or [toolbelt](/docs/toolbelt/toolbelt#jobs-run), you can pass it parameters (if it is written to accept them).
+When you are running a job on demand via dashboard or [toolbelt](/:product/:version?/toolbelt/toolbelt#jobs-run), you can pass it parameters (if it is written to accept them).
 
 ### Notation
 

@@ -5,7 +5,7 @@ title: Adding GlusterFS
 [GlusterFS](https://www.gluster.org/) is a scalable network file-system (NAS), and it's easy to add to your application via the Cloud 66 Dashboard.
 
 <PerProduct includes={["rails"]}>
-If your Rails application runs on a single web server then you do not need GlusterFS to persist file storage or to share files between front and backend. Read our guide to [persistent and shared directories for Rails apps](/docs/build-and-config/rails-shared-directories) for more info.
+If your Rails application runs on a single web server then you do not need GlusterFS to persist file storage or to share files between front and backend. Read our guide to [persistent and shared directories for Rails apps](/:product/:version?/build-and-config/rails-shared-directories) for more info.
 </PerProduct>
 
 ## Adding GlusterFS
@@ -56,7 +56,7 @@ Now SSH to another web server on your application and you should be able to see 
 
 <PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ## What about my containers?
-So far we saw how you can create a share disk volume on every server. But what about accessing this share storage from each container? You can [mount](/docs/build-and-config/service-storage) the `/mnt/gfs/<volume-name>` directory into any directory inside your container. This means your code can read and write to `/mnt/gfs/<volume-name>` from inside a container without any further changes.
+So far we saw how you can create a share disk volume on every server. But what about accessing this share storage from each container? You can [mount](/:product/:version?/build-and-config/service-storage) the `/mnt/gfs/<volume-name>` directory into any directory inside your container. This means your code can read and write to `/mnt/gfs/<volume-name>` from inside a container without any further changes.
 </PerProduct>
 
 ## Fine grained access control for your data
@@ -65,10 +65,10 @@ By default Cloud 66 builds a GlusterFS cluster for your application, creates a d
 <PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 But what if you need to make sure some services have read/write access to your data and some only readonly access?
 
-This is achieved using the [manifest](/docs/manifest/building-a-manifest-file) file. Using manifest file, you can control the GlusterFS volumes you have as well as grant read/write or readonly access to containers of a specific service.
+This is achieved using the [manifest](/:product/:version?/manifest/building-a-manifest-file) file. Using manifest file, you can control the GlusterFS volumes you have as well as grant read/write or readonly access to containers of a specific service.
 </PerProduct>
 
-Using the [manifest](/docs/manifest/building-a-manifest-file) file allows you to choose the servers on which you would like to have the volumes mounted.
+Using the [manifest](/:product/:version?/manifest/building-a-manifest-file) file allows you to choose the servers on which you would like to have the volumes mounted.
  
 ## Accessing your GlusterFS servers
 GlusterFS servers are added to a new group called _GlusterFS Cluster_ under your application. These servers are accessible via the usual GlusterFS tooling (available from [GlusterFS website](https://www.gluster.org/)).

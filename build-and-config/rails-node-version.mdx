@@ -6,7 +6,7 @@ products: ['rails']
 
 ## Controlling the Node version for your Rails application
 
-We automatically install the latest release of Node version <ComponentVersion names={["node"]} tabular={false} />  when we set up your Rack/Rails application servers. You can control which version is installed by editing the [manifest file](/docs/manifest/building-a-manifest-file) for the Rails application. 
+We automatically install the latest release of Node version <ComponentVersion names={["node"]} tabular={false} />  when we set up your Rack/Rails application servers. You can control which version is installed by editing the [manifest file](/:product/:version?/manifest/building-a-manifest-file) for the Rails application. 
 
 ```yaml
 rails:
@@ -17,5 +17,5 @@ rails:
 
 
 <Callout type="warning" title="Applying changes">
-  To apply changes to the Node version you need to update your manifest file, then [deploy-with-options](/docs/servers/applying-upgrades#ubuntu) and select the **Apply Ruby/Node upgrades** option. 
+  To apply changes to the Node version you need to update your manifest file, then [deploy-with-options](/:product/:version?/servers/applying-upgrades#ubuntu) and select the **Apply Ruby/Node upgrades** option. 
 </Callout>

@@ -79,7 +79,7 @@ To enable replication for a single application, you need to scale up to create a
 
 ### Between database groups
 
-Please see our [guide to database groups](/docs/databases/attaching-multiple-databases) for details on how this works.
+Please see our [guide to database groups](/:product/:version?/databases/attaching-multiple-databases) for details on how this works.
 
 ### Between applications
 
@@ -120,7 +120,7 @@ To disable replication between applications:
 From time-to-time your replica database may go out of sync with its master. You can re-synchronize a replica in two ways:
 
 - Via the Dashboard (click through to the detail page for the replica and then click Resync Replica)
-- Via the Cloud 66 Toolbelt's [database management commands](/docs/toolbelt/toolbelt#databases-promote-replica).
+- Via the Cloud 66 Toolbelt's [database management commands](/:product/:version?/toolbelt/toolbelt#databases-promote-replica).
 
 <Callout type="warning" title="Backups running on replicas">
 If your managed backups are set to run on your replica server, you will not be able to automatically resync your replica from that backup. You will need to disable this option and run the backup on your master server before you can resync.

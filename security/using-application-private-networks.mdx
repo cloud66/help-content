@@ -21,7 +21,7 @@ This guide explains how to connect to an application's APN from your desktop mac
 ### What you'll need
 
 - **A Cloud 66 Account** — If you don’t already have one, **[sign up for a Cloud 66 account](https://app.cloud66.com/users/sign_up)**. Your first server is free, no credit card required. 
-- **An existing application set up in Cloud 66** — To make the most of this tutorial you need to have an app already set up. Follow our **[Getting Started guide](/docs/getting-started/deploy-your-first-app)** if you’re not sure how to do this.
+- **An existing application set up in Cloud 66** — To make the most of this tutorial you need to have an app already set up. Follow our **[Getting Started guide](/:product/:version?/getting-started/deploy-your-first-app)** if you’re not sure how to do this.
 - **A WireGuard client on your device** - your APN runs on WireGuard, a very simple but very secure virtual private network (VPN) tunnel. [Install the client](https://www.wireguard.com/install/) that best suits your device.
 
 ### 1. Configure your APN client
@@ -65,7 +65,7 @@ You need to allow WireGuard access via your application's firewall. To do this:
 - Click on *Private Network* in the sub nav
 - Click the *Lease Now* button
 
-This gives you 24 hours of APN access which you will need to renew, unless you create a [firewall rule](/docs/security/firewall-rule).
+This gives you 24 hours of APN access which you will need to renew, unless you create a [firewall rule](/:product/:version?/security/firewall-rule).
 
 ### 3. Connect to your APN
 
@@ -120,7 +120,7 @@ There are two ways to allow access your APN via your firewall:
 
 This creates a 24-hour lease based on the (current) local IP address of your computer.
 
-**Method 2** requires you to manually add a firewall rule. WireGuard (and thus your APN) runs over **port 51820** and uses **UDP**. Please follow our [tutorial on adding firewall rules](/docs/security/firewall-rule) for help on how to do this.
+**Method 2** requires you to manually add a firewall rule. WireGuard (and thus your APN) runs over **port 51820** and uses **UDP**. Please follow our [tutorial on adding firewall rules](/:product/:version?/security/firewall-rule) for help on how to do this.
 
 ## Giving team members access to the APN
 

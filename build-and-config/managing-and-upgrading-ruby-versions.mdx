@@ -11,7 +11,7 @@ Ruby applications have multiple way to define which version of Ruby they are usi
 Cloud 66's default method for defining package versions is via a `manifest.yml` file and we strongly recommend using that method for all your deployments via our system. See below for detailed instructions on using this method. 
 
 <Callout type="info" title="Updating Bundler version">
-If you're looking for details on updating your version of Bundler, you can [find them here](/docs/servers/applying-upgrades#bundler). Essentially we update Bundler whenever you update your version of Ruby. 
+If you're looking for details on updating your version of Bundler, you can [find them here](/:product/:version?/servers/applying-upgrades#bundler). Essentially we update Bundler whenever you update your version of Ruby. 
 </Callout>
 
 ## How we determine the version to use
@@ -28,7 +28,7 @@ When you scale up a new server for an existing Ruby application we set the versi
 1. The version defined in `manifest.yml` (if present)
 2. The version previously chosen when the application was created
 
-You can check the latest version of Ruby we currently support on our [technical specifications](/docs/specs-and-policies/technical-specifications#component-versions) page.
+You can check the latest version of Ruby we currently support on our [technical specifications](/:product/:version?/specs-and-policies/technical-specifications#component-versions) page.
 
 <Callout type="warning" title="Remove Ruby version declaration from your Gemfile">
 If your `manifest.yml` specifies a different version to your Gemfile, this will cause problems when you deploy your code. The safest option is to remove the Ruby version declaration from everything except the Manifest file.
@@ -41,13 +41,13 @@ Older versions of Ruby require that your application servers are built using old
 - If your Ruby version is < 2.5.0 then the maximum allowed version of Ubuntu is 18.04
 - If your Ruby version < 3.1.0 (but higher than 2.5.0) then the maximum allowed version of Ubuntu is 20.04
 
-The version of Ubuntu used by your application is set using your application's [Manifest file](/docs/manifest/building-a-manifest-file#rails).
+The version of Ubuntu used by your application is set using your application's [Manifest file](/:product/:version?/manifest/building-a-manifest-file#rails).
 
-Please be sure to take this into account when configuring and building your application, and also consider the [lifespan of that version of Ubuntu](/docs/servers/out-of-ubuntu-lts). It may make more sense to upgrade Ruby than to rely on a version of Ubuntu that is no longer supported by its maker.
+Please be sure to take this into account when configuring and building your application, and also consider the [lifespan of that version of Ubuntu](/:product/:version?/servers/out-of-ubuntu-lts). It may make more sense to upgrade Ruby than to rely on a version of Ubuntu that is no longer supported by its maker.
 
 ## Defining your Ruby version via the Manifest file
 
-If you've never used a Manifest file before, please read through our [Getting Started guide](/docs/manifest/building-a-manifest-file#manifest-tutorial) to familiarise yourself with the concept. 
+If you've never used a Manifest file before, please read through our [Getting Started guide](/:product/:version?/manifest/building-a-manifest-file#manifest-tutorial) to familiarise yourself with the concept. 
 
 Ruby version is defined in `manifest.yml` as follows:
 
@@ -65,7 +65,7 @@ This is obviously for applications using Rails, but you can do something similar
           ruby_version: x.y.z
 ```
 
-If you'd like more context, we have a detailed guide to all the settings available via Manifest files for both [Rails](/docs/manifest/building-a-manifest-file#rails) and [Rack](/docs/manifest/building-a-manifest-file#rack) applications.
+If you'd like more context, we have a detailed guide to all the settings available via Manifest files for both [Rails](/:product/:version?/manifest/building-a-manifest-file#rails) and [Rack](/:product/:version?/manifest/building-a-manifest-file#rack) applications.
 
 <Callout type="warning" title="Define your Ruby version in Manifest">
 If you're currently defining your Ruby version in a Gemfile or a `.ruby_version` file, we strongly recommend moving to using a Manifest file whenever you deploy code. The alternative is likely to result in significant conflicts and issues between servers and applications. Gemfile version declarations can cause problems when upgrading, because your application will no longer run unless the version declared is the same as the underlying version of Ruby.
@@ -100,7 +100,7 @@ Once you’ve pushed this change to your repo, you can add a new web server whic
 1. Open your application on the Cloud 66 Dashboard
 2. Deploy the new code by clicking the green *Deploy* button and selecting *Deploy application* (don't worry, this won't affect the version of Ruby running on your existing servers)
 3. Once the redeployment has completed, click *Web* in the left-hand nav
-4. Click on the green *+ Add Web Server* button at the top right of the Web Servers panel (Note: you will need to have a load balancer set up before you can add multiple servers - [read our guide](/docs/load-balancers/load-balancer) if you need help adding one)
+4. Click on the green *+ Add Web Server* button at the top right of the Web Servers panel (Note: you will need to have a load balancer set up before you can add multiple servers - [read our guide](/:product/:version?/load-balancers/load-balancer) if you need help adding one)
 5. Wait for the new server to come online and test that it is working
 
 <Callout type="warning" title="Be sure to commit and redeploy">

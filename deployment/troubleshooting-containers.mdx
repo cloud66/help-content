@@ -12,7 +12,7 @@ Many Cloud 66 applications use containers to host and run their code. These cont
 You can check the status of your app’s containers using:
 
 - your [Cloud 66 Dashboard](https://app.cloud66.com/dashboard)
-- the [command line](/docs/toolbelt/toolbelt#containers-list) (Toolbelt)
+- the [command line](/:product/:version?/toolbelt/toolbelt#containers-list) (Toolbelt)
 
 ### Checking containers via the Dashboard
 
@@ -26,7 +26,7 @@ The Debug Info button can be very useful when troubleshooting.
 
 ### Checking containers via command line
 
-You can use the `cx containers list` command to check on the status of your application’s containers. Please read the [how-to-guide](/docs/toolbelt/toolbelt#containers-list) for more details.
+You can use the `cx containers list` command to check on the status of your application’s containers. Please read the [how-to-guide](/:product/:version?/toolbelt/toolbelt#containers-list) for more details.
 
 ## Troubleshooting a container that won’t start
 
@@ -54,8 +54,8 @@ If a container will not start, the Deployment logs will often contain an explana
 If your container has started, but isn’t behaving as expected, you can follow these steps to troubleshoot:
 
 1. Use the Dashboard to check the log output from your containers (see above)
-2. Use the `cx containers attach` command to connect to detailed output (`STDOUT`) from the container ([guide here](/docs/toolbelt/toolbelt#containers-attach))
-3. Use the `cx run` command with the `--interactive` argument and specify the name of the container to run commands inside it ([guide here](/docs/toolbelt/toolbelt#run)) It’s useful to be “attached” to a container while running commands to track the effects.
+2. Use the `cx containers attach` command to connect to detailed output (`STDOUT`) from the container ([guide here](/:product/:version?/toolbelt/toolbelt#containers-attach))
+3. Use the `cx run` command with the `--interactive` argument and specify the name of the container to run commands inside it ([guide here](/:product/:version?/toolbelt/toolbelt#run)) It’s useful to be “attached” to a container while running commands to track the effects.
 
 You can achieve much the same thing as 3 by clicking on the *Shell into container* button from the logs dropdown, but this is a web-based terminal emulator and many people prefer the native terminal.
 

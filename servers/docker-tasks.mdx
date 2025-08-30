@@ -7,7 +7,7 @@ products: ['deploy']
 
 Application Jobs allow you to define and schedule regular tasks (shell commands) that will run against your Cloud 66 application's **services** (i.e inside your containers). Commands run using the `sh` shell by default. Each time an application job runs, it starts a new container from the service, executes the task and then destroys the container. 
 
-If you need to run a job on the underlying server, rather than the service, you should use [Server Jobs](/docs/servers/shell) instead.
+If you need to run a job on the underlying server, rather than the service, you should use [Server Jobs](/:product/:version?/servers/shell) instead.
 
 ## Adding a new application job
 
@@ -19,7 +19,7 @@ To add a new application job:
 4. Choose the service to which the job applies
 4. Give your new job a name
 5. Specify the command(s) you want to run
-6. Set a schedule for the job - you can use [cron syntax](/docs/servers/understanding-cron-syntax) for more control over your scheduling - or set it to run on demand
+6. Set a schedule for the job - you can use [cron syntax](/:product/:version?/servers/understanding-cron-syntax) for more control over your scheduling - or set it to run on demand
 7. Click Save
 
 You will now see your new job listed in your application. You can edit it by clicking on the small downward arrow. Your run results (success, failure and any output) can be seen in real-time on the job detail page. 

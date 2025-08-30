@@ -6,9 +6,9 @@ products: ['deploy']
 
 ## Writing a Dockerfile for your app 
 
-A Dockerfile is a text document that contains all the [instructions](https://docs.docker.com/engine/reference/builder/) required to build your app's source code into a [Docker image](https://docs.docker.com/get-started/overview/). Cloud 66 uses the Docker [image format](/docs/cloud-66-101/concepts-and-terminology#containers--containerization), and thus all code must be built into images before it can be used.
+A Dockerfile is a text document that contains all the [instructions](https://docs.docker.com/engine/reference/builder/) required to build your app's source code into a [Docker image](https://docs.docker.com/get-started/overview/). Cloud 66 uses the Docker [image format](/:product/:version?/cloud-66-101/concepts-and-terminology#containers--containerization), and thus all code must be built into images before it can be used.
 
-The "build" process uses the set of instructions in the Dockerfile to build up a container image (in much the same way as a shell file executes a series of Linux tasks). Because Cloud 66 handles the entire [container lifecycle](/docs/cloud-66-101/concepts-and-terminology#container-lifecycle-management) on your behalf, a Dockerfile is an absolute requirement.
+The "build" process uses the set of instructions in the Dockerfile to build up a container image (in much the same way as a shell file executes a series of Linux tasks). Because Cloud 66 handles the entire [container lifecycle](/:product/:version?/cloud-66-101/concepts-and-terminology#container-lifecycle-management) on your behalf, a Dockerfile is an absolute requirement.
 
 If you don't have a Dockerfile in your repo, we will analyze your code and suggest a Dockerfile for your app. If that file is unsuitable, use one of the guides below to write your own.
 
@@ -16,15 +16,15 @@ If you don't have a Dockerfile in your repo, we will analyze your code and sugge
 
 A Dockerfile is essentially a plaintext file that you add to the root of your repository. You can adapt the Dockerfile we automatically generate for you during initial analysis by copying its contents from the Dashboard and creating a file named Dockerfile.cloud66 in the root of your application’s repo. 
 
-If for some reason you can’t have it in the root, you can specify this in your Cloud 66[service config](/docs/build-and-config/writing-a-dockerfile#putting-a-dockerfile-in-a-sub-directory).
+If for some reason you can’t have it in the root, you can specify this in your Cloud 66[service config](/:product/:version?/build-and-config/writing-a-dockerfile#putting-a-dockerfile-in-a-sub-directory).
 
 ## How-To Guides by framework
 
 Click on the link for your app's language or framework for a detailed guide on writing your own Dockerfile:
 
-* [Writing a custom Dockerfile for Ruby](/docs/build-and-config/dockerfile-for-ruby)
-* [Writing a custom Dockerfile for Node](/docs/build-and-config/dockerfile-for-node)
-* [Writing a custom Dockerfile for PHP](/docs/build-and-config/dockerfile-for-php)
+* [Writing a custom Dockerfile for Ruby](/:product/:version?/build-and-config/dockerfile-for-ruby)
+* [Writing a custom Dockerfile for Node](/:product/:version?/build-and-config/dockerfile-for-node)
+* [Writing a custom Dockerfile for PHP](/:product/:version?/build-and-config/dockerfile-for-php)
 
 ## Important Dockerfile principles
 
@@ -52,7 +52,7 @@ This is why our default Dockerfiles tend to add the source code to the image as 
 
 ## Putting a Dockerfile in a sub-directory
 
-If for some reason you need to put a Dockerfile in a sub-directory - for example you have multiple services in a single repo - you can specify this in your app's [service configuration](/docs/build-and-config/docker-service-configuration) (i.e. the `service.yml` file).
+If for some reason you need to put a Dockerfile in a sub-directory - for example you have multiple services in a single repo - you can specify this in your app's [service configuration](/:product/:version?/build-and-config/docker-service-configuration) (i.e. the `service.yml` file).
 
 For example, this `service.yml` configures two services ("buyer" & "seller"), each with their own Dockerfiles:
 
@@ -80,6 +80,6 @@ The directory is specified under `build_root` and the `dockerfile_path` is relat
 
 ## More help
 
-- [Mapping container ports](/docs/networking/service-networking#mapping-container-ports)
-- Customizing [service configurations](/docs/build-and-config/docker-service-configuration)
-- Configuring [service networking](/docs/networking/service-networking)
+- [Mapping container ports](/:product/:version?/networking/service-networking#mapping-container-ports)
+- Customizing [service configurations](/:product/:version?/build-and-config/docker-service-configuration)
+- Configuring [service networking](/:product/:version?/networking/service-networking)

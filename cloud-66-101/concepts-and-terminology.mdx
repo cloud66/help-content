@@ -46,15 +46,15 @@ You have a great degree of freedom when choosing the different components of you
 
 A load balancer is used to distribute traffic across your web servers, and offers benefits such as maximizing throughput, minimizing response times and avoiding overload on any single server. Ultimately, load balancing increases the reliability of your application.
 
-The type of  [load balancer deployed in your application](/docs/load-balancers/load-balancer) is dependent on your cloud provider.
+The type of  [load balancer deployed in your application](/:product/:version?/load-balancers/load-balancer) is dependent on your cloud provider.
 
 ### Web servers
 
-By default, your applications are served with Nginx, and you are also free to customize this selection for Rack-based applications. You can [scale your web server](/docs/servers/scaling) with the click of a button.
+By default, your applications are served with Nginx, and you are also free to customize this selection for Rack-based applications. You can [scale your web server](/:product/:version?/servers/scaling) with the click of a button.
 
 ### Background workers (optional)
 
-To relieve pressure from your application, we recommend that you use background workers to run memory-intensive processes. Cloud 66 makes it easy for you to control and monitor these processes, as well as [scale them](/docs/build-and-config/proc-files) at the click of a button.
+To relieve pressure from your application, we recommend that you use background workers to run memory-intensive processes. Cloud 66 makes it easy for you to control and monitor these processes, as well as [scale them](/:product/:version?/build-and-config/proc-files) at the click of a button.
 
 ### Database servers (optional)
 
@@ -65,7 +65,7 @@ You can choose between any of four supported databases:
 - MongoDB
 - Redis
 
-Cloud 66 makes it easy for you to [backup your database](/docs/databases/database-backups), [verify the backup](/docs/databases/backup-verifiers) and [replicate your databases](/docs/databases/database-replication).
+Cloud 66 makes it easy for you to [backup your database](/:product/:version?/databases/database-backups), [verify the backup](/:product/:version?/databases/backup-verifiers) and [replicate your databases](/:product/:version?/databases/database-replication).
 
 ### Operating system
 
@@ -73,7 +73,7 @@ Your servers will be deployed with **Ubuntu 24.04 LTS**.
 
 ### Cloud vendor
 
-You can either [deploy to your preferred cloud provider](/docs/specs-and-policies/technical-specifications#supported-cloud-providers) or [deploy to your own server](/docs/servers/registered-servers).
+You can either [deploy to your preferred cloud provider](/:product/:version?/specs-and-policies/technical-specifications#supported-cloud-providers) or [deploy to your own server](/:product/:version?/servers/registered-servers).
 
 * * *
 
@@ -132,7 +132,7 @@ At Cloud 66 we rely on Kubernetes - the market leading solution - to orchestrate
 
 BuildGrid is Cloud 66's integrated Docker image builder. Whenever you build images from source code, or retag existing images, you make use of a metered resource called Build Minutes. All Cloud 66 accounts have a number of “free” Build Minutes per month.
 
-Learn more about Build Minutes, monthly allowances and overages in our [detailed guide](/docs/account/build-minutes).
+Learn more about Build Minutes, monthly allowances and overages in our [detailed guide](/:product/:version?/account/build-minutes).
 
 ## Applications and services
 
@@ -172,7 +172,7 @@ You have a great degree of freedom when choosing the different components of you
 
 A load balancer is used to distribute traffic across your web servers, and offers benefits such as maximizing throughput, minimizing response times and avoiding overload on any single server. Ultimately, load balancing increases the reliability of your application.
 
-The type of  [load balancer deployed in your application](/docs/load-balancers/load-balancer) is dependent on your cloud provider.
+The type of  [load balancer deployed in your application](/:product/:version?/load-balancers/load-balancer) is dependent on your cloud provider.
 
 ### Web servers
 
@@ -187,7 +187,7 @@ You can choose between any of four supported databases:
 - MongoDB
 - Redis
 
-Cloud 66 makes it easy for you to [backup your database](/docs/databases/database-backups), [verify the backup](/docs/databases/backup-verifiers) and [replicate your databases](/docs/databases/database-replication).
+Cloud 66 makes it easy for you to [backup your database](/:product/:version?/databases/database-backups), [verify the backup](/:product/:version?/databases/backup-verifiers) and [replicate your databases](/:product/:version?/databases/database-replication).
 
 ### Operating system
 
@@ -195,7 +195,7 @@ Your servers will be deployed with **Ubuntu 24.04 LTS**.
 
 ### Cloud vendor
 
-You can either [deploy to your preferred cloud provider](/docs/specs-and-policies/technical-specifications#supported-cloud-providers) or [deploy to your own server](/docs/servers/registered-servers).
+You can either [deploy to your preferred cloud provider](/:product/:version?/specs-and-policies/technical-specifications#supported-cloud-providers) or [deploy to your own server](/:product/:version?/servers/registered-servers).
 
 ## Container lifecycle management
 
@@ -237,7 +237,7 @@ As their name suggests, DaemonSets are useful for running background processes l
 
 If you need more technical detail you can read the [official Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) on DaemonSets, but this is not necessary to use Cloud 66. 
 
-If you'd like to start adding DaemonSets to your application, you can go straight to our [how-to guide](/docs/build-and-config/docker-service-configuration#adding-a-daemonset).
+If you'd like to start adding DaemonSets to your application, you can go straight to our [how-to guide](/:product/:version?/build-and-config/docker-service-configuration#adding-a-daemonset).
 
 ## Nodes, masters & workers
 
@@ -254,7 +254,7 @@ It’s quite common for nodes to be shared between Masters and Workers. This is 
 
 In a purist Kubernetes setup, Master nodes are kept separate from Worker nodes, but it’s often more efficient to allow your Master node to run workloads. This is particularly useful in development environments because it reduces the number of servers required by the cluster.
 
-The first time Cloud 66 provisions a new Kubernetes cluster, we default to the **shared master** architecture. This can be changed via the [Dashboard](/docs/servers/scaling#kubernetes-cluster-servers) or [manifest.yml](/docs/manifest/building-a-manifest-file).
+The first time Cloud 66 provisions a new Kubernetes cluster, we default to the **shared master** architecture. This can be changed via the [Dashboard](/:product/:version?/servers/scaling#kubernetes-cluster-servers) or [manifest.yml](/:product/:version?/manifest/building-a-manifest-file).
 
 ## High availability & multiple masters
 
@@ -376,9 +376,9 @@ That's why we focus our efforts on making the building and deploying of componen
 
 Whether upgrading, building from scratch or scaling horizontally, we focus on making the roll-out of components as automated, consistent and repeatable as possible. We have many features that support this, including:
 
-- The [Manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial) captures settings for infrastructural components in a simple YAML format, making it quick and easy to roll out additional instances of a component without any manual intervention
-- [CustomConfig](/docs/custom-config/custom-config) gives you a powerful, version-controlled interface for customizing the configuration files for components like databases and Nginx
-- [Deploy Hooks](/docs/deploy-hooks/deploy-hooks) allow you to automate the customization of components during your build and deployment process - for example installing a custom package, or a series of packages that depend on one another.
+- The [Manifest file](/:product/:version?/manifest/building-a-manifest-file#manifest-tutorial) captures settings for infrastructural components in a simple YAML format, making it quick and easy to roll out additional instances of a component without any manual intervention
+- [CustomConfig](/:product/:version?/custom-config/custom-config) gives you a powerful, version-controlled interface for customizing the configuration files for components like databases and Nginx
+- [Deploy Hooks](/:product/:version?/deploy-hooks/deploy-hooks) allow you to automate the customization of components during your build and deployment process - for example installing a custom package, or a series of packages that depend on one another.
 
 ## Load balancing
 
@@ -482,6 +482,6 @@ You can have your first Cloud 66 application up and running in literally minutes
 - A cloud storage account with AWS, Google Compute Engine, DigitalOcean, Azure, or Linode
 - A Cloud 66 account (we offer 4-week free trials with no credit card required)
 
-Follow our 5 minute [Getting Started Guide](/docs/getting-started/deploy-your-first-app).
+Follow our 5 minute [Getting Started Guide](/:product/:version?/getting-started/deploy-your-first-app).
 
 </PerProduct>

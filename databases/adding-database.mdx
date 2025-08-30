@@ -19,10 +19,10 @@ It's perfectly feasible to manually install and use other database engines or da
 
 There are two main routes to add a database to a Cloud 66 application:
 
-1. As part of the [initial build and deploy process](/docs/getting-started/deploy-your-first-app)
+1. As part of the [initial build and deploy process](/:product/:version?/getting-started/deploy-your-first-app)
 2. After the app has already been deployed 
 
-This guide deals with the second of these cases. For the first, please consult our [Getting Started](/docs/getting-started/deploy-your-first-app) guide.
+This guide deals with the second of these cases. For the first, please consult our [Getting Started](/:product/:version?/getting-started/deploy-your-first-app) guide.
 
 ## Tutorial
 
@@ -31,7 +31,7 @@ This guide deals with the second of these cases. For the first, please consult o
 Before you start, please check you have the following:
 
 * **A Cloud 66 Account** &mdash; If you don't already have one, [sign up for a Cloud 66 account](https://app.cloud66.com/users/sign_up). Your first server is free, no credit card required.
-* **An existing application set up in Cloud 66** &mdash; To make the most of this tutorial you need to have an app already set up in Cloud 66. Follow our [Getting Started guide](/docs/getting-started/deploy-your-first-app) if you're not sure how to do this.
+* **An existing application set up in Cloud 66** &mdash; To make the most of this tutorial you need to have an app already set up in Cloud 66. Follow our [Getting Started guide](/:product/:version?/getting-started/deploy-your-first-app) if you're not sure how to do this.
 
 ### Adding a database to an existing app
 
@@ -39,7 +39,7 @@ Let's assume that your application was previously completely stateless, but now 
 
 There are two ways to add a database to an existing app:
 1. Via the Cloud 66 Dashboard
-2. Building a new completely new version of the app, and adding the database [during the build process](/docs/getting-started/deploy-your-first-app#adding-a-data-source).
+2. Building a new completely new version of the app, and adding the database [during the build process](/:product/:version?/getting-started/deploy-your-first-app#adding-a-data-source).
 
 <Callout type="info" title="Immutability is your friend">
 Although option 2 might seem extreme, it follows the principle of "immutability". It is always more reliable and more manageable to deploy an updated application as though it were new, rather than trying to patch an existing flawed setup. 
@@ -59,7 +59,7 @@ You can now watch the logs, as usual to see the progress of the process.
 
 ### Testing your new database
 
-Once your database has been deployed, you can test it by logging directly into the server on which it is running via SSH. [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) is the quickest way to do this. 
+Once your database has been deployed, you can test it by logging directly into the server on which it is running via SSH. [Cloud 66 Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) is the quickest way to do this. 
 
 You can also use this opportunity to log into your database. You can find the username and password for your server by clicking on the name of any server listed under **Data Sources**.
 
@@ -67,7 +67,7 @@ You now have a fully functional database running as part of your application.
 
 ## Adding logical databases to a server
 
-By default Cloud 66 allocates one <Hint caption="logical database">i.e. the tables & data structures rather than the "physical" database server ([full definition](/docs/databases/adding-database#logical-databases-vs-physical-databases) </Hint> per server (or cluster) but it is possible to add additional logical databases to a physical database server (or cluster). 
+By default Cloud 66 allocates one <Hint caption="logical database">i.e. the tables & data structures rather than the "physical" database server ([full definition](/:product/:version?/databases/adding-database#logical-databases-vs-physical-databases) </Hint> per server (or cluster) but it is possible to add additional logical databases to a physical database server (or cluster). 
 
 Additional logical databases can be useful if you need to separate storage of and access to portions of your data but don’t want to add more servers.
 
@@ -125,7 +125,7 @@ If you create users directly on your database server (e.g. via command line or a
 
 ### Backing up logical databases
 
-If you enable [managed database backups](/docs/databases/database-backups), you should be aware of the following:
+If you enable [managed database backups](/:product/:version?/databases/database-backups), you should be aware of the following:
 
 - Managed binary backups will include **all of your logical databases** and your **database users**. If you restore a version of your database *after* adding users to a later version these new users will effectively be lost (overwritten) by your previous users.
 - Managed text backups only include **your primary (default) logical database**. Text backups do not include users.

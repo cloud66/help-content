@@ -10,7 +10,7 @@ Whenever you update your application code, you can adjust two aspects of the way
 1. How the updated code is pushed to your servers (the **deployment strategy**) 
 2. How the updated version is shown to visitors (the **rollout strategy**) 
 
-The first aspect is concerned with how the new code gets to your servers - how quickly it happens, in what order, and whether this causes any downtime. If you need help with this aspect, please read our [full guide on the subject](/docs/deployment/parallel-deployment).
+The first aspect is concerned with how the new code gets to your servers - how quickly it happens, in what order, and whether this causes any downtime. If you need help with this aspect, please read our [full guide on the subject](/:product/:version?/deployment/parallel-deployment).
 
 The second aspect, the subject of this guide, is concerned with how the new version of your application is presented to your visitors. There are three strategies:
 
@@ -34,7 +34,7 @@ There are three ways to set a rollout strategy for an app:
 
 <PerProduct includes={["rails"]}>
 <Callout type="info" title="Acknowledge Unicorn configs">
-If you are using Unicorn, you will need to acknowledge that you have made the required changes to your [Unicorn configuration](/docs/build-and-config/unicorn-rack-server) in your code, otherwise these strategies will not work as desired. 
+If you are using Unicorn, you will need to acknowledge that you have made the required changes to your [Unicorn configuration](/:product/:version?/build-and-config/unicorn-rack-server) in your code, otherwise these strategies will not work as desired. 
 </Callout>
 </PerProduct>
 
@@ -63,7 +63,7 @@ To **deploy** using a profile:
 1. From your app dashboard, click on the green *Deploy* button
 2. Click on the name of the profile you'd like to use for this deployment
 
-For more information on deployment profiles, please read [our reference guide](/docs/deployment/deploy-profiles).
+For more information on deployment profiles, please read [our reference guide](/:product/:version?/deployment/deploy-profiles).
 
 ### Using the Toolbelt command line
 
@@ -260,11 +260,11 @@ cx stacks variants update-percentage 25 -s my-application
 
 ## Preparing existing applications for rollout strategies
 
-Applications created on Cloud 66 before June 2024 may need to be prepared before they are able to use these rollout strategies - particularly if those applications have [custom Nginx configuration files](/docs/servers/nginx#customizing-nginx-configurations). 
+Applications created on Cloud 66 before June 2024 may need to be prepared before they are able to use these rollout strategies - particularly if those applications have [custom Nginx configuration files](/:product/:version?/servers/nginx#customizing-nginx-configurations). 
 
 Before using rollout strategies with your existing application, you should:
 
-1. Check that there are no [Application Updates](/docs/build-and-config/application-updates) that need to be applied
+1. Check that there are no [Application Updates](/:product/:version?/build-and-config/application-updates) that need to be applied
 2. If you have made modifications to the Nginx config for your application, follow the steps below.
 
 ### Migrating your customized Nginx file.

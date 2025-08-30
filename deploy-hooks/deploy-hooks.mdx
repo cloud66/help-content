@@ -14,7 +14,7 @@ Deploy hooks are scripts that allow you to automate actions at various points du
 Before you start, please check you have the following:
 
 * **A Cloud 66 Account** &mdash; If you don't already have one, [sign up for a Cloud 66 account](https://app.cloud66.com/users/sign_up). Your first server is free, no credit card required.
-* **An existing application set up in Cloud 66** &mdash; To make the most of this tutorial you need to have an app already set up in Cloud 66. Follow our [Getting Started guide](/docs/getting-started/deploy-your-first-app) if you're not sure how to do this.
+* **An existing application set up in Cloud 66** &mdash; To make the most of this tutorial you need to have an app already set up in Cloud 66. Follow our [Getting Started guide](/:product/:version?/getting-started/deploy-your-first-app) if you're not sure how to do this.
 
 ### Creating a deploy hook
 
@@ -105,7 +105,7 @@ Now that our hook is in place, we need to re-deploy our application to see it in
 
 (As always, we recommend testing your hooks in a non-production environment before using on your live application.)
 
-The best way to check whether your change has been applied to your server is to access it directly using SSH. [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) is the quickest way to do this. 
+The best way to check whether your change has been applied to your server is to access it directly using SSH. [Cloud 66 Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) is the quickest way to do this. 
 
 Once you are connected to your server, type `nmap` into the terminal. If your deploy hook was set up correctly, you will see the usage / help text for the nmap utility. If not, Ubuntu will complain that nmap is not installed.
 
@@ -210,7 +210,7 @@ You can pull environment variables from your application configuration into your
 username: <%= ENV['DB_USER'] %>
 ```
 
-These environment variables need to be available in your app before the deploy hook will work correctly. Please follow [our tutorial](/docs/build-and-config/env-vars) if you're unsure of how to do this.
+These environment variables need to be available in your app before the deploy hook will work correctly. Please follow [our tutorial](/:product/:version?/build-and-config/env-vars) if you're unsure of how to do this.
 
 ## Hook types
 
@@ -313,7 +313,7 @@ first_thing:
     current_deployer=$(curl -s -H "Accept: application/json" https://$CLOUD66_ACCOUNT_API_KEY:X@app.cloud66.com/api/tooling/metadata/$CLOUD66_APPLICATION_API_KEY/deployment/triggered_by | jq -r '.response')
     echo "Deployed by: $current_deployer"
 ```
-For more details please read our full [Querying server metadata](/docs/servers/querying-server-metadata) doc.
+For more details please read our full [Querying server metadata](/:product/:version?/servers/querying-server-metadata) doc.
 
 ### Install packages on each server deployed
 
@@ -421,7 +421,7 @@ run_on: all_servers
 execute: true
 ```
 
-For more info on doing this for external databases, read our separate guide to [database management](/docs/databases/database-management#external-databases).
+For more info on doing this for external databases, read our separate guide to [database management](/:product/:version?/databases/database-management#external-databases).
 
 </PerProduct>
 
@@ -550,7 +550,7 @@ Please make sure you read the `run_on` section, if your target is not `any`
 |run_on  (single server)|If you have multiple servers in the same group (e.g. scaled-up Rails servers), you can specify whether you want the deploy hook action to occur just once or once against each server in that group. Valid values are: `single_server` or `all_servers`. If you've specified `target: any` above, this will apply to all servers|
 |run_as  (server user)|If you execute a file on your target server, specify which user you would like the file to be executed as Note: you can't specify both this and `sudo`|
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
-|parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/docs/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
+|parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/:product/:version?/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
 |owner  (your server user)|Ownership permissions for the file (and destination folder) on the target server. An example could be `user:group`|
 
 
@@ -573,5 +573,5 @@ Existing scripts are a Rails-only feature.
 |run_on  (single server)|If you have multiple servers in the same group (e.g. scaled-up Rails servers), you can specify whether you want the deploy hook action to occur just once or once against each server in that group. Valid values are: `single_server` or `all_servers`. If you've specified `target: any` above, this will apply to all servers|
 |run_as  (server user)|If you execute a file on your target server, specify which user you would like the file to be executed as Note: you can't specify both this and `sudo`|
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
-|parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/docs/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
+|parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/:product/:version?/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
 |owner  (your server user)|Ownership permissions for the file (and destination folder) on the target server. An example could be `user:group`|

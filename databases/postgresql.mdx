@@ -21,7 +21,7 @@ Whenever a database user creates any object (e.g. a table) in Postgres, that use
 
 As such, if you delete a user from any logical Postgres database managed by Cloud 66, we will automatically reassign any objects owned by that user to the default superuser named `postgres` that exists on all instances of Postgres.
 
-If you need to add custom users to a Postgres database group, follow [this guide](/docs/databases/adding-database#adding-users-to-logical-databases) on the subject. 
+If you need to add custom users to a Postgres database group, follow [this guide](/:product/:version?/databases/adding-database#adding-users-to-logical-databases) on the subject. 
 
 ## Replicating data between Postgres versions
 
@@ -38,7 +38,7 @@ DETAIL:  The data directory was initialized by Postgres version 9.3, which is no
 
 In this case, you need to upgrade the data and libraries of the master server (9.3) with [pg_upgrade](https://www.postgresql.org/docs/9.4/static/pgupgrade/) before starting the replication.
 
-Remember that you can set the version of Postgres to install for your application by using a [manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial), like so:
+Remember that you can set the version of Postgres to install for your application by using a [manifest file](/:product/:version?/manifest/building-a-manifest-file#manifest-tutorial), like so:
 
 ```yaml
 production:
@@ -53,7 +53,7 @@ production:
 We use the default data folder when installing Postgres on your server, which is  `/usr/local/pgsql/data`.
 To change this folder, follow the instructions below.
 
-1; Connect to your servers via [SSH](/docs/servers/ssh-to-server).
+1; Connect to your servers via [SSH](/:product/:version?/servers/ssh-to-server).
 
 2; Stop the Postgres service by issuing the following command:
 ```shell

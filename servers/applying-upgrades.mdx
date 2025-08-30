@@ -15,11 +15,11 @@ When a new server is provisioned we automatically install the latest versions of
 
 ## Controlling package updates
 
-You can add custom Linux (Ubuntu) packages to your application using Deploy Hooks (read [our full guide here](/docs/deployment/managing-custom-packages).)  Depending on how you've set them up,  Deploy Hooks can either install packages only when a new server is created, or on every (re)deploy (or both).
+You can add custom Linux (Ubuntu) packages to your application using Deploy Hooks (read [our full guide here](/:product/:version?/deployment/managing-custom-packages).)  Depending on how you've set them up,  Deploy Hooks can either install packages only when a new server is created, or on every (re)deploy (or both).
 
 ## Managing high-risk updates
 
-If you're concerned about a major update to one of the packages you depend on, our first recommendation is to build a new application and redirect your traffic to the new application using your [Failover Address](/docs/failover-groups/failover-groups).
+If you're concerned about a major update to one of the packages you depend on, our first recommendation is to build a new application and redirect your traffic to the new application using your [Failover Address](/:product/:version?/failover-groups/failover-groups).
 
 If rebuilding is impractical or impossible, there are three approaches to dealing with the issue:
 
@@ -55,7 +55,7 @@ If the file `/var/run/reboot-required` exists, that means your server requires a
 <PerProduct includes={["rails"]}>
 ### Ruby
 
-There are multiple options and considerations when upgrading your base version of Ruby. Please read our [detailed guide](/docs/build-and-config/managing-and-upgrading-ruby-versions) on the subject.
+There are multiple options and considerations when upgrading your base version of Ruby. Please read our [detailed guide](/:product/:version?/build-and-config/managing-and-upgrading-ruby-versions) on the subject.
 
 A quick summary:
 
@@ -69,7 +69,7 @@ We automatically install the latest available version of Bundler whenever either
 - a new server is created
 - the version of Ruby is upgraded on an existing server
 
-If an existing server is throwing errors related to your Bundler version, the best option is usually to [upgrade Ruby](/docs/build-and-config/managing-and-upgrading-ruby-versions) to a more recent version. Be sure to follow our best practice (linked above) when doing so to ensure the upgrade runs smoothly.
+If an existing server is throwing errors related to your Bundler version, the best option is usually to [upgrade Ruby](/:product/:version?/build-and-config/managing-and-upgrading-ruby-versions) to a more recent version. Be sure to follow our best practice (linked above) when doing so to ensure the upgrade runs smoothly.
 
 ### Rails
 
@@ -77,7 +77,7 @@ Rails should be upgraded in the same way as Ruby. See above for details.
 
 ### Passenger
 
-The recommended way to upgrade your passenger to the latest one is to deploy to a new web server and drop the old one, so the scaled up one will automatically have the [latest version](/docs/specs-and-policies/technical-specifications#component-versions) supported by Cloud 66.
+The recommended way to upgrade your passenger to the latest one is to deploy to a new web server and drop the old one, so the scaled up one will automatically have the [latest version](/:product/:version?/specs-and-policies/technical-specifications#component-versions) supported by Cloud 66.
 </PerProduct>
 
 <PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
@@ -85,22 +85,22 @@ The recommended way to upgrade your passenger to the latest one is to deploy to 
 
 It is best to keep your Docker version up to date as they are released quite frequently with bug/security fixes.
 
-1. Update your manifest file (Configuration Files -> Manifest.yml) and change the Docker version to the [latest one](/docs/specs-and-policies/technical-specifications#component-versions).
+1. Update your manifest file (Configuration Files -> Manifest.yml) and change the Docker version to the [latest one](/:product/:version?/specs-and-policies/technical-specifications#component-versions).
 
 2. Click on **Deploy** and choose **Deploy with options**
 3. Go to the **More options** tab and tick the **Apply Docker upgrades** check box.
 
 <Callout type="error" title="In-place upgrades will result in downtime">
-Upgrading in-place involves downtime as the Docker engine and local files are all upgraded. To maintain zero down-time you should clone your application and use [failover groups](/docs/failover-groups/failover-groups) to switch to the new instance.
+Upgrading in-place involves downtime as the Docker engine and local files are all upgraded. To maintain zero down-time you should clone your application and use [failover groups](/:product/:version?/failover-groups/failover-groups) to switch to the new instance.
 </Callout>
 </PerProduct>
 
 <PerProduct includes={["rails"]}>
 ## Switching from malloc to jemalloc
 
-If you’d prefer to use [jemalloc](https://jemalloc.net/) as your memory allocator, you can change this via your [manifest file](/docs/manifest/building-a-manifest-file#rails). However, when you deploy (with upgrades) this **will** cause downtime as it is applied to each server. There are two solutions for avoiding downtime: 
+If you’d prefer to use [jemalloc](https://jemalloc.net/) as your memory allocator, you can change this via your [manifest file](/:product/:version?/manifest/building-a-manifest-file#rails). However, when you deploy (with upgrades) this **will** cause downtime as it is applied to each server. There are two solutions for avoiding downtime: 
 
-1. Use a [rolling deployment strategy](/docs/deployment/parallel-deployment) (requires a load balancer & at least four servers)
+1. Use a [rolling deployment strategy](/:product/:version?/deployment/parallel-deployment) (requires a load balancer & at least four servers)
 2. Scale up new servers, upgrade them, and then switch them with the current servers ([see above](#managing-high-risk-updates))
 
 </PerProduct>
@@ -119,7 +119,7 @@ Although there are an almost infinite number of issues that could occur with upd
 
 The most common reason for this error is that the version of one or more components specified in your `manifest.yml` and/or `Docker` file conflicts with other components - particularly with the version of the underlying operating system (Ubuntu). 
 
-If you are trying to upgrade an existing application - particularly one that had been running for 12 months or longer - be sure to check both your [Manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial) and (where appropriate) your Docker file. You can view and edit these files via your Dashboard or directly in your git repo. 
+If you are trying to upgrade an existing application - particularly one that had been running for 12 months or longer - be sure to check both your [Manifest file](/:product/:version?/manifest/building-a-manifest-file#manifest-tutorial) and (where appropriate) your Docker file. You can view and edit these files via your Dashboard or directly in your git repo. 
 
 If you have explicitly specified a version for any component in either of these files, Cloud 66 will attempt to use that version on the assumption that you have specified it for a good reason (such as backward compatibility). 
 
@@ -127,9 +127,9 @@ If you have explicitly specified a version for any component in either of these 
 
 The most common cause of these kinds of errors is some kind of interruption in network connectivity - typically between your cloud provider and the package repository. Such interruptions are not uncommon, and typically resolve themselves quickly. Wait a few minutes and try again. If the problem persists:
 
-1. Check you can reach the server yourself ([via SSH](/docs/servers/ssh-to-server))
+1. Check you can reach the server yourself ([via SSH](/:product/:version?/servers/ssh-to-server))
 2. If you can access the machine, you should attempt to run the package upgrade manually via ssh (using the standard `apt-get install <package>` command)
-3. If you're still getting 404s you should check that your cloud provider's firewall isn't blocking access to the package repo (and/or [Cloud 66's IP range](/docs/specs-and-policies/security#customer-protection)). 
+3. If you're still getting 404s you should check that your cloud provider's firewall isn't blocking access to the package repo (and/or [Cloud 66's IP range](/:product/:version?/specs-and-policies/security#customer-protection)). 
 
 ### "Unable to find expected entry" errors
 

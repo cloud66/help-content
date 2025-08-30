@@ -17,13 +17,13 @@ This guide walks you through deploying a Ruby on Rails application to Cloud 66, 
 Throughout this guide we will (wherever possible) offer you two methods for managing your application:
 
 - The web [Dashboard](https://app.cloud66.com/dashboard)
-- Toolbelt - our [command line tool](/docs/toolbelt/using-cloud66-toolbelt)
+- Toolbelt - our [command line tool](/:product/:version?/toolbelt/using-cloud66-toolbelt)
 
-If you’re planning to use Toolbelt (we recommend it!), you will need to [install it via your terminal](/docs/toolbelt/using-cloud66-toolbelt#install-toolbelt). 
+If you’re planning to use Toolbelt (we recommend it!), you will need to [install it via your terminal](/:product/:version?/toolbelt/using-cloud66-toolbelt#install-toolbelt). 
 
 ## Get going
 
-We’ve made deploying an app as quick and easy as possible, so you should have your Rails app deployed in just a few minutes. Just follow the steps below. We have a separate [getting started guide](/docs/getting-started/deploy-your-first-app) which has more detail if you need it.
+We’ve made deploying an app as quick and easy as possible, so you should have your Rails app deployed in just a few minutes. Just follow the steps below. We have a separate [getting started guide](/:product/:version?/getting-started/deploy-your-first-app) which has more detail if you need it.
 
 This guide assumes:
 
@@ -34,7 +34,7 @@ You can have your application set up in 4 simple steps.
 
 1. **Connect your Git(hub) repo**. We ask for read-only access our integration makes connecting quick and easy.
 2. **We’ll analyze your app.** We’ll scan your app and suggest an optimal configuration. You can adjust as needed
-3. **Add a cloud provider.** Connect us to your preferred cloud provider, or use one of our [free credit](/docs/cloud-66-101/free-google-cloud-credits) offers.
+3. **Add a cloud provider.** Connect us to your preferred cloud provider, or use one of our [free credit](/:product/:version?/cloud-66-101/free-google-cloud-credits) offers.
 4. **Deploy your app!**
 
 ## Rails / Rack application servers
@@ -46,9 +46,9 @@ We support both traditional Rails apps and containerized Rails apps. This guide 
 
 Cloud 66’s default Rails server is Passenger (including Passenger Enterprise if you bring the license), but we also support:
 
-- [Thin](/docs/build-and-config/thin-rack-server)
-- [Puma](/docs/build-and-config/puma-rack-server)
-- [Unicorn](/docs/build-and-config/unicorn-rack-server)
+- [Thin](/:product/:version?/build-and-config/thin-rack-server)
+- [Puma](/:product/:version?/build-and-config/puma-rack-server)
+- [Unicorn](/:product/:version?/build-and-config/unicorn-rack-server)
 
 To use a custom application server with your application, you will need to specify it in your `Procfile`. For example to use **Thin**, you should add the following to your Procfile:
 
@@ -88,7 +88,7 @@ All databases managed by Cloud 66 have access to these features:
 
 The Rails database migration task (`rake db:migrate`) runs automatically as part of each deployment of your application. If your application has more than one Rails server, we choose the optimal server to run this task. All other servers will wait until the migrations are finished before continuing with deployment. 
 
-You can specify which server will be used for the migration task using [reserved tags](/docs/servers/reserved-tags). You can turn off automatic migrations using [Toolbelt](/docs/toolbelt/toolbelt#settings-set). You still have the option to run migrations on a one-off deployment via your Dashboard by clicking *Deploy* -> *Deploy with options* and selecting *Run database migrations*.
+You can specify which server will be used for the migration task using [reserved tags](/:product/:version?/servers/reserved-tags). You can turn off automatic migrations using [Toolbelt](/:product/:version?/toolbelt/toolbelt#settings-set). You still have the option to run migrations on a one-off deployment via your Dashboard by clicking *Deploy* -> *Deploy with options* and selecting *Run database migrations*.
 
 ## Add environment variables
 
@@ -136,7 +136,7 @@ You can also upload sets of env vars in file format (`dotenv` or `json`). For ex
 $ cx env-vars upload -s my_other_app --file new_env_vars_json --file-type json
 ```
 
-For more commands, see our [Toolbelt guide](/docs/toolbelt/toolbelt#env-vars-list).
+For more commands, see our [Toolbelt guide](/:product/:version?/toolbelt/toolbelt#env-vars-list).
 
 </TabsContent>
 
@@ -162,8 +162,8 @@ For more detail, read the official Rails guide to [encrypted credentials](https:
 
 Cloud 66 gives you complete control over your asset pipeline:
 
-- By default we will automatically run Asset Pipeline Compilation on each of your deploys. You can choose to [disable](/docs/deployment/enable-disable-asset-pipeline#enable-or-disable-apc) this.
-- We choose one of your servers to handle the workload, leaving your other servers free to run your application as usual. You can also [nominate a preferred server](/docs/deployment/enable-disable-asset-pipeline#nominating-a-dedicated-compilation-server) to handle this workload.
+- By default we will automatically run Asset Pipeline Compilation on each of your deploys. You can choose to [disable](/:product/:version?/deployment/enable-disable-asset-pipeline#enable-or-disable-apc) this.
+- We choose one of your servers to handle the workload, leaving your other servers free to run your application as usual. You can also [nominate a preferred server](/:product/:version?/deployment/enable-disable-asset-pipeline#nominating-a-dedicated-compilation-server) to handle this workload.
 
 You can manually enable/disable compilation either:
 
@@ -171,7 +171,7 @@ You can manually enable/disable compilation either:
 
 <Figure src="/images/rails-101-apc.png" />
 
-- In your Manifest file (*[what is a Manifest file?](/docs/manifest/building-a-manifest-file#what-is-a-manifest-file)*) - for apps that are already deployed
+- In your Manifest file (*[what is a Manifest file?](/:product/:version?/manifest/building-a-manifest-file#what-is-a-manifest-file)*) - for apps that are already deployed
 
 ### manifest.yml
 
@@ -191,7 +191,7 @@ Note that we must enable the pipeline *and also* set precompile to true (this 
 
 Cloud 66 supports all APC toolchains, such as Webpacker. We install the most common prerequisites for APC tools (including Node and Yarn) by default on all Rails servers we build. 
 
-If you’d prefer to use your chosen toolchain to entirely replace Asset Pipeline Compilation, you can deactivate Asset Pipeline Compilation it in your Manifest file (*[what is a Manifest file?](/docs/manifest/building-a-manifest-file#what-is-a-manifest-file)*).
+If you’d prefer to use your chosen toolchain to entirely replace Asset Pipeline Compilation, you can deactivate Asset Pipeline Compilation it in your Manifest file (*[what is a Manifest file?](/:product/:version?/manifest/building-a-manifest-file#what-is-a-manifest-file)*).
 
 ## Set up background workers (e.g. Sidekiq)
 
@@ -228,7 +228,7 @@ You can scale your workers up and down in your Dashboard:
 
 Cloud 66 automatically provisions your servers for use with Action Cable. We configure your application’s NGINX server with an endpoint named `/cable` that allows an unlimited number of connections. We also open the required ports in your firewall. 
 
-To use Action Cable, mount it in the application itself rather than as a separate process. For more about Action Cable, read our [separate guide](/docs/build-and-config/websocket-support). 
+To use Action Cable, mount it in the application itself rather than as a separate process. For more about Action Cable, read our [separate guide](/:product/:version?/build-and-config/websocket-support). 
 
 ## Run Rake tasks
 
@@ -269,7 +269,7 @@ $ bundle exec rake your:task
 
 ### Running Rake tasks with Deploy Hooks
 
-You can use deploy hooks ([*what are deploy hooks?*](/docs/deploy-hooks/deploy-hooks)) to execute your rake task at any point of your deployment.
+You can use deploy hooks ([*what are deploy hooks?*](/:product/:version?/deploy-hooks/deploy-hooks)) to execute your rake task at any point of your deployment.
 
 Simply add a bash script to the application that contains the rake task. For example, create the file `/.cloud66/scripts/rake_task.sh` as below:
 
@@ -331,7 +331,7 @@ Many Active Storage features depends on third-party software which must be insta
 - [ffmpeg](http://ffmpeg.org/) v3.4+ for video previews and ffprobe for video/audio analysis
 - [poppler](https://poppler.freedesktop.org/) or [muPDF](https://mupdf.com/) for PDF previews
 
-You can install all of these using [Deploy Hooks](/docs/deploy-hooks/deploy-hooks#install-packages-on-each-server-deployed) (*[what are deploy hooks?](/docs/deploy-hooks/deploy-hooks)*). To install `libvips` for example, you would use hook code like this:
+You can install all of these using [Deploy Hooks](/:product/:version?/deploy-hooks/deploy-hooks#install-packages-on-each-server-deployed) (*[what are deploy hooks?](/:product/:version?/deploy-hooks/deploy-hooks)*). To install `libvips` for example, you would use hook code like this:
 
 ```yaml
 first_thing:
@@ -364,6 +364,6 @@ In order to make a directory writable:
 
 ## Configuring other components
 
-Modern Rails applications rely on a range of components to perform at scale. **Cloud 66 supports every Ruby and Rails component your application needs**, either natively or via our powerful [Deploy Hooks](/docs/deploy-hooks/deploy-hooks) feature. If it can run on Ubuntu, we support it. 
+Modern Rails applications rely on a range of components to perform at scale. **Cloud 66 supports every Ruby and Rails component your application needs**, either natively or via our powerful [Deploy Hooks](/:product/:version?/deploy-hooks/deploy-hooks) feature. If it can run on Ubuntu, we support it. 
 
 This guide covers the most common components, but we support many, many more. If you’re not sure, feel free to ask our support team.

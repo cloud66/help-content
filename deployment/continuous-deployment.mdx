@@ -12,7 +12,7 @@ Cloud 66 offers several ways to achieve continuous deployment for your applicati
 | Method | Pros | Cons |
 | --- | --- | --- |
 | Cloud 66 GitHub application | Very quick & easy, no manual set up required | Limited to GitHub, less configurable and extensible, no access to deployment profiles |
-| [Redeployment hooks](/docs/deployment/redeployment-hook) | Can be used on non-Github repos, can use deployment profiles, more extensible (for example can be used with a continuous integration platform) | Requires some manual set up, lacks some more advanced deployment features |
+| [Redeployment hooks](/:product/:version?/deployment/redeployment-hook) | Can be used on non-Github repos, can use deployment profiles, more extensible (for example can be used with a continuous integration platform) | Requires some manual set up, lacks some more advanced deployment features |
 | [Cloud 66 Toolbelt](#continuous-deployment-via-the-cloud-66-toolbelt) (or API) | The most customisable option with full access to all deployment features. Very flexible and extensible. | Requires some engineering work and careful configuration |
 
 </PerProduct>
@@ -22,7 +22,7 @@ Cloud 66 offers several ways to achieve continuous deployment for your applicati
 | Method | Pros | Cons |
 | --- | --- | --- |
 | Cloud 66 GitHub application | Very quick & easy, no manual set up required | Limited to GitHub, less configurable and extensible, no access to deployment profiles |
-| [Redeployment hooks](/docs/deployment/redeployment-hook) | Can be used on non-Github repos, can use deployment profiles, more extensible (for example can be used with a continuous integration platform) | Requires some manual set up, lacks some more advanced deployment features |
+| [Redeployment hooks](/:product/:version?/deployment/redeployment-hook) | Can be used on non-Github repos, can use deployment profiles, more extensible (for example can be used with a continuous integration platform) | Requires some manual set up, lacks some more advanced deployment features |
 
 </PerProduct>
 
@@ -33,7 +33,7 @@ If you had already enabled continuous integration via the Toolbelt and added red
 
 ## Enabling automated continuous deployment
 
-This method is only available if you have connected your Cloud 66 account to GitHub by installing the Cloud 66 GitHub account. If you have not done this, please [follow our guide](/docs/cloud-66-101/access-your-code).
+This method is only available if you have connected your Cloud 66 account to GitHub by installing the Cloud 66 GitHub account. If you have not done this, please [follow our guide](/:product/:version?/cloud-66-101/access-your-code).
 
 you can enable (and disable) continuous deployment in the Cloud 66 Dashboard:
 
@@ -46,7 +46,7 @@ you can enable (and disable) continuous deployment in the Cloud 66 Dashboard:
 
 You can also enable (and disable) continuous deployment via the Cloud 66 Toolbelt:
 
-To do this modify your **[application settings](/docs/toolbelt/toolbelt#settings-set)** via the toolbelt and set **continuous.deploy** to *true*. For example:
+To do this modify your **[application settings](/:product/:version?/toolbelt/toolbelt#settings-set)** via the toolbelt and set **continuous.deploy** to *true*. For example:
 
 ```bash
 $ cx settings set -s my_app_name continuous.deploy true
@@ -70,19 +70,19 @@ To do so, check the box next to *Wait for continuous integration tests to pass b
 
 Redeployment hooks are unique (per application) webhooks that trigger a deployment process for their related application. They will work with any system or service that accepts webhooks and can also be invoked manually, or via shell scripts. They can call deployment profiles, and their payloads can contain information on the branch being deployed.
 
-Read our guide to [redeployment hooks](/docs/deployment/redeployment-hook) for more information on setting them up.
+Read our guide to [redeployment hooks](/:product/:version?/deployment/redeployment-hook) for more information on setting them up.
 
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Continuous deployment via the Cloud 66 Toolbelt
 
-The [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt) (cx) gives you full control over your applications, including settings not available via the Dashboard. 
+The [Cloud 66 Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt) (cx) gives you full control over your applications, including settings not available via the Dashboard. 
 
 The `redeploy` command can be used to trigger the deployment of any existing application.
 
 ### The cx redeploy command
 
-You can find more info about Toolbelt commands in the [full reference guide](/docs/toolbelt/toolbelt).
+You can find more info about Toolbelt commands in the [full reference guide](/:product/:version?/toolbelt/toolbelt).
 
 </PerProduct>
 

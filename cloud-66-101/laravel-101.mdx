@@ -93,7 +93,7 @@ Laravel's database configuration is defined in the `config/database.php` file. Y
 
 ### Running Migrations
 
-You can run database migrations during deployment by invoking the artisan command-line tool via a deploy hook ([*what are deploy hooks?*](/docs/deploy-hooks/deploy-hooks)). For example:
+You can run database migrations during deployment by invoking the artisan command-line tool via a deploy hook ([*what are deploy hooks?*](/:product/:version?/deploy-hooks/deploy-hooks)). For example:
 
 ```yaml
 production: # Environment
@@ -150,7 +150,7 @@ You can also upload sets of env vars in file format (`dotenv` or `json`). For ex
 $ cx env-vars upload -s my_other_app --file new_env_vars_json --file-type json
 ```
 
-For more commands, see our [Toolbelt guide](/docs/toolbelt/toolbelt#env-vars-list).
+For more commands, see our [Toolbelt guide](/:product/:version?/toolbelt/toolbelt#env-vars-list).
 
 </TabsContent>
 
@@ -186,9 +186,9 @@ Laravel Echo requires three environment variables in order to be initialised:
 - APP_KEY
 - APP_SECRET
 
-You can set all of these during your initial application config - see the section above for how to set env_vars for your app. It may be useful to use the [Auto Generate](/docs/build-and-config/env-vars#using-auto-generate) feature for either the app key or the secret (or both)
+You can set all of these during your initial application config - see the section above for how to set env_vars for your app. It may be useful to use the [Auto Generate](/:product/:version?/build-and-config/env-vars#using-auto-generate) feature for either the app key or the secret (or both)
 
-Finally, in order to initialise the Echo server you need to run another shell command. You can do this via another simple deploy hook ([*what are deploy hooks?*](/docs/deploy-hooks/deploy-hooks))
+Finally, in order to initialise the Echo server you need to run another shell command. You can do this via another simple deploy hook ([*what are deploy hooks?*](/:product/:version?/deploy-hooks/deploy-hooks))
 
 ```yaml
 production:

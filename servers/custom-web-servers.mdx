@@ -6,10 +6,10 @@ title:  "Using custom Rack servers"
 
 By default, applications deployed by Cloud 66 run on [Phusion Passenger](https://www.phusionpassenger.com/) behind [Nginx](https://wiki.nginx.org/Main). You can also choose to use one of several servers:
 
-- [Passenger Enterprise](/docs/build-and-config/passenger-enterprise)
-- [Puma](/docs/build-and-config/puma-rack-server)
-- [Unicorn](/docs/build-and-config/unicorn-rack-server)
-- [Thin](/docs/build-and-config/thin-rack-server)
+- [Passenger Enterprise](/:product/:version?/build-and-config/passenger-enterprise)
+- [Puma](/:product/:version?/build-and-config/puma-rack-server)
+- [Unicorn](/:product/:version?/build-and-config/unicorn-rack-server)
+- [Thin](/:product/:version?/build-and-config/thin-rack-server)
 
 It's vital to distinguish between these Rack-based **application**  (or "web app") servers and Nginx which acts as the **public web front-end** for Cloud 66 applications. We usually refer to Nginx as our "web server", but it performs a different task to the Rack-based app servers described in this doc.
 
@@ -29,7 +29,7 @@ For the web app server to be managed and restarted properly by Cloud 66, it need
 
 ## What’s next?
 
-* Learn how to [add a load balancer](/docs/load-balancers/load-balancer) to your application
-* Learn how to [set up your DNS records](/docs/networking/configure-dns) to work with Cloud 66
-* Learn how to [configure network access](/docs/networking/network-configuration) to your application
-* Learn how to [manage processes on your web server](/docs/servers/systemd) directly via your terminal
+* Learn how to [add a load balancer](/:product/:version?/load-balancers/load-balancer) to your application
+* Learn how to [set up your DNS records](/:product/:version?/networking/configure-dns) to work with Cloud 66
+* Learn how to [configure network access](/:product/:version?/networking/network-configuration) to your application
+* Learn how to [manage processes on your web server](/:product/:version?/servers/systemd) directly via your terminal

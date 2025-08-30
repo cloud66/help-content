@@ -45,7 +45,7 @@ Default Rails deployments on Cloud 66 use Passenger (via Nginx) and the logs are
 
 ### Custom Rails deployments
 
-If you are using a [custom web server](/docs/servers/custom-web-servers), such as [Puma](/docs/build-and-config/puma-rack-server), [Thin](/docs/build-and-config/thin-rack-server) or [Unicorn](/docs/build-and-config/unicorn-rack-server) then your log files will be as follows:
+If you are using a [custom web server](/:product/:version?/servers/custom-web-servers), such as [Puma](/:product/:version?/build-and-config/puma-rack-server), [Thin](/:product/:version?/build-and-config/thin-rack-server) or [Unicorn](/:product/:version?/build-and-config/unicorn-rack-server) then your log files will be as follows:
 
 - Application (Rails) log: `$STACK_PATH/log/<environment>.log`
 - Application logs (STDOUT + STDERR):  
@@ -68,5 +68,5 @@ Your logs in `$STACK_PATH/log` and `/var/log` are automatically rotated on a dai
 `gzip -d <log_file>.log.gz`.
 
 <Callout type="info" title="Configuring log rotation">
-You can set the frequency and the number of rotations to be kept [using the Cloud 66 Toolbelt](/docs/toolbelt/toolbelt#stacks-configuration-list).
+You can set the frequency and the number of rotations to be kept [using the Cloud 66 Toolbelt](/:product/:version?/toolbelt/toolbelt#stacks-configuration-list).
 </Callout>

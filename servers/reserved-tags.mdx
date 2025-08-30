@@ -9,11 +9,11 @@ Cloud 66 currently reserves the following tags:
 
 |Tag|Target|Description|
 |--- |--- |--- |
-|c66.delete.protection|server, formation|Prevents a component (e.g. server) from [being deleted](/docs/servers/scaling#delete-protection) - including via the Toolbelt and API.|
-|c66.migrations.run|server (Rails only)|Sets the given server as the [migrator](/docs/databases/database-management) - migrations will run on that server *only*, and the rest of the servers will wait until the migrations are performed before continuing with the deployment.|
-|c66.compilation.run|server (Rails only)|Nominates a Rails server to handle [asset pre-compilation workloads](/docs/deployment/enable-disable-asset-pipeline#nominating-a-dedicated-compilation-server).|
-|c66.build-commands.run|server (Rack only - does not apply to Rails)|Nominates a server to handle the workload of the declared custom build command (as specified in your [manifest](/docs/manifest/building-a-manifest-file#manifest-tutorial) or during the initial build process). Only applies during the initial build of the application.|
-|c66.deploy-commands.run|server (Rack only - does not apply to Rails)|Nominates a server to handle the workload of the declared custom deploy command (as specified in your [manifest](/docs/manifest/building-a-manifest-file#manifest-tutorial) or during the initial build process). Applies during subsequent deployments of the application.|
+|c66.delete.protection|server, formation|Prevents a component (e.g. server) from [being deleted](/:product/:version?/servers/scaling#delete-protection) - including via the Toolbelt and API.|
+|c66.migrations.run|server (Rails only)|Sets the given server as the [migrator](/:product/:version?/databases/database-management) - migrations will run on that server *only*, and the rest of the servers will wait until the migrations are performed before continuing with the deployment.|
+|c66.compilation.run|server (Rails only)|Nominates a Rails server to handle [asset pre-compilation workloads](/:product/:version?/deployment/enable-disable-asset-pipeline#nominating-a-dedicated-compilation-server).|
+|c66.build-commands.run|server (Rack only - does not apply to Rails)|Nominates a server to handle the workload of the declared custom build command (as specified in your [manifest](/:product/:version?/manifest/building-a-manifest-file#manifest-tutorial) or during the initial build process). Only applies during the initial build of the application.|
+|c66.deploy-commands.run|server (Rack only - does not apply to Rails)|Nominates a server to handle the workload of the declared custom deploy command (as specified in your [manifest](/:product/:version?/manifest/building-a-manifest-file#manifest-tutorial) or during the initial build process). Applies during subsequent deployments of the application.|
 
 
 ## Adding tags to a server

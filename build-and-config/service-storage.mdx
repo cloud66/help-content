@@ -9,7 +9,7 @@ products: ['deploy']
 Given the ephemeral nature of containers, it’s important to consider storage solutions to avoid data loss. We suggest mounting volumes from your container to the host.
 
 <PerProduct includes={["rails"]}>
-This guide applies to containerized applications. We have a separate guide for Rails applications that deals with [persistent and shared directories](/docs/build-and-config/rails-shared-directories).
+This guide applies to containerized applications. We have a separate guide for Rails applications that deals with [persistent and shared directories](/:product/:version?/build-and-config/rails-shared-directories).
 </PerProduct>
 
 ## Adding simple storage volumes
@@ -20,7 +20,7 @@ The **volumes** option is expressed as a comma separated list with the following
 
 You can optionally add `ro` or `rw` to specify that the container can read/write to the host folder (the default is read/write).
 
-(Read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help on customizing your service configuration.)
+(Read [our guide to using service.yml](/:product/:version?/build-and-config/docker-service-configuration) for more help on customizing your service configuration.)
 
 <Callout type="warning" title="No relative paths">
 Paths for storage volumes must be absolute. 
@@ -50,9 +50,9 @@ services:
 
 Cloud 66 has a specific syntax to allow you to generate a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/) (or [Kubernetes ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/)), and mount them to a path inside your service containers - making them available in a local folder your service application. 
 
-You can choose whether to populate the mounted folder from a Secret or ConfigMap - the contents of which are automatically generated from your application [ConfigStore](/docs/build-and-config/config-store) or [Environment Variables](/docs/build-and-config/env-vars). 
+You can choose whether to populate the mounted folder from a Secret or ConfigMap - the contents of which are automatically generated from your application [ConfigStore](/:product/:version?/build-and-config/config-store) or [Environment Variables](/:product/:version?/build-and-config/env-vars). 
 
-Optionally you can filter the included values based on a tag/metadata filter. The filter must be of the syntax `key=value` ie. `foo=bar`. When applied to ConfigStore entries, it will match based on the entry metadata. When applied to Environment Variables, it will match based on [tags](/docs/servers/tagging-components).
+Optionally you can filter the included values based on a tag/metadata filter. The filter must be of the syntax `key=value` ie. `foo=bar`. When applied to ConfigStore entries, it will match based on the entry metadata. When applied to Environment Variables, it will match based on [tags](/:product/:version?/servers/tagging-components).
 
 <Callout type="warning" title="No service-level env_vars">
  Because Secret and ConfigMap stores are application level and not service-specific, you cannot use service-level Environment Variables. 
