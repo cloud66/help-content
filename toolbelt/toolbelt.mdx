@@ -22,12 +22,6 @@ import FailoverGroupsListPartial from './_failover-groups-list.mdx';
 import FailoverGroupsAddPartial from './_failover-groups-add.mdx';
 import FailoverGroupsDeletePartial from './_failover-groups-delete.mdx';
 import FailoverGroupsUpdatePartial from './_failover-groups-update.mdx';
-import FormationsListPartial from './_formations-list.mdx';
-import FormationsCommitPartial from './_formations-commit.mdx';
-import FormationsCreatePartial from './_formations-create.mdx';
-import FormationsDeployPartial from './_formations-deploy.mdx';
-import FormationsFetchPartial from './_formations-fetch.mdx';
-import FormationsStencilsListPartial from './_formations-stencils-list.mdx';
 import GatewaysListPartial from './_gateways-list.mdx';
 import GatewaysAddPartial from './_gateways-add.mdx';
 import GatewaysClosePartial from './_gateways-close.mdx';
@@ -62,9 +56,6 @@ import ServicesScalePartial from './_services-scale.mdx';
 import ServicesStopPartial from './_services-stop.mdx';
 import SettingsListPartial from './_settings-list.mdx';
 import SettingsSetPartial from './_settings-set.mdx';
-import SkycapListenPartial from './_skycap-listen.mdx';
-import SnapshotsListPartial from './_snapshots-list.mdx';
-import SnapshotsRenderPartial from './_snapshots-render.mdx';
 import SshPartial from './_ssh.mdx';
 import SshConfigPartial from './_ssh_config.mdx';
 import StacksClearCachesPartial from './_stacks-clear-caches.mdx';
@@ -84,9 +75,6 @@ import StacksSslPartial from './_stacks-ssl.mdx';
 import TagsAddPartial from './_tags-add.mdx';
 import TagsDeletePartial from './_tags-delete.mdx';
 import TailPartial from './_tail.mdx';
-import TemplatesListPartial from './_templates-list.mdx';
-import TemplatesResyncPartial from './_templates-resync.mdx';
-import TemplatesShowPartial from './_templates-show.mdx';
 import TestPartial from './_test.mdx';
 import TunnelPartial from './_tunnel.mdx';
 import UpdatePartial from './_update.mdx';
@@ -274,37 +262,6 @@ Alias: `databases resync-slave` (deprecated)
 ### failover-groups update
 <FailoverGroupsUpdatePartial />
 
-<PerProduct includes={["skycap"]}>
-### formations list
-Alias: `formation list`
-
-<FormationsListPartial />
-
-### formations commit
-Alias: `formation commit`
-
-<FormationsCommitPartial />
-
-### formations create
-Alias: `formation create`
-
-<FormationsCreatePartial />
-
-### formations deploy
-Alias: `formation deploy`
-
-<FormationsDeployPartial />
-
-### formations fetch
-Alias: `formation fetch`
-
-<FormationsFetchPartial />
-
-### formations stencils list
-Alias: `formation stencils list`
-
-<FormationsStencilsListPartial />
-</PerProduct>
 <PerProduct includes={["rails"]}>
 ### gateways list
 
@@ -468,20 +425,6 @@ Alias: `setting set`
 
 <SettingsSetPartial />
 
-<PerProduct includes={["skycap"]}>
-### skycap listen
-
-<SkycapListenPartial />
-
-### snapshots list
-
-<SnapshotsListPartial />
-
-### snapshots render
-
-<SnapshotsRenderPartial />
-
-</PerProduct>
 
 ### ssh
 
@@ -578,19 +521,6 @@ Alias: `stack ssl`
 
 <TailPartial />
 
-<PerProduct includes={["skycap"]}>
-### templates list
-
-<TemplatesListPartial />
-
-### templates resync
-
-<TemplatesResyncPartial />
-
-### templates show
-
-<TemplatesShowPartial />
-</PerProduct>
 ### test
 
 <TestPartial />
