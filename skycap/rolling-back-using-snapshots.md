@@ -1,0 +1,70 @@
+---
+title: Rolling back using Snapshots
+
+lead: "Using Skycap as an infrastructure time machine"
+---
+
+## Overview
+
+One of the most significant benefits of using Skycap is that it acts as an “infrastructure time machine”. You can roll backwards to any application state for which a [Snapshot](/docs/skycap/formations-stencils-and-snapshots#what-is-a-snapshot) was taken. 
+
+A Snapshot includes both the container images and the configuration files and variables associated with those images, all saved in a private repository within Cloud 66.
+
+## How to roll back to an older snapshot
+
+1. Open your [Cloud 66 dashboard](https://app.cloud66.com/dashboard) and click on the name of the application you wish to roll back.
+2. Click on *Snapshots* in the left-hand nav
+3. Find the Snapshot you wish to rebuild in the timeline and click *Rebuild* (you will be asked to confirm before the rebuild starts)
+3. Wait for the rebuild to be completed (you can view a live log of the build process by clicking the *view APPNAME build logs* link)
+4. When the rebuild is complete, you can redeploy application by following [this guide](/docs/skycap/using-formations#deploying-it-all-to-your-cluster).
+
+{% callout type="info" title="Roll backs create new Snapshots" %}
+ Each time you roll back you actually create a new Snapshot that copies the contents of an older Snapshot. We suggest taking note of the UIDs (or timestamps) of "stable" Snapshots to make this process easier to manage. 
+{% /callout %}
+
+{% callout type="warning" title="Rolling back reverts ALL changes" %}
+ Rolling back to a previous Snapshot will revert the entire application to that state. If you have made significant changes to either your images or your configurations in a newer Snapshot, those changes will not exist in this new (rebuilt) Snapshot. You can, however, download the Formations files for any Snapshot (see below for how to do this). 
+{% /callout %}
+
+## Downloading older Formations
+
+You can also download any or all of the Stencils (configuration files) for any Snapshot without rebuilding your application to that state. This can be used to:
+
+* Deploy an older Snapshot without having to rebuild
+* Compare two sets of configuration files (Stencils)
+
+To do this:
+
+1. Open your [Cloud 66 dashboard](https://app.cloud66.com/dashboard) and click on the name of the application in question.
+2. Click on *Snapshots* in the left-hand nav
+Find the Snapshot you need and click on *Formations*
+3. Click on the name of the Formation which you’d like to examine
+
+You can now look through all the Stencils in this Formation, and/or download them as a single YML file. You can also deploy them to your cluster using the recommended `cx` command. If you’re not sure how to do that, [follow this guide](/docs/skycap/using-formations#deploying-it-all-to-your-cluster). 
+
+{% callout type="warning" title="Check your image version" %}
+ Be cautious when using older Formations to deploy changes to your cluster(s). Remember that Skycap stores copies of all your images at that point in time. Always check that you are not accidentally deploying older code that may break your application. 
+{% /callout %}
+
+## Checking the build information for Snapshots
+
+Each Snapshot also preserves all the metadata for each build. To see this information for a Service within any Snapshot:
+
+1. Open your [Cloud 66 dashboard](https://app.cloud66.com/dashboard) and click on the name of the application in question.
+2. Click on *Snapshots* in the left-hand nav
+3. Click on the name of any Service under a Snapshot in the timeline
+
+The page that opens gives you all the details about that Service, at the point in time when it was built. Note that each build has a unique ID (UID). You can see this in the green bar at the top of the panel.
+
+### See more detailed logs
+
+The default view for a Service has a summary view of the build logs. To see more detail, simply click on the *More logs* button at the top right of the panel.
+
+## What’s next?
+
+* Learn how to [update an existing service](/docs/skycap/updating-an-existing-service) in Skycap.
+* Learn how to [add new services or components](/docs/skycap/adding-a-new-service) to a service.
+* Learn how to add [custom environment variables](/docs/skycap/setting-environment-variables) to your application.
+* Learn how to set up [access control and permissions](/docs/skycap/setting-up-access-control) on your Formations and Stencils.
+* Learn how to use your [Habitus build flow](/docs/skycap/using-habitus-with-skycap) within Skycap.
+* Learn how to use [validation policies](/docs/skycap/using-validation-policies) to ensure your Stencils adhere to your standards and conventions. 

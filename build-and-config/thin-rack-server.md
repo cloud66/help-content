@@ -1,0 +1,57 @@
+---
+title:  "Using Thin web server"
+---
+
+[Thin](https://github.com/macournoyer/thin) is a Ruby web server that can handle high levels of concurrency. 
+
+## Deploying with Thin
+
+To run a Thin web server, add a line to your Procfile labeled as custom_web. Here is an example:
+
+```shell
+custom_web: bundle exec thin start --socket /tmp/web_server.sock --pid /tmp/web_server.pid -e $RACK_ENV
+```
+
+You can change freely between [other supported servers](/docs/servers/custom-web-servers) by simply updating your Gems and Procfile.
+
+### Don't daemonize custom_web
+
+You **should not** daemonize the `custom_web` process. In other words, please do not use the `-d` or `-daemonize` flags in your initialization string. Please also make sure your config file does not enable daemonization.
+
+We do not support old-style daemonization because it is more reliable to allow the system's process manager (systemd) to handle persistent processes.
+
+## Customizing shutdown and reload signals
+
+The default shutdown command for Unicorn servers on Cloud 66 is `HUP` and the default shutdown sequence for applications using **systemd** (our default process manager) is: 
+
+```terminal
+quit, 75, int, 15, kill
+```
+
+If you need your web server to shut down using a different command, or in a particular sequence, or with longer or shorter delays, you can define a custom restart sequence in the [procfile_metadata](/docs/manifest/building-a-manifest-file#processes) section of your [Manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial).
+
+For non-web process signals, please consult our [systemd guide](/docs/servers/systemd#process-signals).
+
+## Controlling Thin via your terminal
+
+You can manage your web server directly from your terminal. Cloud 66 uses the following signals to control Puma via [systemd](/docs/servers/systemd):
+
+#### Stop the web server
+```shell
+sudo systemctl stop cloud66_web_server.service
+```
+
+#### Start the web server
+
+```shell
+sudo systemctl start cloud66_web_server.service
+```
+
+#### Restart the web server
+
+```shell
+sudo systemctl restart cloud66_web_server.service
+```
+
+If you need more control over your restarts, you can define a custom restart sequence in the [procfile_metadata](/docs/manifest/building-a-manifest-file#processes) section of your [Manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial). 
+

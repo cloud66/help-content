@@ -1,0 +1,86 @@
+---
+title: "Configuring SolidX components for Rails"
+---
+
+## Overview
+
+You can deploy Rails applications to Cloud 66 with with Solid Cache, Solid Cable and Solid Queue (we call them SolidX components). If you’d like to use these features, your app needs to meet these three criteria:
+
+1. Your Gemfile must contain *at least one* of these gems: `solid_cache` , `solid_cable` `solid_queue`.
+2. Your `database.yml` must contain the respective keys to support these gems (see example below).
+3. Your `database.yml` should **not** set the `cache`, `cable` or `queue` keys to use different hosts from your primary key ([see below](#dispersed-components) for more details)
+
+If your application code meets these conditions, we will automatically provision the infrastructural elements required to support the features you’ve chosen to enable. This includes creating the necessary additional logical databases for SolidX support on your primary database server.
+
+### Example database.yml
+
+The database configuration below would result in four logical databases, one for your application, and three for the additional SolidX components, all nested under to the main physical database (`abc`) alongside the main logical database (`mydb`)
+
+```yaml
+production:
+  primary:
+    host: abc
+    database: mydb
+  cache:
+    host: abc
+    database: mydb_cache
+  cable:
+    host: abc
+    database: mydb_cable
+  queue:
+    host: abc
+    database: mydb_queue
+```
+
+Note that, by default, the SolidX components take the database name `mainDB-name_ComponentKey` - for example `mydb_queue`. 
+
+During build we will update your `database.yml` to use the environment variables common to the components. For example:
+
+```yaml
+production:
+  primary:
+    host: <%= ENV['MYSQL_ADDRESS'] %>
+    database: <%= ENV['MYSQL_DATABASE'] %>
+  cache:
+    host: <%= ENV['MYSQL_ADDRESS'] %>
+    database: <%= ENV['MYSQL_DATABASE'] %>_cache
+  cable:
+    host: <%= ENV['MYSQL_ADDRESS'] %>
+    database: <%= ENV['MYSQL_DATABASE'] %>_cable
+  queue:
+    host: <%= ENV['MYSQL_ADDRESS'] %>
+    database: <%= ENV['MYSQL_DATABASE'] %>_queue
+```
+
+### Dispersed components
+
+If you’d prefer to run SolidX features split across different database servers, you can do so by declaring different host values in your `database.yml`:
+
+```yaml
+production:
+  primary:
+    host: abc
+    database: mydb
+  cache:
+    host: xyz
+    database: mydb_cache
+```
+
+In this case, we detect if you have specified database group called `primary` and a db called `cache` and if so, automatically update your `database.yml` to be:
+
+```yaml
+primary:
+  host: <%= ENV['MYSQL_PRIMARY_ADDRESS'] %>
+  database: <%= ENV['MYSQL_PRIMARY_DATABASE'] %>
+cache:
+  host: <%= ENV['MYSQL_CACHE_ADDRESS'] %>
+  database: <%= ENV['MYSQL_CACHE_DATABASE'] %>
+```
+
+{% callout type="info" title="We don’t add env vars in some cases" %}
+If we can’t find a matching database group, we won’t replace that key in your configuration. If your `database.yml` already has an env var pointing at a valid ENV var on your application, we won’t replace that key.
+{% /callout %}
+
+## Disabling automated configuration file changes
+
+If you’d prefer to manage your `database.yml` files manually, you can [disable our automated updates](/docs/databases/tamper-with-yaml) in your [Manifest file](/docs/manifest/building-a-manifest-file). You can do so either globally or per database.

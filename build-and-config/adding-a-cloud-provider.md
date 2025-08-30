@@ -1,0 +1,110 @@
+---
+title: Adding a cloud provider
+---
+
+## Overview
+
+You can add a cloud provider account to Cloud 66 in one of two ways:
+
+1. During initial app set up (Click the *New Application* button to get started)
+2. Via **Account Settings**
+
+To add a cloud account via Account Settings:
+
+1. Click on your avatar (top right) and select *Account Settings*
+2. Click on Cloud Platforms in the Settings panel (on the left)
+3. Click the *+ Add Cloud* button
+4. Add the cloud account details to the drawer that opens from the left 
+5. Click *Add Cloud*
+
+Follow the instructions for your prefered cloud provider below to grant Cloud 66 access to your account.
+
+
+## AWS (Amazon Web Services)
+
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_aws.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+{% partial file="../../src/pages/docs/partials/_aws-static.md" /%}
+{% /per-framework %} 
+
+## Azure
+
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_azure.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+{% partial file="../../src/pages/docs/partials/_azure-static.md" /%}
+{% /per-framework %}
+
+## Digital Ocean
+
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_do.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+{% partial file="../../src/pages/docs/partials/_do-static.md" /%}
+{% /per-framework %}
+
+## Google Cloud (GCE)
+
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_gce.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+{% partial file="../../src/pages/docs/partials/_gce-static.md" /%}
+{% /per-framework %}
+
+## Hetzner Cloud
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_hetzner.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+Hetzner does not currently support static site deployments.
+{% /per-framework %}
+
+## Latitude.sh
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_latitudesh.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+Latitude.sh does not currently support static site deployments.
+{% /per-framework %}
+
+## Linode
+
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_linode.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+{% partial file="../../src/pages/docs/partials/_linode-static.md" /%}
+{% /per-framework %}
+
+## OVH
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_ovh.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+OVH does not currently support static site deployments.
+{% /per-framework %}
+
+## Packet
+{% partial file="../../src/pages/docs/partials/_packet.md" /%}
+
+## Vultr
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+{% partial file="../../src/pages/docs/partials/_vultr.md" /%}
+{% /per-framework %}
+
+{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+Vultr does not currently support static site deployments.
+{% /per-framework %}

@@ -1,0 +1,19 @@
+---
+title:  "Understanding Rack status alerts"
+---
+
+There are three alerts that can be enabled at application level that will notify whether the web server is:
+
+* Started
+* Stopped
+* Unmonitored
+
+**Started** alerts fire whenever your web application goes from any other state to "Started". 
+
+**Stopped** alerts indicate that your web application has entered a "stopped" state. This usually means that it has failed for some reason. From this state, the [process manager](/docs/servers/systemd) will automatically try to restart the application. 
+
+**Unmonitored** alerts indicate that the [process manager](/docs/servers/systemd) is no longer controlling your web process. This typically happens when the process manager needs to reload your application (for example when an environment variable changes) or when your application itself dissappears completely (in the case of Out Of Memory killer for example).
+
+## Alert limits
+
+To stop potential infinite alerting if your application is flipping between states due to errors, we will send a maximum of 3 "Stopped" or "Unmonitored" alerts until such a time as a "Started" state is achieved.

@@ -1,0 +1,625 @@
+---
+title: Cloud 66 Toolbelt 
+lead: "Reference guide for Cloud 66 Toolbelt commands"
+---
+
+# Configuring Toolbelt
+
+## Installation
+
+1. Download the [cx executable](https://app.cloud66.com/toolbelt) to a directory in your PATH
+2. Initialize it by running `cx stacks list`  
+3. Authenticate using your browser
+
+For more detailed help on installation please refer to our [Getting Started](/docs/toolbelt/using-cloud66-toolbelt) guide.
+
+### Installing on a server (headless)
+
+To install Toolbelt on a server (without a browser):
+
+1. Install and authenticate `cx` on your local machine (see above)
+2. Log into your server via your terminal and move to the `.cloud66` directory (under `home`) 
+3. Create a file named `cx.json` in that folder
+4. Go to the terminal on your local machine, where you already have Toolbelt authorised and execute `cx dump-token`, which will give you your authorisation token
+5. Copy this token and paste it into the (remote) `cx.json` file that you created in Step 3
+6. Save the file and then run `cx stacks list` on the server to confirm that Toolbelt is initialised
+
+## Running Toolbelt inside a Docker container
+
+You can run the Cloud 66 Toolbelt inside a Docker container, although this is not officially supported. 
+
+#### Step 1: Start an ubuntu container
+
+We start a generic Ubuntu container (Cloud 66 runs on Ubuntu servers) 
+
+```shell
+$ docker run -it ubuntu:latest /bin/bash
+```
+
+#### Step 2: Install required/useful tools
+
+Toolbelt relies on three tools - curl, nano and ssh - so we install these packages.
+
+```shell
+$ apt update
+```
+
+```shell
+$ apt install curl nano ssh -y
+```
+
+#### Step 3: Create some default folders
+
+We need to create some default folders to support Toolbelt’s requirements.
+
+```shell
+$ mkdir -p ~/.ssh
+```
+
+```shell
+$ mkdir -p ~/.cloud66
+```
+
+#### Step 4: Install Toolbelt
+
+Now we install the Toolbelt by CURLing the installation shell script on S3:
+
+```shell
+$ curl -sSL https://s3.amazonaws.com/downloads.cloud66.com/cx_installation/cx_install.sh | bash
+```
+
+#### Step 5: Register Toolbelt
+
+Finally we need to register Toolbelt:
+
+1. Install and authenticate `cx` on your local machine
+2. SSH into your container and move to the `.cloud66` directory (under `home`)
+3. Create a file named `cx.json` in that folder
+4. Go to the terminal on your local machine, where you already have Toolbelt authorised and execute `cx dump-token`, which will give you your authorisation token
+5. Copy this token and paste it into the (container’s) `cx.json` file that you created in Step 3
+6. Save the file and then run `cx stacks list` from inside the container to confirm that Toolbelt is initialised
+
+After this, you should be able to use `cx` commands inside the container.
+
+## Shortcuts
+
+Toolbelt has some useful shortcuts to help speed up your workflow.
+
+### Running cx in a git directory
+
+To make life easier for you, the Cloud 66 toolbelt **detects the Git URL and branch for each directory it is run in**. As such, you won’t have to specify which application you want to run the toolbelt on if you’re in the git folder and branch of one of your applications.
+
+### Naming shortcuts
+
+We apply naming shortcuts to both application and server names, as well as server roles in the toolbelt, so you don’t have to type their full names. We just need you to type enough of a name for it to be unique. 
+
+For example, if you only have one application that starts with *m*, you can simply type *m*. Similarly, if you only have one web server, you can type *w* instead of *web*
+
+## Toolbelt commands
+
+These commands are listed alphabetically by top level command name. 
+
+### backups list
+{% partial file="../../src/pages/docs/toolbelt/_backups-list.md" /%}
+
+### backups download
+{% partial file="../../src/pages/docs/toolbelt/_backups-download.md" /%}
+
+### backups new
+{% partial file="../../src/pages/docs/toolbelt/_backups-new.md" /%}
+
+### config
+Allows you to configure multiple profiles in cx to support multiple Cloud 66 accounts.
+
+### containers list
+Alias: `container list`
+
+{% partial file="../../src/pages/docs/toolbelt/_containers-list.md" /%}
+
+### containers attach
+Alias: `container attach`
+
+{% partial file="../../src/pages/docs/toolbelt/_containers-attach.md" /%}
+
+### containers stop
+Alias: `container stop`
+
+{% partial file="../../src/pages/docs/toolbelt/_containers-stop.md" /%}
+
+### containers restart
+Alias: `container restart`
+
+{% partial file="../../src/pages/docs/toolbelt/_containers-restart.md" /%}
+
+### databases promote-replica
+Alias: `database promote-replica` 
+Alias: `database promote-slave` (deprecated) 
+Alias: `databases promote-slave` (deprecated)
+
+{% partial file="../../src/pages/docs/toolbelt/_databases-promote-slave.md" /%}
+
+### databases resync-replica
+Alias: `database resync-replica` 
+Alias: `database resync-slave` (deprecated) 
+Alias: `databases resync-slave` (deprecated)
+
+{% partial file="../../src/pages/docs/toolbelt/_databases-resync-slave.md" /%}
+
+### download
+
+{% partial file="../../src/pages/docs/toolbelt/_download.md" /%}
+
+### dump-token
+
+{% partial file="../../src/pages/docs/toolbelt/_dump-token.md" /%}
+
+### env-vars list
+
+{% partial file="../../src/pages/docs/toolbelt/_env-vars-list.md" /%}
+
+### env-vars download
+
+{% partial file="../../src/pages/docs/toolbelt/_env-vars-download.md" /%}
+
+### env-vars set
+
+{% partial file="../../src/pages/docs/toolbelt/_env-vars-set.md" /%}
+
+### env-vars upload
+
+{% partial file="../../src/pages/docs/toolbelt/_env-vars-upload.md" /%}
+
+### failover-groups list
+{% partial file="../../src/pages/docs/toolbelt/_failover-groups-list.md" /%}
+
+### failover-groups add
+{% partial file="../../src/pages/docs/toolbelt/_failover-groups-add.md" /%}
+
+### failover-groups delete
+{% partial file="../../src/pages/docs/toolbelt/_failover-groups-delete.md" /%}
+
+### failover-groups update
+{% partial file="../../src/pages/docs/toolbelt/_failover-groups-update.md" /%}
+
+{% per-framework includes=["skycap"] %}
+### formations list
+Alias: `formation list`
+
+{% partial file="../../src/pages/docs/toolbelt/_formations-list.md" /%}
+
+### formations commit
+Alias: `formation commit`
+
+{% partial file="../../src/pages/docs/toolbelt/_formations-commit.md" /%}
+
+### formations create
+Alias: `formation create`
+
+{% partial file="../../src/pages/docs/toolbelt/_formations-create.md" /%}
+
+### formations deploy
+Alias: `formation deploy`
+
+{% partial file="../../src/pages/docs/toolbelt/_formations-deploy.md" /%}
+
+### formations fetch
+Alias: `formation fetch`
+
+{% partial file="../../src/pages/docs/toolbelt/_formations-fetch.md" /%}
+
+### formations stencils list
+Alias: `formation stencils list`
+
+{% partial file="../../src/pages/docs/toolbelt/_formations-stencils-list.md" /%}
+{% /per-framework %}
+{% per-framework includes=["rails"] %}
+### gateways list
+
+{% partial file="../../src/pages/docs/toolbelt/_gateways-list.md" /%}
+
+### gateways add
+
+{% partial file="../../src/pages/docs/toolbelt/_gateways-add.md" /%}
+
+### gateways close
+
+{% partial file="../../src/pages/docs/toolbelt/_gateways-close.md" /%}
+
+### gateways open
+
+{% partial file="../../src/pages/docs/toolbelt/_gateways-open.md" /%}
+
+### gateways remove
+
+{% partial file="../../src/pages/docs/toolbelt/_gateways-remove.md" /%}
+{% /per-framework %}
+### help
+
+{% partial file="../../src/pages/docs/toolbelt/_help.md" /%}
+
+### info
+
+{% partial file="../../src/pages/docs/toolbelt/_info.md" /%}
+
+### init
+Initializes the Toolbelt.
+
+### init agent
+Initializes the Toolbelt as a standalone (headless) agent.
+
+### jobs list
+Alias: `job list`
+
+{% partial file="../../src/pages/docs/toolbelt/_jobs-list.md" /%}
+
+### jobs run
+Alias: `job run`
+
+{% partial file="../../src/pages/docs/toolbelt/_jobs-run.md" /%}
+
+### lease
+
+{% partial file="../../src/pages/docs/toolbelt/_lease.md" /%}
+
+### login
+
+{% partial file="../../src/pages/docs/toolbelt/_login.md" /%}
+
+### notifications download
+
+{% partial file="../../src/pages/docs/toolbelt/_notifications-download.md" /%}
+
+### notifications upload
+
+{% partial file="../../src/pages/docs/toolbelt/_notifications-upload.md" /%}
+
+### open
+
+{% partial file="../../src/pages/docs/toolbelt/_open.md" /%}
+
+### processes list
+Alias: `process list`
+
+{% partial file="../../src/pages/docs/toolbelt/_processes-list.md" /%}
+
+### processes pause
+Alias: `process pause`
+
+{% partial file="../../src/pages/docs/toolbelt/_processes-pause.md" /%}
+
+### processes restart
+Alias: `process restart`
+
+{% partial file="../../src/pages/docs/toolbelt/_processes-restart.md" /%}
+
+### processes resume
+Alias: `process resume`
+
+{% partial file="../../src/pages/docs/toolbelt/_processes-resume.md" /%}
+
+### processes scale
+Alias: `process scale`
+
+{% partial file="../../src/pages/docs/toolbelt/_processes-scale.md" /%}
+
+### redeploy
+Alias: `stacks redeploy`
+
+{% partial file="../../src/pages/docs/toolbelt/_redeploy.md" /%}
+
+### register-server
+
+{% partial file="../../src/pages/docs/toolbelt/_register-server.md" /%}
+
+### run
+
+{% partial file="../../src/pages/docs/toolbelt/_run.md" /%}
+
+### servers list
+Alias: `server list`
+
+{% partial file="../../src/pages/docs/toolbelt/_servers-list.md" /%}
+
+### servers reboot
+Alias: `server reboot`
+
+{% partial file="../../src/pages/docs/toolbelt/_servers-reboot.md" /%}
+
+### servers settings list
+Alias: `server settings list`
+
+{% partial file="../../src/pages/docs/toolbelt/_servers-settings-list.md" /%}
+
+### services info
+Alias: `service info`
+
+{% partial file="../../src/pages/docs/toolbelt/_services-info.md" /%}
+
+### services list
+Alias: `service list`
+
+{% partial file="../../src/pages/docs/toolbelt/_services-list.md" /%}
+
+### services pause
+Alias: `service pause`
+
+{% partial file="../../src/pages/docs/toolbelt/_services-pause.md" /%}
+
+### services restart
+Alias: `service restart`
+
+{% partial file="../../src/pages/docs/toolbelt/_services-restart.md" /%}
+
+### services resume
+Alias: `service resume`
+
+{% partial file="../../src/pages/docs/toolbelt/_services-resume.md" /%}
+
+### services scale
+Alias: `service scale`
+
+{% partial file="../../src/pages/docs/toolbelt/_services-scale.md" /%}
+
+### services stop
+Alias: `service stop`
+
+{% partial file="../../src/pages/docs/toolbelt/_services-stop.md" /%}
+
+### settings list
+Alias: `setting list`
+
+{% partial file="../../src/pages/docs/toolbelt/_settings-list.md" /%}
+
+### settings set
+Alias: `setting set`
+
+{% partial file="../../src/pages/docs/toolbelt/_settings-set.md" /%}
+
+{% per-framework includes=["skycap"] %}
+### skycap listen
+
+{% partial file="../../src/pages/docs/toolbelt/_skycap-listen.md" /%}
+
+### snapshots list
+
+{% partial file="../../src/pages/docs/toolbelt/_snapshots-list.md" /%}
+
+### snapshots render
+
+{% partial file="../../src/pages/docs/toolbelt/_snapshots-render.md" /%}
+
+{% /per-framework %}
+
+### ssh
+
+{% partial file="../../src/pages/docs/toolbelt/_ssh.md" /%}
+
+### ssh-config
+
+{% partial file="../../src/pages/docs/toolbelt/_ssh_config.md" /%}
+
+### stacks clear-caches
+Alias: `stack clear-caches`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-clear-caches.md" /%}
+
+### stacks configure download
+Alias: `stack configure download`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-configure-download.md" /%}
+
+### stacks configure list-versions
+Alias: `stack configure list-versions`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-configure-list-versions.md" /%}
+
+### stacks configure upload
+Alias: `stack configure upload`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-configure-upload.md" /%}
+
+### stacks configuration list
+Alias: `stack configuration list`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-configuration-list.md" /%}
+
+### stacks configuration apply
+Alias: `stack configuration apply`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-configuration-apply.md" /%}
+
+### stacks configuration download
+Alias: `stack configuration download`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-configuration-download.md" /%}
+
+### stacks configuration upload
+Alias: `stack configuration upload`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-configuration-upload.md" /%}
+
+### stacks list
+Alias: `stack list`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-list.md" /%}
+
+### stacks create
+Alias: `stack create`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-create.md" /%}
+
+### stacks listen
+Alias: `stack listen`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-listen.md" /%}
+
+### stacks reboot
+Alias: `stack reboot`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-reboot.md" /%}
+
+### stacks redeploy
+Alias: `stack redeploy`
+
+Triggers the deployment of an application. Alias of `redeploy` function.
+
+### stacks restart
+Alias: `stack restart`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-restart.md" /%}
+
+### stacks ssl
+Alias: `stack ssl`
+
+{% partial file="../../src/pages/docs/toolbelt/_stacks-ssl.md" /%}
+
+### tags add
+
+{% partial file="../../src/pages/docs/toolbelt/_tags-add.md" /%}
+
+### tags delete
+
+{% partial file="../../src/pages/docs/toolbelt/_tags-delete.md" /%}
+
+### tail
+
+{% partial file="../../src/pages/docs/toolbelt/_tail.md" /%}
+
+{% per-framework includes=["skycap"] %}
+### templates list
+
+{% partial file="../../src/pages/docs/toolbelt/_templates-list.md" /%}
+
+### templates resync
+
+{% partial file="../../src/pages/docs/toolbelt/_templates-resync.md" /%}
+
+### templates show
+
+{% partial file="../../src/pages/docs/toolbelt/_templates-show.md" /%}
+{% /per-framework %}
+### test
+
+{% partial file="../../src/pages/docs/toolbelt/_test.md" /%}
+
+### tunnel
+
+{% partial file="../../src/pages/docs/toolbelt/_tunnel.md" /%}
+
+### update
+
+{% partial file="../../src/pages/docs/toolbelt/_update.md" /%}
+
+### upload
+
+{% partial file="../../src/pages/docs/toolbelt/_upload.md" /%}
+
+### users list
+
+{% partial file="../../src/pages/docs/toolbelt/_users-list.md" /%}
+
+### users apply-profile
+
+{% partial file="../../src/pages/docs/toolbelt/_users-apply-profile.md" /%}
+
+### users show
+
+{% partial file="../../src/pages/docs/toolbelt/_users-show.md" /%}
+
+## Configuration profile commands
+
+You can configure your Toolbelt to work with multiple Cloud 66 accounts and/or organizations using configuration profiles.
+
+### config create
+
+Creates a new configuration profile
+
+```shell
+$ cx config create <name> [--org <org name>]
+```
+### config use
+
+Switches to using the named configuration profile.
+
+```shell
+$ cx config use <name>
+```
+
+### config rename
+
+Renames an existing configuration profile.
+
+```shell
+$ cx config rename <old name> <new name>
+```
+
+### config delete
+
+Delete a configuration profile.
+
+```shell
+$ cx config delete <name>
+```
+
+### config list
+
+Lists all your configuration profiles.
+
+```shell
+$ cx config list
+```
+
+### config show
+
+Show the details for a profile
+
+```shell
+$ cx config show <name>
+```
+
+### config update
+
+Set a configuration profile to point to an organization.
+
+```shell
+cx config update NAME [--org <org name>]
+```
+
+## Setting up a profile:
+
+1. Run `cx config create <name>` where `<name>` is your chosen profile name
+2. Run `cx config use <name>` to switch to the new profile and initialize it by running  `cx stacks list` 
+3. Authenticate using your browser (be sure to log into the correct account)
+
+For more detailed help on installation please refer to our [Getting Started](/docs/toolbelt/using-cloud66-toolbelt) guide.
+
+{% callout type="info" title="Default profile" %}
+You always have a `default` profile which cannot be deleted or renamed. 
+{% /callout %}
+
+## Switching between profiles
+
+To switch between profiles, use `cx config use <name>`
+
+All commands from that point onwards will run against the `<name>` profile. This is persisted between different terminal sessions until it's changed.
+
+### Setting Profile per command
+
+If you would like to run a command with a different profile other than the current profile, you can use the `--profile` argument with all commands:
+
+```shell
+cx --profile NAME stacks list
+```
+
+### Using profiles with organizations
+
+When you create a profile you can specify the organization to which this new profile should be linked. For example:
+
+```shell
+cx config create hobby --org my_private_sandbox
+```
+
+...will create a profile named "hobby" that is linked to a Cloud 66 organization named "my_private_sandbox".
+
+If you're unsure about the name of an organization you can run the `cx info` command and looking at the `Name` field. You can also see this by logging into your Dashboard, visiting Account Settings and clicking on Organisations in the Account panel on the left. 
+

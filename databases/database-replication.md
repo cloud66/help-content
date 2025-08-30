@@ -1,0 +1,127 @@
+---
+title: Configuring database replication
+---
+
+## Overview
+
+Database replication involves configuring a master and replica database architecture, whereby the replica is an exact copy of the master at all times. This feature is supported for MySQL, Postgres, Redis and MongoDB.
+
+Database replication can be set up for a single application, between applications, or between database groups with various benefits:
+
+### For a single application with one DB group
+
+- Improved read performance: The replica server only allows reads and is ideal for use with reporting tools, and any database backups are taken from the replica rather than the master.
+- Improved application reliability: Having a second server with your data, in case of hardware issues (no single point of failure).
+
+### For multiple database groups
+
+- Improved redundancy: Allows a single application to have multiple database clusters
+- Data migration: Makes it easier to migrate your data with minimal downtime.
+
+### For multiple applications
+
+- Improved redundancy: Allows you to have a failover application in a different region.
+- Data migration: Makes it easy to migrate your application with minimal downtime.
+
+{% callout type="info" title="Inter-application replication" %}
+Replication between different applications is not supported for MongoDB. 
+{% /callout %}
+
+## How it works
+
+When you start replicating your database, the Cloud 66 will do the following:
+
+1. Take a full backup of the master database server in your source application.
+2. Configure a secondary database to be a replica of the source database
+3. Configure the source database to act as the replication master of the secondary database
+4. Update the relevant environment variables for use in your code and scripts
+
+In the case of a single application, we create a secondary database server in your cloud and restore a backup to it. For databases that span applications, we restore your backup on the database server of the second application. For **database groups** you need to set up the new group first, and then set up replication once it is in place.
+
+{% callout type="warning" title="Enabling replication will delete all data from replica" %}
+If you enable replication, all data on the target server (i.e. the replica) will be deleted - including {% hint caption="logical databases" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases){% /hint %} and users. 
+{% /callout %}
+
+Similarly, when you disable replication, we do the following:
+
+1. We disable replication on your master database, and configure it to be a standalone database server
+2. The secondary database server is removed as a replica from the master database server on the source
+3. The source database server is configured as a standalone database server
+4. The relevant environment variables are updated for use in your code and scripts
+
+## Environment Variables
+
+Cloud 66 generates and maintains a number of environment variables automatically on your servers, including those that hold the address for your database server.
+
+When you enable database replication, we will generate additional environment variables for your replica server(s). The value of these variables will change when you enable or disable replication.
+
+In the case that an environment variable contains multiple values, such as IP addresses, these are separated by comma.
+
+## Enable database replication
+
+The process of enabling database replication varies slightly for a single application compared to replication between applications.
+
+{% callout type="warning" title="Enabling replication will disrupt live databases" %}
+Enabling database replication will disrupt the database serving your application during the replication configuration process. The disruption time depends entirely on your database type and size, and different databases may require a restart and/or a complete backup in order to warm-up the new server. This disruption will occur every time you scale your servers. 
+{% /callout %}
+
+### Single application
+
+To enable replication for a single application, you need to scale up to create a replica:
+
+1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
+2. Click on *Data Sources* in the left-hand nav 
+3. Click on the name of the database group you want to scale
+4. Click the *+ Add Replica* button
+5. Choose a size for the new server 
+6. Click Create Server
+
+### Between database groups
+
+Please see our [guide to database groups](/docs/databases/attaching-multiple-databases) for details on how this works.
+
+### Between applications
+
+To enable replication between applications, ensure that you have a secondary application deployed, and that its database server contains at least twice as much disk space as the size of your database backup. Then:
+
+1. Open the application for the secondary application from your [Dashboard](https://app.cloud66.com/dashboard)
+2. Click on **Data Sources** in the left-hand nav 
+3. Click on the (intended) replica database group in the sub-nav
+4. Click the down arrow next to the target database server and select **Configure replication**
+5. Choose the **source** database to replicate from and click *Ok*
+
+## Secure multi-cloud replication
+
+You can securely replicate data between databases hosted by different cloud providers over your [Application Private Network](https://help.cloud66.com/docs/security/using-application-private-networks). This allows you to stream data over the public internet without exposing it to malicious actors. 
+
+To enable replication via APN:
+
+1. Log into your Dashboard an open the app that contains (or will contain) the replica DB (i.e. the target of the replication)
+2. Click on Data Sources in the left-hand navigation and select the database group that will contain the replica (you can also add a data source at this point)
+3. Click the small down arrow to the right of the database server that will be your replica and select *Configure Replication*
+4. Select your Source database in the configuration panel that opens 
+5. Make sure the "Use Application Private Network for replication” option is checked
+6. Click *Set Up Replication* 
+
+You can enable replication via APN for existing replicas by following the same steps and making sure you check the box in step 5.
+
+## Disable database replication
+
+To disable replication between applications: 
+
+1. Open the application for the secondary application from your [Dashboard](https://app.cloud66.com/dashboard)
+2. Click on **Data Sources** in the left-hand nav 
+3. Click on the replica database group in the sub-nav
+4. Select *Disable replication* and confirm to commence the disabling process.
+
+## Re-synchronizing replica with master
+
+From time-to-time your replica database may go out of sync with its master. You can re-synchronize a replica in two ways:
+
+- Via the Dashboard (click through to the detail page for the replica and then click Resync Replica)
+- Via the Cloud 66 Toolbelt's [database management commands](/docs/toolbelt/toolbelt#databases-promote-replica).
+
+{% callout type="warning" title="Backups running on replicas" %}
+If your managed backups are set to run on your replica server, you will not be able to automatically resync your replica from that backup. You will need to disable this option and run the backup on your master server before you can resync.
+{% /callout %}
+

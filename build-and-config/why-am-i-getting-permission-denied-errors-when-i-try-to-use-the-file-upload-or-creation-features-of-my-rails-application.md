@@ -1,0 +1,21 @@
+---
+
+title: “Permission denied” errors on file uploads in Rails
+
+---
+
+If you're getting “Permission denied” errors when you try to use the file upload or creation features of your Rails application, the most common cause of this issue is that your application is using a Gem (or other library) which explicitly sets its own permissions rather than respecting the system configuration.
+
+When Cloud 66 configures your servers, we create two Linux users:
+
+* `nginx` which handles the front-end
+* `cloud66-user` which handles the backend
+
+In order to bridge the (intentional) gap between these users, we place them both in the same Linux group called app_writers - this allows for use cases where a process needs access to both frontend and backend processes.
+
+So, if your application is spitting out “permission denied” errors, check that all of the Gems (or other libraries) are using the correct permissions. That means:
+
+* file permissions should be set to `0660`
+* directory permissions should be set to `0770`
+
+You can usually do this inside your application’s Ruby file, but please read the docs for the Gem in question to check the preferred method for setting permissions.

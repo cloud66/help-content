@@ -1,0 +1,10 @@
+Cloud 66 supports DigitalOcean API v2, which uses OAuth to authenticate requests. If you choose Digital Ocean as a deployment target (see below) you'll be redirected to the DigitalOcean Ocean site, where you need to **authenticate and approve Cloud 66**. Once confirmed you will be redirected back to Cloud 66, where you can deploy your application to your DigitalOcean account.
+
+You can use Cloud 66 to provision and deploy your code to servers (droplets) in any [DigitalOcean region](https://docs.digitalocean.com/products/platform/availability-matrix/).
+
+Private networking is enabled for all data centers that support it. This means that servers can communicate freely between each other on the same network without counting towards bandwidth costs.
+
+**Help with advanced Digital Ocean features:**
+* [Bring Your Own Images](/docs/deployment/bring-your-own-images) (BYOI) 
+* [Cloud 66 tag propagation](/docs/servers/tagging-components#propagation-of-tags-to-cloud-providers)
+

@@ -1,0 +1,20 @@
+---
+title: Setting Node version for Rails apps
+lead: "Choosing which version of Node is installed with your Rack.. applications"
+---
+
+## Controlling the Node version for your Rails application
+
+We automatically install the latest release of Node version {% component-version names=["node"] tabular=false /%}  when we set up your Rack/Rails application servers. You can control which version is installed by editing the [manifest file](/docs/manifest/building-a-manifest-file) for the Rails application. 
+
+```yaml
+rails:
+  configuration:
+    node_version: "18"       # will install latest v18.x.x
+    node_version: "18.1"    # will install latest v18.1.x
+```
+
+
+{% callout type="warning" title="Applying changes" %}
+  To apply changes to the Node version you need to update your manifest file, then [deploy-with-options](/docs/servers/applying-upgrades#ubuntu) and select the **Apply Ruby/Node upgrades** option. 
+{% /callout %}

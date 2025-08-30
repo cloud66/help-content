@@ -1,0 +1,99 @@
+---
+title: Cloud 66 Technical specifications
+---
+
+## Operating system
+
+Your servers are deployed with **Ubuntu 24.04 LTS**.
+
+## Supported cloud providers
+
+Cloud 66 currently supports the following cloud providers:
+
+* [Amazon Web Services](/docs/build-and-config/adding-a-cloud-provider#aws-amazon-web-services)
+* [Digital Ocean](/docs/build-and-config/adding-a-cloud-provider#digital-ocean)
+* [Google Compute Engine](/docs/build-and-config/adding-a-cloud-provider#google-cloud-gce)
+* [Hetzner Cloud](/docs/build-and-config/adding-a-cloud-provider#hetzner-cloud)
+* [Latitude.sh](/docs/build-and-config/adding-a-cloud-provider#latitude-sh)
+* [Linode](/docs/build-and-config/adding-a-cloud-provider#linode)
+* [OVHcloud](/docs/build-and-config/adding-a-cloud-provider#ovh)
+* [Microsoft Azure](/docs/build-and-config/adding-a-cloud-provider#azure)
+* [Vultr](/docs/build-and-config/adding-a-cloud-provider#vultr)
+
+## Supported platforms
+
+Broadly, we support four types of applications:  
+
+1. Ruby applications running on Rails (or variants like Sinatra)
+2. Applications (of any kind) running in Docker containers on Kubernetes clusters
+3. Prebuilt or "static" websites built in Jekyll, Hugo or Gatsby
+
+The first option is best suited to traditional "monolithic" application types where all of the components run on a common framework. 
+
+The second platform is best suited to containerized applications with a strong service orientation. Since Docker effectively supports virtually every programming language and framework, it is possible to use it to host any type of application. We support end-to-end Docker deployments. You can either let us build your Docker image (with a Dockerfile), or provide your own.
+
+The third platform is specifically designed to build and host [Jamstack](https://jamstack.org/what-is-jamstack/)-style preprocessed application on object storage services.
+
+{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+## Component versions
+
+Cloud 66 servers have two types of components with differing policies on versioning.
+
+### 1. Components built via apt-packages
+
+We default the latest stable major version available from the maintainers of that package.
+
+### 2. Components built from source
+
+Cloud 66 maintains an internal list of versions for most components built from source, which is updated periodically after testing.
+
+You are free to **specify an alternative version** for most of these components in your [manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial).
+
+{% component-version %}
+{% /component-version %}
+
+We deploy a custom release of Nginx. [See below](#nginx-release) for details.
+
+We **don't** install a default version of Rails - the version installed is based on the requirements of your application. Versions earlier than 2.6.3 *may* work but have some compatibility issues with recent versions of Ubuntu.
+
+{% callout type="error" title="Using non-default versions" %}
+If you're using different (non-default) versions of components, we strongly recommend testing your application thoroughly in a non-production environment before deploying. 
+{% /callout %}
+
+### Nginx release
+
+Cloud 66 maintains our own self-contained release of Nginx which includes all of the modules listed below. 
+
+The current NGINX version used by our custom release is {% component-version names=["Nginx"] tabular=false /%}.
+
+For more info please read the [Releases page on our Github project](https://github.com/cloud66-oss/nginx-compiler/releases). 
+
+### Nginx modules
+
+We install the Nginx modules listed below by default. These are used to provide additional features and functions to applications managed by Cloud 66. You can see the latest versions of all of these modules on the [Releases page](https://github.com/cloud66-oss/nginx-compiler/releases) of our Nginx project on Github.
+
+|Module|Description|
+|--- |--- |
+|[Cache Purge](https://github.com/FRiCKLE/ngx_cache_purge)|Adds ability to purge content from FastCGI, proxy, and uWSGI caches|
+|[Devel kit](https://github.com/vision5/ngx_devel_kit)|Nginx Development Kit (NDK)|
+|[Echo](https://github.com/openresty/echo-nginx-module)|ngx_echo - Brings "echo", "sleep", "time", "exec" and more shell-style goodies to Nginx config file|
+|[Fancy Index](https://github.com/aperezdc/ngx-fancyindex)|Like the built-in autoindex module, but fancier|
+|[Headers More](https://github.com/openresty/headers-more-nginx-module)|Set and clear input and output headers more than just "add!"|
+|[GeoIp2](https://github.com/leev/ngx_http_geoip2_module)|ngx_http_geoip2_module - creates variables with values from the maxmind geoip2 databases based on the client IP (default) or from a specific variable (supports both IPv4 and IPv6)|
+|[HTTP Substitutions](https://github.com/yaoweibin/ngx_http_substitutions_filter_module)|nginx_substitutions_filter is a filter module which can do both regular expression and fixed string substitutions on response bodies|
+|[Lua](https://github.com/openresty/lua-nginx-module)|Embed the power of Lua into Nginx HTTP Servers|
+|[ModSecurity](https://github.com/spiderlabs/modsecurity/)|Web application firewall|
+|[mruby](https://github.com/matsumotory/ngx_mruby)|Embedded mruby script language for nginx-module|
+|[Nchan](https://github.com/slact/nchan)|Pubsub server for Websockets, Long-Poll, EventSource etc.|
+|[PAM Authentication](https://github.com/sto/ngx_http_auth_pam_module)|HTTP Basic Authentication using PAM|
+|[RTMP](https://github.com/arut/nginx-rtmp-module)|RTMP protocol support. Live streaming and video on demand|
+|[Upload Progress](https://github.com/masterzen/nginx-upload-progress-module)|nginx_upload_progress_module is an implementation of an upload progress system, that monitors RFC1867 POST upload as they are transmitted to upstream servers|
+|[Upstream Fair Balancer](https://github.com/gnosek/nginx-upstream-fair)|Distributes incoming requests to least-busy servers|
+|[WebDAV](https://github.com/arut/nginx-dav-ext-module)|nginx WebDAV PROPFIND, OPTIONS, LOCK, UNLOCK support|
+
+
+### Suggest version changes
+
+Would you like to suggest a version change? [Email us](mailto:support@cloud66.com?subject=Version update)!
+
+{% /per-framework %}

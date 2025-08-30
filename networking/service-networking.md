@@ -1,0 +1,228 @@
+---
+title: Service Networking for Containers
+---
+
+## Overview
+
+In Cloud 66, your services run inside containers. For a service to be available to anything outside its own container, including public internet access, we need a bridge between the container's internal port and an "outside" port.
+
+This is not limited to HTTP or web traffic. The same concepts apply if your container serves non-HTTP traffic (like web sockets, DB containers or custom TCP / UDP traffic).
+
+Port mapping is a small (but important) part of a core system that underpins container management - *service networking*. If you need an introduction to the concept of Service Networking, you can find one [here](/docs/cloud-66-101/concepts-and-terminology#service-networking).
+
+This guide also covers more advanced configurations like using [Non-HTTP ports](#non-http-ports-tcp-and-udp), [mapping multiple ports](#mapping-multiple-ports) and [traffic matching](#traffic-matching).
+
+{% callout type="warning" title="Defining 'Outside'" %}
+In this document, "outside" is used for any client of your service that's not inside the container. This includes your other services on different nodes. 
+{% /callout %}
+
+## Introduction to mapping container ports
+
+### What you'll need
+
+Before you start, please check you have the following:
+
+* **A Cloud 66 Account** &mdash; If you don't already have one, [sign up for a Cloud 66 account](https://app.cloud66.com/users/sign_up). Your first server is free, no credit card required.
+* **An existing containerized application set up** &mdash; To make the most of this tutorial you need to have an app already set up in Cloud 66. Follow our [Getting Started guide](/docs/getting-started/deploy-your-first-app) if you're not sure how to do this.
+
+{% callout type="info" title="Demo application" %}
+This tutorial uses the [simple visit counter application](https://github.com/cloud66/maestro-demo.git) we've supplied on Github as a working example. 
+{% /callout %}
+
+## Mapping container ports
+
+When we set up our *demo-app* service we [configured our ports](/docs/getting-started/deploy-your-first-app#configure-your-services) so that our internal port `5000` was mapped to the public port `80`. 
+
+Now imagine that your app has evolved to offer secure web (SSL / TLS) access as well as standard web access. TLS traffic typically flows over port `443`, so we need to add this to the port mapping for our application.
+
+There are two ways to do this:
+
+* Using the standard *edit service* interface
+* Directly modifying the `service.yml` for your application (this is only recommended for advanced users)
+
+You can also read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help.
+
+### Editing via the UI
+
+To edit your ports using the standard Cloud 66 user interface:
+
+1. Log into your [Dashboard](https://app.cloud66.com/) and open your application
+2. Click on *Application* in the left-hand nav
+3. In the main **Services** panel, click on the *Edit service* icon next to the service you wish to configure. This will open a panel on the left-hand side of your screen.
+4. Click the *Network & Storage* tab
+5. Edit the ports as needed and then click *Save Service*
+
+{% figure src="/images/mapping-ports-new.gif" /%}
+
+### Testing your changes
+
+{% tabs %}
+{% tab label="Container Service V2" %}
+
+You can test whether this has been properly applied by looking at that the Network column of the *Services* panel.
+
+If you've followed the steps above correctly, the **Network** column will list both port *80* and port *443*.
+
+{% /tab %}
+
+{% tab label="Container Service V1" %}
+
+You can test whether this has been properly applied to your service by clicking on the respective &#9432; icon in the **App Services** panel on the application.
+
+If you've followed the steps above correctly, the **Services Config** panel will list both *HTTP* and *HTTPS*.
+
+{% /tab %}
+{% /tabs %}
+
+In order for these new settings to be rolled out to your service, you must click the green Apply button (above the **Services** panel) and then redeploy your application by clicking the *Deploy* button.
+
+{% callout type="warning" title="Set up SSL properly" %}
+If you actually need HTTPS traffic to be available to the outside world (not just as a demo) you will also need to set up [SSL certificates](/docs/security/ssl) for your application. 
+{% /callout %}
+
+### Editing config files directly
+
+Cloud 66 uses a YAML file called `service.yml` to define each service inside your application(s). You can edit the content of this file directly using the Dashboard in two ways:
+
+1. Via the *Services UI*, using the left-hand panel we described [above](#editing-via-the-ui) - but click the *YAML* tab instead of *Network & Storage*
+2. Via the [Configuration Files interface](/docs/build-and-config/docker-service-configuration#getting-started-serviceyml) 
+
+Note that with method 1 you are only editing the section of `service.yml` **specific to your context**. So in this case you would be editing the `ports` section of your  `service.yml`. To edit the file as a whole, you'll need to use method 2.
+
+## Advanced service network configuration
+
+This section covers more complex and advanced cases of service networking for containerized applications. If you've never configured a containerized service before, consider following [our tutorial](/docs/networking/service-networking#mapping-container-ports) on port mapping first.
+
+If you need an introduction to the concept of Service Networking, you can find one [here](/docs/cloud-66-101/concepts-and-terminology#service-networking).
+
+Read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help on customizing your service configuration.
+
+## Non-HTTP ports (TCP and UDP)
+
+If your application does not use HTTP traffic you can map ports by specifying the protocol (TCP or UDP).
+
+Let's imagine we have a service that listens on port 5454 on UDP and we would like to make it available to the outside world on port 111. 
+
+To achieve this via the *edit service* interface: 
+
+1. Log into your [Dashboard](https://app.cloud66.com/) and open your application
+2. Click on *Application* in the left-hand nav
+3. In the main **Services** panel, click on the *Edit service* icon next to the service you wish to configure. This will open a panel on the left-hand side of your screen.
+4. Click on the *YAML* tab in the panel
+5. Change **Container** to `5454`
+6. Delete any lines for `HTTP` and `HTTPS` (unless your service needs them)
+6. Add a new line: `udp:111`
+7. Click *Save Service*
+8. Apply the change to the service by clicking the green Apply button (above the **Services** panel)
+9. Redeploy your application to roll out the change
+
+If you'd prefer to make these changes directly in the (full) `service.yml` the result would look similar to this:
+
+```yaml
+services:
+    my_service:
+        ports:
+          - container: 5454
+            udp: 111
+```
+
+In the example below, our service listens to TCP port 8787 and we want to make it available on port 9000 to the outside world:
+
+```yaml
+services:
+    my_service:
+        ports:
+          - container: 8787
+            tcp: 9000
+```
+
+Note that you don't need to set the protocol for the container port - that is defined by the service itself. By specifying the protocol of the *HTTP Port* you're ensuring that requests that reach the container are using the same networking protocol as the service itself.
+
+## Mapping multiple ports
+
+Some services listen to multiple ports. An example is InfluxDB which listens to different ports for queries and admin controls. You can map these relationships using an array in the `service.yml`. For example:
+
+```yaml
+services:
+    my_service:
+        ports:
+          - container: 8787
+            tcp: 9000
+          - container: 8788
+            tcp: 9001
+```
+
+## Examples of default ports
+
+Some example of default ports used by popular programming frameworks or application servers:
+
+|Application|Default Port|
+|--- |--- |
+|Rack (webrick)|3000|
+|Rack (unicorn, thin, puma)|9292|
+|Node (Express)|3000|
+|Java (Play)|9000|
+|RethinkDB|8080|
+|InfluxDB|8083, 8086, 8090, 8099|
+|Python (Django)|8000|
+
+## Traffic matching
+
+The `traffic_matches` option allows you to route incoming traffic to different services based on the incoming domain name. You can specify an array of domains (as strings) to match to your service.
+
+In the following example, if traffic comes in on `app.your_domain.com` or `www.anotherdomain.com` on this service port, then traffic will automatically get routed to `my-service`. 
+
+```yaml
+services:
+  my-service:
+    traffic_matches: ["app.your_domain.com", "www.anotherdomain.com"]
+```
+
+This option also allows you to have multiple services listening on the same port (port 80 for example) as long as they have different rules for matching server names. For example:
+
+```yaml
+services:
+  my-first-service:
+    traffic_matches: ["app.your_domain.com", "www.anotherdomain.com"]
+    ports:
+    - container: 5000
+      http: 80
+  my-second-service:
+    traffic_matches: ["app.third_domain.com", "fourthdomain.com"]
+    ports:
+    - container: 3000
+      http: 80
+```
+
+### Managing traffic matching via the Dashboard
+
+You can also add and update traffic matching via the dashboard. To edit an existing service: 
+
+1. Log into your [Dashboard](https://app.cloud66.com/) and open your application
+2. Click on *Application* in the left-hand nav
+3. In the main **Services** panel, click on the *Edit service* icon next to the service you wish to configure. This will open a panel on the left-hand side of your screen.
+4. Click the *Network & Storage* tab (at the top)
+5. Add or update (or remove) your domain matching strings
+6. Click *Save Service*
+7. Apply the change to the service by clicking the green Apply button (above the **Services** panel)
+8. Redeploy your application to roll out the change
+
+### Using traffic matches to reroute all traffic
+
+The `traffic_matches` option can also be used to ensure that any and all traffic hitting your servers is routed to a specific service. To do this, add  `traffic_matches` to that service and set it to match `"_"` (underscore). This is will route any traffic that hits your servers to this service. For example:
+
+```yaml
+    services:
+        <service_name>:
+            traffic_matches: ["_"]
+```
+
+Be cautious with this approach as it is effectively a global setting and may disrupt your other services if there are any conflicts.
+
+## DNS Behaviour
+
+The `dns_behaviour` directive allows you to change the default behavior of returned DNS addresses of different versions. As outlined above, ElasticDNS always try to return the version of the container that has the same version of the caller. You can change this behavior by setting `dns_behaviour` value to `non-versioned`, in which case ElasticDNS will return the address of containers with the latest version.
+
+## Load Balancing
+
+You can change the container network load balancing method with the `load_balancing` directive. The accepted values are `roundrobin`, `sticky` and `closest`, and the default value is `roundrobin` which return the list of container's IP for the requested service in roundrobin. If you choose the `sticky` option, you will get the last IP you got (if you request after 1 minute you may get a new IP). If you choose the `closest` option, you will get the list of container's IP that exists on caller server (it will return all available IPs if there is no container of the requested service on caller server).

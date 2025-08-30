@@ -1,0 +1,94 @@
+---
+title: Add Postgres to your application
+---
+
+## Add Postgres to your application
+
+To add a Postgres group (instance) to your application: 
+
+1. Open the **application** from the [Dashboard](https://app.cloud66.com/dashboard).
+2. Click on *Data Sources* in the left-hand nav 
+3. Click on *Add Source* in the sub-nav
+4. Click the green *+ Add Data Source* button and select Postgres
+5. A drawer will open from the left, with configuration options for the server.
+6. Click *Add Server* to start the process
+
+
+## Managing users in Postgres
+
+Whenever a database user creates any object (e.g. a table) in Postgres, that user becomes the owner of that object. From then on, only that user or a superuser can edit or delete that object. 
+
+As such, if you delete a user from any logical Postgres database managed by Cloud 66, we will automatically reassign any objects owned by that user to the default superuser named `postgres` that exists on all instances of Postgres.
+
+If you need to add custom users to a Postgres database group, follow [this guide](/docs/databases/adding-database#adding-users-to-logical-databases) on the subject. 
+
+## Replicating data between Postgres versions
+
+When you initiate replication between two Postgres databases on Cloud 66, we setup [streaming replication](https://wiki.postgresql.org/wiki/Streaming_Replication) between the master and replica servers. Streaming replication is based on [log shipping](https://www.postgresql.org/docs/current/warm-standby/) between servers, which generally isn't possible between two servers running vastly different versions of Postgres.
+
+As such, we cannot establish replication between servers running different major release levels (e.g. 8.4 and 9.3). Though running replication between different minor release levels (e.g. 9.3 and 9.4) should work (because Postgres has a policy not to make changes to disk formats between minor releases), there are also cases where this won't work.
+
+For example, if you setup replication between a master (on 9.3) and a replica (9.4), you may see this error on the replica server:
+
+```bash
+FATAL:  database files are incompatible with server
+DETAIL:  The data directory was initialized by Postgres version 9.3, which is not compatible with this version 9.4.x.
+```
+
+In this case, you need to upgrade the data and libraries of the master server (9.3) with [pg_upgrade](https://www.postgresql.org/docs/9.4/static/pgupgrade/) before starting the replication.
+
+Remember that you can set the version of Postgres to install for your application by using a [manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial), like so:
+
+```yaml
+production:
+    postgresql:
+        configuration:
+            version: 9.3.6
+```
+
+
+## Changing the Postgres data directory
+
+We use the default data folder when installing Postgres on your server, which is  `/usr/local/pgsql/data`.
+To change this folder, follow the instructions below.
+
+1; Connect to your servers via [SSH](/docs/servers/ssh-to-server).
+
+2; Stop the Postgres service by issuing the following command:
+```shell
+$ (sudo -u postgres pg_ctl stop -D /usr/local/pgsql/data -m i -t 5 || true) && sudo stop postgresql 
+```
+
+3; Make sure that Postgres is no longer running:
+```shell
+$ ps aux | grep pgsql
+```	
+This command must not return any running Postgres processes. 
+
+4; Make a new directory for your data:
+```shell
+$ mkdir /new/path/folder
+```
+
+5; Make sure that your new folder is only accessible by the Postgres user:
+```shell	
+$ chown postgres /new/path/folder
+$ chmod 700 /new/path/folder
+```
+
+6; Move your data from the old folder to new one:
+```shell
+$ mv /usr/local/pgsql/data /new/path/folder
+```
+
+7; Create a symlink to your new folder from the old one:
+```shell
+$ ln -s /new/path/folder/data /usr/local/pgsql/data
+```
+
+8;  Start the Postgres service again:
+```shell
+$ sudo start postgresql
+```
+
+Your Postgres service should now be working with new data folder.

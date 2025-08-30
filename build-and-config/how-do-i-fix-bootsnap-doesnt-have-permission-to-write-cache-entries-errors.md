@@ -1,0 +1,36 @@
+---
+
+title: Fixing ‘Bootsnap doesn’t have permission to write cache entries’ errors
+
+---
+
+## Overview
+
+Version 1.4.2 of Bootsnap has [a bug](https://github.com/Shopify/bootsnap/issues/254) that causes the cache file to be created with permissions set to `600`. This means the file cannot be read by other processes (web or worker) since they are in different groups, and breaks the build process.
+
+## Solutions
+
+There are two ways to resolve this issue (in order of preference):
+
+* Upgrade Bootsnap to version 1.4.3 (in which the bug is fixed) or above (you can also downgrade to v1.4.1).
+* Add a [deploy hook](/docs/deploy-hooks/deploy-hooks) at the `after_symlink` hook point that creates the creates the cache folder with the correct permissions (see below).
+
+In either case we strongly recommend you redeploy your application rather than manually CHMOD-ing any files or directories (see below).
+
+### Example of a deploy hook
+
+The [hook point](/docs/deploy-hooks/deploy-hooks#hook-points) for this deploy hook is `after_symlink`
+
+Add a deploy hook to your `deploy_hooks.yml` with the following command:
+
+```shell
+mkdir -p $RAILS_STACK_PATH/tmp/cache/bootsnap-compile-cache
+```
+
+This will create the directory with the correct permissions and the build should be able to complete.
+
+{% callout type="warning" title="Warning!" %}
+If you just `CHMOD` the directory that Bootsnap creates, either manually or via a hook, the permissions will change again as soon as new files are created by Bootsnap.
+{% /callout %}
+
+

@@ -1,0 +1,55 @@
+You can use Cloud 66 to provision and deploy your static site in any Azure region. Cloud 66 needs some credentials to authenticate our agent to provision your infrastructure. You need to specify the following credentials:
+
+* Azure Subscription ID
+* Client ID (Microsoft calls this “Application ID”)
+* Client Secret
+* Tenant ID
+
+You can find those by following the [step by step guide](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) created by Microsoft.
+
+**Add object storage**
+
+For static sites you need to add the `Microsoft.Storage` Resource provider. To do this:
+
+1. Log into your Azure Portal
+2. Click through to the subscription you’re using for Prepress
+3. Click *Resource providers* in the left nav
+4. Filter the list by the word `storage`
+5. Click on `Microsoft.Storage` and then the Register button at the top of the panel (it will take a while to react because, Microsoft)
+6. Click Refresh after 2 or 3 minutes to check that it is now registered.
+
+For more help read [this guide](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types).
+
+{% callout type="info" title="Active Directory" %}
+Make sure you give your Active Directory App a high enough level of access. Check that your Active Directory Application is added to your Azure subscription and has the role Contributor.
+{% /callout %}
+
+{% collapsible title="Azure Legacy Cloud" %}
+The following instructions apply to the now-deprecated legacy cloud adapter for Microsoft Azure. This is here for historic purposes only.
+
+**Generating a management certificate**
+
+The Azure management certificate is a certificate used to authenticate an agent, such as Cloud 66, to your Azure account. These certificates are uploaded to Azure Legacy Cloud and stored at the subscription level.
+
+To generate a management certificate you can use OpenSSL:
+
+Run the following command in your console:
+
+```shell
+$ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout azure.pem -out azure.pem
+```
+
+Now use the created `azure.pem` file and run the following command:
+
+```shell
+$ openssl x509 -inform pem -in azure.pem -outform der -out azure.cer
+```
+You will need `azure.pem` and `azure.cer` to use Cloud 66 with your Azure account.
+
+**Using your management certificate**
+
+Access Management portal of your Azure account and go to the Settings menu. You will need the Subscription ID which is listed in Subscriptions tab. Select the Management certificate tab and click the Upload button to upload azure.cer.
+
+Now visit your Cloud 66 dashboard and build your first application. When adding your Azure credentials, you will be asked to input your subscription ID and upload the azure.pem file you created earlier.
+
+{% /collapsible %}

@@ -1,0 +1,29 @@
+You can use Cloud 66 to provision and deploy your code to servers in any Google Compute Engine (GCE) region. You need to provide your GCE API keys in order for Cloud 66 to access your account. To generate these:
+
+1. Access the Console of your Google Cloud account
+2. Create a project (if you don’t already have one)
+3. Switch to your desired project
+4. Use the search bar at the top of the page to search for “APIs & Services” and click the first result
+5. Click on the blue button (at the top of the main panel) named + Enable APIs and Services
+6. Search the API library for “Compute Engine API” and click on the top result
+7. If the page **does not** have a green tick with “API enabled” click the blue Enable button (newer accounts tend to have the API already enabled, but it is worth checking)
+8. Return to the “APIs & Services” dashboard (you can use search as you did in step 4)
+9. Click on *Credentials* in the left-hand panel
+Click on *+ Create Credentials* at the top of the page; Select Service Account
+10. Give your service account a name (like “cloud66”) and an optional description; Click *Create*
+11. Add the role “Compute Admin” and then click *Continue* (NOTE: this will grant Cloud 66 the rights to create/amend/delete compute resources in this project)
+12. Leave the User Access options blank and click *Done*
+13. On the **Service account details** page, click the *Keys* tab
+14. Click *Add Key*, choose *Create new key* and select *JSON* then click *Create*.
+15. Download and save your JSON key somewhere locally (this contains your credentials, so treat it with care)
+
+Once the above is done, we will need three things to connect with your account:
+
+* **Email address** - this is the email address of the service account you just created (ie. like cloud66@.iam.gserviceaccount.com)
+* **Project ID** - this is your project ID (available at the top of the Overview page)
+* **JSON key** - the file that you downloaded and saved above
+
+**Help with advanced GCE features:**
+* [Using GCE service accounts with Cloud 6](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66)
+* [Bring Your Own Images](/docs/deployment/bring-your-own-images) (BYOI)
+* [Cloud 66 tag propagation](/docs/servers/tagging-components#propagation-of-tags-to-cloud-providers)

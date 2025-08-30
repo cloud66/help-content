@@ -1,0 +1,24 @@
+Download all the alert settings for a given application as a YAML formatted file.
+
+{% tabs %}
+{% tab label="Usage" %}
+
+```shell
+$ cx notifications download --stack <application name> --file <filename>
+```
+{% /tab %}
+    
+{% tab label="arguments" %}
+| Arguments | Required? | Default | Description |
+| --- | --- | --- | --- |
+| -stack, -s \<application name\> | yes | — | The name of the application |
+| --file, -f \<filename\> | yes | — | The name of the file in which the notification settings will be saved. |
+{% /tab %}
+{% tab label="examples" %}
+
+```shell
+$ cx notifications download -s my-stack --file my-stack-alerts.yml
+```
+
+{% /tab %}
+{% /tabs %}

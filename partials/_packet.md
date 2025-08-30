@@ -1,0 +1,1 @@
+Packet has been acquired by Equinix and renamed Equinix Metal. As such Cloud 66 no longer supports Packet for new customers, and does not currently support Equinix Metal.

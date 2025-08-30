@@ -1,0 +1,131 @@
+---
+title: "Managing and upgrading Ruby versions"
+lead: Upgrading the base Ruby version of your Cloud 66 application
+---
+
+## Overview
+
+Ruby applications have multiple way to define which version of Ruby they are using, including the default `.ruby_version` file, the `Gemfile` if you use Gems (and related package managers like `Bundler`) and platform-specific version managers offered by cloud or PaaS providers.
+
+Cloud 66's default method for defining package versions is via a `manifest.yml` file and we strongly recommend using that method for all your deployments via our system. See below for detailed instructions on using this method. 
+
+{% callout type="info" title="Updating Bundler version" %}
+If you're looking for details on updating your version of Bundler, you can [find them here](/docs/servers/applying-upgrades#bundler). Essentially we update Bundler whenever you update your version of Ruby. 
+{% /callout %}
+
+## How we determine the version to use
+
+When you configure a new Ruby application in Cloud 66 we set the version based on one of the following (in order of preference):
+
+1. The version defined in `manifest.yml` (if present)
+2. The version in your `Gemfile` (if present)
+
+If neither of these are present, we present you with a screen in which you can select the Ruby version to use. 
+
+When you scale up a new server for an existing Ruby application we set the version based on one of the following (in order of preference):
+
+1. The version defined in `manifest.yml` (if present)
+2. The version previously chosen when the application was created
+
+You can check the latest version of Ruby we currently support on our [technical specifications](/docs/specs-and-policies/technical-specifications#component-versions) page.
+
+{% callout type="warning" title="Remove Ruby version declaration from your Gemfile" %}
+If your `manifest.yml` specifies a different version to your Gemfile, this will cause problems when you deploy your code. The safest option is to remove the Ruby version declaration from everything except the Manifest file.
+{% /callout %} 
+
+## Ruby and Ubuntu versions
+
+Older versions of Ruby require that your application servers are built using older versions of Ubuntu. 
+
+- If your Ruby version is < 2.5.0 then the maximum allowed version of Ubuntu is 18.04
+- If your Ruby version < 3.1.0 (but higher than 2.5.0) then the maximum allowed version of Ubuntu is 20.04
+
+The version of Ubuntu used by your application is set using your application's [Manifest file](/docs/manifest/building-a-manifest-file#rails).
+
+Please be sure to take this into account when configuring and building your application, and also consider the [lifespan of that version of Ubuntu](/docs/servers/out-of-ubuntu-lts). It may make more sense to upgrade Ruby than to rely on a version of Ubuntu that is no longer supported by its maker.
+
+## Defining your Ruby version via the Manifest file
+
+If you've never used a Manifest file before, please read through our [Getting Started guide](/docs/manifest/building-a-manifest-file#manifest-tutorial) to familiarise yourself with the concept. 
+
+Ruby version is defined in `manifest.yml` as follows:
+
+```yaml
+    rails:
+       configuration:
+         ruby_version: x.y.z
+```
+
+This is obviously for applications using Rails, but you can do something similar for other Rack frameworks using this format:
+
+```yaml
+    rack:
+        configuration:
+          ruby_version: x.y.z
+```
+
+If you'd like more context, we have a detailed guide to all the settings available via Manifest files for both [Rails](/docs/manifest/building-a-manifest-file#rails) and [Rack](/docs/manifest/building-a-manifest-file#rack) applications.
+
+{% callout type="warning" title="Define your Ruby version in Manifest" %}
+If you're currently defining your Ruby version in a Gemfile or a `.ruby_version` file, we strongly recommend moving to using a Manifest file whenever you deploy code. The alternative is likely to result in significant conflicts and issues between servers and applications. Gemfile version declarations can cause problems when upgrading, because your application will no longer run unless the version declared is the same as the underlying version of Ruby.
+{% /callout %}
+
+## Deployment strategies for Ruby version upgrades
+
+As with any upgrade, please ensure that the upgrades and patches work with your code before applying them. Upgrade and patch your development and test environments first to ensure there are no issues. Backup your environment via your cloud provider where possible.
+
+There are three main ways to deploy upgrades to Ruby for your application, in decreasing magnitude of risk:
+
+1. Set up and deploy a completely new version of your application that uses the new version of Ruby
+2. Add a new server with the new version of Ruby and then drop the old server
+3. Upgrade Ruby in place (which risks downtime and can possibly fail completely)
+
+{% callout type="info" title="Recommended options" %}
+Although Option 1 is technically the safest option with the least risk to your live application, we also recognise that a complete rebuild may have too many other moving parts to be practical when just upgrading Ruby. In those cases we recommend Option 2. 
+{% /callout %}
+
+### Building a new application
+
+In this approach you build another completely separate version of your application in parallel, deploy it to new servers and then switch traffic over to to your new version. This is the safest option of all because there is no impact on your existing production environment. However this is not always practical, so the next best option is to scale up (see below).
+
+### Adding a new server
+
+The second safest option to use when upgrading Ruby is to add a new server within the same application that uses the new version of Ruby and, once you haved tested the new setup, drop the old one.
+
+First specify your new Ruby version in your Manifest file (see above for details). Make sure you have also removed any Ruby version declarations from your Gemfile.
+
+Once you’ve pushed this change to your repo, you can add a new web server which will use this version of Ruby. To do this:
+
+1. Open your application on the Cloud 66 Dashboard
+2. Deploy the new code by clicking the green *Deploy* button and selecting *Deploy application* (don't worry, this won't affect the version of Ruby running on your existing servers)
+3. Once the redeployment has completed, click *Web* in the left-hand nav
+4. Click on the green *+ Add Web Server* button at the top right of the Web Servers panel (Note: you will need to have a load balancer set up before you can add multiple servers - [read our guide](/docs/load-balancers/load-balancer) if you need help adding one)
+5. Wait for the new server to come online and test that it is working
+
+{% callout type="warning" title="Be sure to commit and redeploy" %}
+Make sure you both commit **and** redeploy your code before you add a new server, otherwise the new Manifest file will not be taken to account. Your existing servers will not change their Ruby version unless you force them to using *Deploy with options* (which you should **not** do in this case). 
+{% /callout %}
+
+Your older servers will remain on the previous version of Ruby. Once you have thoroughly tested your new servers, you can then delete older web servers to ensure all of them use the correct version.
+
+Bear in mind that if you don’t remove your old server, you’ll have servers in your application using different versions of Ruby. If you enforce a Ruby version in your Gemfile, your application will stop working on any of the servers that do not match the version defined in the Gemfile.
+
+Also, if you have background jobs running on your old server, ensure that you gracefully shut these down before switching everything to the new server.
+
+### In-place upgrades
+
+Performing in-place Ruby upgrades on your application carries the most risk out of these options. Installing Ruby on a server requires server resources, and in the unlikely event that this process fails (ie. server runs out of resource, or upstream package becomes temporarily unavailable for example) your server could be left in a broken state.
+
+To run an in-place upgrade:
+
+1. Update your `manifest.yml` to use the preferred version of Ruby
+2. Open your application on the Cloud 66 Dashboard
+3. Click the *Deploy* button and then choose *Deploy with options* and select *Apply Ruby upgrades.* 
+
+Note that you can also optionally perform serial or rolling deployments during the upgrade process. It is recommended to deploy in serial as this will ensure that the upgrade is applied to one server at a time, reducing the risk of downtime, however this will take longer to complete.
+
+We will now attempt to upgrade Ruby without disrupting your application but, as mentioned, there is some risk that the server becomes unavailable. Please be sure that you have not specified a Ruby version in your Gemfile, or your application will stop working after the upgrade. 
+
+{% callout type="error" title="Upgrading Ruby may cause downtime" %}
+If you are upgrading your Ruby base version then you should put your application into maintenance mode first as Passenger-based stacks (and possibly others) will have some down-time during the upgrade.
+{% /callout %}

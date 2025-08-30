@@ -1,0 +1,49 @@
+---
+title: Adding & Managing Rake tasks
+---
+
+## Overview
+
+Rake Tasks allow you to define and schedule regular Rake tasks. Under the hood, these tasks are executed using `bundle exec`.
+
+## Adding a new Rake Task
+
+To add a new Rake job: 
+
+1. Click the **Jobs** in the left-hand nav
+2. Click on the button for the type of job you wish to add
+3. Choose a server on which the task should run
+3. Give give your new task a name 
+4. Choose a Linux user under which the task will run
+4. Specify the task
+5. Set a schedule for the job - you can use [cron syntax](/docs/servers/understanding-cron-syntax) for more control over your scheduling
+6. Click Save
+
+You will now see your new task listed on the Jobs page.  You can edit it, or run it on demand by clicking on the small downward arrow. Results of running tasks can also be seen here.
+
+## Pausing jobs
+
+You can pause jobs in a number of ways:
+
+- Via the Jobs page in your Dashboard (see next section)
+- Whenever you Deploy with Options (see below)
+- Via [our API](https://developers.cloud66.com/#jobs)
+
+Pausing a server or Rake job removes it from the cron for as long as it remains paused.
+
+### Pausing via the dashboard
+
+To pause Jobs via the Dashboard:
+
+1. Log into your Dashboard and open your app
+2. Click on *Jobs* in the left-hand nav
+3. Click the small down arrow next to the job you wish to pause
+4. Choose *Pause this job*
+
+The job will remain paused until you unpause it (using the same sequence above). 
+
+You can also pause all jobs by clicking the *Pause All* button at the top of the panel (or *Unpause All* as needed).
+
+### Pausing while deploying
+
+When you deploy, you can choose Deploy with Options and check the **Pause Jobs** option to temporarily pause jobs during the deployment process. We will pause any *currently unpaused jobs* and then unpause (only) those jobs after deployment. You can also set this option as part of any deployment profile. 

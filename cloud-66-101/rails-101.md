@@ -1,0 +1,365 @@
+---
+title: Deploy your Rails app on Cloud 66
+
+---
+
+## Overview
+
+This guide walks you through deploying a Ruby on Rails application to Cloud 66, from start to finish, including all the components a modern Rails application is likely to use. This guide will show you how to:
+
+- Deploy your first Rails app in just minutes
+- Explore features that support your application
+- Quickly and easily configure common components
+- Advanced configurations
+
+### Dashboard vs Toolbelt
+
+Throughout this guide we will (wherever possible) offer you two methods for managing your application:
+
+- The web [Dashboard](https://app.cloud66.com/dashboard)
+- Toolbelt - our [command line tool](/docs/toolbelt/using-cloud66-toolbelt)
+
+If you’re planning to use Toolbelt (we recommend it!), you will need to [install it via your terminal](/docs/toolbelt/using-cloud66-toolbelt#install-toolbelt). 
+
+## Get going
+
+We’ve made deploying an app as quick and easy as possible, so you should have your Rails app deployed in just a few minutes. Just follow the steps below. We have a separate [getting started guide](/docs/getting-started/deploy-your-first-app) which has more detail if you need it.
+
+This guide assumes:
+
+- You’ve created a Cloud 66 account (we have a free tier)
+- You have a Rails app ready to go in any Git repo (but Github works best)
+
+You can have your application set up in 4 simple steps.
+
+1. **Connect your Git(hub) repo**. We ask for read-only access our integration makes connecting quick and easy.
+2. **We’ll analyze your app.** We’ll scan your app and suggest an optimal configuration. You can adjust as needed
+3. **Add a cloud provider.** Connect us to your preferred cloud provider, or use one of our [free credit](/docs/cloud-66-101/free-google-cloud-credits) offers.
+4. **Deploy your app!**
+
+## Rails / Rack application servers
+
+{% callout type="info" title="Traditional vs containerized" %}
+We support both traditional Rails apps and containerized Rails apps. This guide is specifically for traditional setups, but we have separate documentation for containerized Rails. 
+{% /callout %}
+
+
+Cloud 66’s default Rails server is Passenger (including Passenger Enterprise if you bring the license), but we also support:
+
+- [Thin](/docs/build-and-config/thin-rack-server)
+- [Puma](/docs/build-and-config/puma-rack-server)
+- [Unicorn](/docs/build-and-config/unicorn-rack-server)
+
+To use a custom application server with your application, you will need to specify it in your `Procfile`. For example to use **Thin**, you should add the following to your Procfile:
+
+```yaml
+custom_web: bundle exec thin start --socket /tmp/web_server.sock --pid /tmp/web_server.pid -e $RACK_ENV 
+```
+
+To see the Procfile commands for each type of server, click on the links in the list above. 
+
+## Adding databases
+
+Cloud 66 caters for a wide range of database options, including:
+
+- Managed by Cloud 66
+- Bring your own DB (including managed services like RDS)
+- Hybrid
+
+Our managed databases are convenient, feature-rich and very cost effective, and allow you to centralize your infrastructure management in one system. If you’d prefer an externally managed DB, we make it easy to integrate them into your app. They do tend to be more expensive, and having your DB on a completely different subnet and/or data centre can add some latency and friction to your configuration. 
+
+You can deploy a new database (or cluster of databases) for your application with a few clicks during initial setup (or, later on, in your Dashboard). We natively support:
+
+- MySQL
+- PostgreSQL
+- MongoDB
+- Redis
+- InfluxDB
+
+Databases can be deployed as standalone instances, in clusters, or hosted on the same server as the application. When we provision a new database we will automatically generate credentials and make them available to your application as environment variables, following the Rails env var naming standards.
+
+All databases managed by Cloud 66 have access to these features:
+
+- One-click replication setup
+- Managed database backups (with automated restore)
+- Multiple logical databases per database server
+
+## Database migrations and seeding
+
+The Rails database migration task (`rake db:migrate`) runs automatically as part of each deployment of your application. If your application has more than one Rails server, we choose the optimal server to run this task. All other servers will wait until the migrations are finished before continuing with deployment. 
+
+You can specify which server will be used for the migration task using [reserved tags](/docs/servers/reserved-tags). You can turn off automatic migrations using [Toolbelt](/docs/toolbelt/toolbelt#settings-set). You still have the option to run migrations on a one-off deployment via your Dashboard by clicking *Deploy* -> *Deploy with options* and selecting *Run database migrations*.
+
+## Add environment variables
+
+Cloud 66 analyses your application code (for example your Gemfile), and supporting components (like database requirements) during deployment and creates a set of environment variables to suit your requirements. You can add your own, and update the existing ones as needed. 
+
+You can do this during initial app setup by clicking the *Add Environment Variables* button during after your app has been analyzed. If you need to change env vars to an existing app, you can use your preferred method below:
+
+{% tabs %}
+
+{% tab label="Dashboard" %}
+
+1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
+2. Click on ⚙️ *Settings* in the left-hand nav
+3. Click on *Environment Variables* in the sub-nav
+4.  Scroll down to the **Your Custom Variables** section
+5. Add the key(s) and value(s) you need (or edit existing values)
+6. Click *Save Changes*
+7. Changes to env vars are only applied to your application server(s) when you deploy. Do that now by clicking the *Deploy* button
+
+{% /tab %}
+
+{% tab label="Command line" %}
+
+You can set an env var as follows: 
+
+```bash
+$ cx env-vars set -s mystack FIRST_VAR=123
+```
+
+This will either create or update the variable.
+
+You can fetch a list of env vars using `cx` including the history of recent changes to that variable. For example:
+
+```bash
+$ cx env-vars list -s my-app RAILS_ENV ANOTHER_VARIABLE --history
+```
+
+You can also upload sets of env vars in file format (`dotenv` or `json`). For example:
+
+```bash
+$ cx env-vars upload -s my_other_app --file new_env_vars_json --file-type json
+```
+
+For more commands, see our [Toolbelt guide](/docs/toolbelt/toolbelt#env-vars-list).
+
+{% /tab %}
+
+{% /tabs %}
+
+
+## Encrypted credentials
+
+Cloud 66 fully supports Rails Encrypted Credentials. To set up encrypted credentials:
+
+1. Run `bin/rails credentials:edit` on the local instance of your app - this will create the credentials file if it does not exist and will create `config/master.key` if no master key is defined.
+2. Add your credentials to the `config/credentials.yml.enc` file and commit it to your repo
+3. Copy the contents of `master.key` and set it as an env var called `RAILS_MASTER_KEY` in your app (see above for how to add env vars to your app) - **but do not commit `master.key` to your repo**
+4. You can now call secrets from your credentials file using the notation:
+
+```ruby
+ Rails.application.credentials.some_api_key
+```
+
+For more detail, read the official Rails guide to [encrypted credentials](https://edgeguides.rubyonrails.org/security.html#custom-credentials). 
+
+## Asset Pipeline Compilation
+
+Cloud 66 gives you complete control over your asset pipeline:
+
+- By default we will automatically run Asset Pipeline Compilation on each of your deploys. You can choose to [disable](/docs/deployment/enable-disable-asset-pipeline#enable-or-disable-apc) this.
+- We choose one of your servers to handle the workload, leaving your other servers free to run your application as usual. You can also [nominate a preferred server](/docs/deployment/enable-disable-asset-pipeline#nominating-a-dedicated-compilation-server) to handle this workload.
+
+You can manually enable/disable compilation either:
+
+- When you first deploy your app (after the analysis step)
+
+{% figure src="/images/rails-101-apc.png" /%}
+
+- In your Manifest file (*[what is a Manifest file?](/docs/manifest/building-a-manifest-file#what-is-a-manifest-file)*) - for apps that are already deployed
+
+### manifest.yml
+
+The `manifest.yml` settings are as follows:
+
+```yaml
+development:
+ rails:
+  configuration:
+   asset_pipeline_enabled: true
+   asset_pipeline_precompile: true
+```
+
+Note that we must enable the pipeline *and also* set precompile to true (this is the default).
+
+### Support for APC toolchains
+
+Cloud 66 supports all APC toolchains, such as Webpacker. We install the most common prerequisites for APC tools (including Node and Yarn) by default on all Rails servers we build. 
+
+If you’d prefer to use your chosen toolchain to entirely replace Asset Pipeline Compilation, you can deactivate Asset Pipeline Compilation it in your Manifest file (*[what is a Manifest file?](/docs/manifest/building-a-manifest-file#what-is-a-manifest-file)*).
+
+## Set up background workers (e.g. Sidekiq)
+
+If your app relies on background workers, you can set them up easily by creating a file named `Procfile` and adding it to the root of your repo.
+
+A typical `Procfile` looks something like this: 
+
+```bash
+worker: rake resque:work QUEUE=*
+scheduler: rake resque:scheduler
+```
+
+As you can see the syntax is pretty simple: `worker name`: `<your commands>` with one worker per line.
+
+You set up Sidekiq the same way:
+
+```bash
+worker: bundle exec sidekiq -e production
+```
+
+We also support running processes with unique identifiers.
+
+### Scale workers
+
+You can scale your workers up and down in your Dashboard:
+
+{% figure src="/images/rails-101-scale-workers.png" /%}
+
+1. Sign into your Dashboard and click on your app
+2. Click on Workers in the left-hand nav
+3. Click on the scale up (or down) button next to the process you’re scaling
+
+## Configure Action Cable & WebSocket
+
+Cloud 66 automatically provisions your servers for use with Action Cable. We configure your application’s NGINX server with an endpoint named `/cable` that allows an unlimited number of connections. We also open the required ports in your firewall. 
+
+To use Action Cable, mount it in the application itself rather than as a separate process. For more about Action Cable, read our [separate guide](/docs/build-and-config/websocket-support). 
+
+## Run Rake tasks
+
+To run Rake tasks on your application, choose your preferred method:
+
+
+{% tabs %}
+
+{% tab label="Dashboard" %}
+
+1. Open your Dashboard & click on your app
+2. Click Jobs in the left nav
+3. Click New Rake Task
+4. Choose the server and set up the task 
+5. Set up a schedule or choose to run it on demand
+
+{% /tab %}
+
+{% tab label="Command line" %}
+
+First SSH to your app server using Toolbelt:
+
+```bash
+$ cx ssh -s <application name> <server name>
+```
+
+Then run your task in the app directory:
+
+```bash
+$ cd $STACK_PATH
+$ bundle exec rake your:task
+```
+
+{% /tab %}
+
+{% /tabs %}
+
+
+### Running Rake tasks with Deploy Hooks
+
+You can use deploy hooks ([*what are deploy hooks?*](/docs/deploy-hooks/deploy-hooks)) to execute your rake task at any point of your deployment.
+
+Simply add a bash script to the application that contains the rake task. For example, create the file `/.cloud66/scripts/rake_task.sh` as below:
+
+```bash
+#!/bin/bash
+cd $STACK_PATH
+bundle exec rake your:task
+```
+
+Then add a deploy_hook to execute the above script on each deploy: create the file `.cloud66/deploy_hooks.yml` as below:
+
+```yaml
+production:
+  after_rails:
+    - source: /.cloud66/scripts/rake_task.sh
+      destination: /tmp/rake_task.sh
+      target: rails
+      execute: true
+      run_on: all_servers
+      apply_during: all
+      sudo: true
+```
+
+## Persistent storage & Active Storage
+
+### Persistent storage for multi-server apps
+
+If your application runs across multiple application servers and requires persistent storage, we recommend using [Active Storage](https://guides.rubyonrails.org/active_storage_overview.html)  which facilitates uploading files to a cloud storage service like Amazon S3 and attaching those files to Active Record objects. 
+
+### Setting up Active Storage
+
+After creating a new application, run `bin/rails active_storage:install` to generate a migration that creates these tables. Use `bin/rails db:migrate` to run the migration. You can run both of these from your Cloud 66 Dashboard.
+
+Then, declare your services in a `config/storage.yml` file (which you must add to your repo). For each service your application uses, provide a name and configuration. The example below declares a service named `amazon`:
+
+```yaml
+amazon:
+  service: S3
+  access_key_id: ""
+  secret_access_key: ""
+  bucket: ""
+  region: "" # e.g. 'us-east-1'
+```
+
+Next, tell Active Storage which service to use by setting `Rails.application.config.active_storage.service`in your config file. For example
+
+```yaml
+# Store files on Amazon S3.
+config.active_storage.service = :amazon
+```
+
+You can now implement Active Storage in your code. Follow the rest of the [official Rails guide](https://guides.rubyonrails.org/active_storage_overview.html#attaching-files-to-records) to learn how to do this. 
+
+### Active Storage dependencies
+
+Many Active Storage features depends on third-party software which must be installed separately:
+
+- [libvips](https://github.com/libvips/libvips) v8.6+ or [ImageMagick](https://imagemagick.org/index.php) for image analysis and transformations
+- [ffmpeg](http://ffmpeg.org/) v3.4+ for video previews and ffprobe for video/audio analysis
+- [poppler](https://poppler.freedesktop.org/) or [muPDF](https://mupdf.com/) for PDF previews
+
+You can install all of these using [Deploy Hooks](/docs/deploy-hooks/deploy-hooks#install-packages-on-each-server-deployed) (*[what are deploy hooks?](/docs/deploy-hooks/deploy-hooks)*). To install `libvips` for example, you would use hook code like this:
+
+```yaml
+first_thing:
+ - command: sudo apt install libvips
+   target: any
+   execute: true 
+```
+
+### Persistent storage for single-server apps
+
+If your application doesn’t require multiple servers, you can use the following method. When Cloud 66 deploys your app, we automatically create folders that persist between deployments. If you need to persist files for a single server you can simply store them under `$STACK_BASE/shared` (you can add sub-directories as needed). 
+
+If your Rails app requires that users with different roles have access to a shared file system, then the best directory to use is `$STACK_BASE/shared/frontend-backend-share`. This directory is preconfigured to allow secure access from both front and backend Linux users. This also allows application users to, for example, upload files via your app.
+
+## Allowing users to write to disk
+
+When Cloud 66 configures your servers, we create two Linux users:
+
+- `nginx` which handles the front-end
+- `cloud66-user` which handles the backend
+
+In order to bridge the (intentional) gap between these users, we place them both in the same Linux group called `app_writers` - this allows for use cases where a feature needs access to both frontend and backend processes
+
+In order to make a directory writable:
+
+- Set the directory owner group to `app_writers`
+- Set file permissions `0660`
+- Set directory permissions to `0770`
+- The process writing to the directory should run as the `nginx` user
+
+## Configuring other components
+
+Modern Rails applications rely on a range of components to perform at scale. **Cloud 66 supports every Ruby and Rails component your application needs**, either natively or via our powerful [Deploy Hooks](/docs/deploy-hooks/deploy-hooks) feature. If it can run on Ubuntu, we support it. 
+
+This guide covers the most common components, but we support many, many more. If you’re not sure, feel free to ask our support team.

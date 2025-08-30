@@ -1,0 +1,23 @@
+---
+title: Running the Rails Console
+lead: "How to run the Rails console for your Cloud 66 application"
+---
+
+Start by [SSHing to your server](/docs/servers/ssh-to-server). Then go to your `STACK_PATH` (e.g. `cd $STACK_PATH`) and run the following command:
+
+```shell
+$ bundle exec rails c <environment>
+```
+
+**Possible values for \<environment\>:**
+
+*   development (default)
+*   test
+*   production
+
+To run your Rails console as the Nginx user, you can use the following command:
+
+```shell
+$ sudo -u nginx bash -c 'source /var/.cloud66_env && bundle exec rails c'
+```
+

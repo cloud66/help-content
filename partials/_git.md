@@ -1,0 +1,37 @@
+{% tabs %}
+
+{% tab label="Github app" %}
+The easiest option is to give us (read-only) access to a Github repo. To do this:
+
+1. Click *Get Started*
+2. On the next page click *Link with Github*
+3. We’ll send you to our app on Github (you’ll need to sign in)
+4. Once you’re signed in, click *Configure* & then select the Github account you wish to link to Cloud 66
+5. Install and authorize our Github app (you can restrict our access to specific repos if needed)
+6. You will be redirected back to your Cloud 66 dashboard and you can move on to Step 2.
+
+{% /tab %}
+
+{% tab label="Using a non-Github host" %}
+
+If you’d prefer to use another git host, or your own self-hosted repository:
+
+1. Click *Get Started*
+2. Click the small *I’d rather enter a git repo URL* link
+3. Copy the SSH key
+4. Open your repo and add the key to the settings (usually found under *SSH* or *SSH keys*)
+5. Come back to Cloud 66 and click the green *Next…* button
+
+{% /tab %}
+
+{% tab label="Using a prebuilt image" %}
+If you already have your code built into images and stored in a registry:
+
+1. Click *Get Started*
+2. Click *I’m deploying Docker images*
+    - If you’re using the Docker public image repo, enter the name of the Docker image (be sure to spell it correctly)
+    - If you’re using a private image repo, click the *Add your credentials* link, choose your provider and your credentials, then click Save and enter the full image name (including the repository) in the form.
+
+{% /tab %}
+
+{% /tabs %}

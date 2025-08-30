@@ -1,0 +1,25 @@
+Polls your Skycap application and prints workflow events when they are triggered, effectively running the commands embedded in the workflow on the client machine.  
+
+{% tabs %}
+{% tab label="Usage" %}
+
+```shell
+$ cx skycap listen --stack <application name> [--log-level <level>] [--interval <time>]
+```
+{% /tab %}
+    
+{% tab label="arguments" %}
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| \--stack, -s <application name> | yes | — | Name of the application |
+| \--log-level <level> | no | info | The verbosity of logging. Acceptable values: debug, info |
+| \--interval <time> | no | 10s | How often to query the queue - must be greater than 5s |
+{% /tab %}
+{% tab label="examples" %}
+
+```shell
+$ cx skycap list --stack my-skycap-app --log-level "info" --interval "10s"
+```
+
+{% /tab %}
+{% /tabs %}

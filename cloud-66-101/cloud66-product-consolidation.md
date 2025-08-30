@@ -1,0 +1,27 @@
+---
+title: Cloud 66 product consolidation
+---
+
+## Overview
+
+Before December 2022 Cloud 66 had five separate products:
+
+* Cloud 66 for Rails
+* Cloud 66 for Node
+* Maestro (versions 1 & 2)
+* Skycap
+* Prepress
+
+All these products existed to serve a single purpose: deployment of any application to any cloud.
+
+Since December 2022 we have consolidated all of our offerings and features into a single unified product called simply "Cloud 66". This product focuses on enabling the deployment of any application framework to any cloud.
+
+## What does this mean for my application?
+
+While this is a huge improvement in onboarding and usability of our products and documentation, all of the great features powering our product have stayed the same.
+
+Existing customers will be largely unaffected by this change apart from some updates to our interfaces. New customers have a simpler and more streamlined experience when deploying applications for the first time.
+
+## I have questions
+
+Please [log a support query](https://app.cloud66.com/support_tickets/new) and we'll get back to you ASAP!

@@ -1,0 +1,39 @@
+---
+title: Persistent & shared directories for Rails apps
+---
+
+## Overview
+
+When Cloud 66 deploys your Rails application, we create a number of shared folders that persist between deployments. This guide explains the directory structure of these folders and how they should be used.
+
+## $STACK_BASE and $STACK_PATH directories
+
+All Rails applications deployed by Cloud 66 have two special directories on their application server, with the following structure:
+
+- `$STACK_BASE`
+    - /shared
+    - /releases
+- `$STACK_PATH`
+    - Symlinked to `$STACK_BASE/releases/<latest release>`
+
+`$STACK_BASE` stores each recent code deployment in its own directory under a `/releases` subdirectory. In addition `$STACK_BASE` has a special subdirectory within `/shared` named `frontend-backend-share` that is specifically configured to allow servers with different roles (e.g. workers and web servers) to share files. 
+
+`$STACK_PATH` is a symlink that always points to the most recent release under `$STACK_BASE/releases`. 
+
+## How to persist files in your Rails app
+
+If your Rails app requires persistent storage, writing files to `$STACK_PATH` will not work because as soon as you redeploy we will point the directory at a new folder under `/releases`. 
+
+Instead you should store files under `$STACK_BASE/shared`- you can create your own subdirectories as needed. Storing files this way will ensure that they are persisted between deployments.
+
+{% callout type="warning" title="Not suitable for apps with multiple web servers" %}
+Applications with multiple web servers should not use the `/shared` directory - see below for details. 
+{% /callout %}
+
+## How to share files between frontend and backend
+
+If your Rails app requires that servers with different roles have access to a shared file system, then the best directory to use is `$STACK_BASE/shared/frontend-backend-share`. This directory is preconfigured to allow secure access from both front and backend Linux users. 
+
+## Sharing files across multiple servers
+
+If your application runs on multiple web servers, you **will not** be able to use these folders to persist files reliably because they are not synchronised between servers. For this use case we recommend either a network file-system like [GlusterFS](/docs/servers/glusterfs), or an object storage service (like Amazon S3 or Google Cloud Storage).
