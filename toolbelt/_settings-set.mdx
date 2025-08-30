@@ -1,21 +1,20 @@
 Sets and applies the value of a setting to an application.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx settings set --stack <application name> <setting> <values>
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
 | `<setting>` | yes | — | The setting(s) to query (can be used multiple times) |
 | `<values>` | yes | — | The values to apply to the setting |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx settings set -s mystack git.branch dev
@@ -24,9 +23,6 @@ $ cx settings set -s mystack allowed.web.source anywhere
 $ cx settings set -s mystack maintenance.mode  1|true|on|enable
 $ cx settings set -s mystack maintenance.mode  0|false|off|disable
 ```
-
-</Tab>
-</Tabs>
 
 #### Available settings
 

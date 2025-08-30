@@ -1,21 +1,20 @@
 Restarts all processes on the given service and/or server.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx processes restart --stack <application name> [--server <server name>] [<process name>]
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Full or partial name of the application |
 | `--server <server name>` | no | — | The name of the server to use |
 | `<process name>` | no | — | The name of a process |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx processes restart -s mystack a_backend_process
@@ -23,5 +22,3 @@ $ cx processes restart -s mystack --server my_server
 $ cx processes restart -s mystack --server my_server a_backend_process
 ```
 
-</Tab>
-</Tabs>

@@ -1,14 +1,13 @@
 Renders the requested files for the given formation and snapshot
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ snapshots render --stack <application name> --formation <formation UID> --snapshot <snapshot UID> [--latest] [--files <file name>] [--outdir <directory path>] [--filter <filter name>] [--ignore warnings]
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
@@ -20,12 +19,10 @@ $ snapshots render --stack <application name> --formation <formation UID> --snap
 | `--ignore-errors` | no | — | Return anything that can be rendered and ignore the errors |
 | `--ignore-warnings` | no | — | Return anything that can be rendered and ignores the warnings |
 | `--filter <filter name>` | no | — | The name of the formation filter to be used during rendering |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx snapshots render -s mystack --formation fm-xxxx --snapshot sn-yyyy --latest --files foo.yaml --files bar.yml --ignore-warnings
 ```
 
-</Tab>
-</Tabs>

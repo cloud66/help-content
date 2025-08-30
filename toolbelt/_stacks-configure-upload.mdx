@@ -1,25 +1,22 @@
 Upload configuration files such as a *service.yml* or *manifest.yml*. (containerized apps only)
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx stacks configure upload --file <filename> --stack <application name> --comments <comment>
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
 | `--file, -f <filename>` | yes | — | Name of the config file. Accepted values: `service.yml`,`manifest.yml` |
 | `--comments, -c <comment>` | yes | — | A brief description of your changes |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx stacks configure upload -f service.yml -s myapp -c "updates to ports"
 ```
 
-</Tab>
-</Tabs>

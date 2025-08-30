@@ -1,14 +1,13 @@
 Enqueues redeployment of an existing application. If the app is already building, another build will be enqueued and performed immediately after the current one is finished.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx redeploy --stack <application name> --listen [-y] [--git-ref <git_ref>] [--service <service>] [--deploy-strategy <strategy>] [--rollout-strategy <strategy>] [--canary-percentage <percentage>] [--deployment-profile <profile name>]
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Full or partial name of the application |
@@ -20,8 +19,8 @@ $ cx redeploy --stack <application name> --listen [-y] [--git-ref <git_ref>] [--
 | `--rollout-strategy <strategy>` | no | none | Set a rollout strategy for this redeployment. Options are none, blue_green_immediate, blue_green_delayed, or canary |
 | `--canary-percentage <percentage>` | no | — | Set the percentage of traffic to direct to a canary rollout |
 | `--deployment-profile <profile name>` | no | — | Use an existing profile for this redeployment. |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx redeploy -s "My Awesome App" -e production --deploy-strategy fast
@@ -29,5 +28,3 @@ $ cx redeploy -s "My Awesome App" -e production -y --git-ref my_git_ref_value
 $ cx redeploy -s "My Awesome Containerized App" --service web:8c7f3d393162f88b8b9493f6babec574b03ca957 --service api:latest
 ```
 
-</Tab>
-</Tabs>

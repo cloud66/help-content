@@ -1,26 +1,23 @@
 List all the stencils in a formation.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx formations stencils list --formation <formation name> --output <view>
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Full or partial name of the application |
 | `--formation <formation name>` | yes | — | The name of the Formation to which the Stencils belong. |
 | `--output <view>` | no | standard | Tailor the output view (standard or wide) |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx formations stencils list --formation foo 
 $ cx formations stencils list --formation bar --output wide
 ```
 
-</Tab>
-</Tabs>

@@ -1,24 +1,21 @@
 List all the formations of a stack in a Skycap application by name and UID.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx formations list --stack <application name> <formation names>
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Full or partial name of the application |
 | `<formation names>` | no | — | Space separated list of the formations to display |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx formations list -s mystack foo bar # only show formations "foo" and "bar"
 ```
 
-</Tab>
-</Tabs>

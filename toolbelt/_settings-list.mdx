@@ -1,20 +1,19 @@
 Lists all the settings for the given application, including the key, value and readonly flag for each setting. You can use `<setting>` multiples times to query multiple services.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx settings list --stack <application name> <setting>
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
 | `<setting>` | no | — | The setting(s) to query (can be used multiple times) |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx settings list -s mystack
@@ -26,5 +25,3 @@ $ cx settings list -s mystack git.branch
 git.branch master read/write
 ```
 
-</Tab>
-</Tabs>

@@ -1,21 +1,20 @@
 Get info for given the service. The list of available services can be obtained through the `services list` command. If the server is provided it will only query the specified server.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx services info --stack <application name> [--server <server name>] <service name> 
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
 | `--server <server name>` | no | — | The name of a server to query |
 | `<service name>` | yes | — | The service to query |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx services info -s mystack my_web_service
@@ -23,5 +22,3 @@ $ cx services info -s mystack a_backend_service
 $ cx services info -s mystack --server my_server my_web_service
 ```
 
-</Tab>
-</Tabs>

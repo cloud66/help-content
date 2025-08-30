@@ -1,24 +1,21 @@
 Shows information about your account, toolbelt and the specified stack or the current directory.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
-$ cx info --stack <application name --unmanaged
+$ cx info --stack <application name> --unmanaged
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | no | — | Full or partial name of the application |
 | `--unmanaged` | no | — | Lists the servers under your cloud account that are NOT in any of your applications. |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx info -s my-application --unmanaged
 ```
 
-</Tab>
-</Tabs>

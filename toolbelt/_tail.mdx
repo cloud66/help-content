@@ -2,15 +2,14 @@ Runs a Linux `tail` command on the specified server and given log file. You must
 
 This command is only supported on Linux and OS X.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx tail --stack <application name> <server name> | <server ip> | <server role> /optional/log/path/<log filename>
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | The application name |
@@ -18,8 +17,8 @@ $ cx tail --stack <application name> <server name> | <server ip> | <server role>
 | `<server ip>` | either/or | — | IP of the server to query |
 | `<server role>` | either/or | — | Role of the server to query |
 | `/optional/log/path/<log filename>` | no | — | The log file to query (must include extension) |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx tail -s mystack production.log
@@ -27,5 +26,3 @@ $ cx tail -s mystack 52.65.34.98 nginx_error.log
 $ cx tail -s mystack web /custom/logs/my.log
 ```
 
-</Tab>
-</Tabs>

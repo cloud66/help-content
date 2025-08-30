@@ -1,21 +1,20 @@
 List all the services and running containers of a whole application or a specific server.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx services list --stack <application name> [--server <server name>] [<service name>]
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
 | `--server <server name>` | no | — | The name of a server to query |
 | `<service name>` | no | — | The service to query |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx services list -s mystack
@@ -24,5 +23,3 @@ $ cx services list -s mystack --server orca --service web
 $ cx services list -s mystack --service web
 ```
 
-</Tab>
-</Tabs>

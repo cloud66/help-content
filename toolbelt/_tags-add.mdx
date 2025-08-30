@@ -1,25 +1,22 @@
 Add tags to a given entity.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx tags add --entity <entity type> --id <entity ID> --tags <tag>
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--entity <entity type>` | yes | — | The type of the entity |
 | `--id <entity ID>` | yes | — | The id of the entity |
 | `--tags <tag>` | yes | — | Tags to add to the given entity (can be multiple) |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx tags add --entity stack --id 12 --tags foo --tags bar
 ```
 
-</Tab>
-</Tabs>

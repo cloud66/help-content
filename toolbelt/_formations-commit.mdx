@@ -1,14 +1,13 @@
 Commits the specified stencil(s) to the application's template repository with a commit message.
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx formations commit --stack <application name> -f <formation name> --stencil <stencil name> | --dir <directory path> --message <your commit message> [--default-folders]
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Full or partial name of the application |
@@ -17,13 +16,11 @@ $ cx formations commit --stack <application name> -f <formation name> --stencil 
 | `--dir <directory path>` | either/or | — | Directory holding the formation stencils. Cannot be used alongside --stencil |
 | `--message <your commit message>` | yes | — | The commit message |
 | `--default-folders` | no | — | Use ~/cloud66/formations with a formation name suffix as the dir |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx formations commit -s my-skycap-app -f main-formation --stencil app-template-1 --message "updates to structure"
 $ cx formations commit -s my-skycap-app --formation main-formation --dir stencils_for_editing --message "edited variables"
 ```
 
-</Tab>
-</Tabs>

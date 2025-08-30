@@ -10,15 +10,14 @@ You need to [add your public (local) SSH key](/docs/servers/ssh-to-server#adding
 
 This command is only supported on Linux and OS X clients (for Windows you can run this in a virtual machine if necessary)
 
-<Tabs >
-<Tab label="Usage">
+### Usage
 
 ```shell
 $ cx run --stack <application name> [--server <server name> | <IP address>] [--service <service name>] [--container <container name>] [--interactive] '<commands>'
 ```
-</Tab>
-    
-<Tab label="arguments">
+
+### arguments
+
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
@@ -27,8 +26,8 @@ $ cx run --stack <application name> [--server <server name> | <IP address>] [--s
 | `--container, --cnt <container name>` | either/or | — | (containerized apps only) Name of the pod/container in which to run the command  |
 | `--interactive, -i` | no | — | Set the session to interactive mode |
 | `<commands>` | yes | — | The linux commands to run.  |
-</Tab>
-<Tab label="examples">
+
+### examples
 
 ```shell
 $ cx run -s mystack --server lion 'ls -la'
@@ -38,5 +37,3 @@ $ cx run -s mystack --service api --interactive 'bundle exec rails c'
 $ cx run -s mystack --container web-123 -i 'bundle exec rails c'
 ```
 
-</Tab>
-</Tabs>
