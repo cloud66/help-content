@@ -239,8 +239,12 @@ Bear in mind that this service account will first need to be created on your clu
 
 Below is a table of the available configurations for a given service with a brief description. For more detailed information about an option, click the link provided.
 
-<Tabs >
-<Tab label="Cloud 66 Container Service V2">
+<Tabs defaultValue="v2">
+    <TabsList>
+        <TabsTrigger value="v2">Cloud 66 Container Service V2</TabsTrigger>
+        <TabsTrigger value="v1">Cloud 66 Container Service V1</TabsTrigger>
+    </TabsList>
+<TabsContent value="v2">
 <Table >   
 |Option|Description|
 |--- |--- |
@@ -275,9 +279,8 @@ Below is a table of the available configurations for a given service with a brie
 |[volumes](/docs/build-and-config/service-storage)|The volumes that are mounted from your host into your container.  <Glyph icon="warning" color="red" />You must use absolute paths.|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|
 </Table>
-</Tab> 
-
-<Tab label="Cloud 66 Container Service V1">
+</TabsContent>
+    <TabsContent value="v1">
 <Table >
 |**Option**|**Description**|
 |--- |--- |
@@ -305,5 +308,5 @@ Below is a table of the available configurations for a given service with a brie
 |volumes|Volumes mounted from host into container. Syntax: Array of absolute paths, with the format `HOST_FOLDER:CONTAINER_FOLDER`. Optional 'ro' on the end for read-only. e.g. `/tmp/host:/tmp/container:ro`|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|
 </Table>
-</Tab> 
+</TabsContent>
 </Tabs>

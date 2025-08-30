@@ -169,9 +169,12 @@ Cloud 66 analyses your application code (for example your `package.json`), and s
 
 You can do this during initial app setup by clicking the Add Environment Variables button during after your app has been analyzed. If you need to change env vars to an existing app, you can use your preferred method below:
 
-<Tabs >
-
-<Tab label="Dashboard">
+<Tabs defaultValue="dashboard">
+    <TabsList>
+        <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+        <TabsTrigger value="commandline">Command line</TabsTrigger>
+    </TabsList>
+<TabsContent value="dashboard">
 
 1. Open the application from your **[Dashboard](https://app.cloud66.com/dashboard)**
 2. Click on ⚙️ *Settings* in the left-hand nav
@@ -181,9 +184,9 @@ You can do this during initial app setup by clicking the Add Environment Variabl
 6. Click *Save Changes*
 7. Changes to env vars are only applied to your application server(s) when you deploy. Do that now by clicking the *Deploy* button
 
-</Tab>
+</TabsContent>
 
-<Tab label="Command line">
+<TabsContent value="commandline">
 
 You can set an env var as follows: 
 
@@ -207,7 +210,7 @@ $ cx env-vars upload -s my_other_app --file new_env_vars_json --file-type json
 
 For more commands, see our [Toolbelt guide](/docs/toolbelt/toolbelt#env-vars-list).
 
-</Tab>
+</TabsContent>
 
 </Tabs>
 
@@ -284,9 +287,13 @@ Cloud 66 automatically provisions your servers for use with WebSockets. We open 
 
 To run tasks or jobs on your application, you have several options. For shell and application commands, you can set up Application Jobs via the dashboard, or you can SSH to your server or container and run commands directly.
 
-<Tabs >
+<Tabs defaultValue="dashboard">
+    <TabsList>
+        <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+        <TabsTrigger value="commandline">Command line</TabsTrigger>
+    </TabsList>
 
-<Tab label="Dashboard">
+<TabsContent value="dashboard">
 
 1. Open your Dashboard & click on your app
 2. Click Jobs in the left nav
@@ -294,9 +301,9 @@ To run tasks or jobs on your application, you have several options. For shell an
 4. Choose the service (or server) and set up the job 
 5. Set up a schedule or choose to run it on demand
 
-</Tab>
+</TabsContent>
 
-<Tab label="Command line">
+<TabsContent value="commandline">
 
 First SSH to your app server using Toolbelt:
 
@@ -310,7 +317,7 @@ Then run your task in the app directory:
 $ cd $STACK_PATH
 $ gulp your-task-name
 ```
-</Tab>
+</TabsContent>
 
 </Tabs>
 

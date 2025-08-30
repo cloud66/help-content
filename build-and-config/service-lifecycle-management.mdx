@@ -37,8 +37,12 @@ Below are all the directives you can set in your service configuration (`service
 (Read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help on customizing your service configuration.)
 
 ### Health
-<Tabs >
-<Tab label="Cloud 66 Container Service V2">
+<Tabs defaultValue="v2">
+    <TabsList>
+        <TabsTrigger value="v2">Cloud 66 Container Service V2</TabsTrigger>
+        <TabsTrigger value="v1">Cloud 66 Container Service V1</TabsTrigger>
+    </TabsList>
+<TabsContent value="v2">
  
 The `health` option allows you to specify different types of checks on your containers - **readiness** checks, **liveness** checks, and **startup** checks. These checks define a set of rules that determine whether your application is currently healthy. For instance, you can check whether an application is responding on an HTTP endpoint, or if a post-initialization file is present.
 
@@ -98,9 +102,9 @@ services:
 
 You can also use the default health rules with `health: default`, or explicitly disable health checking by leaving the `health` option out or specifying `health: none`.
 
-</Tab>
+</TabsContent>
 
-<Tab label="Cloud 66 Container Service V1">
+<TabsContent value="v1">
 The `health` option allows you to specify rules to automatically determine if your newly started containers are healthy before killing old containers. This effectively provides zero down-time deployments. There are two types of health checks - `inbound` and `outbound`:
 
 **Inbound health checks** use Cloud 66 to determine the health of your containers based on rules that you provide - when a new container is started during deployment, we will automatically attempt to get a response from the container on the specified endpoints. If we don't get the specified HTTP response code back within the "timeout" period we will assume the deploy has failed and roll back the container deployments.
@@ -132,7 +136,7 @@ services:
 
 You can also use the default health rules with `health: default`, or explicitly disable health checking by leaving the `health` option out or specifying `health: none`.
 
-</Tab>
+</TabsContent>
 </Tabs>
 
 
@@ -146,14 +150,18 @@ This is a `command` that executes immediately before a container is terminated.
 
 ### Pre-start signal
 
-<Tabs >
-<Tab label="Cloud 66 Container Service V2">
+<Tabs defaultValue="v2">
+    <TabsList>
+        <TabsTrigger value="v2">Cloud 66 Container Service V2</TabsTrigger>
+        <TabsTrigger value="v1">Cloud 66 Container Service V1</TabsTrigger>
+    </TabsList>
+<TabsContent value="v2">
 
 **This command is not supported by Cloud 66 Container Service V2.**
 
-</Tab>
+</TabsContent>
 
-<Tab label="Cloud 66 Container Service V1">
+<TabsContent value="v1">
 
 This is a signal that is sent to the existing containers of the service before the new containers are started during deployment. An example could be `USR1` - but it depends on what your container is running as to which signals make sense.
 
@@ -163,19 +171,23 @@ services:
         pre_start_signal: USR1
 ```
 
-</Tab>
+</TabsContent>
 </Tabs>
 
 
 ### Pre-stop sequence
-<Tabs >
-<Tab label="Cloud 66 Container Service V2">
+<Tabs defaultValue="v2">
+    <TabsList>
+        <TabsTrigger value="v2">Cloud 66 Container Service V2</TabsTrigger>
+        <TabsTrigger value="v1">Cloud 66 Container Service V1</TabsTrigger>
+    </TabsList>
+<TabsContent value="v2">
 
 **This command is not supported by Cloud 66 Container Service V2.**
 
-</Tab>
+</TabsContent>
 
-<Tab label="Cloud 66 Container Service V1">
+<TabsContent value="v1">
 
 This is a stop sequence that is executed on your running containers before they are shut down. It is a sequence of wait times and signals to send to the process. If the sequence completes and the container is still running, a force kill will be sent. For example:
 
@@ -194,19 +206,23 @@ Valid time values are `s` for seconds, `m` for minutes and `h` for hours. Valid 
 'ABRT', 'ALRM', 'BUS', 'CHLD', 'CONT', 'FPE', 'HUP', 'ILL', 'INT', 'IO', 'IOT', 'KILL', 'PIPE', 'PROF', 'QUIT', 'SEGV', 'STOP', 'SYS', 'TERM', 'TRAP', 'TSTP', 'TTIN', 'TTOU', 'URG', 'USR1', 'USR2', 'VTALRM', 'WINCH', 'XCPU', 'XFSZ'
 ```
 
-</Tab>
+</TabsContent>
 </Tabs>
 
 
 ### Requires
-<Tabs >
-<Tab label="Cloud 66 Container Service V2">
+<Tabs defaultValue="v2">
+    <TabsList>
+        <TabsTrigger value="v2">Cloud 66 Container Service V2</TabsTrigger>
+        <TabsTrigger value="v1">Cloud 66 Container Service V1</TabsTrigger>
+    </TabsList>
+<TabsContent value="v2">
 
 **This command is not supported by Cloud 66 Container Service V2.**
 
-</Tab>
+</TabsContent>
 
-<Tab label="Cloud 66 Container Service V1">
+<TabsContent value="v1">
 
 In some cases, you may want to make sure that a service is only started if another, related service is also started. The `requires` option allows you to set such dependencies. For example:
 
@@ -218,7 +234,7 @@ services:
           - "my_api"
 ```
 
-</Tab>
+</TabsContent>
 </Tabs>
 ### Restart on deploy
 

@@ -1,6 +1,9 @@
-<Tabs >
-
-<Tab label="Adding a Cloud Provider">
+<Tabs defaultValue="cloud">
+    <TabsList>
+        <TabsTrigger value="cloud">Adding a Cloud Provider</TabsTrigger>
+        <TabsTrigger value="ownserver">Adding Your Own Server</TabsTrigger>
+    </TabsList>
+<TabsContent value="cloud">
 
 <FilteredContentBox >
 <FilteredContent filter="AWS">
@@ -49,14 +52,14 @@
 If you delete your application from Cloud 66, your servers **will not be deleted on your cloud provider** unless the physical server deletion setting is turned on.
 </Callout>
 
-</Tab>
+</TabsContent>
 
-<Tab label="Adding Your Own Server">
+<TabsContent value="ownserver">
 
 [Registered servers](/docs/servers/registered-servers) are a great way for operations teams to manage and allocate physical server resources for consumption by dev teams. 
 
 Registered servers are a pool of your own servers (on a private or public cloud) that can be used for any application and configuration. For more information on how to add your own registered servers, [read our guide](/docs/servers/registered-servers).
 
-</Tab>
+</TabsContent>
 
 </Tabs>

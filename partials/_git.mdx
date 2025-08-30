@@ -1,6 +1,10 @@
-<Tabs >
-
-<Tab label="Github app">
+<Tabs defaultValue="github">
+    <TabsList>
+        <TabsTrigger value="github">Github app</TabsTrigger>
+        <TabsTrigger value="nongithub">Using a non-Github host</TabsTrigger>
+        <TabsTrigger value="prebuilt">Using a prebuilt image</TabsTrigger>
+    </TabsList>
+<TabsContent value="github">
 The easiest option is to give us (read-only) access to a Github repo. To do this:
 
 1. Click *Get Started*
@@ -10,9 +14,9 @@ The easiest option is to give us (read-only) access to a Github repo. To do this
 5. Install and authorize our Github app (you can restrict our access to specific repos if needed)
 6. You will be redirected back to your Cloud 66 dashboard and you can move on to Step 2.
 
-</Tab>
+</TabsContent>
 
-<Tab label="Using a non-Github host">
+<TabsContent value="nongithub">
 
 If you’d prefer to use another git host, or your own self-hosted repository:
 
@@ -22,9 +26,9 @@ If you’d prefer to use another git host, or your own self-hosted repository:
 4. Open your repo and add the key to the settings (usually found under *SSH* or *SSH keys*)
 5. Come back to Cloud 66 and click the green *Next…* button
 
-</Tab>
+</TabsContent>
 
-<Tab label="Using a prebuilt image">
+<TabsContent value="prebuilt">
 If you already have your code built into images and stored in a registry:
 
 1. Click *Get Started*
@@ -32,6 +36,6 @@ If you already have your code built into images and stored in a registry:
     - If you’re using the Docker public image repo, enter the name of the Docker image (be sure to spell it correctly)
     - If you’re using a private image repo, click the *Add your credentials* link, choose your provider and your credentials, then click Save and enter the full image name (including the repository) in the form.
 
-</Tab>
+</TabsContent>
 
 </Tabs>

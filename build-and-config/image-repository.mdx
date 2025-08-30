@@ -40,33 +40,38 @@ In order to connect a cloud image repo to your account, you first need to add yo
 
 In order to connect your private cloud repo to your Cloud 66 account, you need to grant specific permissions to the service account through which we access your cloud provider. Click on the tab for your cloud provider below to see the required permissions.
 
-<Tabs >
+<Tabs defaultValue="aws">
+    <TabsList>
+        <TabsTrigger value="aws">AWS (Amazon ECR)</TabsTrigger>
+        <TabsTrigger value="azure">Azure</TabsTrigger>
+        <TabsTrigger value="gcp">Google Cloud</TabsTrigger>
+    </TabsList>
 
-<Tab label="AWS (Amazon ECR)">
+<TabsContent value="aws">
 
 The following role plus additional permission under Amazon ECR will give us the required level of access:
 
 - `AmazonEC2ContainerRegistryReadOnly`
 - `ecr:DescribeRegistry` (in addition to the role above)
 
-</Tab>
+</TabsContent>
 
-<Tab label="Azure">
+<TabsContent value="azure">
 
 The following roles will give us the required level of access:
 
 - `Container Registry Repository Reader`
 - `Container Registry Configuration Reader` and `Data Access Configuration Reader`
  
-</Tab>
+</TabsContent>
 
-<Tab label="Google Cloud">
+<TabsContent value="gcp">
 
 The following roles will give us the required level of access:
 - `Artifact Registry Reader`
 - `Service Account Token Creator`
 
-</Tab>
+</TabsContent>
 
 </Tabs>
 

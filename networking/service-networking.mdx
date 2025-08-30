@@ -56,22 +56,26 @@ To edit your ports using the standard Cloud 66 user interface:
 
 ### Testing your changes
 
-<Tabs >
-<Tab label="Container Service V2">
+<Tabs defaultValue="v2">
+    <TabsList>
+        <TabsTrigger value="v2">Container Service V2</TabsTrigger>
+        <TabsTrigger value="v1">Container Service V1</TabsTrigger>
+    </TabsList>
+<TabsContent value="v2">
 
 You can test whether this has been properly applied by looking at that the Network column of the *Services* panel.
 
 If you've followed the steps above correctly, the **Network** column will list both port *80* and port *443*.
 
-</Tab>
+</TabsContent>
 
-<Tab label="Container Service V1">
+<TabsContent value="v1">
 
 You can test whether this has been properly applied to your service by clicking on the respective &#9432; icon in the **App Services** panel on the application.
 
 If you've followed the steps above correctly, the **Services Config** panel will list both *HTTP* and *HTTPS*.
 
-</Tab>
+</TabsContent>
 </Tabs>
 
 In order for these new settings to be rolled out to your service, you must click the green Apply button (above the **Services** panel) and then redeploy your application by clicking the *Deploy* button.
