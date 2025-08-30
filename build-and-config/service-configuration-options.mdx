@@ -16,7 +16,7 @@ This is the complete list of all service configuration directives in both versio
         <TabsTrigger value="v1">Cloud 66 Container Service V1</TabsTrigger>
     </TabsList>
 <TabsContent value="v2">
-<Table >
+
 |**Option**|**Description**|
 |--- |--- |
 |[annotations](/docs/build-and-config/service-tags-annotations#service-annotations)|Annotations for your services in key/value format - these will also become annotations on your Kubernetes resources|
@@ -49,11 +49,11 @@ This is the complete list of all service configuration directives in both versio
 |type|Specifies the type of service being defined. Accepted values: `service`, `deployment`, `daemon_set`|
 |[volumes](/docs/build-and-config/service-storage)|The volumes that are mounted from your host into your container. <Pill title="Note" color="red" /> Must use absolute paths.|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|
-</Table>
+
 </TabsContent>
 
 <TabsContent value="v1">
-<Table >
+
 |**Option**|**Description**|
 |--- |--- |
 |[build_command](/docs/legacy/legacy-building-your-service-csv1)|Specifies the command you would like to run during application build.|
@@ -79,7 +79,7 @@ This is the complete list of all service configuration directives in both versio
 |[traffic_matches](/docs/legacy/service-network-configuration#traffic_matches)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
 |volumes|Volumes mounted from host into container. Syntax: Array of absolute paths, with the format `HOST_FOLDER:CONTAINER_FOLDER`. Optional 'ro' on the end for read-only. e.g. `/tmp/host:/tmp/container:ro`|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|
-</Table>
+
   
 </TabsContent>
 </Tabs>

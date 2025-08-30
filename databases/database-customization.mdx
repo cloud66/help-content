@@ -27,14 +27,14 @@ There are a number of variables available for use in your database CustomConfig.
 
 The following variables are available to any database CustomConfig.
 
-<Table >
+
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |server|Hash|Hash containing information about your server|
 |cloud|string|Application cloud|
 |memory|integer|Server memory size (bytes)|
 |core|integer|Server core count|
-</Table>
+
 
 #### MySQL variables
 
@@ -52,11 +52,11 @@ The following variables are only available in the MySQL CustomConfig.
 
 The following variables are only available in the Postgres CustomConfig.
 
-<Table >
+
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |server_state|string|Value can be *stand_alone*, *pg_master* or *pg_slave* based on your server status|
-</Table>
+
 
 If you need help tuning your Postgres configuration for your servers, [PGTune is an excellent free resource](https://pgtune.leopard.in.ua/). 
 
@@ -64,13 +64,13 @@ If you need help tuning your Postgres configuration for your servers, [PGTune is
 
 The following variables are only available in the Redis CustomConfig.
 
-<Table >
+
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |server_state|string|Value can be *stand_alone*, *redis_master* or *redis_slave* based on your server status|
 |master_address|string|IP address of replication master (empty string if server is stand alone or master)|
 |master_port|integer|Will be 6379 when server is *redis_slave* , otherwise it is 0|
-</Table>
+
 
 ## More info
 

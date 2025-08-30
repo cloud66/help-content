@@ -2,11 +2,15 @@
 title: How to SSH to Servers
 ---
 
+import DoNotConfigureServersManuallyPartial from '../partials/_do_not_configure_servers_manually.mdx';
+import SshKeysPartial from '../partials/_ssh_keys.mdx';
+
+
 ## Overview
 
 You can access any of your servers (that are being managed by Cloud 66) directly via SSH. For security reasons we only allow access using [SSH keys](/docs/cloud-66-101/ssh-keys), and not usernames and passwords. See below for how to add your key to Cloud 66. 
 
-<Partial file="../../src/pages/docs/partials/_do_not_configure_servers_manually.md" />
+<DoNotConfigureServersManuallyPartial />
 
 ## Adding your SSH key to your Cloud 66 account
 
@@ -14,7 +18,7 @@ Both of the methods below rely on SSH keys rather than username and password (wh
 
 <Collapsible title="How to generate new SSH keys">
 
-<Partial file="../../src/pages/docs/partials/_ssh_keys.md" />
+<SshKeysPartial />
 
 </Collapsible>
 

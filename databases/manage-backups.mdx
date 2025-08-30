@@ -452,14 +452,14 @@ $ mongorestore --drop --db YOUR_DATABASE_NAME /path/to/database/back
 
 You can use automated database backups to migrate data between applications using the Dashboard, but there are some format restrictions when doing so:
 
-<Table >
+
 |DB Engine|Compatible backup format(s) for migration|
 |--- |--- |
 |MySQL|Text only|
 |Postgres|Text only|
 |Mongo|Either|
 |Redis|Either|
-</Table>
+
 
 This only applies to migrations between applications - restores to the original database (i.e. in the same application) will work regardless of format. 
 

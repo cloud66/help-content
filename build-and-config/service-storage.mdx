@@ -102,7 +102,7 @@ This would mount an emptyDir volume in the `/cache` folder of your container(s) 
 ### Volume settings
 
 Cloud 66 supports the following general settings for all volume-types:
-<Table >
+
 |Option|Format|Description|
 |--- |--- |--- |
 |mount_path|string|Path within the container at which the volume should be mounted. Must not contain `:`|
@@ -110,5 +110,5 @@ Cloud 66 supports the following general settings for all volume-types:
 |read_only|boolean|Mounted read-only if true, read-write otherwise. Defaults to false.|
 |sub_path|string|The path within the volume from which the container's volume should be mounted. Defaults to `""` (volume's root). Mutually exclusive with `sub_path_expr`.|
 |sub_path_expr|string|Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to `sub_path` but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to `""` (volume's root). Mutually exclusive with `sub_path`.|
-</Table>
+
 For more information on any of these settings, please consult the [official Kubernetes docs](https://kubernetes.io/docs/concepts/storage/volumes/) about volumes.

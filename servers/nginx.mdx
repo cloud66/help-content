@@ -32,7 +32,7 @@ You can customise this page by following [this guide](/docs/servers/nginx#custom
 
 The following table outlines the default configuration of Nginx.
 
-<Table >
+
 |Category|Attribute|Default value|
 |--- |--- |--- |
 |**General**|||
@@ -62,13 +62,13 @@ The following table outlines the default configuration of Nginx.
 ||root|/var/deploy/[application name]/web_head/current/public|
 ||ssl_certificate_key|/etc/ssl/localcerts/[ssl cerificate file name].key|
 ||ssl_certificate|/etc/ssl/localcerts/[ssl cerificate file name].crt|
-</Table>
+
 
 ## Nginx CustomConfig variables
 
 The following variables are available for use in your Nginx CustomConfig.
 
-<Table >
+
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |user_name|string|User name running the application process|
@@ -99,7 +99,7 @@ The following variables are available for use in your Nginx CustomConfig.
 |service_containers|array|Contains all services (with *service_name* and *upstreams* information)|
 |service_name|string|Part of the *service_containers* hiearchy, containing the name of a specific service|
 |upstreams|array|Part of the *service_containers* hiearchy, containing an upstream name, private IPs, traffic matches and port|
-</Table>
+
 
 <PerProduct includes={["rails"]}>
 

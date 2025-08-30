@@ -3,6 +3,99 @@ title: Cloud 66 Toolbelt
 lead: "Reference guide for Cloud 66 Toolbelt commands"
 ---
 
+import BackupsListPartial from './_backups-list.mdx';
+import BackupsDownloadPartial from './_backups-download.mdx';
+import BackupsNewPartial from './_backups-new.mdx';
+import ContainersListPartial from './_containers-list.mdx';
+import ContainersAttachPartial from './_containers-attach.mdx';
+import ContainersStopPartial from './_containers-stop.mdx';
+import ContainersRestartPartial from './_containers-restart.mdx';
+import DatabasesPromoteSlavePartial from './_databases-promote-slave.mdx';
+import DatabasesResyncSlavePartial from './_databases-resync-slave.mdx';
+import DownloadPartial from './_download.mdx';
+import DumpTokenPartial from './_dump-token.mdx';
+import EnvVarsListPartial from './_env-vars-list.mdx';
+import EnvVarsDownloadPartial from './_env-vars-download.mdx';
+import EnvVarsSetPartial from './_env-vars-set.mdx';
+import EnvVarsUploadPartial from './_env-vars-upload.mdx';
+import FailoverGroupsListPartial from './_failover-groups-list.mdx';
+import FailoverGroupsAddPartial from './_failover-groups-add.mdx';
+import FailoverGroupsDeletePartial from './_failover-groups-delete.mdx';
+import FailoverGroupsUpdatePartial from './_failover-groups-update.mdx';
+import FormationsListPartial from './_formations-list.mdx';
+import FormationsCommitPartial from './_formations-commit.mdx';
+import FormationsCreatePartial from './_formations-create.mdx';
+import FormationsDeployPartial from './_formations-deploy.mdx';
+import FormationsFetchPartial from './_formations-fetch.mdx';
+import FormationsStencilsListPartial from './_formations-stencils-list.mdx';
+import GatewaysListPartial from './_gateways-list.mdx';
+import GatewaysAddPartial from './_gateways-add.mdx';
+import GatewaysClosePartial from './_gateways-close.mdx';
+import GatewaysOpenPartial from './_gateways-open.mdx';
+import GatewaysRemovePartial from './_gateways-remove.mdx';
+import HelpPartial from './_help.mdx';
+import InfoPartial from './_info.mdx';
+import JobsListPartial from './_jobs-list.mdx';
+import JobsRunPartial from './_jobs-run.mdx';
+import LeasePartial from './_lease.mdx';
+import LoginPartial from './_login.mdx';
+import NotificationsDownloadPartial from './_notifications-download.mdx';
+import NotificationsUploadPartial from './_notifications-upload.mdx';
+import OpenPartial from './_open.mdx';
+import ProcessesListPartial from './_processes-list.mdx';
+import ProcessesPausePartial from './_processes-pause.mdx';
+import ProcessesRestartPartial from './_processes-restart.mdx';
+import ProcessesResumePartial from './_processes-resume.mdx';
+import ProcessesScalePartial from './_processes-scale.mdx';
+import RedeployPartial from './_redeploy.mdx';
+import RegisterServerPartial from './_register-server.mdx';
+import RunPartial from './_run.mdx';
+import ServersListPartial from './_servers-list.mdx';
+import ServersRebootPartial from './_servers-reboot.mdx';
+import ServersSettingsListPartial from './_servers-settings-list.mdx';
+import ServicesInfoPartial from './_services-info.mdx';
+import ServicesListPartial from './_services-list.mdx';
+import ServicesPausePartial from './_services-pause.mdx';
+import ServicesRestartPartial from './_services-restart.mdx';
+import ServicesResumePartial from './_services-resume.mdx';
+import ServicesScalePartial from './_services-scale.mdx';
+import ServicesStopPartial from './_services-stop.mdx';
+import SettingsListPartial from './_settings-list.mdx';
+import SettingsSetPartial from './_settings-set.mdx';
+import SkycapListenPartial from './_skycap-listen.mdx';
+import SnapshotsListPartial from './_snapshots-list.mdx';
+import SnapshotsRenderPartial from './_snapshots-render.mdx';
+import SshPartial from './_ssh.mdx';
+import SshConfigPartial from './_ssh_config.mdx';
+import StacksClearCachesPartial from './_stacks-clear-caches.mdx';
+import StacksConfigureDownloadPartial from './_stacks-configure-download.mdx';
+import StacksConfigureListVersionsPartial from './_stacks-configure-list-versions.mdx';
+import StacksConfigureUploadPartial from './_stacks-configure-upload.mdx';
+import StacksConfigurationListPartial from './_stacks-configuration-list.mdx';
+import StacksConfigurationApplyPartial from './_stacks-configuration-apply.mdx';
+import StacksConfigurationDownloadPartial from './_stacks-configuration-download.mdx';
+import StacksConfigurationUploadPartial from './_stacks-configuration-upload.mdx';
+import StacksListPartial from './_stacks-list.mdx';
+import StacksCreatePartial from './_stacks-create.mdx';
+import StacksListenPartial from './_stacks-listen.mdx';
+import StacksRebootPartial from './_stacks-reboot.mdx';
+import StacksRestartPartial from './_stacks-restart.mdx';
+import StacksSslPartial from './_stacks-ssl.mdx';
+import TagsAddPartial from './_tags-add.mdx';
+import TagsDeletePartial from './_tags-delete.mdx';
+import TailPartial from './_tail.mdx';
+import TemplatesListPartial from './_templates-list.mdx';
+import TemplatesResyncPartial from './_templates-resync.mdx';
+import TemplatesShowPartial from './_templates-show.mdx';
+import TestPartial from './_test.mdx';
+import TunnelPartial from './_tunnel.mdx';
+import UpdatePartial from './_update.mdx';
+import UploadPartial from './_upload.mdx';
+import UsersListPartial from './_users-list.mdx';
+import UsersApplyProfilePartial from './_users-apply-profile.mdx';
+import UsersShowPartial from './_users-show.mdx';
+
+
 # Configuring Toolbelt
 
 ## Installation
@@ -100,13 +193,13 @@ For example, if you only have one application that starts with *m*, you can sim
 These commands are listed alphabetically by top level command name. 
 
 ### backups list
-<Partial file="../../src/pages/docs/toolbelt/_backups-list.md" />
+<BackupsListPartial />
 
 ### backups download
-<Partial file="../../src/pages/docs/toolbelt/_backups-download.md" />
+<BackupsDownloadPartial />
 
 ### backups new
-<Partial file="../../src/pages/docs/toolbelt/_backups-new.md" />
+<BackupsNewPartial />
 
 ### config
 Allows you to configure multiple profiles in cx to support multiple Cloud 66 accounts.
@@ -114,132 +207,132 @@ Allows you to configure multiple profiles in cx to support multiple Cloud 66 acc
 ### containers list
 Alias: `container list`
 
-<Partial file="../../src/pages/docs/toolbelt/_containers-list.md" />
+<ContainersListPartial />
 
 ### containers attach
 Alias: `container attach`
 
-<Partial file="../../src/pages/docs/toolbelt/_containers-attach.md" />
+<ContainersAttachPartial />
 
 ### containers stop
 Alias: `container stop`
 
-<Partial file="../../src/pages/docs/toolbelt/_containers-stop.md" />
+<ContainersStopPartial />
 
 ### containers restart
 Alias: `container restart`
 
-<Partial file="../../src/pages/docs/toolbelt/_containers-restart.md" />
+<ContainersRestartPartial />
 
 ### databases promote-replica
 Alias: `database promote-replica` 
 Alias: `database promote-slave` (deprecated) 
 Alias: `databases promote-slave` (deprecated)
 
-<Partial file="../../src/pages/docs/toolbelt/_databases-promote-slave.md" />
+<DatabasesPromoteSlavePartial />
 
 ### databases resync-replica
 Alias: `database resync-replica` 
 Alias: `database resync-slave` (deprecated) 
 Alias: `databases resync-slave` (deprecated)
 
-<Partial file="../../src/pages/docs/toolbelt/_databases-resync-slave.md" />
+<DatabasesResyncSlavePartial />
 
 ### download
 
-<Partial file="../../src/pages/docs/toolbelt/_download.md" />
+<DownloadPartial />
 
 ### dump-token
 
-<Partial file="../../src/pages/docs/toolbelt/_dump-token.md" />
+<DumpTokenPartial />
 
 ### env-vars list
 
-<Partial file="../../src/pages/docs/toolbelt/_env-vars-list.md" />
+<EnvVarsListPartial />
 
 ### env-vars download
 
-<Partial file="../../src/pages/docs/toolbelt/_env-vars-download.md" />
+<EnvVarsDownloadPartial />
 
 ### env-vars set
 
-<Partial file="../../src/pages/docs/toolbelt/_env-vars-set.md" />
+<EnvVarsSetPartial />
 
 ### env-vars upload
 
-<Partial file="../../src/pages/docs/toolbelt/_env-vars-upload.md" />
+<EnvVarsUploadPartial />
 
 ### failover-groups list
-<Partial file="../../src/pages/docs/toolbelt/_failover-groups-list.md" />
+<FailoverGroupsListPartial />
 
 ### failover-groups add
-<Partial file="../../src/pages/docs/toolbelt/_failover-groups-add.md" />
+<FailoverGroupsAddPartial />
 
 ### failover-groups delete
-<Partial file="../../src/pages/docs/toolbelt/_failover-groups-delete.md" />
+<FailoverGroupsDeletePartial />
 
 ### failover-groups update
-<Partial file="../../src/pages/docs/toolbelt/_failover-groups-update.md" />
+<FailoverGroupsUpdatePartial />
 
 <PerProduct includes={["skycap"]}>
 ### formations list
 Alias: `formation list`
 
-<Partial file="../../src/pages/docs/toolbelt/_formations-list.md" />
+<FormationsListPartial />
 
 ### formations commit
 Alias: `formation commit`
 
-<Partial file="../../src/pages/docs/toolbelt/_formations-commit.md" />
+<FormationsCommitPartial />
 
 ### formations create
 Alias: `formation create`
 
-<Partial file="../../src/pages/docs/toolbelt/_formations-create.md" />
+<FormationsCreatePartial />
 
 ### formations deploy
 Alias: `formation deploy`
 
-<Partial file="../../src/pages/docs/toolbelt/_formations-deploy.md" />
+<FormationsDeployPartial />
 
 ### formations fetch
 Alias: `formation fetch`
 
-<Partial file="../../src/pages/docs/toolbelt/_formations-fetch.md" />
+<FormationsFetchPartial />
 
 ### formations stencils list
 Alias: `formation stencils list`
 
-<Partial file="../../src/pages/docs/toolbelt/_formations-stencils-list.md" />
+<FormationsStencilsListPartial />
 </PerProduct>
 <PerProduct includes={["rails"]}>
 ### gateways list
 
-<Partial file="../../src/pages/docs/toolbelt/_gateways-list.md" />
+<GatewaysListPartial />
 
 ### gateways add
 
-<Partial file="../../src/pages/docs/toolbelt/_gateways-add.md" />
+<GatewaysAddPartial />
 
 ### gateways close
 
-<Partial file="../../src/pages/docs/toolbelt/_gateways-close.md" />
+<GatewaysClosePartial />
 
 ### gateways open
 
-<Partial file="../../src/pages/docs/toolbelt/_gateways-open.md" />
+<GatewaysOpenPartial />
 
 ### gateways remove
 
-<Partial file="../../src/pages/docs/toolbelt/_gateways-remove.md" />
+<GatewaysRemovePartial />
 </PerProduct>
 ### help
 
-<Partial file="../../src/pages/docs/toolbelt/_help.md" />
+<HelpPartial />
 
 ### info
 
-<Partial file="../../src/pages/docs/toolbelt/_info.md" />
+<InfoPartial />
 
 ### init
 Initializes the Toolbelt.
@@ -250,213 +343,213 @@ Initializes the Toolbelt as a standalone (headless) agent.
 ### jobs list
 Alias: `job list`
 
-<Partial file="../../src/pages/docs/toolbelt/_jobs-list.md" />
+<JobsListPartial />
 
 ### jobs run
 Alias: `job run`
 
-<Partial file="../../src/pages/docs/toolbelt/_jobs-run.md" />
+<JobsRunPartial />
 
 ### lease
 
-<Partial file="../../src/pages/docs/toolbelt/_lease.md" />
+<LeasePartial />
 
 ### login
 
-<Partial file="../../src/pages/docs/toolbelt/_login.md" />
+<LoginPartial />
 
 ### notifications download
 
-<Partial file="../../src/pages/docs/toolbelt/_notifications-download.md" />
+<NotificationsDownloadPartial />
 
 ### notifications upload
 
-<Partial file="../../src/pages/docs/toolbelt/_notifications-upload.md" />
+<NotificationsUploadPartial />
 
 ### open
 
-<Partial file="../../src/pages/docs/toolbelt/_open.md" />
+<OpenPartial />
 
 ### processes list
 Alias: `process list`
 
-<Partial file="../../src/pages/docs/toolbelt/_processes-list.md" />
+<ProcessesListPartial />
 
 ### processes pause
 Alias: `process pause`
 
-<Partial file="../../src/pages/docs/toolbelt/_processes-pause.md" />
+<ProcessesPausePartial />
 
 ### processes restart
 Alias: `process restart`
 
-<Partial file="../../src/pages/docs/toolbelt/_processes-restart.md" />
+<ProcessesRestartPartial />
 
 ### processes resume
 Alias: `process resume`
 
-<Partial file="../../src/pages/docs/toolbelt/_processes-resume.md" />
+<ProcessesResumePartial />
 
 ### processes scale
 Alias: `process scale`
 
-<Partial file="../../src/pages/docs/toolbelt/_processes-scale.md" />
+<ProcessesScalePartial />
 
 ### redeploy
 Alias: `stacks redeploy`
 
-<Partial file="../../src/pages/docs/toolbelt/_redeploy.md" />
+<RedeployPartial />
 
 ### register-server
 
-<Partial file="../../src/pages/docs/toolbelt/_register-server.md" />
+<RegisterServerPartial />
 
 ### run
 
-<Partial file="../../src/pages/docs/toolbelt/_run.md" />
+<RunPartial />
 
 ### servers list
 Alias: `server list`
 
-<Partial file="../../src/pages/docs/toolbelt/_servers-list.md" />
+<ServersListPartial />
 
 ### servers reboot
 Alias: `server reboot`
 
-<Partial file="../../src/pages/docs/toolbelt/_servers-reboot.md" />
+<ServersRebootPartial />
 
 ### servers settings list
 Alias: `server settings list`
 
-<Partial file="../../src/pages/docs/toolbelt/_servers-settings-list.md" />
+<ServersSettingsListPartial />
 
 ### services info
 Alias: `service info`
 
-<Partial file="../../src/pages/docs/toolbelt/_services-info.md" />
+<ServicesInfoPartial />
 
 ### services list
 Alias: `service list`
 
-<Partial file="../../src/pages/docs/toolbelt/_services-list.md" />
+<ServicesListPartial />
 
 ### services pause
 Alias: `service pause`
 
-<Partial file="../../src/pages/docs/toolbelt/_services-pause.md" />
+<ServicesPausePartial />
 
 ### services restart
 Alias: `service restart`
 
-<Partial file="../../src/pages/docs/toolbelt/_services-restart.md" />
+<ServicesRestartPartial />
 
 ### services resume
 Alias: `service resume`
 
-<Partial file="../../src/pages/docs/toolbelt/_services-resume.md" />
+<ServicesResumePartial />
 
 ### services scale
 Alias: `service scale`
 
-<Partial file="../../src/pages/docs/toolbelt/_services-scale.md" />
+<ServicesScalePartial />
 
 ### services stop
 Alias: `service stop`
 
-<Partial file="../../src/pages/docs/toolbelt/_services-stop.md" />
+<ServicesStopPartial />
 
 ### settings list
 Alias: `setting list`
 
-<Partial file="../../src/pages/docs/toolbelt/_settings-list.md" />
+<SettingsListPartial />
 
 ### settings set
 Alias: `setting set`
 
-<Partial file="../../src/pages/docs/toolbelt/_settings-set.md" />
+<SettingsSetPartial />
 
 <PerProduct includes={["skycap"]}>
 ### skycap listen
 
-<Partial file="../../src/pages/docs/toolbelt/_skycap-listen.md" />
+<SkycapListenPartial />
 
 ### snapshots list
 
-<Partial file="../../src/pages/docs/toolbelt/_snapshots-list.md" />
+<SnapshotsListPartial />
 
 ### snapshots render
 
-<Partial file="../../src/pages/docs/toolbelt/_snapshots-render.md" />
+<SnapshotsRenderPartial />
 
 </PerProduct>
 
 ### ssh
 
-<Partial file="../../src/pages/docs/toolbelt/_ssh.md" />
+<SshPartial />
 
 ### ssh-config
 
-<Partial file="../../src/pages/docs/toolbelt/_ssh_config.md" />
+<SshConfigPartial />
 
 ### stacks clear-caches
 Alias: `stack clear-caches`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-clear-caches.md" />
+<StacksClearCachesPartial />
 
 ### stacks configure download
 Alias: `stack configure download`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-configure-download.md" />
+<StacksConfigureDownloadPartial />
 
 ### stacks configure list-versions
 Alias: `stack configure list-versions`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-configure-list-versions.md" />
+<StacksConfigureListVersionsPartial />
 
 ### stacks configure upload
 Alias: `stack configure upload`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-configure-upload.md" />
+<StacksConfigureUploadPartial />
 
 ### stacks configuration list
 Alias: `stack configuration list`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-configuration-list.md" />
+<StacksConfigurationListPartial />
 
 ### stacks configuration apply
 Alias: `stack configuration apply`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-configuration-apply.md" />
+<StacksConfigurationApplyPartial />
 
 ### stacks configuration download
 Alias: `stack configuration download`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-configuration-download.md" />
+<StacksConfigurationDownloadPartial />
 
 ### stacks configuration upload
 Alias: `stack configuration upload`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-configuration-upload.md" />
+<StacksConfigurationUploadPartial />
 
 ### stacks list
 Alias: `stack list`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-list.md" />
+<StacksListPartial />
 
 ### stacks create
 Alias: `stack create`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-create.md" />
+<StacksCreatePartial />
 
 ### stacks listen
 Alias: `stack listen`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-listen.md" />
+<StacksListenPartial />
 
 ### stacks reboot
 Alias: `stack reboot`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-reboot.md" />
+<StacksRebootPartial />
 
 ### stacks redeploy
 Alias: `stack redeploy`
@@ -466,65 +559,65 @@ Triggers the deployment of an application. Alias of `redeploy` function.
 ### stacks restart
 Alias: `stack restart`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-restart.md" />
+<StacksRestartPartial />
 
 ### stacks ssl
 Alias: `stack ssl`
 
-<Partial file="../../src/pages/docs/toolbelt/_stacks-ssl.md" />
+<StacksSslPartial />
 
 ### tags add
 
-<Partial file="../../src/pages/docs/toolbelt/_tags-add.md" />
+<TagsAddPartial />
 
 ### tags delete
 
-<Partial file="../../src/pages/docs/toolbelt/_tags-delete.md" />
+<TagsDeletePartial />
 
 ### tail
 
-<Partial file="../../src/pages/docs/toolbelt/_tail.md" />
+<TailPartial />
 
 <PerProduct includes={["skycap"]}>
 ### templates list
 
-<Partial file="../../src/pages/docs/toolbelt/_templates-list.md" />
+<TemplatesListPartial />
 
 ### templates resync
 
-<Partial file="../../src/pages/docs/toolbelt/_templates-resync.md" />
+<TemplatesResyncPartial />
 
 ### templates show
 
-<Partial file="../../src/pages/docs/toolbelt/_templates-show.md" />
+<TemplatesShowPartial />
 </PerProduct>
 ### test
 
-<Partial file="../../src/pages/docs/toolbelt/_test.md" />
+<TestPartial />
 
 ### tunnel
 
-<Partial file="../../src/pages/docs/toolbelt/_tunnel.md" />
+<TunnelPartial />
 
 ### update
 
-<Partial file="../../src/pages/docs/toolbelt/_update.md" />
+<UpdatePartial />
 
 ### upload
 
-<Partial file="../../src/pages/docs/toolbelt/_upload.md" />
+<UploadPartial />
 
 ### users list
 
-<Partial file="../../src/pages/docs/toolbelt/_users-list.md" />
+<UsersListPartial />
 
 ### users apply-profile
 
-<Partial file="../../src/pages/docs/toolbelt/_users-apply-profile.md" />
+<UsersApplyProfilePartial />
 
 ### users show
 
-<Partial file="../../src/pages/docs/toolbelt/_users-show.md" />
+<UsersShowPartial />
 
 ## Configuration profile commands
 

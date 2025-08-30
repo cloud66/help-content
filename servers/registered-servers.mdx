@@ -2,6 +2,9 @@
 title: Bring your own servers to Cloud 66
 ---
 
+import DoNotConfigureServersManuallyPartial from '../partials/_do_not_configure_servers_manually.mdx';
+
+
 ## Overview
 
 **Registered servers** are a great way for operations teams to manage and allocate physical server resources for consumption by dev teams. Registered servers are essentially a pool of your own servers on a private or public cloud that can be used on any application and configuration. 
@@ -94,7 +97,7 @@ If your server is in a cloud with native security groups (such as AWS Security G
 For [CSv1](/docs/cloud-66-101/concepts-and-terminology#version-1-vs-version-2) applications, all servers must be allowed to communicate inside the security group on TCP port `6783`, which is needed to create the overlay network (Weave). 
 </PerProduct>
 
-<Partial file="../../src/pages/docs/partials/_do_not_configure_servers_manually.md" />
+<DoNotConfigureServersManuallyPartial />
 
 ## Technical considerations
 

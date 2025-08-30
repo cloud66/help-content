@@ -1,3 +1,14 @@
+import AwsPartial from './_aws.mdx';
+import AzurePartial from './_azure.mdx';
+import DoPartial from './_do.mdx';
+import GcePartial from './_gce.mdx';
+import HetznerPartial from './_hetzner.mdx';
+import LatitudeshPartial from './_latitudesh.mdx';
+import LinodePartial from './_linode.mdx';
+import OvhPartial from './_ovh.mdx';
+import PacketPartial from './_packet.mdx';
+import VultrPartial from './_vultr.mdx';
+
 <Tabs defaultValue="cloud">
     <TabsList>
         <TabsTrigger value="cloud">Adding a Cloud Provider</TabsTrigger>
@@ -7,43 +18,43 @@
 
 <FilteredContentBox >
 <FilteredContent filter="AWS">
-<Partial file="../../src/pages/docs/partials/_aws.md" />
+<AwsPartial />
 </FilteredContent>
 
 <FilteredContent filter="Azure">
-<Partial file="../../src/pages/docs/partials/_azure.md" />
+<AzurePartial />
 </FilteredContent>
 
 <FilteredContent filter="DigitalOcean">
-<Partial file="../../src/pages/docs/partials/_do.md" />
+<DoPartial />
 </FilteredContent>
 
 <FilteredContent filter="Google">
-<Partial file="../../src/pages/docs/partials/_gce.md" />
+<GcePartial />
 </FilteredContent>
 
 <FilteredContent filter="Hetzner Cloud">
-<Partial file="../../src/pages/docs/partials/_hetzner.md" />
+<HetznerPartial />
 </FilteredContent>
 
 <FilteredContent filter="Latitude.sh">
-<Partial file="../../src/pages/docs/partials/_latitudesh.md" />
+<LatitudeshPartial />
 </FilteredContent>
 
 <FilteredContent filter="Linode">
-<Partial file="../../src/pages/docs/partials/_linode.md" />
+<LinodePartial />
 </FilteredContent>
 
 <FilteredContent filter="OVHcloud">
-<Partial file="../../src/pages/docs/partials/_ovh.md" />
+<OvhPartial />
 </FilteredContent>
 
 <FilteredContent filter="Packet">
-<Partial file="../../src/pages/docs/partials/_packet.md" />
+<PacketPartial />
 </FilteredContent>
 
 <FilteredContent filter="Vultr">
-<Partial file="../../src/pages/docs/partials/_vultr.md" />
+<VultrPartial />
 </FilteredContent>
 
 </FilteredContentBox>

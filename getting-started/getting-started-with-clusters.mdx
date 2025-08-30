@@ -3,6 +3,9 @@ title: Getting started with Cloud 66 Clusters
 lead: A Cloud 66 Cluster is a "blank" instance of Kubernetes infrastructure - i.e. with no application specific components installed. You can use a Cluster to deploy multiple applications to the same set of servers.
 ---
 
+import CloudProviderOrOwnServerTabsPartial from '../partials/_cloud_provider_or_own_server_tabs.mdx';
+
+
 <Callout type="info" title="Cluster compatibility">
 Clusters are only compatible with applications built using Cloud 66 [Container Management Service Version 2](/docs/cloud-66-101/concepts-and-terminology#version-1-vs-version-2). 
 </Callout>
@@ -15,7 +18,7 @@ Before you start, please check you have the following:
 * **Application code and/or pre-built images** &mdash; Application code should be hosted in a (secure) publicly accessible git repository and pre-built images should be hosted in image publicly accessible repositories.
 * **A Cloud account linked to Cloud 66 or your own servers set up** &mdash; See below.
 
-<Partial file="../../src/pages/docs/partials/_cloud_provider_or_own_server_tabs.md" />
+<CloudProviderOrOwnServerTabsPartial />
 
 ## Creating a Cloud 66 Cluster
 

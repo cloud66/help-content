@@ -2,6 +2,9 @@
 title: Migrating from Heroku to Cloud 66
 ---
 
+import CloudProviderOrOwnServerTabsPartial from '../partials/_cloud_provider_or_own_server_tabs.mdx';
+
+
 ## Overview
 
 You can migrate your application from Heroku to Cloud 66 in 3 steps: 
@@ -22,7 +25,7 @@ Before you begin migrating your application please check you have the following:
 * **A Git repo containing your application code** &mdash; This can be a public or private repo. You can use any Git provider like GitHub / BitBucket or use your own privately hosted repo.
 * **A Cloud Account or Your Own Servers** &mdash; See below.
 
-<Partial file="../../src/pages/docs/partials/_cloud_provider_or_own_server_tabs.md" />
+<CloudProviderOrOwnServerTabsPartial />
 
 <Callout type="info" title="What server size do I need?">
 Using Heroku, you can choose between 1X (512 MB), 2X (1 GB) and PX (6 GB) server sizes. This makes it easy to calculate your server requirements, and we recommend that you use similar server resources when deploying your application via Cloud 66. We also recommend that you have a separate server for your database in production environments.

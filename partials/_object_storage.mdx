@@ -1,23 +1,29 @@
+import AwsStaticPartial from './_aws-static.mdx';
+import AzureStaticPartial from './_azure-static.mdx';
+import DoStaticPartial from './_do-static.mdx';
+import GceStaticPartial from './_gce-static.mdx';
+import LinodeStaticPartial from './_linode-static.mdx';
+
 <FilteredContentBox >
 
 <FilteredContent filter="Amazon S3">
-<Partial file="../../src/pages/docs/partials/_aws-static.md" />
+<AwsStaticPartial />
 </FilteredContent>
  
 <FilteredContent filter="Azure">
-<Partial file="../../src/pages/docs/partials/_azure-static.md" />
+<AzureStaticPartial />
 </FilteredContent>
 
 <FilteredContent filter="DigitalOcean Spaces">
-<Partial file="../../src/pages/docs/partials/_do-static.md" />
+<DoStaticPartial />
 </FilteredContent>
 
 <FilteredContent filter="Google">
-<Partial file="../../src/pages/docs/partials/_gce-static.md" />
+<GceStaticPartial />
 </FilteredContent>
 
 <FilteredContent filter="Linode">
-<Partial file="../../src/pages/docs/partials/_linode-static.md" />
+<LinodeStaticPartial />
 </FilteredContent>
 
 </FilteredContentBox>

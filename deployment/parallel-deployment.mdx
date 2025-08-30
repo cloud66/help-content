@@ -166,13 +166,13 @@ You can [tag your application servers](/docs/servers/tagging-components) as eith
 
 ## Pros and cons of each deployment strategy
 
-<Table >
+
 |Strategy|Pros|Cons|
 |--- |--- |--- |
 |Serial|The safest option - only one server is ever affected|The slowest option with a long period of overlap between old and new code being served|
 |Parallel|The fastest option with a very brief overlap of old and new code being served|The riskiest strategy - a bad deploy can impair all your servers. Will result in some downtime for webservers that don't support live reloads|
 |Rolling|A balance between safe and fast. Very brief overlap of old and new code being served|Requires at least 4 servers and a load balancer. Half your servers will be unavailable during deployment so load on the application needs to be managed carefully|
-</Table>
+
 
 ## Coping with load balancer configuration lag
 

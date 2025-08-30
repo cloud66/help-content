@@ -573,7 +573,7 @@ For non-web processes:
 
 ### Docker
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`activeprotect`|<Glyph icon="redeploy" />|The parent node for ActiveProtect settings (see `whitelist` and `http_ban_rate` below)|All|
@@ -595,7 +595,7 @@ For non-web processes:
 |`vn_name`|<Glyph icon="build" />|The name of the Virtual Network in which you would like to create your servers.|Azure|
 |`vpc_id`|<Glyph icon="build" />|**ID** or **name** of the VPC in which you would like to create your servers.|AWS, Azure, DigitalOcean, Hetzner|
 |`weave_version` (Container Service V1 only)|<Glyph icon="upgrade" />|Specify the version of Weave you want to install. Container Service V1 only.|All|
-</Table>
+
 
 <Callout type="warning" title="AWS VPC requires subnet_id">
 In order to use an AWS *vpc_id*, you must provide *subnet_id* for all servers used by your application.
@@ -635,12 +635,12 @@ The gateway should be defined and open before you can use it in manifest.
 </Callout>
 
 The following settings are available via the Manifest file:
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`name`|<Glyph icon="redeploy" />|Specify the name of gateway you want to use for your application.|All|
 |`username`|<Glyph icon="redeploy" />|Specify the username which should be used to connect to Bastion server.|All|
-</Table>
+
 
 #### Example YAML for gateway
 
@@ -656,14 +656,14 @@ Nginx is the default webserver & reverse proxy for applications managed by Cloud
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`cors`|<Glyph icon="redeploy" />|Enable Cross Origin Resource Sharing|All|
 |`nginx/precompiled_url`|<Glyph icon="build" />|A URL pointing to a file in `tar.gz` format that contains a custom version of Nginx that will be used with your application. This Nginx package **MUST** be compiled using our [Cloud 66 compiler](https://github.com/cloud66-oss/nginx-compiler). Please read the [docs on the Github page](https://github.com/cloud66-oss/nginx-compiler#readme) for more details.|All|
 |`extra_build_arguments` (*deprecated*)|<Glyph icon="build" />|Extra build argument string that will be added to the `nginx build` command. If you require additional modules that themselves require specific source to be present, you should use a `BEFORE_NGINX` [deploy hook](/docs/deploy-hooks/deploy-hooks#hook-points) to ensure that source is present. You can use the `cloud66/download` snippet to achieve this easily. The following build arguments are currently always added: `--with-http_realip_module --with-ipv6 --with-http_v2_module` regardless of this value.|All|
 |`perfect_forward_secrecy` (*deprecated*)|<Glyph icon="redeploy" />|Enable Perfect Forward Secrecy|All|
-</Table>
+
 
 <PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
@@ -765,7 +765,7 @@ You can configure your application to automatically run [global availability che
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`endpoint`|<Glyph icon="redeploy" />|The endpoint to that will be queried during the check|All|
@@ -773,7 +773,7 @@ The following settings are available via the Manifest file:
 |`timeout`|<Glyph icon="redeploy" />|The timeout limit in seconds of the endpoint (limit: `10`)|All|
 |`max_redirects`|<Glyph icon="redeploy" />|The number of acceptable HTTP redirects (limit: `10`)|All|
 |`cooldown`|<Glyph icon="redeploy" />|The delay between the end of the deployment process and the start of the test, in seconds. (limit: `1800`)|All|
-</Table>
+
 
 #### Example YAML for post-deployment global availability checks
 
@@ -813,7 +813,7 @@ rails:
 
 A Rails application type in the manifest file gives you fine control over things like the Ruby version or the server the rails application is deployed on.
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`activeprotect`|<Glyph icon="redeploy" />|The parent node for ActiveProtect settings (see `whitelist` and `http_ban_rate` below)|All|
@@ -841,7 +841,7 @@ A Rails application type in the manifest file gives you fine control over things
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`vn_name`|<Glyph icon="build" />|The name of the Virtual Network in which you would like to create your servers.|Azure|
 |`vpc_id`|<Glyph icon="build" />|**ID** or **name** of the VPC in which you would like to create your servers.|AWS, Azure, DigitalOcean, Hetzner|
-</Table>
+
 
 <Callout type="warning" title="AWS VPC requires subnet_id">
 In order to use an AWS *vpc_id*, you must provide *subnet_id* for all servers used by your application.
@@ -885,7 +885,7 @@ Please note that `--shebang` and `--with` bundler options are NOT currently supp
 This is an advanced feature for expert users of Bundler. 
 </Callout>
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`bundler / options / without`|<Glyph icon="redeploy" />|An array of environments you want to exclude during bundle install e.g. `["development", "test", "custom"]` Default: `[]` if Rails env is development, or `["development", "mock", "test"]` otherwise.|All|
@@ -893,7 +893,7 @@ This is an advanced feature for expert users of Bundler.
 |`bundler / options / quiet`|<Glyph icon="redeploy" />|Default: `true`|All|
 |`bundler / options / full-index`|<Glyph icon="redeploy" />|Default: `false`|All|
 |`bundler / options / ...`|<Glyph icon="redeploy" />|Any other valid `bundle install` options you want to apply|All|
-</Table>
+
 
 #### Example YAML for Bundle Install options in Rails
 
@@ -942,7 +942,7 @@ rack:
 
 These checks define tests to confirm whether your application has been successfully deployed, and to mark a deployment as "failed" if any do not pass. For more details on health checks please read our [how-to guide](/docs/servers/application-health-checks#deployment-success-checks). Health Checks have the following Manifest options:
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`protocol`|<Glyph icon="redeploy" />|The protocol(s) to use when running the check(s). Acceptable values are `http` or `https`.|All|
@@ -952,7 +952,7 @@ These checks define tests to confirm whether your application has been successfu
 |`accept`|<Glyph icon="redeploy" />|A comma separated list of the HTTP response codes that should be considered as a "pass" of this check. All values must be enclosed in quotes.  Ranges can be defined with dashes and both the first and last port numbers must be included. For example `["200-201", "300-305"]`|All|
 |`follow_redirects`|<Glyph icon="redeploy" />|Whether to follow redirects when performing the check. The default value is true.|All|
 |`timeout`|<Glyph icon="redeploy" />|The wait, in seconds, before the check will time out. The max is 300.|All|
-</Table>
+
 
 #### Example YAML for Deployment Success Checks
 
@@ -989,7 +989,7 @@ For Sinatra use [Rack](#rack)
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
@@ -1000,7 +1000,7 @@ The following settings are available via the Manifest file:
 |`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by ElasticSearch, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`version`|<Glyph icon="build" />|The version of ElasticSearch you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-</Table>
+
 
 #### Example YAML for ElasticSearch
 
@@ -1028,7 +1028,7 @@ If you need help specifying multiple databases of the same type via your Manifes
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
@@ -1039,7 +1039,7 @@ The following settings are available via the Manifest file:
 |`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by GlusterFS, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`version`|<Glyph icon="build" />|The version of GlusterFS you wish to install.NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-</Table>
+
 
 #### Example YAML for GlusterFS
 
@@ -1057,13 +1057,13 @@ glusterfs:
 
 The following settings are available via the Manifest file :
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`listen_ip`|<Glyph icon="redeploy" />|Specify which IP address to listen on (default value is `0.0.0.0`)|All|
 |`memory`|<Glyph icon="redeploy" />|Specify maximum memory (in MB) that can be used (default is `64`)|All|
 |`port`|<Glyph icon="redeploy" />|Specify connection port (default is `11211`)|All|
-</Table>
+
 
 #### Example YAML for Memcached
 
@@ -1081,7 +1081,7 @@ memcached:
 
 The following settings are available via the Manifest file :
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
@@ -1093,7 +1093,7 @@ The following settings are available via the Manifest file :
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`tamper_with_yml`|<Glyph icon="redeploy" />|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
 |`version`|<Glyph icon="build" />|Specify the version of MongoDB you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-</Table>
+
 
 #### Example YAML for MongoDB
 
@@ -1112,7 +1112,7 @@ If you need help specifying multiple databases of the same type via your Manifes
 
 The following settings are available via the Manifest file :
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`encoding`|<Glyph icon="build" />|Specify the encoding (AKA charset) for the database. Valid values can be found in the [MySQL charset docs](https://dev.mysql.com/doc/refman/8.0/en/charset-charsets/).|All|
@@ -1126,7 +1126,7 @@ The following settings are available via the Manifest file :
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`tamper_with_yml`|<Glyph icon="redeploy" />|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
 |`version`|<Glyph icon="build" />|Specify the version of MySQL you want to install. Valid values are `5.7` or `8.0` NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-</Table>
+
 
 #### Example YAML for MySQL
 
@@ -1148,7 +1148,7 @@ If you need help specifying multiple databases of the same type via your Manifes
 
 The following settings are available via the Manifest file :
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`encoding`|<Glyph icon="build" />|Specify the encoding (AKA charset) for the database. Valid values can be found in the [Postgres character set docs](https://www.postgresql.org/docs/current/multibyte#MULTIBYTE-CHARSET-SUPPORTED).|All|
@@ -1163,7 +1163,7 @@ The following settings are available via the Manifest file :
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`tamper_with_yml`|<Glyph icon="redeploy" />|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
 |`version`|<Glyph icon="build" />|Specify the version of Postgres you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-</Table>
+
 
 #### Example YAML for Postgres
 
@@ -1194,7 +1194,7 @@ postgresql:
 
 The following settings are available via the Manifest file :
 
-<Table >
+
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
 |`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
@@ -1205,7 +1205,7 @@ The following settings are available via the Manifest file :
 |`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by Redis, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
 |`version`|<Glyph icon="build" />|Specify the version of Redis you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-</Table>
+
 
 #### Example YAML for Redis
 
@@ -1237,14 +1237,14 @@ You can use your Manifest file to customize the Azure load balancer deployed by 
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|
 |--- |--- |--- |
 |`availability_zones`|<Glyph icon="build" />|An array of the availability zones in which the load balancer will be active e.g. `["1", "3"]` |
 |`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
 |`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
 |`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-</Table>
+
 
 
 ### AWS load balancer
@@ -1253,7 +1253,7 @@ You can use your Manifest file to customize the AWS load balancer deployed by Cl
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|
 |--- |--- |--- |
 |`alb_ssl_policy`|<Glyph icon="redeploy" />|The SSL policy to associate with your ALB when performing SSL termination. See the official AWS docs for [available ALB SSL policies.](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener#describe-ssl-policies) (Applies only to Application Load Balancers)|
@@ -1261,7 +1261,7 @@ The following settings are available via the Manifest file:
 |`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
 |`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
 |`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-</Table>
+
 
 #### Example YAML for AWS load balancers
 
@@ -1283,13 +1283,13 @@ You can use a manifest file to configure Hetzner Cloud Load Balancers deployed b
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|
 |--- |--- |--- |
 |`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
 |`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
 |`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-</Table>
+
 
 Refer to the [DigitalOcean documentation](https://docs.digitalocean.com/products/networking/load-balancers/) for more detail on these settings.
 
@@ -1302,14 +1302,14 @@ You can use your Manifest file to customize any GCE load balancers deployed by C
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|
 |--- |--- |--- |
 |`balance`|<Glyph icon="build" />|The load balancing strategy. Valid values: `NONE`, `CLIENT_IP` or `CLIENT_IP_PROTO`|
 |`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
 |`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
 |`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-</Table>
+
 
 Refer to the [GCE documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools) for more detail on these settings.
 
@@ -1331,18 +1331,18 @@ You can use your Manifest file to configure and define any HAProxy load balancer
 
 Because HAProxy load balancers are not "cloud native", you will need to specify the **server configuration** in the same YAML node as your HAproxy settings. The server configuration settings are :
 
-<Table >
+
 |Server options|Applied on|Description|
 |--- |--- |--- |
 |`key_name`|<Glyph icon="build" />|Default|
 |`region`|<Glyph icon="build" />|DigitalOcean's region|
 |`size`|<Glyph icon="build" />|The size of the instance|
 |`unique_name`|<Glyph icon="build" />|Name of the instance|
-</Table>
+
 
 The following **HAproxy settings** are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|
 |--- |--- |--- |
 |`balance`|<Glyph icon="redeploy" />|The load balancing strategy. Valid values: `roundrobin`, `leastconn` or `source`|
@@ -1352,7 +1352,7 @@ The following **HAproxy settings** are available via the Manifest file:
 |`httpchk`|<Glyph icon="redeploy" />|The URL visited to [check your server health](#automatic-endpoint-test)|
 |`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
 |`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-</Table>
+
 
 Refer to the [HAProxy documentation](http://haproxy.1wt.eu/download/1.3/doc/configuration.txt) for more information
 
@@ -1385,14 +1385,14 @@ You can use a manifest file to configure Hetzner Cloud Load Balancers deployed b
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|
 |--- |--- |--- |
 |`balance`|<Glyph icon="build" />|The load balancing strategy. Valid values: `round_robin` or `least_connections`|
 |`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
 |`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
 |`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-</Table>
+
 
 Refer to the [Hetzner documentation](https://docs.hetzner.com/cloud/load-balancers/overview) for more detail on these settings.
 
@@ -1404,7 +1404,7 @@ You can use a manifest file to configure Linode Nodebalancers deployed by Cloud 
 
 The following settings are available via the Manifest file:
 
-<Table >
+
 |Option|Applied on|Description|
 |--- |--- |--- |
 |`algorithm` or `balance`|<Glyph icon="build" />|The load balancing algorithm. Valid values: `roundrobin`, `leastconn` or `source`. Default: `roundrobin`|
@@ -1412,7 +1412,7 @@ The following settings are available via the Manifest file:
 |`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
 |`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
 |`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-</Table>
+
 
 Refer to the [Linode documentation](https://www.linode.com/docs/platform/nodebalancer/nodebalancer-reference-guide) for more detail on these settings.
 

@@ -2,6 +2,23 @@
 title: Adding a cloud provider
 ---
 
+import AwsPartial from '../partials/_aws.mdx';
+import AwsStaticPartial from '../partials/_aws-static.mdx';
+import AzurePartial from '../partials/_azure.mdx';
+import AzureStaticPartial from '../partials/_azure-static.mdx';
+import DoPartial from '../partials/_do.mdx';
+import DoStaticPartial from '../partials/_do-static.mdx';
+import GcePartial from '../partials/_gce.mdx';
+import GceStaticPartial from '../partials/_gce-static.mdx';
+import HetznerPartial from '../partials/_hetzner.mdx';
+import LatitudeshPartial from '../partials/_latitudesh.mdx';
+import LinodePartial from '../partials/_linode.mdx';
+import LinodeStaticPartial from '../partials/_linode-static.mdx';
+import OvhPartial from '../partials/_ovh.mdx';
+import PacketPartial from '../partials/_packet.mdx';
+import VultrPartial from '../partials/_vultr.mdx';
+
+
 ## Overview
 
 You can add a cloud provider account to Cloud 66 in one of two ways:
@@ -23,46 +40,46 @@ Follow the instructions for your prefered cloud provider below to grant Cloud 66
 ## AWS (Amazon Web Services)
 
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_aws.md" />
+<AwsPartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
-<Partial file="../../src/pages/docs/partials/_aws-static.md" />
+<AwsStaticPartial />
 </PerProduct>
 
 ## Azure
 
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_azure.md" />
+<AzurePartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
-<Partial file="../../src/pages/docs/partials/_azure-static.md" />
+<AzureStaticPartial />
 </PerProduct>
 
 ## Digital Ocean
 
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_do.md" />
+<DoPartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
-<Partial file="../../src/pages/docs/partials/_do-static.md" />
+<DoStaticPartial />
 </PerProduct>
 
 ## Google Cloud (GCE)
 
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_gce.md" />
+<GcePartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
-<Partial file="../../src/pages/docs/partials/_gce-static.md" />
+<GceStaticPartial />
 </PerProduct>
 
 ## Hetzner Cloud
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_hetzner.md" />
+<HetznerPartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
@@ -71,7 +88,7 @@ Hetzner does not currently support static site deployments.
 
 ## Latitude.sh
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_latitudesh.md" />
+<LatitudeshPartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
@@ -81,16 +98,16 @@ Latitude.sh does not currently support static site deployments.
 ## Linode
 
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_linode.md" />
+<LinodePartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
-<Partial file="../../src/pages/docs/partials/_linode-static.md" />
+<LinodeStaticPartial />
 </PerProduct>
 
 ## OVH
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_ovh.md" />
+<OvhPartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
@@ -98,11 +115,11 @@ OVH does not currently support static site deployments.
 </PerProduct>
 
 ## Packet
-<Partial file="../../src/pages/docs/partials/_packet.md" />
+<PacketPartial />
 
 ## Vultr
 <PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
-<Partial file="../../src/pages/docs/partials/_vultr.md" />
+<VultrPartial />
 </PerProduct>
 
 <PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
