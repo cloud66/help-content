@@ -3,10 +3,6 @@ title: Building your Docker service (V1)
 lead: "How to build a Docker service in Cloud 66 (Version 1 only)"
 ---
 
-<Callout type="error" title="Legacy feature">
-PLEASE NOTE: This guide only applies to Version 1 of Cloud 66, also know as *CSv1*. New Cloud 66 users should refer to [this guide](/docs/build-and-config/docker-service-configuration) instead. 
-</Callout>
-
 ## Pull code from Git
 
 For BuildGrid to pull code from your Git repository and build your image, you will need to provide a `git_url` and `git_branch`. Simply place a Dockerfile in your repository to define how the image should be built. These images are built continuously from your source code and are stored in a private Docker image repository, available to be used locally or pushed to production servers.
@@ -152,4 +148,3 @@ services:
 Check out the [Habitus website](https://www.habitus.io) for more information about generating a `build.yml`. Read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help on custom service configurations.
 
 A Habitus build usually has multiple steps and each step can generate a Docker image. Using `use_habitus_step` attribute you can specify which step's results you would like to use as the image for the container. 
-

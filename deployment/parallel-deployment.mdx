@@ -193,13 +193,10 @@ If you use this option in your manifest, subsequent deployments will use the val
 </Callout>
 
 </PerProduct>
-<PerProduct includes={["deploy"]}>
 
-## Serial deployment (V1 only)
+<PerProduct includes={["deploy"]} includeVersions={["1"]}>
 
-<Callout type="error" title="Legacy feature">
-PLEASE NOTE: This feature is only available in the legacy version of Cloud 66 container service (also know as *CSv1*).
-</Callout>
+## Serial deployment
 
 In this strategy we deploy to each server one at a time. We take each server off the load balancer and then add it back once the deployment has succeeded. If a server fails to deploy we will halt the process and alert you.
 

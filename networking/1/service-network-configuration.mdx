@@ -2,10 +2,6 @@
 title: Service networking configuration (CSv1)
 ---
 
-<Callout type="error" title="Legacy feature">
-PLEASE NOTE: This guide only applies to Version 1 of Cloud 66 Container Service, also know as *CSv1*. If you are new to Cloud 66 then you should use the Dashboard features to manage this configuration.
-</Callout>
-
 ## Traffic distribution
 
 The external traffic to your server(s) is distributed by a Nginx reverse proxy for each upstream on HTTP and HTTPS. You can define which ports each service listens on (if any) using the `ports` directive below. 
@@ -20,7 +16,7 @@ This network provides an internal IP address to each container, automatically up
 
 ### Encryption
 
-Weave includes a secure, performant authenticated [encryption mechanism](https://www.weave.works/blog/weave-net-cryptography-faq/) which we automatically configure on your behalf, so you don’t have to take any custom encryption actions yourself.
+Weave includes a secure, performant authenticated [encryption mechanism](https://www.weave.works/blog/weave-net-cryptography-faq/) which we automatically configure on your behalf, so you don't have to take any custom encryption actions yourself.
 
 ## ElasticDNS
 
