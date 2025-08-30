@@ -30,7 +30,7 @@ To get started:
 4. Build your application
 
 </PerProduct>
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ## Editing a manifest file
 
@@ -83,7 +83,7 @@ You'll see that we're defining several things in this YAML:
 - The version of Ruby that will be installed as part of this component ( `ruby_version`)
 </PerProduct>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ```yaml
 node:
@@ -122,7 +122,7 @@ rails:
 This would install a Rails server on DigitalOcean, at their London data centre and on a 2CPU and 2GB cloud server. 
 </PerProduct>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 ```yaml
 node:
   configuration:
@@ -186,7 +186,7 @@ If you would like your manifest setting to apply to **all environments**, you ca
 
 The (mandatory) component settings define how a component is configured. The Manifest file currently supports the following components (click on any component name for details):
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 *   [Docker](#docker)
 *   [ElasticSearch](#elasticsearch)
 *   [GlusterFS](#glusterfs)
@@ -569,7 +569,7 @@ For non-web processes:
 * **Applied on** - the type of deployment required to update this setting. In many cases settings only apply when an application is first built, or when new servers are created or it is cloned. Hover over the names of each condition to see more info.
 * **Clouds** - the cloud providers on which a setting can be used.
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ### Docker
 
@@ -665,7 +665,7 @@ The following settings are available via the Manifest file:
 |`perfect_forward_secrecy` (*deprecated*)|<Glyph icon="redeploy" />|Enable Perfect Forward Secrecy|All|
 
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ### Customizing Nginx for containerized apps
 
@@ -685,7 +685,7 @@ rails:
 ```
 </PerProduct>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 ```yaml
 docker:
   configuration:
@@ -714,7 +714,7 @@ rails:
 
 </PerProduct>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ```yaml
 docker:
@@ -777,7 +777,7 @@ The following settings are available via the Manifest file:
 
 #### Example YAML for post-deployment global availability checks
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ```yaml
 docker:

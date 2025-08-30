@@ -28,7 +28,7 @@ For **Rails/Rack** applications this file should be present within a folder name
 
 This file should be YAML formatted, and you can use a service like [YAML Validator](https://codebeautify.org/yaml-validator) to validate it.
 </PerProduct>
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 Deploy hooks can be added to an application via the Dashboard. Like most other configuration templates in Cloud 66, Deploy hooks are YAML-formatted.
 </PerProduct>
 
@@ -72,7 +72,7 @@ This hook will install the `nmap` package on our server during the deployment pr
 When automating the installation of packages, remember to use the `-y` flag to answer yes to all prompts.
 </Callout>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 ### Adding the hook to your app
 
 To add the hook:
@@ -128,7 +128,7 @@ All deploy hooks for Rails applications use a file called *deploy_hooks.yml*. Th
 This file should be YAML formatted, and you can use a service like [YAMLlint](https://codebeautify.org/yaml-validator) to validate it.
 </PerProduct>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 Deploy hooks for a Cloud 66 application are managed via the Dashboard. The hooks must be YAML formatted, and you can use a service like [YAMLlint](https://codebeautify.org/yaml-validator) to validate them.
 
 To add or edit hooks:

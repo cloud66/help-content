@@ -17,7 +17,7 @@ Before you start, please check you have the following:
 - **Application code and/or pre-built images** — Application code should be hosted in a (secure) publicly accessible git repository and pre-built images should be hosted in image publicly accessible repositories.
 - **An account with a supported cloud provider or your own servers set up** — Cloud 66 supports a range of cloud providers. Select your preferred provider from the dropdown under Step 4 below.
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 If you don't have images or code ready, you can use this [simple visit counter application](https://github.com/cloud66/maestro-demo.git) we've created on Github.
 </PerProduct>
 
@@ -73,7 +73,7 @@ Once your app is completely configured, click the *Next →* button.
 </PerProduct>
 
 
-<PerProduct includes={["svelte"]}>
+<PerProduct includes={["sites"]}>
 ### Static generation or server-side rendering?
 
 If we detect that your application uses Svelte we will ask you to confirm whether your application is **statically generated** (AKA prerendered) or uses **server-side rendering**. 
@@ -84,7 +84,7 @@ If you’re unsure of which kind of app you have, you should [read the official 
 
 </PerProduct>
 
-<PerProduct includes={["nextjs"]}>
+<PerProduct includes={["deploy"]}>
 ### Static generation or server-side rendering?
 
 If we detect that your application uses Next.js we will ask you to confirm whether your application is **statically generated** (AKA prerendered) or uses **server-side rendering**. 
@@ -95,7 +95,7 @@ If you’re unsure of which kind of app you have, you should [read the official 
 
 </PerProduct>
 
-<PerProduct includes={["nuxt"]}>
+<PerProduct includes={["sites"]}>
 ### Static generation or server-side rendering?
 
 If we detect that your application uses Nuxt.js we will ask you to confirm whether your application is **statically generated** (AKA prerendered) or uses **server-side rendering**. 
@@ -107,7 +107,7 @@ If you’re unsure of which kind of app you have, you should [read the official 
 </PerProduct>
 
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ### Add more services <Pill title="Optional" color="orange" />
 
@@ -168,7 +168,7 @@ Once your app is completely configured, click the *Next →* button.
 
 </PerProduct>
 
-<PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
+<PerProduct includes={["sites"]}>
 
 Once the analysis is complete you’ll see a yellow information box that you can use to verify the analysis is correct.
 
@@ -182,7 +182,7 @@ If there are any problems you can make changes and click **Reanalyze my code**. 
 
 ### A. Configure access to your cloud provider
 
-<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "deploy"]}>
 
 We need access to your cloud account in order to provision and manage servers on your behalf. How you configure that access differs from provider to provider. Select your cloud provider from the dropdown for more help. 
 
@@ -190,7 +190,7 @@ We need access to your cloud account in order to provision and manage servers on
 
 </PerProduct>
 
-<PerProduct includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
+<PerProduct includes={["sites"]}>
 
 We need access to your cloud account in order to provision and manage static sites on your behalf. How you configure that access differs from provider to provider. Because static sites rely on object storage, some of our cloud providers do not currently support static site deployments.
 
@@ -206,7 +206,7 @@ To add your cloud credentials click the *Add a Deployment Target* button. This
 
 Click the green *Add Deployment Target* button once complete.
 
-<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "deploy"]}>
 ### C. Specify servers
 
 Next you need to specify where your servers will be situated, how large they should be, and where your data will be stored:
@@ -216,7 +216,7 @@ Next you need to specify where your servers will be situated, how large they sho
 3. Specify whether your datastore will share the app server (not recommended for Production), or have its own server. You can also use an existing [external database server](/docs/databases/database-management#no-database-external) if you prefer.
 </PerProduct>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 If you're using our sample application you will need to set up a Redis instance at this point.
 </PerProduct>
 
@@ -232,7 +232,7 @@ You can also close the window and come back later. We will email you once the ap
 The full build and deployment process may take 15 minutes or more because Cloud 66 needs to provision components and resources from the ground up. You can close the window and we will send you an email when the deployment is complete. 
 </Callout>
 
-<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "deploy"]}>
 ### Server build states
 
 In order to allow you to start working with your new app as soon as possible, there are two build states (or stages) for application servers:

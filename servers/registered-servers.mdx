@@ -62,7 +62,7 @@ To add a server behind your gateway:
 
 ## Server requirements
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 - For **Kubernetes clusters**, we strongly recommend that your servers meet [these mininum specs](/docs/references/minimum-specs-kubernetes) to be able to handle the additional load required by the platform.
 - **Operating system**: We currently support **Ubuntu 24.04**, **Ubuntu 22.04** and **Ubuntu 20.04**. The OS needs to be *freshly installed* on your server.
 - **Connection**: For security reasons, Cloud 66 only connects to your server using your secure keys on **port 22**.
@@ -93,7 +93,7 @@ If your application needs to accept connections from the public web you will als
 
 If your server is in a cloud with native security groups (such as AWS Security Groups) then you must manually configure them such that your registered servers are able to talk to each other and Cloud 66 via the ports listed above. 
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 For [CSv1](/docs/cloud-66-101/concepts-and-terminology#version-1-vs-version-2) applications, all servers must be allowed to communicate inside the security group on TCP port `6783`, which is needed to create the overlay network (Weave). 
 </PerProduct>
 
