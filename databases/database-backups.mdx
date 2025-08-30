@@ -12,7 +12,7 @@ Cloud 66 supports two types of backups: _managed_ and _unmanaged_.
 Using managed backups has several benefits:
 
 <PerProduct includes={["rails"]}>
-- You can easily [restore](/:product/:version?/databases/manage-backups) or download database backups using the Dashboard or [Toolbelt](/:product/:version?/toolbelt/toolbelt#backups-download) (CLI)
+- You can easily [restore](/:product/:version?/databases/manage-backups) or download database backups using the Dashboard or [Toolbelt](/:product/:version?/toolbelt/_backups-download) (CLI)
 - [Backup verifiers](/:product/:version?/databases/backup-verifiers) ensure that your backups actually contain what you expect
 - Allows you to use [database replication](/:product/:version?/databases/database-replication) to scale your databases
 - Managed Backups are stored in Cloud 66's secure storage
@@ -85,7 +85,7 @@ Your server may have outdated or unneeded files (logs are a common culprit). A h
 
 ### 3. Disable backup size checks
 
-If you are confident that you have enough space and the first option is not possible, you can use the [Cloud 66 Toolbelt](/:product/:version?/toolbelt/toolbelt#settings-set) to run `"cx settings set -s STACK_NAME db.check.backup.size false"` where `STACK_NAME` is the name of your application. This will disable backup size checks.
+If you are confident that you have enough space and the first option is not possible, you can use the [Cloud 66 Toolbelt](/:product/:version?/toolbelt/_settings-set) to run `"cx settings set -s STACK_NAME db.check.backup.size false"` where `STACK_NAME` is the name of your application. This will disable backup size checks.
 
 <Callout type="info" title="Check disk space first">
  If your server does not have enough space to accommodate the backup, this setting could cause the backup to fail, or the server disk to be fully utilised

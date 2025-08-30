@@ -88,7 +88,7 @@ All databases managed by Cloud 66 have access to these features:
 
 The Rails database migration task (`rake db:migrate`) runs automatically as part of each deployment of your application. If your application has more than one Rails server, we choose the optimal server to run this task. All other servers will wait until the migrations are finished before continuing with deployment. 
 
-You can specify which server will be used for the migration task using [reserved tags](/:product/:version?/servers/reserved-tags). You can turn off automatic migrations using [Toolbelt](/:product/:version?/toolbelt/toolbelt#settings-set). You still have the option to run migrations on a one-off deployment via your Dashboard by clicking *Deploy* -> *Deploy with options* and selecting *Run database migrations*.
+You can specify which server will be used for the migration task using [reserved tags](/:product/:version?/servers/reserved-tags). You can turn off automatic migrations using [Toolbelt](/:product/:version?/toolbelt/_settings-set). You still have the option to run migrations on a one-off deployment via your Dashboard by clicking *Deploy* -> *Deploy with options* and selecting *Run database migrations*.
 
 ## Add environment variables
 
@@ -136,7 +136,7 @@ You can also upload sets of env vars in file format (`dotenv` or `json`). For ex
 $ cx env-vars upload -s my_other_app --file new_env_vars_json --file-type json
 ```
 
-For more commands, see our [Toolbelt guide](/:product/:version?/toolbelt/toolbelt#env-vars-list).
+For more commands, see our [Toolbelt guide](/:product/:version?/toolbelt/_env-vars-list).
 
 </TabsContent>
 

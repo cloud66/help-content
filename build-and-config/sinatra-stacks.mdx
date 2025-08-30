@@ -12,7 +12,7 @@ Given that Sinatran applications can have different database frameworks, we allo
   - **Custom build command** &mdash; This command will run every time until the first build is successful. Example: `bundle exec rake db:seed`
   - **Custom deploy command** &mdash; This command will run on every deployment (including initial build). Example: `bundle exec rake db:migrate`
     
-These commands can be set via [Toolbelt](/:product/:version?/toolbelt/toolbelt#settings-set),
+These commands can be set via [Toolbelt](/:product/:version?/toolbelt/_settings-set),
 
 ```shell
 $ cx settings set -s my_app custom.build.command "rake db:seed"
