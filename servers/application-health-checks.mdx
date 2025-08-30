@@ -112,7 +112,7 @@ In particular you should check that your application correctly reports response 
 
 When a load balancer is set up it will begin to ping your web endpoints to check their health. By default load balancers ping the root path of your application (`/`) and if they receive a `200` response code, they will consider a server healthy.
 
-If your application does not have a valid endpoint or route set for `/` then you can specify a custom path under the `httpchk` option in your  [manifest file](/:product/:version?/manifest/_manifest-settings-for-load-balancers)  to ensure your application responds appropriately. We will configure the load balancer to ping that path rather than the root.
+If your application does not have a valid endpoint or route set for `/` then you can specify a custom path under the `httpchk` option in your  [manifest file](/:product/:version?/manifest/_load-balancer-others)  to ensure your application responds appropriately. We will configure the load balancer to ping that path rather than the root.
 
 If your web servers respond positively to the ping test, the load balancer will distribute the load between them. If any of these ping tests fail, the load balancer will not distribute traffic to those servers that failed this test.
 
