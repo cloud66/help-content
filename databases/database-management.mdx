@@ -7,7 +7,7 @@ products: ['rails', 'deploy']
 
 We currently support the following databases, with no need for additional configuration after deployment.
 
-* MySQL (or Percona if [configured via Manifest](/:product/:version?/manifest/building-a-manifest-file/_mysql)
+* MySQL (or Percona if [configured via Manifest](/:product/:version?/manifest/_mysql)
 * Postgres
 * MongoDB
 * Redis
@@ -93,7 +93,7 @@ after_checkout:
   execute: true
 ```
 
-This hook simply overwrites the standard config file with the config file of your choice at the start of the deployment process. Please read our [full guide to deploy hooks](/:product/:version?/deploy-hooks/using-deploy-hooks) to learn how to implement this hook.
+This hook simply overwrites the standard config file with the config file of your choice at the start of the deployment process. Please read our [full guide to deploy hooks](/:product/:version?/deploy-hooks/deploy-hooks) to learn how to implement this hook.
 </PerProduct>
 <PerProduct includes={["rails"]}>
 ### Environment variables during deployment
@@ -170,7 +170,7 @@ This option allows you to deploy your application without a database managed by 
 For Rails apps, if you have a `url` set in your `database.yml` then we will assume that you are using an external DB. You will need to [set your own env vars](#environment-variables-during-deployment) during deployment, to ensure we can connect to it.
 </PerProduct>
 
-You can also configure an external database via your [Manifest file](/:product/:version?/manifest/building-a-manifest-file/_manifest-settings-for-databases#specifying-external-databases-via-your-manifest by specifying the `server` node as `external`.
+You can also configure an external database via your [Manifest file](/:product/:version?/manifest/_manifest-settings-for-databases#specifying-external-databases-via-your-manifest by specifying the `server` node as `external`.
 
 Please note that if there is no connectivity to your external database, or your external database host is not configured correctly, the deployment will fail.
 
@@ -244,7 +244,7 @@ databases:
 Cloud 66 chooses a server to perform the migrations - all other servers will wait until the migrations are finished before continuing with deployment. You can see which server performs the migrations in the application, and change it using the `c66.migrations.run` [reserved tag](/:product/:version?/servers/reserved-tags).
 
 You can control your Rails database migrations by setting the `run.deploy.command` option through application settings via 
-[Toolbelt](/:product/:version?/toolbelt/toolbelt) which gives you the option of running migrations or not.
+[Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt) which gives you the option of running migrations or not.
 
 ```shell
 $ cx settings set -s my_stack run.deploy.command true
@@ -332,7 +332,7 @@ The following variables are only available in the Redis CustomConfig.
 
 If you need to migrate a database managed by Cloud 66 to an external provider, you should bear in mind the following:
 
-- Updating your [Manifest file](/:product/:version?/manifest/building-a-manifest-file/_manifest-settings-for-databases will not be sufficient to reconfigure your application - you will need to connect your application manually to your new database servers, including authentication credentials, ideally via your app’s [environment variables](/:product/:version?/build-and-config/env-vars).
+- Updating your [Manifest file](/:product/:version?/manifest/_manifest-settings-for-databases will not be sufficient to reconfigure your application - you will need to connect your application manually to your new database servers, including authentication credentials, ideally via your app’s [environment variables](/:product/:version?/build-and-config/env-vars).
 - Your existing database servers will need to be manually removed from your application after you have migrated. They will not be automatically removed or deleted.
 
 The exact migration process will differ widely depending on both the database used, and the host to which you are migrating your data, but all of them share the following steps:

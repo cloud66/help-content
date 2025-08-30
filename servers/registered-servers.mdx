@@ -63,7 +63,7 @@ To add a server behind your gateway:
 ## Server requirements
 
 <PerProduct includes={["deploy"]}>
-- For **Kubernetes clusters**, we strongly recommend that your servers meet [these mininum specs](/:product/:version?/references/minimum-specs-kubernetes) to be able to handle the additional load required by the platform.
+- For **Kubernetes clusters**, we strongly recommend that your servers meet [these minimum specs](/:product/:version?/servers/non-recommended-server-sizes) to be able to handle the additional load required by the platform.
 - **Operating system**: We currently support **Ubuntu 24.04**, **Ubuntu 22.04** and **Ubuntu 20.04**. The OS needs to be *freshly installed* on your server.
 - **Connection**: For security reasons, Cloud 66 only connects to your server using your secure keys on **port 22**.
 - **Sudo**: As Cloud 66 connects to your server and provisions applications from scratch, administrator permissions are sometimes necessary. Therefore our script creates a new user to use for deployment that is a member of the sudoers group and that does not require a password to invoke sudo.
