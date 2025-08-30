@@ -20,19 +20,19 @@ Cloud 66 allows you to centralize the provisioning and management of:
 
 ...as well as all of the configuration files, settings and environment variables on which these components rely.
 
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
 Cloud 66 also caters for prebuilt / JAMstack apps - [see below](#prebuilt-applications).
-{% /per-framework %}
+</PerFramework>
 
 ### How does this differ from other PaaS providers?
 
 Unlike traditional PaaS offerings like Heroku or Google App Engine, Cloud 66 allows you to use your own servers - whether in the cloud, in a data center or even on your own premises. We support both public and private clouds, as well as hybrids and bare metal installations.
 
-{% figure src="/images/PaaS.png" /%}
+<Figure src="/images/PaaS.png" />
 
 Cloud 66 is primarily developer-focused. It automates and standardizes the important but repetitive (and error-prone) tasks involved in configuring and deploying code to infrastructure. The platform is designed to work for both small teams without dedicated DevOps resources, and larger organizations with separate DevOps teams.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ## How we define "application"
 
@@ -94,9 +94,9 @@ There is no difference between these environments when it comes to features and 
 
 * * *
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Containers & containerization
 
@@ -160,9 +160,9 @@ In Cloud 66 an **application** is typically made up of several different service
 
 …and many more. Services are encapsulated by applications - they don’t operate independently.
 
-{% callout type="info" title="Service definitions" %}
+<Callout type="info" title="Service definitions">
 A Cloud 66 service is not necessarily equivalent to a Kubernetes service. Containers hosted using Cloud 66 will, by definition, become Kubernetes services, but Cloud 66 services can also be non-containerized components (see above).
-{% /callout %}
+</Callout>
 
 ## Application components
 
@@ -225,9 +225,9 @@ This is not limited to HTTP or web traffic. The same concepts apply if a contain
 
 If you’d like to understand this concept better, read this [excellent in-depth explainer](https://sookocheff.com/post/kubernetes/understanding-kubernetes-networking-model/) by Kevin Sookocheff.
 
-{% callout type="info" title="What does \"outside\" mean?" %}
+<Callout type="info" title="What does 'outside' mean?">
 In this context, *outside world* is used for any client of your service that's not inside the container. This includes any of your other services running on other environments.
-{% /callout %}
+</Callout>
 
 ## DaemonSets
 
@@ -354,7 +354,7 @@ Cloud 66 builds Docker containers in two ways:
 1. **Pulling code from Git**: This option uses Cloud 66 BuildGrid to automatically build a Docker image from your code. You just need to provide a [Dockerfile](https://docs.docker.com/reference/builder/) that specifies how you'd like us to build the image. Once your image is ready, it is deployed to your servers and managed. We also version the image and allow you to download it if needed.
 2. **Pre-built image**: You provide a Docker image that you've built or one from a public repo. We deploy that image to your servers and manage its lifecycle.
 
-{% /per-framework %}
+</PerFramework>
 
 ## Application vs stack
 
@@ -413,7 +413,7 @@ Always try to keep your stacks at an **A** StackScore&trade; level to ensure app
 
 Cloud 66 constantly seeks to update and improve the StackScore algorithm to consider new data points as well as external conditions, which means that your StackScore will change over time.
 
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
 
 ## Prebuilt applications
 
@@ -484,4 +484,4 @@ You can have your first Cloud 66 application up and running in literally minutes
 
 Follow our 5 minute [Getting Started Guide](/docs/getting-started/deploy-your-first-app).
 
-{% /per-framework %}
+</PerFramework>

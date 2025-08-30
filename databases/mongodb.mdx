@@ -19,7 +19,7 @@ If you need more help, please read our [how-to guide on managing databases in Cl
 
 We support MongoDB authentication by default, and so we will generate a database user and admin user along with passwords. 
 
-All instances of MongoDB managed by Cloud 66 have an additional {% hint caption="logical database" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) {% /hint %} named `admin`. All the users for any logical databases added to a physical MongoDB database group (via Cloud 66’s interfaces) are added to (and queried from) `admin`.
+All instances of MongoDB managed by Cloud 66 have an additional <Hint caption="logical database">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) </Hint> named `admin`. All the users for any logical databases added to a physical MongoDB database group (via Cloud 66’s interfaces) are added to (and queried from) `admin`.
 
 For the **database user**, we set the following roles inside MongoDB:
 

@@ -9,9 +9,9 @@ lead: "How to integrate Helm package manager into Skycap"
 
 You can integrate your Helm configuration into your Skycap pipeline to get the best of both worlds. In this case Skycap manages the Helm configuration files in the same way as [Stencils](/docs/skycap/formations-stencils-and-snapshots#what-is-a-stencil), giving you a way to manage, track and automate a unified container deployment pipeline. 
 
-{% callout type="info" title="Experience with Helm strongly recommended" %}
+<Callout type="info" title="Experience with Helm strongly recommended">
 If you’re not already using Helm, and familiar with all its complexities, we strongly recommend that you spend time learning and configuring it before trying to integrate it with Skycap.
-{% /callout %}
+</Callout>
 
 ## What you'll need
 
@@ -110,7 +110,7 @@ When you’re ready to deploy your application, including any Helm releases:
 
 You will now be able to either download all the configuration files and apply them manually, or copy and paste the commands provided by the page and apply them to your cluster via the terminal. 
 
-{% callout type="info" title="Minimum commands required" %}
+<Callout type="info" title="Minimum commands required">
 There will always be at least two different commands that need to be run: the `render` command for the Stencils and `n` number of `helm` commands - one for each different Helm release in your application.
-{% /callout %}
+</Callout>
 

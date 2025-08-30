@@ -32,9 +32,9 @@ There are two ways to approach upgrading Ubuntu, each with different pros and co
 | Scaling up new servers in your existing application, and then scaling down outdated ones | - Quicker, with less configuration changes required | - Ideal if only a few components need to be upgraded | - You will need to carefully manage servers running different versions of components  |
 | Cloning your entire application and then upgrading all the components | - Lower risk, with all the configuration changes and testing happening in a “sandbox” until you’re ready to cut over | - More time consuming  |
 
-{% callout type="warning" title="Upgrade one layer at a time" %}
+<Callout type="warning" title="Upgrade one layer at a time">
 Whenever possible we suggest upgrading your stack one layer at a time - for example focus on upgrading all your databases and then move on to your application servers.
-{% /callout %}
+</Callout>
 
 ### Before you start the process
 
@@ -43,7 +43,7 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 - Replication is generally not possible between different (minor and major) versions of database engines. If your new servers will need to use a significantly different version of the engine, you will need to upgrade manually - [see our section below](#how-to-upgrade-databases-between-versions).
 - We strongly advise you to test a version of your application locally on the same version of Ubuntu that will be deployed.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### How to upgrade Ubuntu using the scaling up method
 
@@ -60,9 +60,9 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 11. Test your live application thoroughly (consider leaving your old servers in place for a few hours to allow for rapid rollback if needed)
 12. Once you are comfortable that things are running smoothly, scale down your old servers
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ### How to upgrade Ubuntu using the scaling up method
 
@@ -75,7 +75,7 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 7. Test your live application thoroughly (consider leaving your old servers in place for a few hours to allow for rapid rollback if needed)
 8. Once you are comfortable that things are running smoothly, scale down your old servers
 
-{% /per-framework %}
+</PerFramework>
 
 ### How to upgrade Ubuntu using the app cloning method
 

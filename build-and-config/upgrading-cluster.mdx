@@ -13,9 +13,9 @@ There are two strategies for upgrading the version of Kubernetes running on your
 
 It’s possible to upgrade both major and minor versions of Kubernetes running on your cluster without any downtime. This upgrade method revolves around scaling up new servers and swapping them out with the current servers (which are then decommissioned). As such it’s important to prepare thoroughly to avoid any possible downtime.
 
-{% callout type="warning" title="Don't skip versions" %}
+<Callout type="warning" title="Don't skip versions">
 Never step up more than one major version level at a time - instead run this process multiple times.
-{% /callout %}
+</Callout>
 
 ### Check your current version
 
@@ -51,9 +51,9 @@ docker:
 ...
 ```
 
-{% callout type="info" title="You made it!" %}
+<Callout type="info" title="You made it!">
 Note that you can find Kubernetes version information here: [https://kubernetes.io/releases/patch-releases/](https://kubernetes.io/releases/patch-releases/)
-{% /callout %}
+</Callout>
 
 ### Assess your current server capacity
 

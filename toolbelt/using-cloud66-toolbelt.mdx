@@ -6,9 +6,9 @@ title: Getting started with Cloud 66 Toolbelt
 
 Cloud 66 Toolbelt makes it possible to interact with Cloud 66 from the comfort of your command line, and is available for Linux, Mac and Windows.
 
-{% callout type="info" title="Stack vs Application" %}
+<Callout type="info" title="Stack vs Application">
 Many Toolbelt commands use the word "stack" which is now referred to as "application" throughout these docs. They are functionally equivalent terms for the purposes of the Toolbelt.
-{% /callout %}
+</Callout>
 
 ## Install Toolbelt
 
@@ -34,11 +34,11 @@ You can also install a "headless" Toolbelt on servers or machines without a brow
 
 The authorization information is stored on your computer in the **~/.cloud66/cx.json** file. Removing this file will remove the authorization code from your client.
 
-{% callout type="info" title="Revoking access" %}
+<Callout type="info" title="Revoking access">
  To deauthorize Toolbelt, login to your Cloud 66 account and click on the *Revoke access* button under your *Account* page. 
-{% /callout %}
+</Callout>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Access your servers via Toolbelt
 
@@ -50,7 +50,7 @@ To connect to a server for an application run the following command, replacing t
 cx ssh -s <your application name> <the specific server name>
 ```
 
-{% /per-framework %}
+</PerFramework>
 
 ## View Toolbelt information
 
@@ -69,9 +69,9 @@ When you join a Team on Cloud 66, your Toolbelt will automatically work with the
 
 If you have more than one Cloud 66 account (i.e. you are the owner of more than one account and not just a team member), then you will need to set up profiles in Toolbelt to switch between your accounts.
 
-{% callout type="warning" title="--account function is deprecated" %}
+<Callout type="warning" title="--account function is deprecated">
 The `--account` function is now deprecated and has been replaced by cx profiles 
-{% /callout %}
+</Callout>
 
 ## Creating a cx profile
 
@@ -99,9 +99,9 @@ cx stacks list
 
 ...this will take you through the authorization process for the account you'd like to associate with the new profile. See the [Initialize Toolbelt](#initialize-toolbelt) section above for more details on how this works.
 
-{% callout type="warning" title="Log into correct user account" %}
+<Callout type="warning" title="Log into correct user account">
 Make sure you are logged into the correct (alternate) account on the Cloud 66 dashboard before you start this process or it may not work correctly.
-{% /callout %}
+</Callout>
 
 ## Switching between profiles
 
@@ -113,9 +113,9 @@ cx config use NAME
 
 So, following our example above, the command would be `cx config use MY_NICE_NAME`. 
 
-{% callout type="info" title="Default profile" %}
+<Callout type="info" title="Default profile">
 You always have a `default` profile which cannot be deleted or renamed. 
-{% /callout %}
+</Callout>
 
 ## Update Toolbelt
 

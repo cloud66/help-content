@@ -8,9 +8,9 @@ Every application managed by Cloud 66 has a Web Application Firewall (WAF) autom
 
 Your application's WAF is a **separate and different component** from the traditional (IP-table-based) [firewall](/docs/security/firewall-rule) that we install on each server we provision. The WAF allows you to set up a richer and more customisable set of access rules for your application's components than would be possible with IP tables.
 
-{% callout type="info" title="Nginx may need to be updated" %}
+<Callout type="info" title="Nginx may need to be updated">
  Older applications will need to apply an [application update](/docs/build-and-config/application-updates) to install the latest version of NGINX and the components that enable WAF. 
-{% /callout %}
+</Callout>
 
 If the only rule you need to apply is to force all traffic to your servers to flow through your load balancer(s) then you can find that rule under [Traffic Filters](/docs/networking/network-configuration).
 
@@ -27,7 +27,7 @@ You can add rules via either or both of these methods, though you should take ca
 
 You can enable or disable your WAF via your [Cloud 66 Dashboard](https://app.cloud66.com/):
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Web* in the left-hand nav
 3. Click on *Traffic* in the sub nav
@@ -35,9 +35,9 @@ You can enable or disable your WAF via your [Cloud 66 Dashboard](https://app.clo
 5. Check or uncheck the *Enable Web Application Firewall (via ModSecurity)* box 
 6. Click *Review Changes* 
 7. Review the rules that will be applied and then click *Apply Changes* 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Application* in the left-hand nav
 3. Click on *Traffic* in the sub nav
@@ -45,11 +45,11 @@ You can enable or disable your WAF via your [Cloud 66 Dashboard](https://app.clo
 5. Check or uncheck the *Enable Web Application Firewall (via ModSecurity)* box 
 6. Click *Review Changes* 
 7. Review the rules that will be applied and then click *Apply Changes* 
-{% /per-framework %}
+</PerFramework>
 
-{% callout type="error" title="Test your changes carefully" %}
+<Callout type="error" title="Test your changes carefully">
 Given the nature of firewalls, we strongly recommend you test any changes wherever possible, and that you check any configurations carefully before applying them. Incorrect or faulty rules can make your application inaccessible to your customers.
-{% /callout %}
+</Callout>
 
 ### Adding rules manually to ModSecurity
 
@@ -68,7 +68,7 @@ This will immediately apply the new rule to your Nginx server, so we recommend t
 
 The [Open Web Application Security Project](https://owasp.org/about/) (OWASP) is a nonprofit foundation that works to improve the security of software. The foundation provides a set of recommended rules for use with ModSecurity. You can apply these to your application's WAF via your [Cloud 66 Dashboard](https://app.cloud66.com/):
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Web* in the left-hand nav
 3. Click on *Traffic* in the sub nav 
@@ -76,9 +76,9 @@ The [Open Web Application Security Project](https://owasp.org/about/) (OWASP) is
 6. Check all of the boxes next to the rules you would like to apply
 7. Click *Review Changes* 
 8. Review the changes to your configuration and click *Apply Changes* if you're satisfied, or the *Back to Edit link* at the top of the panel if you're not.
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Web* in the left-hand nav
 3. Click on *Traffic* in the sub nav 
@@ -86,7 +86,7 @@ The [Open Web Application Security Project](https://owasp.org/about/) (OWASP) is
 6. Check all of the boxes next to the rules you would like to apply
 7. Click *Review Changes* 
 8. Review the changes to your configuration and click *Apply Changes* if you're satisfied, or the *Back to Edit link* at the top of the panel if you're not.
-{% /per-framework %}
+</PerFramework>
 
 The OWASP rules will now be applied to your Nginx server, which will be reloaded as a result. 
 

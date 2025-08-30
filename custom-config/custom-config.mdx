@@ -36,9 +36,9 @@ You can now edit the configuration and preview any changes before deploying them
 
 See our documentation for more details about CustomConfig for [Nginx](/docs/servers/nginx), HAProxy and [databases](/docs/databases/database-management#customize-your-database-configuration).
 
-{% callout type="warning" title="Preview uses dummy data" %}
+<Callout type="warning" title="Preview uses dummy data">
 Preview is generated with dummy data about your server (like the number of cores or the path for different binaries). Refer to our documentation to learn about how the size of your instance affects the number of [Nginx workers on your server](/docs/servers/nginx)
-{% /callout %}
+</Callout>
 
 ## Submit template changes
 
@@ -54,9 +54,9 @@ Every so often, Cloud 66 needs to update the base configuration files used for y
 
 When a patch is released, having customized configurations introduces complexities due to the differences in settings. If you don’t have customized content, the patch will be automatically applied.
 
-{% callout type="warning" title="Warning" %}
+<Callout type="warning" title="Warning">
 Failure to apply configuration updates may lead to unexpected behaviour by your server(s) and application(s). 
-{% /callout %}
+</Callout>
 
 If we cannot automatically apply the patch, you will be notified and provided with a patch archive. It contains two files - the updated configuration and a patch file. Extract the contents of the archive and download your current configuration from the Cloud 66 UI. With these files ready, run the following command:
 

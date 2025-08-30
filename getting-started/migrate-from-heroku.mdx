@@ -10,9 +10,9 @@ You can migrate your application from Heroku to Cloud 66 in 3 steps:
 2. Import your data to your new environment
 3. Redirect traffic to the new endpoint
 
-{% callout type="info" title="Cloud 66 does not host apps" %}
+<Callout type="info" title="Cloud 66 does not host apps">
 Cloud 66 does not host applications. We automate the build and deployment of your application to the cloud provider of your choice, or your own servers (virtual or physical).
-{% /callout %}
+</Callout>
 
 ## What you’ll need
 
@@ -22,11 +22,11 @@ Before you begin migrating your application please check you have the following:
 * **A Git repo containing your application code** &mdash; This can be a public or private repo. You can use any Git provider like GitHub / BitBucket or use your own privately hosted repo.
 * **A Cloud Account or Your Own Servers** &mdash; See below.
 
-{% partial file="../../src/pages/docs/partials/_cloud_provider_or_own_server_tabs.md" /%}
+<Partial file="../../src/pages/docs/partials/_cloud_provider_or_own_server_tabs.md" />
 
-{% callout type="info" title="What server size do I need?" %}
+<Callout type="info" title="What server size do I need?">
 Using Heroku, you can choose between 1X (512 MB), 2X (1 GB) and PX (6 GB) server sizes. This makes it easy to calculate your server requirements, and we recommend that you use similar server resources when deploying your application via Cloud 66. We also recommend that you have a separate server for your database in production environments.
-{% /callout %}
+</Callout>
 
 ## Migrating
 
@@ -46,9 +46,9 @@ Once your code is deployed, you'll need to migrate your data across. The process
 
 From your Heroku toolbelt, create a database backup URL by running `heroku pgbackups:url`. Next, visit your application and click the _Import Heroku data_ link. Paste the URL provided by the toolbelt into the field, and click _Import Heroku data_.
 
-{% callout type="info" title="Missing Import Heroku Data button?" %}
+<Callout type="info" title="Missing Import Heroku Data button?">
  The *Import Heroku Data* button will disappear 2 weeks after you set up your app. If you need to access it, add `/heroku_import` to the end of your app's Dashboard URL. For example `https://app.cloud66.com/stacks/XXXXX/heroku_import` 
-{% /callout %}
+</Callout>
 
 #### MySQL
 

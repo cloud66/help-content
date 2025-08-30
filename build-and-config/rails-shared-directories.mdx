@@ -26,9 +26,9 @@ If your Rails app requires persistent storage, writing files to `$STACK_PATH` wi
 
 Instead you should store files under `$STACK_BASE/shared`- you can create your own subdirectories as needed. Storing files this way will ensure that they are persisted between deployments.
 
-{% callout type="warning" title="Not suitable for apps with multiple web servers" %}
+<Callout type="warning" title="Not suitable for apps with multiple web servers">
 Applications with multiple web servers should not use the `/shared` directory - see below for details. 
-{% /callout %}
+</Callout>
 
 ## How to share files between frontend and backend
 

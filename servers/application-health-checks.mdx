@@ -6,14 +6,14 @@ title: Application Health Checks
 
 Your app has multiple layers of health checks to ensure that you are kept informed about any issues affecting deployments and uptime. Applications can use any combination of the following checks:
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 - [Deployment Success Checks](#deployment-success-checks)
-{% /per-framework %}
+</PerFramework>
 - [Load Balancer Checks](#load-balancer-health-checks)
 - [Global Availability Checks](#global-availability-checks)
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 - [Service Checks](#service-checks)
-{% /per-framework %}
+</PerFramework>
 
 This doc explains how each health check works, how they differ and how to implement them.
 
@@ -181,10 +181,10 @@ The datacenter regions that we check from are:
 
 This testing uses our open source project, **[Watchman](https://github.com/cloud66-oss/watchman)**, a light, multi-instance service in different geographical locations that provides a full picture of a web endpoint’s general health and global accessibility.
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ## Service Checks
 
 Service Checks in **Cloud 66** allow you to specify different types of checks on your containers - **readiness checks**, **liveness checks**, and **startup checks**. These checks define a set of rules that determine whether your application is currently healthy. For instance, you can check whether an application is responding on an HTTP endpoint, or if a post-initialization file is present.
 
 Service Checks are configured via your `service.yml` file. For more information please read our separate guide to setting up [Service Checks in Cloud 66](/docs/build-and-config/service-lifecycle-management#health).
-{% /per-framework %}
+</PerFramework>

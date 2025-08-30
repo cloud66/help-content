@@ -8,16 +8,16 @@ Multi Database Support allows you to attach multiple **database groups** to an a
 
 Database Groups allow you to attach multiple databases to a single application. A database group is a collection of one or more databases of the *same* type (e.g. MySQL). Different groups can have different database types, allowing a single app to use multiple types of databases (e.g. Postgres *and* Redis), or they can have the same type (e.g. two *separate* groups of MySQL servers).
 
-{% callout type="info" title="Adding logical databases vs physical databases" %}
-If you’d prefer to add another {% hint caption="logical database" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](/docs/databases/adding-database#logical-databases-vs-physical-databases){% /hint %} to an existing database group rather than creating a new database group, please read [our guide on the subject](/docs/databases/adding-database). This guide only deals with adding additional physical databases to your application in the form of database groups.
-{% /callout %}
+<Callout type="info" title="Adding logical databases vs physical databases">
+If you’d prefer to add another <Hint caption="logical database">i.e. the tables & data structures rather than the "physical" database server ([full definition](/docs/databases/adding-database#logical-databases-vs-physical-databases)</Hint> to an existing database group rather than creating a new database group, please read [our guide on the subject](/docs/databases/adding-database). This guide only deals with adding additional physical databases to your application in the form of database groups.
+</Callout>
 
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 If you are using the **native** Rails multiDB feature (i.e. multiple databases with Active Record) then please read our [Rails MultiDB guide](/docs/databases/rails-multidb). (The feature actually uses Database Groups, but does so via another method).
 
-{% /per-framework %}
+</PerFramework>
 
 ## Understanding database groups
 
@@ -69,9 +69,9 @@ If you are using your Manifest file to build an application from scratch, it wil
 
 If you are adding a new database group (or server) to an **existing application** it will use *either* the specifications in your Manifest file *or*, if no specification exists, the most recent version supported by Cloud 66. So, if you need to add a new group with a specific version, you should first add the group to your Manifest and then use the same name when you add the group via your Dashboard (see above).
 
-{% callout type="warning" title="Manifest doesn't alter existing servers" %}
+<Callout type="warning" title="Manifest doesn't alter existing servers">
 Simply adding or removing configurations from your Manifest will not add or remove the associated database servers or groups from your application. Please read our [full guide](/docs/manifest/building-a-manifest-file#manifest-tutorial) to understand how best to use the Manifest file.
-{% /callout %}
+</Callout>
 
 ## Connecting applications to database groups
 
@@ -112,13 +112,13 @@ To set a new default group in your Dashboard:
 
 **We will not apply any changes in env vars to your application immediately.** They will only be applied when you next redeploy your stack (we recommend you do this immediately or as soon as possible).
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 This pattern also applies to the **service networking addresses** of your Cloud 66 components. For more details please read our [full guide on the subject](/docs/databases/database-management#service-names-for-database-groups).
-{% /per-framework %}
+</PerFramework>
 
-{% callout type="info" title="Using group-specific env_vars" %}
+<Callout type="info" title="Using group-specific env_vars">
  You can choose to use the **group-specific environment variables** in your app configuration, rather than using the root level environment variables. So if, for example, your current default group is named "Upgrade" you can still use `MYSQL_UPGRADE_ADDRESS` rather than `MYSQL_ADDRESS`. 
-{% /callout %}
+</Callout>
 
 ## Moving data between database groups
 
@@ -133,9 +133,9 @@ You can import data to a new database group from any existing database group of 
 
 If you can't see the source database in the import list, ensure that you've set up managed backups on the source database and that they use the correct format. 
 
-{% callout type="warning" title="Text backups required to move some databases" %}
-For MySQL and Postgres databases, only text backups can be restored **between different applications**. Binary backups will only allow restoring within the same application. Bear in mind that text backups only contain the default {% hint caption="logical databases" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) {% /hint %} for a database group.
-{% /callout %}
+<Callout type="warning" title="Text backups required to move some databases">
+For MySQL and Postgres databases, only text backups can be restored **between different applications**. Binary backups will only allow restoring within the same application. Bear in mind that text backups only contain the default <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) </Hint> for a database group.
+</Callout>
 
 
 ## Replicating data between database groups

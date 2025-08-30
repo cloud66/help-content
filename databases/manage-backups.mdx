@@ -28,9 +28,9 @@ Restoring a backup **will** disrupt the target database - we do not recommend re
 
 If you need to manually download and/or restore a backup, please read our in-depth guide below.
 
-{% callout type="info" title="Text backups only contain the default logical database" %}
+<Callout type="info" title="Text backups only contain the default logical database">
 If you restore a [text backup](/docs/databases/database-backups#backup-format) of a database, bear in mind it only contains the default logical database from the source physical database. To import all logical databases you will need to use binary backups.
-{% /callout %}
+</Callout>
 
 ## Manually restoring a backup
 
@@ -87,9 +87,9 @@ Once you have your files prepared, you can follow the guide for your specific ba
 
 ## Restoring a MySQL text backup
 
-{% callout type="info" title="We recommend automated backups" %}
+<Callout type="info" title="We recommend automated backups">
 This is a method for *manually* restoring your MySQL text backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
-{% /callout %}
+</Callout>
 
 **Step 1:** Run following command to flatten the folder
 
@@ -157,9 +157,9 @@ $ MySQL -u $MySQL_ADMIN_USERNAME -p$MySQL_ADMIN_PASSWORD $MySQL_DATABASE_NAME < 
 
 ## Restoring a MySQL Binary backup
 
-{% callout type="info" title="We recommend the automated method" %}
+<Callout type="info" title="We recommend the automated method">
  This is a method for *manually* restoring your MySQL binary backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
-{% /callout %}
+</Callout>
 
 You need Percona innobackupex to be able to restore a MySQL binary backup. Percona innobackupex is installed on your MySQL server if it is provisioned by Cloud66. If you need to install it on another server, [follow this guide](https://www.percona.com/doc/percona-xtrabackup/2.3/installation/apt_repo/). 
 
@@ -184,9 +184,9 @@ $ sudo systemctl stop MySQL
 $ sudo rm -rf /path/to/your/MySQL/data/directory
 ```
 
-{% callout type="error" title="Back up your data directory" %}
+<Callout type="error" title="Back up your data directory">
 Please make a copy of the MySQL data directory before deleting it so that you can restore if something goes wrong.
-{% /callout %}
+</Callout>
 
 **Step 5:** Use following command to create a blank MySQL data directory
 
@@ -215,9 +215,9 @@ $ sudo systemctl start MySQL
 
 ## Restoring a Postgres text backup
 
-{% callout type="info" title="We recommend the automated method" %}
+<Callout type="info" title="We recommend the automated method">
  This is a method for *manually* restoring your Postgres text backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
-{% /callout %}
+</Callout>
 
 **Step 1:** Run following command to flatten the folder
 
@@ -281,9 +281,9 @@ $ pg -U $PG_APP_USERNAME --no-password $PG_DATABASE_NAME < /path/to/unarchived/f
 
 ## Restoring a Postgres binary backup
 
-{% callout type="info" title="We recommend the automated method" %}
+<Callout type="info" title="We recommend the automated method">
  This is a method for *manually* restoring your Postgres binary backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
-{% /callout %}
+</Callout>
 
 **Step 1:** You need to find the main backup folder in unarchived folder. Run following command to find it :
 
@@ -304,9 +304,9 @@ $ sudo systemctl stop postgresql
 $ sudo rm -rf /usr/local/pgsql/data
 ```
 
-{% callout type="error" title="Back up your data directory" %}
+<Callout type="error" title="Back up your data directory">
 Please take a backup from the Postgres data directory before deleting it to be able to restore if something goes wrong.
-{% /callout %}
+</Callout>
 
 **Step 4:** Use following command to create a blank Postgres data directory
 
@@ -334,9 +334,9 @@ $ sudo systemctl start postgresql
 
 ## Restoring a Redis backup
 
-{% callout type="info" title="We recommend the automated method" %}
+<Callout type="info" title="We recommend the automated method">
  This is a method for *manually* restoring your Redis backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
-{% /callout %}
+</Callout>
 
 **Step 1:** Run following command to flatten the folder
 
@@ -368,9 +368,9 @@ $ sudo systemctl redis.service stop || sudo service redis stop
 $ sudo rm -rf /data/redis/dump.rdb
 ```
 
-{% callout type="error" title="Back up your data directory" %}
+<Callout type="error" title="Back up your data directory">
 Please take a backup from Redis data file before deleting it to be able to restore if something goes wrong.
-{% /callout %}
+</Callout>
 
 **Step 6:** Use following command to copy new data file
 
@@ -392,9 +392,9 @@ $ sudo systemctl redis.service start || sudo service redis start
 
 ## Restoring a MongoDB backup
 
-{% callout type="info" title="We recommend the automated method" %}
+<Callout type="info" title="We recommend the automated method">
  This is a method for *manually* restoring your MongoDB backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
-{% /callout %}
+</Callout>
 
 **Step 1:** Run following command to see if there is database folder in unarchived folder (Replace YOUR_DATABASE_NAME with correct value):
 
@@ -452,14 +452,14 @@ $ mongorestore --drop --db YOUR_DATABASE_NAME /path/to/database/back
 
 You can use automated database backups to migrate data between applications using the Dashboard, but there are some format restrictions when doing so:
 
-{% table %}
+<Table >
 |DB Engine|Compatible backup format(s) for migration|
 |--- |--- |
 |MySQL|Text only|
 |Postgres|Text only|
 |Mongo|Either|
 |Redis|Either|
-{% /table %}
+</Table>
 
 This only applies to migrations between applications - restores to the original database (i.e. in the same application) will work regardless of format. 
 

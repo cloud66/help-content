@@ -6,9 +6,9 @@ title: Adding & Scaling Elasticsearch
 
 [Elasticsearch](https://www.elastic.co/elastic-stack/) is a powerful open source search and analytics engine, and it's easy to add to your application using the Cloud 66 Dashboard.
 
-{% callout type="warning" title="Don't change server sizes" %}
+<Callout type="warning" title="Don't change server sizes">
 We do not recommend changing the size of existing Elasticsearch servers as this can create critical issues and bring the server down. Follow our [scaling guide](#scaling-elasticsearch-clusters) instead.
-{% /callout %}
+</Callout>
 
 ## Add Elasticearch
 
@@ -24,11 +24,11 @@ To add Elasticsearch to your application:
 
 This adds three environment variables to your application: `ELASTICSEARCH_ADDRESS_INT`, `ELASTICSEARCH_ADDRESS_EXT` and `ELASTICSEARCH_ADDRESS`, which you can use to connect to your Elasticsearch instance.
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
-{% callout type="warning" title="Added to host not container" %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<Callout type="warning" title="Added to host not container">
 For containerized applications Elasticsearch will be added to the host, not as a container.
-{% /callout %}
-{% /per-framework %}
+</Callout>
+</PerFramework>
 
 ## Upgrading Elasticsearch
 
@@ -48,9 +48,9 @@ You need to create a fresh set of servers running the latest version of Elastics
 
 We will now build a brand new instance of Elasticsearch - you can watch the logs, or come back later (we will email you when the build is done).
 
-{% callout type="info" title="In-place upgrades are not supported" %}
+<Callout type="info" title="In-place upgrades are not supported">
  If your instance of Elasticsearch is sharing your application server, you will need to clone your application as we cannot upgrade Elasticsearch in-place. 
-{% /callout %}
+</Callout>
 
 ### Step 2: Scale up more servers in the group (optional)
 
@@ -62,9 +62,9 @@ If your application requires more than one Elasticsearch server to handle the lo
 
 We'll now build another server for your cluster. You can repeat this step as many times as you require.
 
-{% callout type="warning" title="Odd number of servers recommended" %}
+<Callout type="warning" title="Odd number of servers recommended">
  If you are running multiple Elasticsearch servers, for resilience it is recommended to run an ODD number of servers. Running an even number of servers increases the chance of data loss in the event of physical server failure. 
-{% /callout %}
+</Callout>
 
 ### Step 3: Migrate your Elasticsearch data to your new database group
 
@@ -85,15 +85,15 @@ If your application relies on Elasticsearch to function, **we recommend putting 
 
 Finally, redeploy your application to apply all the changes. Test your application is functioning as expected and then deactivate maintenance mode if everything is working. (If not, you can promote your old cluster to default and then fix any issues you've found.)
 
-{% callout type="info" title="Does not apply to manual installations" %}
+<Callout type="info" title="Does not apply to manual installations">
  This guide assumes that you have installed [Elasticsearch](/docs/servers/elasticsearch) via Cloud 66's native tools (dashboard or manifest). If you have configured the service manually then this will not apply 
-{% /callout %}
+</Callout>
 
 ## Scaling Elasticsearch clusters
 
-{% callout type="info" title="Does not apply to manual installations" %}
+<Callout type="info" title="Does not apply to manual installations">
  This guide assumes that you have installed Elasticsearch via Cloud 66's native tools (dashboard or manifest). If you have configured the service manually then this will not apply. 
-{% /callout %}
+</Callout>
 
 You can scale your Elasticsearch cluster through the Cloud 66 dashboard:
 

@@ -19,9 +19,9 @@ The second aspect, the subject of this guide, is concerned with how the new vers
 
 Applications created on Cloud 66 before June 2024 may need to be updated before they can use this functionality. [See below for more details](#preparing-existing-applications-for-rollout-strategies).
 
-{% callout type="warning" title="Rollout strategies on apply to code changes" %}
+<Callout type="warning" title="Rollout strategies on apply to code changes">
 Rollout strategies only apply to direct updates to the code of your web application - they are NOT intended for infrastructure changes (like updates to framework versions or server changes, for example). 
-{% /callout %}
+</Callout>
 
 ## Changing your application’s rollout strategy
 
@@ -31,11 +31,11 @@ There are three ways to set a rollout strategy for an app:
 2. Creating a deployment profile that defines a strategy
 3. Deploying via Cloud 66 Toolbelt using the `rollout-strategy` parameter
 
-{% per-framework includes=["rails"] %}
-{% callout type="info" title="Acknowledge Unicorn configs" %}
+<PerFramework includes={["rails"]}>
+<Callout type="info" title="Acknowledge Unicorn configs">
 If you are using Unicorn, you will need to acknowledge that you have made the required changes to your [Unicorn configuration](/docs/build-and-config/unicorn-rack-server) in your code, otherwise these strategies will not work as desired. 
-{% /callout %}
-{% /per-framework %}
+</Callout>
+</PerFramework>
 
 ### Using "Deploy with options"
 
@@ -89,9 +89,9 @@ Both Blue / Green and Canary rollouts use the same underlying mechanism:
 
 You can see an application's current rollout state at the top of the application page. Clicking this status message (e.g. "Serving Green Deployment") allows you to adjust, finalize or discard the current rollout. 
 
-{% callout type="info" title="HTTP / HTTPS only" %}
+<Callout type="info" title="HTTP / HTTPS only">
 Rollout strategies only fully support traffic routed via HTTP and HTTPS, and not lower level protocols like TCP and UDP. For Blue / Green deployments TCP/UDP traffic will flow to the [current](#how-current-version-is-defined) version. For Canary releases, it will flow to the canary (i.e the new version).
-{% /callout %}
+</Callout>
 
 ## Managing a Blue / Green rollout
 
@@ -180,9 +180,9 @@ When you choose to deploy using a Canary release:
 - You can then adjust the percentage of web traffic being routed to each of the the different versions of your code using the buttons at the top of your application (in your Cloud 66 Dashboard)
 - At any point you can then either *Finalize* a rollout (removes the older version and directs all traffic to the new version) or *Discard* it (essentially a roll back)
 
-{% callout type="info" title="Cohorts are persistent" %}
+<Callout type="info" title="Cohorts are persistent">
  The random cohort of visitors that is assigned to a Canary release will be directed to that release persistently (i.e. they will not bounce between Canary and non-Canary versions of the code). 
-{% /callout %}
+</Callout>
 
 ### Finalizing a Canary deployment
 
@@ -209,8 +209,8 @@ As such if a new version of an application requires a new value for an environme
 
 ## Manage rollouts using Cloud 66 Toolbelt (cx)
 
-{% tabs %}
-{% tab label="cx-command" %}
+<Tabs >
+<Tab label="cx-command">
 
 You can control your rollouts entirely via your command line Toolbelt. The operative command is: `cx stacks variants`
 
@@ -229,9 +229,9 @@ cx stacks variants [global options] command [command options] [arguments...]
    delete		delete an existing preview application variant
    help, h		Shows a list of commands or help for one command   
 ```
-{% /tab %}
+</Tab>
 
-{% tab label="cx-examples" %}
+<Tab label="cx-examples">
 
 This command will **commit** the "new" rollout variant (aka "green") for the application named `my-application`:
 
@@ -251,8 +251,8 @@ This command will set the Canary variant ("green") to receive 25% of all traffic
 cx stacks variants update-percentage 25 -s my-application
 ```
 
-{% /tab %}
-{% /tabs %}
+</Tab>
+</Tabs>
 
 
 ## Preparing existing applications for rollout strategies
@@ -268,9 +268,9 @@ Before using rollout strategies with your existing application, you should:
 
 Supporting Rollout Strategies requires an upgrade of Nginx as well as a new Nginx configuration. If you have made changes to your Nginx configuration, you can follow these steps to ensure your changes are not lost when the Application Updates run.
 
-{% callout type="warning" title="Application Updates can override custom configurations" %}
+<Callout type="warning" title="Application Updates can override custom configurations">
  Application Updates will override the modifications you've made to your Nginx configurations, unless these steps are followed. You can see this as a warning on the Application Updates page shown in yellow. If no warning is shown, then no Nginx configuration update is required and your changes will not be lost. 
-{% /callout %}
+</Callout>
 
 1. Copy your customized Nginx file to a local file for backup and reference
 2. Reset the your configs to default using the button on the page, but don’t apply them

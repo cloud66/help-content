@@ -1,62 +1,62 @@
-{% tabs %}
+<Tabs >
 
-{% tab label="Adding a Cloud Provider" %}
+<Tab label="Adding a Cloud Provider">
 
-{% filtered-content-box %}
-{% filtered-content filter="AWS" %}
-{% partial file="../../src/pages/docs/partials/_aws.md" /%}
-{% /filtered-content %}
+<FilteredContentBox >
+<FilteredContent filter="AWS">
+<Partial file="../../src/pages/docs/partials/_aws.md" />
+</FilteredContent>
 
-{% filtered-content filter="Azure" %}
-{% partial file="../../src/pages/docs/partials/_azure.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="Azure">
+<Partial file="../../src/pages/docs/partials/_azure.md" />
+</FilteredContent>
 
-{% filtered-content filter="DigitalOcean" %}
-{% partial file="../../src/pages/docs/partials/_do.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="DigitalOcean">
+<Partial file="../../src/pages/docs/partials/_do.md" />
+</FilteredContent>
 
-{% filtered-content filter="Google" %}
-{% partial file="../../src/pages/docs/partials/_gce.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="Google">
+<Partial file="../../src/pages/docs/partials/_gce.md" />
+</FilteredContent>
 
-{% filtered-content filter="Hetzner Cloud" %}
-{% partial file="../../src/pages/docs/partials/_hetzner.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="Hetzner Cloud">
+<Partial file="../../src/pages/docs/partials/_hetzner.md" />
+</FilteredContent>
 
-{% filtered-content filter="Latitude.sh" %}
-{% partial file="../../src/pages/docs/partials/_latitudesh.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="Latitude.sh">
+<Partial file="../../src/pages/docs/partials/_latitudesh.md" />
+</FilteredContent>
 
-{% filtered-content filter="Linode" %}
-{% partial file="../../src/pages/docs/partials/_linode.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="Linode">
+<Partial file="../../src/pages/docs/partials/_linode.md" />
+</FilteredContent>
 
-{% filtered-content filter="OVHcloud" %}
-{% partial file="../../src/pages/docs/partials/_ovh.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="OVHcloud">
+<Partial file="../../src/pages/docs/partials/_ovh.md" />
+</FilteredContent>
 
-{% filtered-content filter="Packet" %}
-{% partial file="../../src/pages/docs/partials/_packet.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="Packet">
+<Partial file="../../src/pages/docs/partials/_packet.md" />
+</FilteredContent>
 
-{% filtered-content filter="Vultr" %}
-{% partial file="../../src/pages/docs/partials/_vultr.md" /%}
-{% /filtered-content %}
+<FilteredContent filter="Vultr">
+<Partial file="../../src/pages/docs/partials/_vultr.md" />
+</FilteredContent>
 
-{% /filtered-content-box %}
+</FilteredContentBox>
 
-{% callout type="warning" title="Server deletion" %}
+<Callout type="warning" title="Server deletion">
 If you delete your application from Cloud 66, your servers **will not be deleted on your cloud provider** unless the physical server deletion setting is turned on.
-{% /callout %}
+</Callout>
 
-{% /tab %}
+</Tab>
 
-{% tab label="Adding Your Own Server" %}
+<Tab label="Adding Your Own Server">
 
 [Registered servers](/docs/servers/registered-servers) are a great way for operations teams to manage and allocate physical server resources for consumption by dev teams. 
 
 Registered servers are a pool of your own servers (on a private or public cloud) that can be used for any application and configuration. For more information on how to add your own registered servers, [read our guide](/docs/servers/registered-servers).
 
-{% /tab %}
+</Tab>
 
-{% /tabs %}
+</Tabs>

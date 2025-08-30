@@ -1,21 +1,21 @@
 List the details of the processes running on an application or a server.
 
-{% tabs %}
-{% tab label="Usage" %}
+<Tabs >
+<Tab label="Usage">
 
 ```shell
 $ cx processes list --stack <application name> [--server <server name>] [--name <process name>]
 ```
-{% /tab %}
+</Tab>
     
-{% tab label="arguments" %}
+<Tab label="arguments">
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | \--stack, -s <application name> | yes | — | Full or partial name of the application |
 | \--server <server name> | no | — | The name of the server to query |
 | \--name <process name> | no | — | The name of a process |
-{% /tab %}
-{% tab label="examples" %}
+</Tab>
+<Tab label="examples">
 
 ```shell
 $ cx processes list -s mystack
@@ -24,5 +24,5 @@ $ cx processes list -s mystack --name worker
 $ cx processes list -s mystack --server orca --name worker
 ```
 
-{% /tab %}
-{% /tabs %}
+</Tab>
+</Tabs>

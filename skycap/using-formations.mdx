@@ -18,9 +18,9 @@ For this example we are going to use [Minikube](https://github.com/kubernetes/mi
 
 * **Basic familiarity** with Kuberentes configuration files and commands.
 
-{% callout type="info" title="Sample project" %}
+<Callout type="info" title="Sample project">
 In this guide we are using a [simple project](https://github.com/cloud66-samples/helloworld) that we've supplied on Github. It's a good idea to use this project in your initial Skycap set up so that the steps below correspond to your application.
-{% /callout %}
+</Callout>
 
     
 ## The basics
@@ -31,9 +31,9 @@ Before getting started, let's get ourselves familiar with 3 main concepts of the
 
 A Formation is a "deployment destination" for your application. This could be a dedicated Kubernetes cluster or a shared one. A Formation allows you to manage the collection of Kubernetes configuration templates or **Stencils** that define an application and its environment.
 
-{% callout type="info" title="Learn about Formations" %}
+<Callout type="info" title="Learn about Formations">
  You can find more detailed information about Formations [here](/docs/skycap/formations-stencils-and-snapshots#what-is-a-formation). 
-{% /callout %}
+</Callout>
 
 ### Stencils
 
@@ -43,9 +43,9 @@ Stencils are essentially dynamic Kubernetes configuration templates. They can co
 
 Stencils can contain dynamic **placeholders** that are populated with the right values before they are applied to a Kubernetes cluster. This is called **Rendering** and it allows you to more easily re-use common templates.
 
-{% callout type="info" title="Learn about Stencils" %}
+<Callout type="info" title="Learn about Stencils">
 You can find more detailed information about Stencils [here](/docs/skycap/formations-stencils-and-snapshots#what-is-a-stencil). 
-{% /callout %}
+</Callout>
 
 ### Snapshots
 
@@ -53,9 +53,9 @@ A Snapshot is the state of your application at a point in time. It includes all 
 
 All of these components (including all configurations) are then stored in a private repository on your Cloud 66 account so that you can roll back to a particular application state easily at any time.
 
-{% callout type="info" title="Learn about Stencils" %}
+<Callout type="info" title="Learn about Stencils">
  You can find more detailed information about Snapshots [here](/docs/skycap/formations-stencils-and-snapshots#what-is-a-snapshot). 
-{% /callout %}
+</Callout>
 
 ## Getting Started
 
@@ -67,9 +67,9 @@ You can also add a few tags to it (these help to identify components later on). 
 
 ### Add your first Stencil
 
-{% callout type="warning" title="Knowledge of Kubernetes recommended" %}
+<Callout type="warning" title="Knowledge of Kubernetes recommended">
  This section assumes you are familiar with Kubernetes configuration files at a basic level. 
-{% /callout %}
+</Callout>
 
 Now that you have a Formation defined you can begin populating it with **Stencils**.
 
@@ -98,9 +98,9 @@ metadata:
 
 As you can see, the default `setup.yml` Stencil (from our [base template repository](/docs/skycap/formations-stencils-and-snapshots#what-is-a-base-template)) sets up the required scaffolding for deploying an application to Kubernetes starting with a namespace.
 
-{% callout type="info" title="Base Template Repositories" %}
+<Callout type="info" title="Base Template Repositories">
 We automatically connect a default repository of Stencils - called a "base template repository" - to each Cloud 66 account. You can also create your own template repositories. Read our guide on the subject for more info. 
-{% /callout %}
+</Callout>
 
 You've probably already noticed the dynamic stencil placeholders like `${formation}` and `${snapshot["gitref"]`. Placeholders offer a simple way to replace some values in your configuration files at the time it "renders".
 
@@ -125,9 +125,9 @@ This example uses Skycap's integrated BuildGrid engine to build the container im
 
 A service running on Kubernetes consists of 2 parts: a `deployment` and a `service`. Our sample base template has a Stencil for each one. 
 
-{% callout type="info" title="Automatic naming of YAML files" %}
+<Callout type="info" title="Automatic naming of YAML files">
 We automatically name each new YAML file starting with the name of its original base template repository - in this case  "general-cloud66@" - but you can edit this as needed. However we recommend using a consistent and sensible naming scheme (e.g. by giving all the YAML files for the same application the same prefix)
-{% /callout %}
+</Callout>
 
 Click on the **+** button and choose **deployment.yml**. In the generated Stencil, you can see the are some placeholders called `${require(...)}`. You need to replace these with values that are specific to your application. Let's do that for our Hello World application now.
 
@@ -168,9 +168,9 @@ cx snapshots render --stack 'Hello World' --snapshot 'sn-xizeh-zamic-zycic-vakoh
 
 The `cx snapshots render` command pulls the rendered versions of your Stencils from your Formation and concatenates them so they can be piped into your cluster using `kubectl`. 
 
-{% callout type="warning" title="Check your Minikube installation" %}
+<Callout type="warning" title="Check your Minikube installation">
 If Minikube isn't running or has other issues, the cx command will fail. Make sure you have set it up properly using [this guide](https://kubernetes.io/docs/tasks/tools/).
-{% /callout %}
+</Callout>
 
 Next, run `kubectl get ns` to check that your new namespace is up and running. You can also use the `get` command to check that the pod and service are up and running.
 

@@ -12,9 +12,9 @@ Port mapping is a small (but important) part of a core system that underpins con
 
 This guide also covers more advanced configurations like using [Non-HTTP ports](#non-http-ports-tcp-and-udp), [mapping multiple ports](#mapping-multiple-ports) and [traffic matching](#traffic-matching).
 
-{% callout type="warning" title="Defining 'Outside'" %}
+<Callout type="warning" title="Defining 'Outside'">
 In this document, "outside" is used for any client of your service that's not inside the container. This includes your other services on different nodes. 
-{% /callout %}
+</Callout>
 
 ## Introduction to mapping container ports
 
@@ -25,9 +25,9 @@ Before you start, please check you have the following:
 * **A Cloud 66 Account** &mdash; If you don't already have one, [sign up for a Cloud 66 account](https://app.cloud66.com/users/sign_up). Your first server is free, no credit card required.
 * **An existing containerized application set up** &mdash; To make the most of this tutorial you need to have an app already set up in Cloud 66. Follow our [Getting Started guide](/docs/getting-started/deploy-your-first-app) if you're not sure how to do this.
 
-{% callout type="info" title="Demo application" %}
+<Callout type="info" title="Demo application">
 This tutorial uses the [simple visit counter application](https://github.com/cloud66/maestro-demo.git) we've supplied on Github as a working example. 
-{% /callout %}
+</Callout>
 
 ## Mapping container ports
 
@@ -52,33 +52,33 @@ To edit your ports using the standard Cloud 66 user interface:
 4. Click the *Network & Storage* tab
 5. Edit the ports as needed and then click *Save Service*
 
-{% figure src="/images/mapping-ports-new.gif" /%}
+<Figure src="/images/mapping-ports-new.gif" />
 
 ### Testing your changes
 
-{% tabs %}
-{% tab label="Container Service V2" %}
+<Tabs >
+<Tab label="Container Service V2">
 
 You can test whether this has been properly applied by looking at that the Network column of the *Services* panel.
 
 If you've followed the steps above correctly, the **Network** column will list both port *80* and port *443*.
 
-{% /tab %}
+</Tab>
 
-{% tab label="Container Service V1" %}
+<Tab label="Container Service V1">
 
 You can test whether this has been properly applied to your service by clicking on the respective &#9432; icon in the **App Services** panel on the application.
 
 If you've followed the steps above correctly, the **Services Config** panel will list both *HTTP* and *HTTPS*.
 
-{% /tab %}
-{% /tabs %}
+</Tab>
+</Tabs>
 
 In order for these new settings to be rolled out to your service, you must click the green Apply button (above the **Services** panel) and then redeploy your application by clicking the *Deploy* button.
 
-{% callout type="warning" title="Set up SSL properly" %}
+<Callout type="warning" title="Set up SSL properly">
 If you actually need HTTPS traffic to be available to the outside world (not just as a demo) you will also need to set up [SSL certificates](/docs/security/ssl) for your application. 
-{% /callout %}
+</Callout>
 
 ### Editing config files directly
 

@@ -77,9 +77,9 @@ cache:
   database: <%= ENV['MYSQL_CACHE_DATABASE'] %>
 ```
 
-{% callout type="info" title="We don’t add env vars in some cases" %}
+<Callout type="info" title="We don’t add env vars in some cases">
 If we can’t find a matching database group, we won’t replace that key in your configuration. If your `database.yml` already has an env var pointing at a valid ENV var on your application, we won’t replace that key.
-{% /callout %}
+</Callout>
 
 ## Disabling automated configuration file changes
 

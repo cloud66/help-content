@@ -6,15 +6,15 @@ Autoscaling adds (or removes) resources to (or from) your application in respons
 
 You can autoscale the following resources:
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 - Servers
 - Workers
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 - Servers
 - Services
-{% /per-framework %}
+</PerFramework>
 
 Autoscaling is entirely determined by rules that you specify, so you have complete control over whether resources are added and removed (and when that happens).
 
@@ -38,7 +38,7 @@ To add or change a rule for your **servers**:
 
 Your new Autoscaler will be active immediately - no need to deploy. You can check its logs (see below) to see how it is operating. 
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### Autoscaling workers (processes)
 
@@ -54,9 +54,9 @@ To add or change a rule for your **workers**:
 
 Your new Autoscaler will be active immediately - no need to deploy. You can check its logs (see below) to see how it is operating. Workers are scaled differently to servers - see the section below for details.
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ### Autoscaling services
 
@@ -72,28 +72,28 @@ To add or change a rule for your **services**:
 
 Your new Autoscaler will be active immediately - no need to deploy. You can check its logs (see below) to see how it is operating.
 
-{% /per-framework %}
+</PerFramework>
 
 ### Configuring queue-based autoscalers
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 In order to use queue size as a metric, your application needs to have a task queuing resource of some kind in place. We support these options for autoscaling:
 
 - Rails-based queue frameworks (Sidekiq, Resque, Delayed Job) via the [Cloud 66 gem](https://github.com/cloud66-oss/cloud66-rails)
 - [RabbitMQ](/docs/servers/rabbitmq)
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 In order to use queue size as a metric, you need to [add RabbitMQ](/docs/servers/rabbitmq) to your application and actively use it as your message queue. 
 
-{% /per-framework %}
+</PerFramework>
 
 Queue-based autoscalers use “queue size” as their metric. This counts the total number of jobs waiting in a queue and, if it breaches one of your thresholds, triggers one of your rules.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### Using the Cloud 66 gem
 
@@ -101,7 +101,7 @@ In order to enable queue-based autoscalers for your Rails app, you will need to 
 
 The gem collects queue data from your preferred framework (Sidekiq, Resque or Delayed Job) and passes is to our metrics system. It automatically mounts an endpoint at `/cloud66/metrics/queue` which is only available from localhost.
 
-{% /per-framework %}
+</PerFramework>
 
 ## Managing Autoscalers
 
@@ -122,15 +122,15 @@ All Autoscalers have a common set of parameters:
 
 An Autoscaler continuously calculates the **average** of the metric (CPU, Memory, Response Time) that it monitors over the **lookback period** and, if that average breaches the threshold(s) you have specified, it either adds resources to your application or removes them.
 
-{% callout type="warning" title="Server deletion rules" %}
+<Callout type="warning" title="Server deletion rules">
 When servers are scaled down, they will not be automatically deleted unless you have have changed the [related setting](/docs/servers/server-deletion) for your application
-{% /callout %}
+</Callout>
 
 ### Server sizes
 
 Autoscalers will create servers based on the size of the last server added to a group. So, for example, if your current application runs on a t3.large instance from AWS with 2 cores and 8GB of RAM, your Autoscalers will create more servers of this exact size and type.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### How workers are autoscaled
 
@@ -138,7 +138,7 @@ When workers are autoscaled, they cannot be assigned to a particular server. Ins
 
 You cannot currently select a specific server to which workers should be added, but we plan to add this in the near future.
 
-{% /per-framework %}
+</PerFramework>
 
 ### Autoscaler parameters
 

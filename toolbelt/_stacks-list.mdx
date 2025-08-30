@@ -1,20 +1,20 @@
 Lists applications. Shows the application name, environment, and last deploy time. You can query (multiple) applications by name - but the command will display all applications by default.
 
-{% tabs %}
-{% tab label="Usage" %}
+<Tabs >
+<Tab label="Usage">
 
 ```shell
 $ cx stacks list [<application name>] [--output <output style>]
 ```
-{% /tab %}
+</Tab>
     
-{% tab label="arguments" %}
+<Tab label="arguments">
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | <application name> | no | — | List the details for specific application(s) |
 | \--output, -o <output style> | yes | standard | Tailor the output view. Options are standard or wide |
-{% /tab %}
-{% tab label="examples" %}
+</Tab>
+<Tab label="examples">
 
 ```shell
 $ cx stacks list
@@ -26,5 +26,5 @@ $ cx stacks list mystack-2
 		mystack-2   development  Jan 2 12:34
 ```
 
-{% /tab %}
-{% /tabs %}
+</Tab>
+</Tabs>

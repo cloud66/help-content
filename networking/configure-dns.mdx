@@ -4,7 +4,7 @@ title: Configuring DNS & IP Addresses
 
 ## Cloud 66 hostnames
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 Cloud 66 creates unique DNS hostnames for each server you deploy with us. All servers are accessible via their Cloud 66 DNS name which follows the following pattern: 
 
@@ -29,9 +29,9 @@ You can browse your application directly by visiting the Cloud 66 address for th
 2. Open your application
 3. Click on the Visit Site link (next to the app's name)
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
 
 Cloud 66 creates unique DNS hostnames for each application you deploy with us. All servers are accessible via their Cloud 66 DNS name which follows the following pattern: 
 
@@ -43,9 +43,9 @@ You can browse your application directly by visiting the Cloud 66 address. To do
 2. Open your application
 3. Click on the Visit Site link (next to the app's name)
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ## Finding your Cloud 66 hostnames
 
 To find the Cloud 66 hostname for any server: 
@@ -54,13 +54,13 @@ To find the Cloud 66 hostname for any server:
 2. Click *Web* in the left-hand nav
 3. Click the name of your server. This page displays your server's _Primary address_ (hostname) as well as the _Secondary address_ (IP address).
 
-{% callout type="warning" title="IP addresses can change" %}
+<Callout type="warning" title="IP addresses can change">
 Some cloud providers automatically assign a new IP address to restarted servers.
-{% /callout %}
+</Callout>
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Finding your Cloud 66 hostnames
 
@@ -71,11 +71,11 @@ To find the Cloud 66 hostname for any server:
 3. Click on *Servers* in the sub nav
 3. Click the name of a server. This page displays your server's _Primary address_ (hostname) as well as the _Secondary address_ (IP address).
 
-{% callout type="warning" title="IP addresses can change" %}
+<Callout type="warning" title="IP addresses can change">
 Some cloud providers automatically assign a new IP address to restarted servers.
-{% /callout %}
+</Callout>
 
-{% /per-framework %}
+</PerFramework>
 
 
 ### Failover hostnames
@@ -84,7 +84,7 @@ In addition to unique hostnames per server, Cloud 66 also offers [Failover Group
 
 Each Failover Group has a unique hostname with a 9 digit prefix (subdomain). For example `958-797-516.cloud66.net`. For maximum reliability, you should point your DNS at a Failover Group address.
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Configuring your DNS
 
@@ -106,9 +106,9 @@ This involves using an `A` record to point your root domain at your load balance
 
 ### 3. Subdomain redirection
 
-{% callout type="warning" title="HTTP only" %}
+<Callout type="warning" title="HTTP only">
 This method will not work if you are serving content with SSL, and only works for HTTP traffic (i.e. not TCP or UDP). 
-{% /callout %}
+</Callout>
 
 This method creates a 301 permanent redirect to a specified subdomain for all root domain traffic.
 
@@ -143,17 +143,17 @@ Furthermore, if required, the load balancer is updated to serve the new IP addre
 * Learn how to [configure network access](/docs/networking/network-configuration) to your application
 * Learn how to [add a load balancer](/docs/load-balancers/load-balancer) to your application
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
 
 ## Adding custom domains for static sites
 
 You can add one or more custom domains to any prebuilt application managed by Cloud 66. This allows your visitors to access your site via your own preferred web address (e.g. `www.mysite.com`) rather than your Cloud 66 address. See below for detailed instructions.
 
-{% callout type="info" title="SSL automatically enabled" %}
+<Callout type="info" title="SSL automatically enabled">
 We automatically enable SSL on your domain when we set up your DNS. We will also automatically redirect any visits to HTTP to HTTPS. 
-{% /callout %}
+</Callout>
 
 ## Setting up a Custom Domain 
 
@@ -230,4 +230,4 @@ You can update your custom domain at any time by clicking the *Edit* button and 
 - Configuring continuous deployment using [redeployment hooks](/docs/deployment/redeployment-hook)
 - Setting up [preview deployments](/docs/deployment/preview-deployments)
 
-{% /per-framework %}
+</PerFramework>

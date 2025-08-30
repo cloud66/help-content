@@ -15,24 +15,24 @@ We currently support the following databases, with no need for additional config
 
 ## How to deploy databases with Cloud 66
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 For Rack-based stacks, Cloud 66 automatically detects whether your application relies on a database or not during your code analysis. This is based on a combination of your Gemfile and your `database.yml` or `mongoid.yml` files.
-{% /per-framework %}
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+</PerFramework>
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 When creating a Cloud 66 application, you can add as many databases as you need in your [service configuration](/docs/build-and-config/docker-service-configuration#database-configurations) during the application build.
-{% /per-framework %} 
+</PerFramework> 
 
 After you have analyzed your code, ensure that your desired database type is displayed in the _About your app_ section of the analysis results. 
 
-{% per-framework includes=["rails"] %}
-{% callout type="info" title="Using Active Record instead" %}
+<PerFramework includes={["rails"]}>
+<Callout type="info" title="Using Active Record instead">
 Cloud 66 supports multiple databases for Rails (i.e. multiple databases with Active Record). Please read our [MultiDB for Rails guide](/docs/databases/rails-multidb) to learn how to configure this feature.
-{% /callout %}
-{% /per-framework %} 
+</Callout>
+</PerFramework> 
 
 ### Adding databases after initial deployment
 
-You can add databases to an existing application either by using [Database Groups](/docs/databases/attaching-multiple-databases) for physical databases, or by [adding](/docs/databases/adding-database#adding-logical-databases-to-a-server) {% hint caption="logical databases" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) {% /hint %} to your existing physical database(s)
+You can add databases to an existing application either by using [Database Groups](/docs/databases/attaching-multiple-databases) for physical databases, or by [adding](/docs/databases/adding-database#adding-logical-databases-to-a-server) <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) </Hint> to your existing physical database(s)
 
 ## Database authentication
 
@@ -46,16 +46,16 @@ When we deploy a database we automatically generate the required users and passw
 
 The Application and Replication users always have **the same password**. The associated Linux users for these will differ depending on database type.
 
-{% callout type="info" title="Manual password management" %}
+<Callout type="info" title="Manual password management">
 If you switch to managing your passwords manually, be sure to update all of these users whenever you change passwords. Remember that the Application and Replication users must use the same password.
-{% /callout %}
+</Callout>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 If you'd prefer to manage your users and password manually (i.e. your config files), you can [prevent your configs from being modified](/docs/databases/tamper-with-yaml).
 
-{% callout type="warning" title="Self-managed databases" %}
+<Callout type="warning" title="Self-managed databases">
 The info above **does not apply** to external (self-managed) databases. See the [dedicated section below](#migrating-to-an-external-database) for more details. 
-{% /callout %}
+</Callout>
 
 ### Managing YAML configs
 
@@ -71,9 +71,9 @@ We will prioritise these configs as follows:
 2. Files ending with a `.environment-name`
 3. The standard YAML config file
 
-{% callout type="warning" title="Self-managed databases" %}
+<Callout type="warning" title="Self-managed databases">
  The info above **does not apply** to external (self-managed) databases. See the [dedicated section below](#migrating-to-an-external-database) for more details. 
-{% /callout %}
+</Callout>
 
 ### External databases
 
@@ -93,8 +93,8 @@ after_checkout:
 ```
 
 This hook simply overwrites the standard config file with the config file of your choice at the start of the deployment process. Please read our [full guide to deploy hooks](/docs/deploy-hooks/using-deploy-hooks) to learn how to implement this hook.
-{% /per-framework %}
-{% per-framework includes=["rails"] %}
+</PerFramework>
+<PerFramework includes={["rails"]}>
 ### Environment variables during deployment
 
 When you set up an application on Cloud 66, we detect its database type(s) (from your code) and generate a set of variables for things like `username` and `password` and `URL`. We only generate these "analyzed variables" **after** you have confirmed that we will be managing the database(s). 
@@ -108,8 +108,8 @@ If your application uses an externally hosted (self-managed) database, **we will
 ### Setting variables manually (overriding)
 
 To add your own values to the analyzed variables, click on the *Add Environment Variables* button and then click the *Override* link next to each of the variables you wish to update. Remember, for **external databases**, we will discard any variables which do not have values set manually.
-{% /per-framework %}
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+</PerFramework>
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ## Connecting your container to your DB
 
 Databases in Cloud 66 run as separate components and aren't containerized. Even though they may be running on the same private network as your cluster servers, you will not be able to connect to them via localhost because of the nature of containers (which are, by definition, abstracted from operating the system).
@@ -157,7 +157,7 @@ $ postgresql://username:password@service_name/database
 ## Connecting your app to your DB in Cloud 66 Container Service V1
 
 To connect to a database in Version 1 of Cloud 66 Container Management Service (CSv1), you should use its ElasticDNS address. Please read our [full guide on ElasticDNS](/docs/legacy/service-network-configuration#elasticdns) for more details.
-{% /per-framework %}
+</PerFramework>
 
 ## Database deployment types
 
@@ -165,9 +165,9 @@ To connect to a database in Version 1 of Cloud 66 Container Management Service (
 
 This option allows you to deploy your application without a database managed by Cloud 66, and is ideal for externally hosted databases. 
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 For Rails apps, if you have a `url` set in your `database.yml` then we will assume that you are using an external DB. You will need to [set your own env vars](#environment-variables-during-deployment) during deployment, to ensure we can connect to it.
-{% /per-framework %}
+</PerFramework>
 
 You can also configure an external database via your [Manifest file](/docs/manifest/building-a-manifest-file#manifest-settings-for-databases#specifying-external-databases-via-your-manifest) by specifying the `server` node as `external`. 
 
@@ -208,7 +208,7 @@ You can make a new instance of your application by [cloning it](/docs/cloud-66-1
 
 Once the new application is created, you can migrate data from your old application to your new application.
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ## How to run database schema migrations
 
 If you’ve made structural changes to your databases, you will typically need to run migration commands during your build process, so that those changes are applied to your live database. The nature of these commands depend on your framework.
@@ -235,9 +235,9 @@ databases:
 - mysql
 
 ``` 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ## Control your Rails database migrations
 
 Cloud 66 chooses a server to perform the migrations - all other servers will wait until the migrations are finished before continuing with deployment. You can see which server performs the migrations in the application, and change it using the `c66.migrations.run` [reserved tag](/docs/servers/reserved-tags).
@@ -256,7 +256,7 @@ When you have disabled `run.deploy.command` in [Application settings](/docs/tool
 Sometimes operations can cause database migrations to lock the entire database for minutes at a time - even if the structural change is simple, or made to a relatively small table. If you'd like to understand the mechanisms behind this, we recommend reading this excellent [blog post](https://medium.com/doctolib/stop-worrying-about-postgresql-locks-in-your-rails-migrations-3426027e9cc9). 
 
 To mitigate the potential for this to happen, we recommend including the [Strong Migration](https://github.com/ankane/strong_migrations) gem in your application. This will catch any potentially unsafe migrations and suggest how to avoid or reduce the risk.
-{% /per-framework %}
+</PerFramework>
 
 ## Customize your database configuration
 
@@ -271,9 +271,9 @@ Editing and committing your database CustomConfig will perform the following ste
 - Upload the configuration to the server
 - Restart your database
 
-{% callout type="warning" title="Check your config carefully" %}
+<Callout type="warning" title="Check your config carefully">
  A bad database configuration might stop your database from working. Take extra care to make sure the configuration is correct.
-{% /callout %}
+</Callout>
 
 ### Database customization variables
 There are a number of variables available for use in your database CustomConfig. Some are general for all database types, while others are database specific.
@@ -282,26 +282,26 @@ There are a number of variables available for use in your database CustomConfig.
 
 The following variables are available to any database CustomConfig.
 
-{% table %}
+<Table >
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |server|Hash|Hash containing information about your server|
 |cloud|string|Application cloud|
 |memory|integer|Server memory size (bytes)|
 |core|integer|Server core count|
-{% /table %}
+</Table>
 
 **MySQL variables**
 
 The following variables are only available in the MySQL CustomConfig.
 
-{% table %}
+<Table >
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |server_state|string|Value can be *stand_alone*, *mysql_master* or *mysql_slave* based on your server status|
 |server_id|integer|An ID used by MySQL replication to identify your server*|
 |db_name|string|Database name|
-{% /table %}
+</Table>
 
 &#42;It is 0 for standalone servers, 1 for master servers and a number greater than 1 for slave servers
 
@@ -309,23 +309,23 @@ The following variables are only available in the MySQL CustomConfig.
 
 The following variables are only available in the Postgres CustomConfig.
 
-{% table %}
+<Table >
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |server_state|string|Value can be *stand_alone*, *pg_master* or *pg_slave* based on your server status|
-{% /table %}
+</Table>
 
 **Redis variables**
 
 The following variables are only available in the Redis CustomConfig.
 
-{% table %}
+<Table >
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |server_state|string|Value can be *stand_alone*, *redis_master* or *redis_slave* based on your server status|
 |master_address|string|IP address of replication master (empty string if server is stand alone or master)|
 |master_port|integer|Will be 6379 when server is *redis_slave* , otherwise it is 0|
-{% /table %}
+</Table>
 
 ## Migrating to an external database
 

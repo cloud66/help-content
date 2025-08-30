@@ -5,7 +5,7 @@ First you need to configure your AWS account to allow Cloud 66 to access it:
 
 On the next screen, some users will be asked to choose between *Security Credentials* and *IAM users*. We support both methods but we recommend that experienced users select IAM (*Identity and Access Management*) for better security because allows you to set permissions for specific users. Click on your chosen option below for more instructions.
 
-{% collapsible title="Option A: Using root credentials" %}
+<Collapsible title="Option A: Using root credentials">
 
 After selecting the **Security Credentials** option: 
 
@@ -13,9 +13,9 @@ After selecting the **Security Credentials** option:
 2. Click *Create new access key*
 3. Either download the key file or click *Show access key* and take note of your access key ID and secret access key. These are the credentials needed for Cloud 66 to access your account.
 
-{% /collapsible %}
+</Collapsible>
 
-{% collapsible title="Option B: Identity Access Management (IAM)" %}
+<Collapsible title="Option B: Identity Access Management (IAM)">
 
 *Step 1: Create a user*
 
@@ -31,7 +31,7 @@ You can see them here: [recommended minimum policies](https://help.cloud66.com/c
 
 There are two method for assigning policies: using the AWS CLI or the web console:
 
-{% collapsible title="AWS CLI" %}
+<Collapsible title="AWS CLI">
 
 If you have the AWS CLI tool installed, you can set up your access policies by running this command:
 
@@ -41,9 +41,9 @@ curl https://help.cloud66.com/c66_prepress_aws_iam_policy.json > c66_prepress_aw
 
 This downloads our JSON template to your machine and then submits it via the CLI. Note that this assumes you have named your user `cloud66` as recommended. You can find more info in the [AWS docs](https://docs.aws.amazon.com/cli/latest/reference/iam/put-user-policy.html) if you need it.
 
-{% /collapsible %}
+</Collapsible>
 
-{% collapsible title="Web console" %}
+<Collapsible title="Web console">
 
 You can add policies via the IAM management console.
 
@@ -58,8 +58,8 @@ You can add policies via the IAM management console.
 
 If you need more detail please read the [AWS docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#add-policies-console) on this subject.
 
-{% /collapsible %}
+</Collapsible>
 
-{% /collapsible %}
+</Collapsible>
 
 

@@ -19,27 +19,27 @@ Cloud 66 also automatically rate limits IP addresses and will temporarily block 
 
 To configure traffic filters for your application:
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Web* in the left-hand nav
 3. Click on *Traffic* in the sub nav
 4. Click on the *Traffic Filters* tab above the main panel
 5. Make the changes you require (see below for details of each type of filter)
 6. Click *Review changes* and then *Apply changes*
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Application* in the left-hand nav
 3. Click on *Traffic* in the sub nav
 4. Click on the *Traffic Filters* tab above the main panel
 5. Make the changes you require (see below for details of each type of filter)
 6. Click *Review changes* and then *Apply changes*
-{% /per-framework %}
+</PerFramework>
 
-{% callout type="info" title="Whitelisting vs Surge Protection" %}
+<Callout type="info" title="Whitelisting vs Surge Protection">
 Whitelisting is not the same as removing [Application Surge Protection](/docs/networking/network-configuration#application-surge-protection). These are two separate lists with separate functions. A whitelisted IP could still be rate limited.
-{% /callout %}
+</Callout>
 
 ## Allowing traffic (whitelisting)
 
@@ -79,23 +79,23 @@ We automatically provision (unique) [default (sub)domains](/docs/networking/conf
 
 To control direct access to this domain: 
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Web* in the left-hand nav
 3. Click on *Traffic* in the sub nav
 4. Click on the *Traffic Filters* tab above the main panel
 5. Select the option you require (see below for details)
 6. Click *Review changes* and then *Apply changes*
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Application* in the left-hand nav
 3. Click on *Traffic* in the sub nav
 4. Click on the *Traffic Filters* tab above the main panel
 5. Select the option you require (see below for details)
 6. Click *Review changes* and then *Apply changes*
-{% /per-framework %}
+</PerFramework>
 
 ### Access options
 

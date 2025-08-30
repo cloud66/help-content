@@ -10,9 +10,9 @@ Service configurations allow you to customize many aspects of a Cloud 66 service
 
 This is the complete list of all service configuration directives in both versions of Cloud 66. For more detailed information about an option, click the link provided.
 
-{% tabs %}
-{% tab label="Cloud 66 Container Service V2" %}
-{% table %}
+<Tabs >
+<Tab label="Cloud 66 Container Service V2">
+<Table >
 |**Option**|**Description**|
 |--- |--- |
 |[annotations](/docs/build-and-config/service-tags-annotations#service-annotations)|Annotations for your services in key/value format - these will also become annotations on your Kubernetes resources|
@@ -43,13 +43,13 @@ This is the complete list of all service configuration directives in both versio
 |[traffic_matches](/docs/networking/service-networking#traffic-matching)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
 |[tags](/docs/build-and-config/service-tags-annotations)|Arbitrary text tags for your services - these will also become labels on your Kubernetes resources|
 |type|Specifies the type of service being defined. Accepted values: `service`, `deployment`, `daemon_set`|
-|[volumes](/docs/build-and-config/service-storage)|The volumes that are mounted from your host into your container. {% pill title="Note" color="red" /%} Must use absolute paths.|
+|[volumes](/docs/build-and-config/service-storage)|The volumes that are mounted from your host into your container. <Pill title="Note" color="red" /> Must use absolute paths.|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|
-{% /table %}
-{% /tab %}
+</Table>
+</Tab>
 
-{% tab label="Cloud 66 Container Service V1" %}
-{% table %}
+<Tab label="Cloud 66 Container Service V1">
+<Table >
 |**Option**|**Description**|
 |--- |--- |
 |[build_command](/docs/legacy/legacy-building-your-service-csv1)|Specifies the command you would like to run during application build.|
@@ -75,7 +75,7 @@ This is the complete list of all service configuration directives in both versio
 |[traffic_matches](/docs/legacy/service-network-configuration#traffic_matches)|The automatically configured traffic names in your Nginx config that will route traffic to these containers based on request DNS name. Allows microservices on the same port routes by subdomain for instance.|
 |volumes|Volumes mounted from host into container. Syntax: Array of absolute paths, with the format `HOST_FOLDER:CONTAINER_FOLDER`. Optional 'ro' on the end for read-only. e.g. `/tmp/host:/tmp/container:ro`|
 |work_dir|Specifies the [working directory](https://docs.docker.com/reference/builder#workdir) in your image for any command to be run.|
-{% /table %}
+</Table>
   
-{% /tab %}
-{% /tabs %}
+</Tab>
+</Tabs>

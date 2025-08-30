@@ -22,7 +22,7 @@ Standard certificates use Let's Encrypt to provision certificates for your domai
 
 To add a standard certificate:
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 1. If you have not already done so, you must add (or update) your [DNS records](/docs/networking/configure-dns) to point to your application (either directly, or via your load balancer) 
 2. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
 3. Click on *Web* → *SSL Certificate* in the left-hand nav 
@@ -30,9 +30,9 @@ To add a standard certificate:
 5. Add your domain name and any subdomains (wildcards aren’t supported for this kind of certificate) 
 6. Check or uncheck the *SSL termination* option (depending on your requirements)
 7. Click *Create*
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. If you have not already done so, you must add (or update) your [DNS records](/docs/networking/configure-dns) to point to your application (either directly, or via your load balancer) 
 2. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
 3. Click on *Application* → *SSL Certificate* in the left-hand nav 
@@ -40,23 +40,23 @@ To add a standard certificate:
 5. Add your domain name and any subdomains (wildcards aren’t supported for this kind of certificate) 
 6. Check or uncheck the *SSL termination* option (depending on your requirements)
 7. Click *Create*
-{% /per-framework %}
+</PerFramework>
 
 Cloud 66 will now attempt to add a standard certificate based on your configuration. Watch the timeline to see the outcome. 
 
 **Cloudflare** users need to [add a Page Rule](/docs/security/troubleshooting-ssl#configuring-let-s-encrypt-with-cloudflare) to their Cloudflare configuration in order for the process described above to work.  If you run into any other problems, consult our [troubleshooting doc](/docs/security/troubleshooting-ssl).
 
-{% callout type="warning" title="Certificates require updates every 3 months" %}
+<Callout type="warning" title="Certificates require updates every 3 months">
 Let's Encrypt needs to be updated every 3 months, so you should keep this configuration in place to allow for automatic renewal. 
-{% /callout %}
+</Callout>
 
 #### How standard certificates work
 
 For standard (i.e. non-wildcard) certificates we create a file with a random name under `/etc/cloud66/webroot/` on one of your web servers. [Let's Encrypt](https://letsencrypt.org/docs/challenge-types/#http-01-challenge) then tries to connect to your server and download that file via HTTP (i.e. port `80`). This confirms that you own and control the domain and thus that a certificate can be issued.
 
-{% callout type="info" title="HTTP endpoint required" %}
+<Callout type="info" title="HTTP endpoint required">
 Let's Encrypt needs a non-secure HTTP endpoint - i.e. `<your-application-domain>/.well-known/acme_challenge/*` to invoke and reissue certificates.
-{% /callout %}
+</Callout>
 
 ## Wildcard certificates
 
@@ -76,7 +76,7 @@ Account Settings → External services → DNS Providers
 
 Each DNS provider has specific credentials that need to be created and then added to your Cloud 66 account. Find your provider below for more details.
 
-{% partial file="../../src/pages/docs/partials/_dns_provider_tabs.md" /%}
+<Partial file="../../src/pages/docs/partials/_dns_provider_tabs.md" />
 
 If your provider is not listed, consider using [RFC 2136](https://www.rfc-editor.org/rfc/rfc2136) if your provider supports the protocol.
 
@@ -84,23 +84,23 @@ If your provider is not listed, consider using [RFC 2136](https://www.rfc-editor
 
 Once you have have a DNS provider, you can set up a certificate:
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 1. Navigate to your application and click on *Web* → *SSL Certificate* in the left-hand nav 
 2. Click *Add SSL Certificate*
 3. Choose your DNS provider from the dropdown
 4. Add your (wildcard) domain name
 5. Check or uncheck the *SSL termination* option (depending on your requirements)
 6. Click *Create*
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Navigate to your application and click on *Application* → *SSL Certificate* in the left-hand nav 
 2. Click *Add SSL Certificate*
 3. Choose your DNS provider from the dropdown
 4. Add your (wildcard) domain name
 5. Check or uncheck the *SSL termination* option (depending on your requirements)
 6. Click *Create*
-{% /per-framework %}
+</PerFramework>
 
 Cloud 66 will now attempt to add a wildcard LetsEncrypt certificate based on your configuration. Watch the timeline to see the outcome.
 
@@ -112,7 +112,7 @@ External certificates are SSL certificates that you have obtained from another p
 
 To set up an external SSL certificate:
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 1. Generate a private key and create a certificate signing request through your command line, without specifying a passphrase
 2. Provide this CSR file to your certificate authority, who will, in turn, provide you with a certificate (CRT) file (download it to your local machine and keep it somewhere safe).
 3. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
@@ -122,9 +122,9 @@ To set up an external SSL certificate:
 7. You can also add intermediate certificates and specify allowed server names if needed - [see below for instructions](#intermediate-certificates).
 8. Check or uncheck the *SSL termination* option (depending on your requirements)
 9. Click *Add SSL Certificate* 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Generate a private key and create a certificate signing request through your command line, without specifying a passphrase
 2. Provide this CSR file to your certificate authority, who will, in turn, provide you with a certificate (CRT) file (download it to your local machine and keep it somewhere safe).
 3. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
@@ -134,7 +134,7 @@ To set up an external SSL certificate:
 7. You can also add intermediate certificates and specify allowed server names if needed - [see below for instructions](#intermediate-certificates).
 8. Check or uncheck the *SSL termination* option (depending on your requirements)
 9. Click *Add SSL Certificate*
-{% /per-framework %}
+</PerFramework>
 
 
 Cloud 66 will now attempt to add the certificate based on your configuration. Watch the timeline to see the outcome.
@@ -180,9 +180,9 @@ To set up your application:
 
 The challenge should now succeed. If it does not, read the rest of this guide. 
 
-{% callout type="warning" title="Let's Encrypt certs require updates every 3 months" %}
+<Callout type="warning" title="Let's Encrypt certs require updates every 3 months">
 Let's Encrypt needs to be updated every 3 months, so you should keep all configurations in place to allow for automatic renewal. 
-{% /callout %}
+</Callout>
 
 
 ## Using Cloudflare SSL certificates with Cloud 66

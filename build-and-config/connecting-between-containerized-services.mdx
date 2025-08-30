@@ -48,9 +48,9 @@ So, if our second application uses the **web-front-end** namespace, and the appl
 - `tcp://scheduler.backoffice-workers:8000` would connect  to the backoffice **scheduler** over port 8000
 - `http://processor.backoffice-workers` would connect to the **processor** over standard HTTP
 
-{% callout type="warning" title="Separating services" %}
+<Callout type="warning" title="Separating services">
  If you don't want two services to be able to connect to each other internally (perhaps for compliance or security reasons) then you should not run them on the same Cloud 66 cluster. 
-{% /callout %}
+</Callout>
 
 ## Connecting to databases
 

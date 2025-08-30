@@ -40,7 +40,7 @@ You can have your application set up in 4 simple steps.
 
 No, we’ll generate a standard Dockerfile for your app based on the requirements detected during our analysis. You can see the Dockerfile by clicking on the *View dockerfile* link after initial analysis.
 
-{% figure src="/images/laravel-1.png" caption="Application analysis report" /%}
+<Figure src="/images/laravel-1.png" caption="Application analysis report" />
 
 You can also supply your own Dockerfile if you’d prefer - just add it to the root of your repo and we’ll automatically detect and use it.
 
@@ -110,9 +110,9 @@ Cloud 66 analyses your application code (for example your `.env` and `composer.j
 
 You can do this during initial app setup by clicking the Add Environment Variables button during after your app has been analyzed. If you need to change env vars to an existing app, you can use your preferred method below:
 
-{% tabs %}
+<Tabs >
 
-{% tab label="Dashboard" %}
+<Tab label="Dashboard">
 
 1. Open the application from your **[Dashboard](https://app.cloud66.com/dashboard)**
 2. Click on ⚙️ *Settings* in the left-hand nav
@@ -122,9 +122,9 @@ You can do this during initial app setup by clicking the Add Environment Variabl
 6. Click *Save Changes*
 7. Changes to env vars are only applied to your application server(s) when you deploy. Do that now by clicking the *Deploy* button
 
-{% /tab %}
+</Tab>
 
-{% tab label="Command line" %}
+<Tab label="Command line">
 
 You can set an env var as follows: 
 
@@ -148,9 +148,9 @@ $ cx env-vars upload -s my_other_app --file new_env_vars_json --file-type json
 
 For more commands, see our [Toolbelt guide](/docs/toolbelt/toolbelt#env-vars-list).
 
-{% /tab %}
+</Tab>
 
-{% /tabs %}
+</Tabs>
 
 
 ## Broadcasting and Real-Time Events
@@ -203,7 +203,7 @@ Laravel-based applications run inside containers on Cloud 66, which means they a
 
 You can set up simple persistent storage when you first set up your application. After analysis, under the Services tab, you can click the Configure Storage  link to define as many storage volumes as you require. These will be mapped from your containers to the underlying host server.
 
-{% figure src="/images/laravel-2.png" caption="Storage volumes settings panel" /%}
+<Figure src="/images/laravel-2.png" caption="Storage volumes settings panel" />
 
 You can also mount folders with a single line in your `service.yml` file (*What is service.yml?*) with the following form: **`HOST_FOLDER:CONTAINER_FOLDER`**.
 

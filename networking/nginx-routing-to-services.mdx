@@ -15,8 +15,7 @@ The [service configuration](/docs/build-and-config/docker-service-configuration)
 
 At a high level, the parts in the NGINX configuration relevant to targeting a specific service are as follows:
 
-{% liquid-example %}
-```liquid {% process=false %}
+```liquid
 http {
   # list of upstreams, which are maps of a name to a specific k8s service
   # all upstream names in the http NGINX block have the following structure:
@@ -40,7 +39,6 @@ http {
   }
 }
 ```
-{% /liquid-example %}
 
 Based on the above, you have three choices of targeting services:
 
@@ -52,8 +50,7 @@ Based on the above, you have three choices of targeting services:
 
 You can direct traffic from distinct domains to separate services within a single application by using the `traffic_matches` key in its `service.yml` file. For example, consider the following two services:
 
-{% liquid-example %}
-```liquid {% process=false %}
+```liquid
 services:
   nginx:
     image: nginx
@@ -72,80 +69,73 @@ services:
     traffic_matches:
     - caddy.example.com
 ```
-{% /liquid-example %}
 
 Both services listen on port 80 and 443, so just hitting port 80 or 443 on the server is ambiguous. However, because of the `traffic_matches` settings, hitting `nginx.example.com` will **always** go to to the NGINX service, and hitting `caddy.example.com` will **always** go to the caddy service.
 
 You can then update your NGINX configuration to match traffic for specific domains. For example, the default NGINX configuration has the following blocks:
 
-{% liquid-example %}
-```liquid {% process=false %}
-{% for server in servers %}
-{% if server.protocol == "http" %}
+```liquid
+<For server in servers>
+<If server.protocol == "http">
 server {
 # ...
 }
-{% endif %}
-{% if server.protocol == "https" %}
+<Endif >
+<If server.protocol == "https">
 server {
 # ...
 }
-{% endif %}
-{% endfor %}
+<Endif >
+<Endfor >
 ```
-{% /liquid-example %}
 
 To add custom NGINX configuration to match traffic for `caddy.example.com`, you can do the following:
 
-{% liquid-example %}
-```liquid {% process=false %}
-{% for server in servers %}
-{% if server.protocol == "http" %}
+```liquid
+<For server in servers>
+<If server.protocol == "http">
 server {
 # ...
-{% if server.server_name contains "caddy.example.com" %}
+<If server.server_name contains "caddy.example.com">
 # CUSTOM NGINX CONFIGURATION FOR caddy.example.com
-{% endif%}
+<Endif>
 }
-{% endif %}
-{% if server.protocol == "https" %}
+<Endif >
+<If server.protocol == "https">
 server {
 # ...
-{% if server.server_name contains "caddy.example.com" %}
+<If server.server_name contains "caddy.example.com">
 # CUSTOM NGINX CONFIGURATION FOR caddy.example.com
-{% endif%}
+<Endif>
 }
-{% endif %}
-{% endfor %}
+<Endif >
+<Endfor >
 ```
-{% /liquid-example %}
 
 Because `server.server_name` is a space-separated list of domains, the code above would match other subdomains like `subdomain.caddy.example.com`. If you want to match a domain exactly, you can do the following:
 
-{% liquid-example %}
-```liquid {% process=false %}
-{% for server in servers %}
-{% if server.protocol == "http" %}
+```liquid
+<For server in servers>
+<If server.protocol == "http">
 server {
 # ...
-{% assign server_names_array = server.server_name | split: " " %}
-{% if server_names_array contains "caddy.example.com" %}
+<Assign server_names_array = server.server_name | split: " ">
+<If server_names_array contains "caddy.example.com">
 # CUSTOM NGINX CONFIGURATION FOR caddy.example.com
-{% endif%}
+<Endif>
 }
-{% endif %}
-{% if server.protocol == "https" %}
+<Endif >
+<If server.protocol == "https">
 server {
 # ...
-{% assign server_names_array = server.server_name | split: " " %}
-{% if server_names_array contains "caddy.example.com" %}
+<Assign server_names_array = server.server_name | split: " ">
+<If server_names_array contains "caddy.example.com">
 # CUSTOM NGINX CONFIGURATION FOR caddy.example.com
-{% endif%}
+<Endif>
 }
-{% endif %}
-{% endfor %}
+<Endif >
+<Endfor >
 ```
-{% /liquid-example %}
 
 One major caveat to this method is that, because NGINX servers are grouped by protocol + port + upstream name + SSL certificate, by routing traffic for one domain you might also route traffic intended for other domains to this service if they end up in the same NGINX server block. As such you should explicitly define domain matches and separate them into different blocks whenever possible.
 
@@ -153,60 +143,56 @@ One major caveat to this method is that, because NGINX servers are grouped by pr
 
 You are also able to target services using the port on which they are exposed. For example, let's say you need a custom SSL configuration for all services that are exposed on port 8443. You can do this with the following NGINX configuration:
 
-{% liquid-example %}
-```liquid {% process=false %}
-{% for server in servers %}
-{% if server.protocol == "http" %}
+```liquid
+<For server in servers>
+<If server.protocol == "http">
 server {
 # ...
 }
-{% endif %}
-{% if server.protocol == "https" %}
+<Endif >
+<If server.protocol == "https">
 server {
 # ...
-{% if server.listen_port == 8443 %}
+<If server.listen_port == 8443>
 # CUSTOM SSL CONFIGURATION FOR ALL SERVICES LISTENING ON PORT 8443
-{% endif %}
+<Endif >
 }
-{% endif %}
-{% endfor %}
+<Endif >
+<Endfor >
 ```
-{% /liquid-example %}
 
 ## Targeting by upstream name
 
 You can target services by matching on the upstream name that the `location` variable points to. Let's say you want to target the “caddy” service. The upstream name, has the format `# {{ APPLICATION_UID }}_{{ SERVICE_NAME }}_http_{{ EXTERNAL_PORT }}_{{ VARIANT_TAG }}`. To target by service name based on that syntax:
 
-{% liquid-example %}
-```liquid {% process=false %}
-{% for server in servers %}
-{% if server.protocol == "http" %}
+```liquid
+<For server in servers>
+<If server.protocol == "http">
 server {
 # ...
-{% for location in server.locations %}
+<For location in server.locations>
 location {{ location.location }} {
-{% if location.proxy_pass contains "caddy" %}
+<If location.proxy_pass contains "caddy">
 # CUSTOM CONFIGURATION FOR THE caddy SERVICE
-{% endif %}
+<Endif >
 }
-{% endfor %}
+<Endfor >
 }
-{% endif %}
-{% if server.protocol == "https" %}
+<Endif >
+<If server.protocol == "https">
 server {
 # ...
-{% for location in server.locations %}
+<For location in server.locations>
 location {{ location.location }} {
-{% if location.proxy_pass contains "caddy" %}
+<If location.proxy_pass contains "caddy">
 # CUSTOM CONFIGURATION FOR THE caddy SERVICE
-{% endif %}
+<Endif >
 }
-{% endfor %}
+<Endfor >
 }
-{% endif %}
-{% endfor %}
+<Endif >
+<Endfor >
 ```
-{% /liquid-example %}
 
 As per the previous example, you can use Liquid's `split` filter if you need to be more precise with matching.
 

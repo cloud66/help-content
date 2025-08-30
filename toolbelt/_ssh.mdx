@@ -2,19 +2,19 @@ Allows direct SSH shell into your servers by opening the firewall temporarily fo
 
 You need to [add your public (local) SSH key](/docs/servers/ssh-to-server#cloud-66-toolbelt-cli) to your Cloud 66 account before running this command. You also need to have “shell to server” rights on the application to use this command.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 If your server deployed behind a gateway, you need to provide the private key in order to pass through the gateway.
-{% /per-framework %}
+</PerFramework>
 
-{% tabs %}
-{% tab label="Usage" %}
+<Tabs >
+<Tab label="Usage">
 
 ```shell
 $ cx ssh  [--gateway-key <path to gateway key>] --stack <application name> <server name>|<server ip>|<server role> --vv [-i <your private key>]
 ```
-{% /tab %}
+</Tab>
     
-{% tab label="arguments" %}
+<Tab label="arguments">
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | \--stack, -s <application name> | yes | — | Name of the application |
@@ -25,8 +25,8 @@ $ cx ssh  [--gateway-key <path to gateway key>] --stack <application name> <serv
 | <server role> | either/or | — | Role of the server to access (e.g. web) |
 | -i | no | — | Specify a (local) private key to use when connecting via SSH|
 
-{% /tab %}
-{% tab label="examples" %}
+</Tab>
+<Tab label="examples">
 
 ```shell
 $ cx ssh -s myapp lion
@@ -35,5 +35,5 @@ $ cx ssh -s myapp web
 $ cx ssh --gateway-key ~/.ssh/bastion_key  -s mystack db
 ```
 
-{% /tab %}
-{% /tabs %}
+</Tab>
+</Tabs>

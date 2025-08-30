@@ -7,9 +7,9 @@ lead: "How to add persistent storage to your application"
 
 Given the ephemeral nature of containers, it’s important to consider storage solutions to avoid data loss. We suggest mounting volumes from your container to the host.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 This guide applies to containerized applications. We have a separate guide for Rails applications that deals with [persistent and shared directories](/docs/build-and-config/rails-shared-directories).
-{% /per-framework %}
+</PerFramework>
 
 ## Adding simple storage volumes
 
@@ -21,9 +21,9 @@ You can optionally add `ro` or `rw` to specify that the container can read/write
 
 (Read [our guide to using service.yml](/docs/build-and-config/docker-service-configuration) for more help on customizing your service configuration.)
 
-{% callout type="warning" title="No relative paths" %}
+<Callout type="warning" title="No relative paths">
 Paths for storage volumes must be absolute. 
-{% /callout %}
+</Callout>
 
 ```yaml
 services:
@@ -53,9 +53,9 @@ You can choose whether to populate the mounted folder from a Secret or ConfigMap
 
 Optionally you can filter the included values based on a tag/metadata filter. The filter must be of the syntax `key=value` ie. `foo=bar`. When applied to ConfigStore entries, it will match based on the entry metadata. When applied to Environment Variables, it will match based on [tags](/docs/servers/tagging-components).
 
-{% callout type="warning" title="No service-level env_vars" %}
+<Callout type="warning" title="No service-level env_vars">
  Because Secret and ConfigMap stores are application level and not service-specific, you cannot use service-level Environment Variables. 
-{% /callout %}
+</Callout>
 
 The following examples illustrate your options: 
 
@@ -102,7 +102,7 @@ This would mount an emptyDir volume in the `/cache` folder of your container(s) 
 ### Volume settings
 
 Cloud 66 supports the following general settings for all volume-types:
-{% table %}
+<Table >
 |Option|Format|Description|
 |--- |--- |--- |
 |mount_path|string|Path within the container at which the volume should be mounted. Must not contain `:`|
@@ -110,5 +110,5 @@ Cloud 66 supports the following general settings for all volume-types:
 |read_only|boolean|Mounted read-only if true, read-write otherwise. Defaults to false.|
 |sub_path|string|The path within the volume from which the container's volume should be mounted. Defaults to `""` (volume's root). Mutually exclusive with `sub_path_expr`.|
 |sub_path_expr|string|Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to `sub_path` but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to `""` (volume's root). Mutually exclusive with `sub_path`.|
-{% /table %}
+</Table>
 For more information on any of these settings, please consult the [official Kubernetes docs](https://kubernetes.io/docs/concepts/storage/volumes/) about volumes.

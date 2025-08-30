@@ -13,7 +13,7 @@ Depending on your plan type, Cloud 66 supports both Single Sign-On (SSO) via SAM
 
 Account owners can enable AUP for their Cloud 66 organization for *either* of these two signup methods:
 
-1. Sign-ups that use {% hint caption="Google oAuth" %}i.e that use the “Google” button when creating an account{% /hint %}
+1. Sign-ups that use <Hint caption="Google oAuth">i.e that use the “Google” button when creating an account</Hint>
 2. Sign-ups via SAML (see the Configuring AUP with SSO section)
 
 ### What is AUP?
@@ -72,9 +72,9 @@ You can edit an existing AUP by clicking the edit icon (pencil and paper) or rem
 
 AUP will now begin working for all new sign-ups to Cloud 66 that use your email domain. 
 
-{% callout type="info" title="AUP permissions are forward-looking" %}
+<Callout type="info" title="AUP permissions are forward-looking">
 Permissions granted when you configure AUP only apply to signups that happen after configuration. Any team member provisioned individually, using a different AUP configuration will not have their permissions changed. Updating existing AUP permissions will not affect the permissions of accounts that signed up before the update.
-{% /callout %}
+</Callout>
 
 ## SSO integration
 
@@ -86,9 +86,9 @@ Setting up a SAML integration with your preferred IdP requires two things:
 2. Configuring your Cloud 66 account with details of your (SAML) IdP
 
 
-{% callout type="info" title="SSO does not assume AUP" %}
+<Callout type="info" title="SSO does not assume AUP">
 You can enable SSO without automatic user provisioning. In that case users will need to sign up for Cloud 66 accounts using the email associated with their SSO credentials and you can then manually add them to your team and provision them as per usual.
-{% /callout %}
+</Callout>
 
 These are the official guides for some popular SAML IdPs:
 
@@ -154,9 +154,9 @@ You should now see your provider listed in the Single Sign-On Providers panel.
 
 We strongly recommend thoroughly testing that SSO works before beginning to enforce it. Most IdPs have a test mechanism in their admin interfaces.
 
-{% callout type="warning" title="Existing logins will continue to work" %}
+<Callout type="warning" title="Existing logins will continue to work">
 By default existing users can continue to log into their accounts with their old credentials as well as SAML. Account owners can limit this for existing users by enabling the [SSO-only setting](#enforcing-sso-only-logins) on their account. Users created with SAML SSO will only be able to login with SAML.
-{% /callout %}
+</Callout>
 
 ### Signing in via SSO
 

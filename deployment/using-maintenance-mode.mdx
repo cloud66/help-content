@@ -2,9 +2,9 @@
 title: Using Maintenance Mode
 ---
 
-{% callout type="warning" title="Only available for Rails applications" %}
+<Callout type="warning" title="Only available for Rails applications">
 The maintenance mode feature is not available for containerised applications.
-{% /callout %}
+</Callout>
 
 ## Overview
 
@@ -22,7 +22,7 @@ Remember to give your application a few minutes to enable this change.
 
 You can still safely redeploy your application while maintenance mode is enabled - the maintenance page will be served until you turn off maintenance mode (by *unchecking* the same box).
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ## Setting a custom maintenance page
 
 To supply your own maintenance page, simply place an HTML file in the following path of your repository:
@@ -32,4 +32,4 @@ To supply your own maintenance page, simply place an HTML file in the following 
 ```
 
 This will override the default Cloud 66 maintenance page.
-{% /per-framework %}
+</PerFramework>

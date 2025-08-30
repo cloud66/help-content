@@ -32,7 +32,7 @@ You can customise this page by following [this guide](/docs/servers/nginx#custom
 
 The following table outlines the default configuration of Nginx.
 
-{% table %}
+<Table >
 |Category|Attribute|Default value|
 |--- |--- |--- |
 |**General**|||
@@ -62,13 +62,13 @@ The following table outlines the default configuration of Nginx.
 ||root|/var/deploy/[application name]/web_head/current/public|
 ||ssl_certificate_key|/etc/ssl/localcerts/[ssl cerificate file name].key|
 ||ssl_certificate|/etc/ssl/localcerts/[ssl cerificate file name].crt|
-{% /table %}
+</Table>
 
 ## Nginx CustomConfig variables
 
 The following variables are available for use in your Nginx CustomConfig.
 
-{% table %}
+<Table >
 |Variable Name|Type|Description|
 |--- |--- |--- |
 |user_name|string|User name running the application process|
@@ -99,9 +99,9 @@ The following variables are available for use in your Nginx CustomConfig.
 |service_containers|array|Contains all services (with *service_name* and *upstreams* information)|
 |service_name|string|Part of the *service_containers* hiearchy, containing the name of a specific service|
 |upstreams|array|Part of the *service_containers* hiearchy, containing an upstream name, private IPs, traffic matches and port|
-{% /table %}
+</Table>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### How passenger pool max is calculated
 
@@ -113,7 +113,7 @@ passenger_pool_max = ( server's memory - reserved_server_memory ) / [passenger_p
 
 ...and this is rounded down to the nearest integer. So if your server has 4GB of free RAM and each process uses 600MB the your `passenger_pool_max` will be 6. 
 
-{% /per-framework %}
+</PerFramework>
 
 ## Nginx worker configuration
 
@@ -121,7 +121,7 @@ Nginx now supports [autodetection of CPU cores](https://nginx.org/en/docs/ngx_co
 
 ## Customizing Nginx configurations
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Web* in the left-hand nav
 3. Click the *&#8615; More* button at the top right of the server group you wish to configure and select *NGINX Custom Config*
@@ -130,9 +130,9 @@ Nginx now supports [autodetection of CPU cores](https://nginx.org/en/docs/ngx_co
 6. Add a commit message and click *Commit to Server*
 
 Editing and committing your Nginx CustomConfig will perform the following steps on **every web server in that group**, one by one, sequentially:
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Application* in the left-hand nav
 3. Click on *Servers* in the sub nav
@@ -142,7 +142,7 @@ Editing and committing your Nginx CustomConfig will perform the following steps 
 7. Add a commit message and click *Commit to Server*
 
 Editing and committing your Nginx CustomConfig will perform the following steps on **every application server in that group**, one by one, sequentially:
-{% /per-framework %}
+</PerFramework>
 
 *   Check your template for Liquid syntax errors
 *   Count the number of cores on the server
@@ -152,9 +152,9 @@ Editing and committing your Nginx CustomConfig will perform the following steps 
 
 Reloading Nginx does not interrupt the serving of traffic. This process will be stopped if an error is encountered. For example, if you have 3 web servers in your application, if the first server fails to be updated, the process will be halted for the other 2 servers to avoid complete service disruption.
 
-{% callout type="warning" title="Review configs carefully" %}
+<Callout type="warning" title="Review configs carefully">
 A bad configuration may stop your Nginx from functioning, so take extra care when making changes. 
-{% /callout %}
+</Callout>
 
 ## Working examples 
 
@@ -201,7 +201,7 @@ server {
         listen 443 ssl http2;
 ```
 
-{% callout type="warning" title="Remove 'ssl on' directive" %}
+<Callout type="warning" title="Remove 'ssl on' directive">
 Be sure to remove the separate `ssl on` directive from the config, or it will not work.
-{% /callout %}
+</Callout>
 

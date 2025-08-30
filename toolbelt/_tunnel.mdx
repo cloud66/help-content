@@ -7,9 +7,9 @@ Opens an SSH tunnel between your local machine and the remote server on a specif
 3. Starts an SSH tunnel between your machine and the server on the given ports
 4. Closes the tunnel when you exit the Toolbelt (Ctrl-C)
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 Applications using gateways (Bastion servers) are not supported.
-{% /per-framework %}
+</PerFramework>
 
 If a role is specified the command will connect to the first server with that role.
 
@@ -19,23 +19,23 @@ If a local port is not specified, cx will use "remote + 1" as a convention for t
 
 This command is only supported on Linux and OS X (for Windows you can run this in a virtual machine if necessary)
 
-{% tabs %}
-{% tab label="Usage" %}
+<Tabs >
+<Tab label="Usage">
 
 ```shell
 $ cx tunnel --stack <application name> --server <server name> | <server IP> | <server role> --local <local port> --remote <remote port>
 ```
-{% /tab %}
+</Tab>
     
-{% tab label="arguments" %}
+<Tab label="arguments">
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | \--stack, -s <application name> | yes | — | The application name |
 | \--server <server name> \| <server ip> \| <server role> | either/or | — | Name or IP or role of the server to access |
 | -local, -l <local port> | no | — | Local port for the tunnel |
 | -remote, -r <remote port> | yes | — | Remote port for the tunnel |
-{% /tab %}
-{% tab label="examples" %}
+</Tab>
+<Tab label="examples">
 
 ```shell
 $ cx tunnel -s mystack --server lion --local 3307 --remote 3306
@@ -43,5 +43,5 @@ $ cx tunnel -s mystack --server 52.65.34.98 --local 3307 --remote 3306
 $ cx tunnel -s mystack --server web -l 3307 -r 3306
 ```
 
-{% /tab %}
-{% /tabs %}
+</Tab>
+</Tabs>

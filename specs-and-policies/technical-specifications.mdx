@@ -34,7 +34,7 @@ The second platform is best suited to containerized applications with a strong s
 
 The third platform is specifically designed to build and host [Jamstack](https://jamstack.org/what-is-jamstack/)-style preprocessed application on object storage services.
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 ## Component versions
 
 Cloud 66 servers have two types of components with differing policies on versioning.
@@ -49,22 +49,22 @@ Cloud 66 maintains an internal list of versions for most components built from s
 
 You are free to **specify an alternative version** for most of these components in your [manifest file](/docs/manifest/building-a-manifest-file#manifest-tutorial).
 
-{% component-version %}
-{% /component-version %}
+<ComponentVersion >
+</ComponentVersion>
 
 We deploy a custom release of Nginx. [See below](#nginx-release) for details.
 
 We **don't** install a default version of Rails - the version installed is based on the requirements of your application. Versions earlier than 2.6.3 *may* work but have some compatibility issues with recent versions of Ubuntu.
 
-{% callout type="error" title="Using non-default versions" %}
+<Callout type="error" title="Using non-default versions">
 If you're using different (non-default) versions of components, we strongly recommend testing your application thoroughly in a non-production environment before deploying. 
-{% /callout %}
+</Callout>
 
 ### Nginx release
 
 Cloud 66 maintains our own self-contained release of Nginx which includes all of the modules listed below. 
 
-The current NGINX version used by our custom release is {% component-version names=["Nginx"] tabular=false /%}.
+The current NGINX version used by our custom release is <ComponentVersion names={["Nginx"]} tabular={false} />.
 
 For more info please read the [Releases page on our Github project](https://github.com/cloud66-oss/nginx-compiler/releases). 
 
@@ -96,4 +96,4 @@ We install the Nginx modules listed below by default. These are used to provide 
 
 Would you like to suggest a version change? [Email us](mailto:support@cloud66.com?subject=Version update)!
 
-{% /per-framework %}
+</PerFramework>

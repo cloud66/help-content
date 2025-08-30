@@ -6,17 +6,17 @@ title: How to SSH to Servers
 
 You can access any of your servers (that are being managed by Cloud 66) directly via SSH. For security reasons we only allow access using [SSH keys](/docs/cloud-66-101/ssh-keys), and not usernames and passwords. See below for how to add your key to Cloud 66. 
 
-{% partial file="../../src/pages/docs/partials/_do_not_configure_servers_manually.md" /%}
+<Partial file="../../src/pages/docs/partials/_do_not_configure_servers_manually.md" />
 
 ## Adding your SSH key to your Cloud 66 account
 
 Both of the methods below rely on SSH keys rather than username and password (which Cloud 66 does not support). As such you first need to give us your public SSH key, which we will add to all your servers (both existing and new) automatically. 
 
-{% collapsible title="How to generate new SSH keys" %}
+<Collapsible title="How to generate new SSH keys">
 
-{% partial file="../../src/pages/docs/partials/_ssh_keys.md" /%}
+<Partial file="../../src/pages/docs/partials/_ssh_keys.md" />
 
-{% /collapsible %}
+</Collapsible>
 
 To add an SSH key to your Cloud 66 account:
 
@@ -27,9 +27,9 @@ To add an SSH key to your Cloud 66 account:
 
 You’re now ready to SSH into your servers using one of the methods below. We provide two different ways for you to SSH to your servers - an automated way with Cloud 66 Toolbelt, or a manual way.
 
-{% callout type="warning" title="Your servers must be reachable when adding an SSH key" %}
+<Callout type="warning" title="Your servers must be reachable when adding an SSH key">
 If any of your servers are unreachable by Cloud 66 when you add your SSH key, then you will need to manually sync your SSH key to those servers using [the method described below](#server-was-unreachable-when-ssh-key-was-added).
-{% /callout %}
+</Callout>
 
 ## SSH using Cloud 66 toolbelt (CLI)
 
@@ -39,7 +39,7 @@ You can use [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt) to easi
 2. Ensure you have [added your public SSH key](#adding-your-ssh-key-to-your-cloud-66-account) to your Cloud 66 account
 3. Run one of the commands below
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ```shell
 cx ssh [--gateway-key <The path to the key of gateway server>] [-s "your application name"] "your server name"|<server ip>|<server role> [-i <your private key>]
 ```
@@ -52,8 +52,8 @@ Many of these parameters are optional or mutually exclusive. For example you don
 cx ssh -s "My Awesome App" web
 cx ssh --gateway-key ~/.ssh/bastion_key  -s "My Awesome App" Lion -e production
 ```
-{% /per-framework %}
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+</PerFramework>
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ```shell
 cx ssh [-s "your application name"] "your server name"|<server ip>|<server role> [-i <your private key>] 
 ```
@@ -66,7 +66,7 @@ Many of these parameters are optional or mutually exclusive. For example you don
 cx ssh -s "My Awesome App" web
 cx ssh -s "My Awesome App" Lion -e production
 ```
-{% /per-framework %}
+</PerFramework>
 
 See [toolbelt shortcuts](/docs/toolbelt/using-cloud66-toolbelt), for information on to do this via our CLI.
 
@@ -91,9 +91,9 @@ $ ssh user_name@ip_address -i <path to your private key>
 
 ## Troubleshooting
 
-{% callout type="info" title="Have you recently restarted your server?" %}
+<Callout type="info" title="Have you recently restarted your server?">
 Cloud providers frequently change the public IP addresses of servers when they are restarted. This includes all events that require the server to be shut down - including things like adding more capacity, or upgrading software components. This can (temporarily) cause our firewall to block connections to or from that server until our system detects the IP change and updates the firewall rules. This problem should resolve itself within a few minutes. If you'd like to avoid this issue completely, we recommend buying static IP addresses from your cloud provider for use with mission critical servers.
-{% /callout %}
+</Callout>
 
 ### Server was unreachable when SSH key was added
 
@@ -200,7 +200,7 @@ If you are being prompted for the password using Toolbelt, it means either your 
 
 In order to fix either of these issues, you will need an account admin to remove your user permission from that application and re-add your user again. This will push your "new" user account to the servers and should solve this issue.
 
-{% callout type="warning" title="Adding users to servers" %}
+<Callout type="warning" title="Adding users to servers">
 Adding your user to servers may take up to 20 minutes as it is running in the background. 
-{% /callout %}
+</Callout>
 

@@ -6,9 +6,9 @@ title: Adding & Managing Server Jobs
 
 Server Jobs allow you to define and schedule regular server tasks (shell commands). Under the hood, these are run as [cronjobs](/docs/servers/understanding-cron-syntax).
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 If you need to run a job against a Cloud 66 service (i.e. inside a container), rather than on the underlying server, you should use [Application Jobs](/docs/servers/docker-tasks) instead.
-{% /per-framework %}
+</PerFramework>
 
 ## Adding a new server job
 
@@ -88,7 +88,7 @@ You can also quote your argument if there is a space in the value.
 |Passing arguments via dashboard|`"log*.txt" tmp/logs`|
 |Passing arguments via Toolbelt|`--arg "log*.txt" -- arg tmp/logs`|
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ## Support for whenever gem
 
@@ -101,4 +101,4 @@ We also support the [whenever gem](https://github.com/javan/whenever) for managi
 
 If you'd prefer to use the gem, simply add `whenever` to your Gemfile and redploy your code. We will automatically use the config/schedule.rb in your source code to build the CRON jobs on the relevant servers. You should see the message "Handling whenever schedule" on your server detail page log.
 
-{% /per-framework %}
+</PerFramework>

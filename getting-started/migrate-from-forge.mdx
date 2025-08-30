@@ -10,9 +10,9 @@ You can migrate your PHP application from Forge to Cloud 66 in 3 steps:
 2. Import your data to your new environment
 3. Redirect traffic to the new endpoint
 
-{% callout type="info" title="Cloud 66 does not host apps" %}
+<Callout type="info" title="Cloud 66 does not host apps">
 Cloud 66 does not host applications. We automate the build and deployment of your application to the cloud provider of your choice, or your own servers (virtual or physical).
-{% /callout %}
+</Callout>
 
 
 ## What you’ll need
@@ -73,9 +73,9 @@ The easiest option is to give us (read-only) access to a Github repo. To do this
 
 If you’d prefer to use another method, you can consult the table on our [main getting started guide](/docs/getting-started/deploy-your-first-app#step-1-choose-a-source). 
 
-{% callout type="info" title="Do you have a Dockerfile?" %}
+<Callout type="info" title="Do you have a Dockerfile?">
 You’ll need a Dockerfile in the root of your repo or the next step won’t work. See the guide above to add one.
-{% /callout %}
+</Callout>
 
 ### 3: Define your application
 
@@ -104,7 +104,7 @@ Once we have scanned your application code, we will create an image for your app
 
 We need access to your cloud account in order to provision and manage servers on your behalf. How you configure that access differs from provider to provider. Select your cloud provider from the dropdown for more help.
 
-{% partial file="../../src/pages/docs/partials/_cloud_provider_or_own_server_tabs.md" /%}
+<Partial file="../../src/pages/docs/partials/_cloud_provider_or_own_server_tabs.md" />
 
 #### B. Add your cloud provider as a deployment target
 

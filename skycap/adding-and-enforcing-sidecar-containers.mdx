@@ -10,9 +10,9 @@ A “sidecar” is a shared or common service that is deployed alongside your ap
 
 Sidecars are useful because they allow a common service (such as authentication) to be shared between application components or Pods without the need to bundle that code into each part of your application. Sidecars are a great example of [micro-service architecture](/docs/skycap/concepts-and-terminology#microservices).
 
-{% callout type="info" title="Shared pods vs sidecars" %}
+<Callout type="info" title="Shared pods vs sidecars">
  Not all containers that share pods are sidecars. Sidecars are specifically shared services on which the main application depends (and vice versa) 
-{% /callout %}
+</Callout>
 
 This guide walks you through adding a sidecar to an existing application, and then adding a policy that ensures all containers are deployed with that sidecar.
 
@@ -26,9 +26,9 @@ Before you start, please check you have the following:
 
 * **An existing Formation defined in Skycap** &mdash; You can learn how to do that with our [Getting started with Skycap Formations](/docs/skycap/using-formations) guide.
 
-{% callout type="info" title="Sample project" %}
+<Callout type="info" title="Sample project">
  In this example we’re using the same [simple "hello world" project](https://github.com/cloud66-samples/helloworld.git) that we used in our Getting Started guides. 
-{% /callout %}
+</Callout>
 
 ## Adding a sidecar 
 
@@ -47,9 +47,9 @@ We are going to add [this simple authentication service](https://github.com/clou
 To do this we follow the same steps as in our [Adding a new component (service) to your application](/docs/skycap/adding-a-new-service#adding-a-new-component-service-to-your-application) guide, but instead of adding Redis, we add [Auther](https://github.com/cloud66-samples/auther). 
 
 
-{% callout type="info" title="Snapshot reminder" %}
+<Callout type="info" title="Snapshot reminder">
  Remember to Snapshot the application once you have added the new service, otherwise it will not be available in Formations. 
-{% /callout %}
+</Callout>
 
 ### Creating an inline Stencil
 
@@ -74,9 +74,9 @@ The code we’re going to use to deploy our Auther service is:
   - containerPort: 5000
 ```
 
-{% callout type="info" title="Why port 5000?" %}
+<Callout type="info" title="Why port 5000?">
  You’ll notice that we’re using port 5000 here, which our Hello World app normally uses. This is intentional. Our sidecar will essentially sit between our existing service and we requests and act as a kind of simple proxy. We will then remap our Hello World service to connect via 5001 - the *backend port* of Auther. 
-{% /callout %}
+</Callout>
 
 To create the inline Stencil we:
 

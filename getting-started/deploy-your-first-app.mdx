@@ -1,8 +1,8 @@
 ---
 title: Deploying your first app with Cloud 66
+lead: You can have your first application up and running on Cloud 66 in under 5 mins. Follow the steps below to see how easy it is to get your app configured, built, and deployed.
 ---
- 
-You can have your first application up and running on Cloud 66 in under 5 mins. Follow the steps below to see how easy it is to get your app configured, built, and deployed. {% .lead %}
+
 
 ## What you’ll need 
 
@@ -12,25 +12,25 @@ Before you start, please check you have the following:
 - **Application code and/or pre-built images** — Application code should be hosted in a (secure) publicly accessible git repository and pre-built images should be hosted in image publicly accessible repositories.
 - **An account with a supported cloud provider or your own servers set up** — Cloud 66 supports a range of cloud providers. Select your preferred provider from the dropdown under Step 4 below.
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 If you don't have images or code ready, you can use this [simple visit counter application](https://github.com/cloud66/maestro-demo.git) we've created on Github.
-{% /per-framework %}
+</PerFramework>
 
 Once you're ready, click the green *New Application* button to start the process.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
-{% callout type="info" title="Rails version support" %}
+<Callout type="info" title="Rails version support">
 We support every version of Rails from 2.6.3 and upwards, including versions 6.x.x The version installed during deployment is based on the requirements of your application. Versions earlier than 2.6.3 *may* work but will have some compatibility issues with Ubuntu 18.04 and 20.04.
-{% /callout %}
+</Callout>
 
-{% /per-framework %}
+</PerFramework>
 
 ## Step 1: Choose a source 
 
 The first thing we need is access to your code, so that we can build and deploy it for you. Click the tab below which best suits your needs:
 
-{% partial file="../../src/pages/docs/partials/_git.md" /%}
+<Partial file="../../src/pages/docs/partials/_git.md" />
 
 ## Step 2: Define your application
 
@@ -42,22 +42,22 @@ Now that we have access to your git host, you can tell us which repo you want to
 4. Click *Analyze* - we will now scan your repo and suggest the optimal settings
 
 ## Step 3: Configure and build
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 Once the analysis is complete you'll see a yellow Information Box that you can use to verify the analysis is correct.
 
-{% figure src="/images/about-rails-app.png" /%}
+<Figure src="/images/about-rails-app.png" />
 
 If there are any problems you can make changes and click **Reanalyze my code**. If necessary, you can also add environment variables.
 
 In App Configuration you can make changes to application configuration parameters.
 
-{% figure src="/images/rails_config_ruby_framework.png" /%}
+<Figure src="/images/rails_config_ruby_framework.png" />
 
 * **Ruby Version** &mdash; That your app is using.
 * **Framework Info** &mdash; This allows you alter information about asset pipeline precompilation and whether you want to run `rake db:schema:load`.
 
-### Add and confirm environment variables {% pill title="Optional" color="orange" /%}
+### Add and confirm environment variables <Pill title="Optional" color="orange" />
 
 During initial analysis we automatically generate environment variables based on the framework and components used by your app, but you can also add your own by clicking the *Add environment variables* link above the main panel. 
 
@@ -65,10 +65,10 @@ Additionally, if we detect environment variables used directly in your code, we 
 
 Once your app is completely configured, click the *Next →* button.
 
-{% /per-framework %}
+</PerFramework>
 
 
-{% per-framework includes=["svelte"] %}
+<PerFramework includes={["svelte"]}>
 ### Static generation or server-side rendering?
 
 If we detect that your application uses Svelte we will ask you to confirm whether your application is **statically generated** (AKA prerendered) or uses **server-side rendering**. 
@@ -77,9 +77,9 @@ Statically generated applications are rendered entirely during the build process
 
 If you’re unsure of which kind of app you have, you should [read the official documentation](https://kit.svelte.dev/docs/page-options) and examine your code to confirm before you try to deploy.
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["nextjs"] %}
+<PerFramework includes={["nextjs"]}>
 ### Static generation or server-side rendering?
 
 If we detect that your application uses Next.js we will ask you to confirm whether your application is **statically generated** (AKA prerendered) or uses **server-side rendering**. 
@@ -88,9 +88,9 @@ Statically generated applications are rendered entirely during the build process
 
 If you’re unsure of which kind of app you have, you should [read the official documentation](https://nextjs.org/docs/basic-features/pages#two-forms-of-pre-rendering) and examine your code to confirm before you try to deploy.
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["nuxt"] %}
+<PerFramework includes={["nuxt"]}>
 ### Static generation or server-side rendering?
 
 If we detect that your application uses Nuxt.js we will ask you to confirm whether your application is **statically generated** (AKA prerendered) or uses **server-side rendering**. 
@@ -99,12 +99,12 @@ Statically generated applications are rendered entirely during the build process
 
 If you’re unsure of which kind of app you have, you should [read the official documentation](https://nuxtjs.org/docs/features/rendering-modes/) and examine your code to confirm before you try to deploy.
 
-{% /per-framework %}
+</PerFramework>
 
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
-### Add more services {% pill title="Optional" color="orange" /%}
+### Add more services <Pill title="Optional" color="orange" />
 
 If you need to add another service to your app that is not included in your Dockerfile: 
 
@@ -130,11 +130,11 @@ To configure the internal and external ports for a service:
 
 If you're using our sample application you should set the HTTP port to `80` and the Container port to `5000`.
 
-{% callout type="info" title="Simultaneous configuration" %}
+<Callout type="info" title="Simultaneous configuration">
 This settings panel is used for both networking and storage options - so you can configure them simultaneously if you'd prefer. 
-{% /callout %}
+</Callout>
 
-#### B. Configure storage {% pill title="Optional" color="orange" /%}
+#### B. Configure storage <Pill title="Optional" color="orange" />
 
 To configure storage volumes for a service: 
 
@@ -144,7 +144,7 @@ To configure storage volumes for a service:
 
 Once all your storage volumes are configured, click *Save Service*.
 
-#### C. Set the desired number of instances {% pill title="Optional" color="orange" /%}
+#### C. Set the desired number of instances <Pill title="Optional" color="orange" />
 
 To add instances of a service: 
 
@@ -153,7 +153,7 @@ To add instances of a service:
 3. You can also add a start command to your service if required
 4. Click *Save Service*
 
-### Add and confirm environment variables {% pill title="Optional" color="orange" /%}
+### Add and confirm environment variables <Pill title="Optional" color="orange" />
 
 During initial analysis we automatically generate environment variables based on the framework and components used by your app, but you can also add your own by clicking the *Add environment variables* link above the main panel. 
 
@@ -161,39 +161,39 @@ Additionally, if we detect environment variables used directly in your code, we 
 
 Once your app is completely configured, click the *Next →* button.
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
 
 Once the analysis is complete you’ll see a yellow information box that you can use to verify the analysis is correct.
 
-{% figure src="/images/about_static_app.png" /%}
+<Figure src="/images/about_static_app.png" />
 
 If there are any problems you can make changes and click **Reanalyze my code**. If necessary, you can also add environment variables.
 
-{% /per-framework %}
+</PerFramework>
 
 ## Step 4: Add a cloud provider
 
 ### A. Configure access to your cloud provider
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 We need access to your cloud account in order to provision and manage servers on your behalf. How you configure that access differs from provider to provider. Select your cloud provider from the dropdown for more help. 
 
-{% partial file="../../src/pages/docs/partials/_cloud_provider_or_own_server_tabs.md" /%}
+<Partial file="../../src/pages/docs/partials/_cloud_provider_or_own_server_tabs.md" />
 
-{% /per-framework %} 
+</PerFramework> 
 
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
 
 We need access to your cloud account in order to provision and manage static sites on your behalf. How you configure that access differs from provider to provider. Because static sites rely on object storage, some of our cloud providers do not currently support static site deployments.
 
 Select a cloud provider from the dropdown for more help.
 
-{% partial file="../../src/pages/docs/partials/_object_storage.md" /%}
+<Partial file="../../src/pages/docs/partials/_object_storage.md" />
  
-{% /per-framework %}
+</PerFramework>
 
 ### B. Add your cloud provider as a deployment target
 
@@ -201,7 +201,7 @@ To add your cloud credentials click the *Add a Deployment Target* button. This
 
 Click the green *Add Deployment Target* button once complete.
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 ### C. Specify servers
 
 Next you need to specify where your servers will be situated, how large they should be, and where your data will be stored:
@@ -209,11 +209,11 @@ Next you need to specify where your servers will be situated, how large they sho
 1. Choose a **Server Region**
 2. We will suggest a size for your application server - you can change it as needed
 3. Specify whether your datastore will share the app server (not recommended for Production), or have its own server. You can also use an existing [external database server](/docs/databases/database-management#no-database-external) if you prefer.
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 If you're using our sample application you will need to set up a Redis instance at this point.
-{% /per-framework %}
+</PerFramework>
 
 Our customization section has more details on the available options.
 
@@ -223,11 +223,11 @@ When you’re satisfied with your configuration, click the *Start Deployment* 
 
 You can also close the window and come back later. We will email you once the application is deployed (or if it fails).
 
-{% callout type="warning" title="Initial build may take some time" %}
+<Callout type="warning" title="Initial build may take some time">
 The full build and deployment process may take 15 minutes or more because Cloud 66 needs to provision components and resources from the ground up. You can close the window and we will send you an email when the deployment is complete. 
-{% /callout %}
+</Callout>
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 ### Server build states
 
 In order to allow you to start working with your new app as soon as possible, there are two build states (or stages) for application servers:
@@ -235,7 +235,7 @@ In order to allow you to start working with your new app as soon as possible, th
 1. [Ready](/docs/servers/server-build-states#ready-servers) - server is available to use, with the minimum required configuration
 2. [Optimized](/docs/servers/server-build-states#optimized-servers) - all the latest packages are installed & optimized
 
-{% /per-framework %}
+</PerFramework>
 
 ## Customizing your app
 

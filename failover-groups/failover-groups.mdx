@@ -112,9 +112,9 @@ To solve these issues, Cloud 66 automatically handles the transfer of your SSL c
 
 This applies to both custom certificates (i.e. from a third party supplier) and to Let's Encrypt certificates.
 
-{% callout type="info" title="SSL certs are not renewed on backup apps" %}
+<Callout type="info" title="SSL certs are not renewed on backup apps">
 Since your backup application is, by definition, not receiving traffic while your primary application is active, we will not automatically renew your Let's Encrypt SSL certificates on the application which is acting as a backup. It will be transferred and resume automatic renewal when you switch using your Failover Group.
-{% /callout %}
+</Callout>
 
 ## Testing Failover Groups
 

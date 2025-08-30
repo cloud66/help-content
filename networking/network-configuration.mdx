@@ -6,9 +6,9 @@ title: Configuring network access to your application
 
 All applications deployed via Cloud 66 use Nginx as a combined web server and reverse proxy. By default traffic will be routed to your application over ports 80 and 443 for HTTP and HTTPS traffic respectively. However, you may need your application to be accessible via a different port. This guide walks you through a basic example of changing the port through which your application is served. 
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 If you need help with service networking for containerized applications, please read our [Service Networking for Containers](/docs/networking/service-networking) guide.
-{% /per-framework %}
+</PerFramework>
 
 ### What you'll need
 
@@ -30,9 +30,9 @@ Let’s imagine that for some reason your application needs to use port 8080 rat
 
 If you now return to **application** and click on the *visit site* link, the page should fail to load. Now add `:8080` to the end of the URL and the index page should now load.
 
-{% callout type="info" title="Some changes require redeploys" %}
+<Callout type="info" title="Some changes require redeploys">
 The change we made above was immediately applied to Nginx and did not require us to redeploy our application, but some changes do require that you redeploy you entire application before they are enabled. 
-{% /callout %}
+</Callout>
 
 ## More advanced options
 
@@ -40,9 +40,9 @@ Cloud 66 supports a wide range of configuration customizations for Nginx. You ca
 
 All changes to configuration files in Cloud 66 are automatically tracked and version controlled by CustomConfig git. Read [our guide](/docs/custom-config/custom-config) to better understand the power of this feature.
 
-{% callout type="warning" title="Be cautious with Nginx configs" %}
+<Callout type="warning" title="Be cautious with Nginx configs">
 Editing your Nginx configuration should be approached with caution as an incorrect value can break your application on the front-end. We suggest testing all changes in your non-production environments before applying them to a live application.
-{% /callout %} 
+</Callout> 
 
 ## Using Traffic Filters
 
@@ -148,11 +148,11 @@ To enable or disable it:
 
 You can add custom HTTP headers to all the responses from your application. You can also clear existing headers, as needed.
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
-{% callout type="info" title="You may need to update Nginx" %}
+<Callout type="info" title="You may need to update Nginx">
 In order to use custom headers, you may need to update Nginx via our Application Updates interface.
-{% /callout %}
+</Callout>
 
 ### Adding headers
 
@@ -182,9 +182,9 @@ You can **clear** any of the standard headers normally sent from your applicatio
 
 Bear in mind that headers perform important functions, so be cautious about removing them wholesale.
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
 
 ### Adding headers
 
@@ -210,7 +210,7 @@ You can clear any of the standard headers normally sent from your application. T
 
 Bear in mind that headers perform important functions, so be cautious about removing them wholesale.
 
-{% /per-framework %}
+</PerFramework>
 
 ## CORS
 

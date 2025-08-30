@@ -9,9 +9,9 @@ Rails version 6 (and above) natively supports attaching multiple databases to yo
 
 Cloud 66 fully supports the native implementation of MultiDB for Rails. However, we recommend you read the [official Rails guide to MultiDB](https://guides.rubyonrails.org/active_record_multiple_databases/) before configuring it on Cloud 66. Be sure to apply all the environment and config changes outlined in that doc to your application before setting up MultiDB.
 
-{% callout type="info" title="MultiDB is optional" %}
+<Callout type="info" title="MultiDB is optional">
 MultiDB for Rails relies on Cloud 66 Database Groups, but you can also use Database Groups with your Rails application **without** implementing the native MultiDB architecture, if you prefer.
-{% /callout %}
+</Callout>
 
 ## Configuring a primary and replica database
 
@@ -113,6 +113,6 @@ Any databases not explicitly mentioned in the manifest file will be ignored (and
 
 There are a wide range of settings available - please check out our reference guide for the full list. 
 
-{% callout type="warning" title="Check that database names match in configs" %}
+<Callout type="warning" title="Check that database names match in configs">
 If the database names in your database.yml and manifest.yml do not match *exactly*, this will create conflicts. Be sure to use exactly the same names in both configuration files.
-{% /callout %}
+</Callout>

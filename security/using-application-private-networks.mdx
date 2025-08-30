@@ -50,11 +50,11 @@ The way to apply a configuration depends on the platform you're using:
 - Scan the QR code using the WireGuard app
 - This will create a new tunnel - be sure to accept or save the config
 
-{% callout type="info" title="Limits of QR codes & configs" %}
+<Callout type="info" title="Limits of QR codes & configs">
 - If your app has more than 10 servers then you won't be able to use a QR code (the config file is too long to fit into such a code). You will need to download the config file and apply it as you would do for a computer.
 - If you add servers to an application, you will need to download a new config file in order to access your APN.
 
-{% /callout %}
+</Callout>
 
 ### 2. Allow access via your application firewall
 
@@ -90,9 +90,9 @@ You can find the APN-specific IP address of a server on your Dashboard:
 
 You can use this IP connect to your servers directly from your device using your preferred method (SSH, HTTP etc).
 
-{% callout type="info" title="Changing access levels for users" %}
+<Callout type="info" title="Changing access levels for users">
 If you change access levels for a user, they should download and re-apply the configuration.
-{% /callout %}
+</Callout>
 
 ## Configuring your APN
 
@@ -100,9 +100,9 @@ All Cloud 66 accounts have an APN automatically configured, and servers for each
 
 Each time you add servers to an application, this configuration is automatically updated to include them. The only manual configuration required is to your firewall if you need to access your APN from an external IP (see below)
 
-{% callout type="info" title="Update configs after adding servers" %}
+<Callout type="info" title="Update configs after adding servers">
  If you're accessing your servers remotely via the WireGuard client, you will need to download a new config file whenever you add new servers to your app. 
-{% /callout %}
+</Callout>
 
 ### Allowing access via your firewall
 

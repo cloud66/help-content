@@ -10,18 +10,18 @@ Cloud 66 supports two types of backups: _managed_ and _unmanaged_.
 
 Using managed backups has several benefits:
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 - You can easily [restore](/docs/databases/manage-backups) or download database backups using the Dashboard or [Toolbelt](/docs/toolbelt/toolbelt#backups-download) (CLI)
 - [Backup verifiers](/docs/databases/backup-verifiers) ensure that your backups actually contain what you expect
 - Allows you to use [database replication](/docs/databases/database-replication) to scale your databases
 - Managed Backups are stored in Cloud 66's secure storage
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 - You can easily restore or download database backups using the Dashboard or Toolbelt (CLI)
 - Allows you to use [database replication](/docs/databases/database-replication) to scale your databases
 - Managed Backups are stored in Cloud 66's [secure storage](#managed-backup-storage-locations)
-{% /per-framework %}
+</PerFramework>
 
 The 100 most recent managed backups are kept by default. 
 
@@ -29,9 +29,9 @@ The 100 most recent managed backups are kept by default.
 
 Unmanaged backups are stored on your local server and are available under `/var/cloud66/backups`. The 10 most recent unmanaged backups are kept by default. We don't charge for unmanaged backups.
 
-{% callout type="error" title="Backups require double available space" %}
+<Callout type="error" title="Backups require double available space">
 In order for unmanaged backups to work, you must have twice as much disk space on your server as your backup consumes.
-{% /callout %}
+</Callout>
 
 ## Enabling database backups
 
@@ -41,9 +41,9 @@ In order for unmanaged backups to work, you must have twice as much disk space o
 4. Click *+ Add Backup* in the yellow panel below the main panel
 3. Configure your backups as needed and click *Create Backup*
 
-{% callout type="warning" title="Backups are not automatically deleted" %}
+<Callout type="warning" title="Backups are not automatically deleted">
 We do not automatically delete managed backups when database groups are deleted in order to preserve data should it be needed for any reason. This may result in [orphaned backups](#managing-orphaned-backups). 
-{% /callout %}
+</Callout>
 
 ## Managed backup disk space requirements
 
@@ -86,9 +86,9 @@ Your server may have outdated or unneeded files (logs are a common culprit). A h
 
 If you are confident that you have enough space and the first option is not possible, you can use the [Cloud 66 Toolbelt](/docs/toolbelt/toolbelt#settings-set) to run `"cx settings set -s STACK_NAME db.check.backup.size false"` where `STACK_NAME` is the name of your application. This will disable backup size checks.
 
-{% callout type="info" title="Check disk space first" %}
+<Callout type="info" title="Check disk space first">
  If your server does not have enough space to accommodate the backup, this setting could cause the backup to fail, or the server disk to be fully utilised
-{% /callout %}
+</Callout>
 
 ## Restoring database backups
 
@@ -122,7 +122,7 @@ As this backup contains raw data of your database server (rather than a human re
 - You cannot use it on servers with data folders symlinked to other locations
 - You cannot use it on encrypted databases 
 - You need to shut down the database service during the restore 
-- Binary backups will include all {% hint caption="logical databases" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases){% /hint %} and all database users 
+- Binary backups will include all <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases)</Hint> and all database users 
 
 ### Text
 
@@ -130,9 +130,9 @@ For this format we generate a dump file with SQL commands that, when fed back to
 
 As the output of the backup is a SQL dump file, you can use it to import your data to other servers or when you want to upgrade your server version but restore process will be much longer than *binary*, particularly if you have lots of indexes in your database.
 
-{% callout type="warning" title="Text backups only include the default logical database" %}
-Text backups will only include your primary (default) {% hint caption="logical database" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases){% /hint %}. To back up additional logical databases in text format, you will need to do so manually or you will need to use binary backups instead. 
-{% /callout %}
+<Callout type="warning" title="Text backups only include the default logical database">
+Text backups will only include your primary (default) <Hint caption="logical database">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases)</Hint>. To back up additional logical databases in text format, you will need to do so manually or you will need to use binary backups instead. 
+</Callout>
 
 The benefits of this type of backup are: 
 
@@ -163,9 +163,9 @@ This option only applies to **text** MySQL and Postgres backups.  You can provid
 
 This option only applies to **text** MySQL and Postgres and to redis (binary) backups. With this option you can move the backup service to your database replica if available, to relieve pressure on your production database. 
 
-{% callout type="warning" title="Required restarts" %}
+<Callout type="warning" title="Required restarts">
 Adding or removing a Postgres binary backup requires a service restart.
-{% /callout %}
+</Callout>
 
 ## Managing orphaned backups
 
@@ -173,7 +173,7 @@ If you delete an entire database group for which you had **managed backups** ena
 
 ## Backing up logical databases
 
-If you have [added](/docs/databases/adding-database#adding-logical-databases-to-a-server) any {% hint caption="logical databases" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) {% /hint %} to any Database Group(s) you should be aware of the following:
+If you have [added](/docs/databases/adding-database#adding-logical-databases-to-a-server) any <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) </Hint> to any Database Group(s) you should be aware of the following:
 
 - Managed binary backups will include **all of your logical databases** and your **database users**. If you restore a version of your database *after* adding users to a later version these new users will effectively be lost (overwritten) by your previous users.
 - Managed text backups only include **your primary (default) logical database**. Text backups do not include users.

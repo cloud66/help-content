@@ -4,9 +4,9 @@ title: Adding memcached
 
 [Memcached](https://memcached.org/) is an open source, high-performance, distributed memory object caching system, and it's easy to add to your application via the Cloud 66 Dashboard.
 
-{% callout type="warning" title="" %}
+<Callout type="warning" title="">
 Cloud 66's Memcached component is designed for use with Rails and CSV1 (container stack, V1) applications. Newer containerized applications should implement [Memcached as a service](https://community.cloud66.com/t/how-do-i-add-memcached-to-my-application/54)
-{% /callout %}
+</Callout>
 
 ## Add Memcached
 
@@ -33,12 +33,12 @@ production:
             listen_ip: 127.0.0.1
 ```
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
-{% callout type="warning" title="Added to host, not container" %}
+<Callout type="warning" title="Added to host, not container">
 For containerized applications Memcached will be added to the host, not as a container.
-{% /callout %}
-{% /per-framework %}
+</Callout>
+</PerFramework>
 
 ## Check Memcached
 

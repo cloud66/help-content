@@ -17,7 +17,7 @@ Before you start, please check you have the following:
 
 ### Creating a deploy hook
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 To make use of deploy hooks, your application should have a file called *deploy_hooks.yml*.
 
 For **Rails/Rack** applications this file should be present within a folder named _.cloud66_, which is in turn located in the root of your source code.
@@ -27,10 +27,10 @@ For **Rails/Rack** applications this file should be present within a folder name
 ```
 
 This file should be YAML formatted, and you can use a service like [YAML Validator](https://codebeautify.org/yaml-validator) to validate it.
-{% /per-framework %}
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+</PerFramework>
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 Deploy hooks can be added to an application via the Dashboard. Like most other configuration templates in Cloud 66, Deploy hooks are YAML-formatted.
-{% /per-framework %}
+</PerFramework>
 
 A deploy hook needs, at a minimum:
 
@@ -39,9 +39,9 @@ A deploy hook needs, at a minimum:
 - a [**target**](#targets) - which type(s) of servers will use this hook
 - a [**hook field**](#hook-fields) - the command or script being run (or invoked)
 
-{% callout type="warning" title="Targeting specific servers" %}
+<Callout type="warning" title="Targeting specific servers">
 If you choose a specific server type as your target (i.e. anything other than `any`) then your `run_on` field will default to `single_server` unless you explicitly set it to `all_servers`. If you set your `server_type` to `any`, then this field is ignored. 
-{% /callout %}
+</Callout>
 
 So, to write a deploy hook you must:
 
@@ -68,11 +68,11 @@ We're going to add the hook below to our demo application:
 
 This hook will install the `nmap` package on our server during the deployment process. We've added the `execute` hook field because we want the command to be executed during deployment. If you don't add this field, the code you're calling won't be executed. 
 
-{% callout type="warning" title="Set yes for all prompts" %}
+<Callout type="warning" title="Set yes for all prompts">
 When automating the installation of packages, remember to use the `-y` flag to answer yes to all prompts.
-{% /callout %}
+</Callout>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ### Adding the hook to your app
 
 To add the hook:
@@ -83,8 +83,8 @@ To add the hook:
 4. Copy and paste the example code above into the text area
 5. Click *Preview* and then check there are no errors in the parsed template file
 6. Add a commit message and click *Commit to server* 
-{% /per-framework %}
-{% per-framework includes=["rails"] %}
+</PerFramework>
+<PerFramework includes={["rails"]}>
 ### Adding the hook to your app
 
 To add a hook to your app:
@@ -92,7 +92,7 @@ To add a hook to your app:
 1. Create (or, if it exists, open) a file named *deploy_hooks.yml* in a folder named _.cloud66_ in the root of your source code repo.
 2. Paste in your (validated) YAML
 3. Commit the file to your repo
-{% /per-framework %}
+</PerFramework>
 
 ### Deploying and testing
 
@@ -118,7 +118,7 @@ Deploy hooks are a powerful tool for customising the components on your servers,
 
 ### Creating or editing deploy hooks
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 All deploy hooks for Rails applications use a file called *deploy_hooks.yml*. This file is found within a folder named *.cloud66*, which is in turn located in the root of your source code.
 
 ```bash
@@ -126,9 +126,9 @@ All deploy hooks for Rails applications use a file called *deploy_hooks.yml*. Th
 ```
 
 This file should be YAML formatted, and you can use a service like [YAMLlint](https://codebeautify.org/yaml-validator) to validate it.
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 Deploy hooks for a Cloud 66 application are managed via the Dashboard. The hooks must be YAML formatted, and you can use a service like [YAMLlint](https://codebeautify.org/yaml-validator) to validate them.
 
 To add or edit hooks:
@@ -140,7 +140,7 @@ To add or edit hooks:
 5. Click *Preview* and check there are no errors
 6. Add a commit message and click *Commit to server*
 
-{% /per-framework %}
+</PerFramework>
 
 Every deploy hook needs, at a minimum:
 
@@ -152,7 +152,7 @@ Every deploy hook needs, at a minimum:
 Any hook may (optionally) also have:
 - a **name** which appears in your logs and user interface when the hook runs (to help you identify what is running)
 
-{% per-framework includes=["rails"] %} 
+<PerFramework includes={["rails"]}> 
 #### Specifiying app environment
 
 Unless you explicitly specify an **environment** - e.g. `production` - as the top node of your yaml, your hook will be applied to all of your application environments. For example:
@@ -166,7 +166,7 @@ Unless you explicitly specify an **environment** - e.g. `production` - as the t
         execute: true
 ```
 
-{% /per-framework %}
+</PerFramework>
 
 ### Understanding hook points and ordering
 
@@ -218,9 +218,9 @@ There are different types of deploy hooks, and the fields available (and require
 - **Commands:** run standard Linux shell commands.
 - **Snippets:** use “off the shelf” scripts to install common packages. These snippets are [open source](https://github.com/cloud66/snippets), and are created by Cloud 66 or other third parties.
 - **Inline Scripts:** use your own inline shell scripts for more complex procedures
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 - **Existing Scripts:** use your own existing scripts for more comprehensive procedures
-{% /per-framework %}
+</PerFramework>
 
 ### Using command hooks
 
@@ -407,7 +407,7 @@ Now that we have our hook code ready, we need to add it to our application. We d
 
 Once you have added the `deploy_hooks.yml` file to your repo you can deploy (or redeploy) your application and version 6.9.9-51 of ImageMagick will be installed during the process. To test that it is installed correctly you can SSH into your server and run `identify -version`.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ### Switching config files during build
 
 This hook simply overwrites a standard config file with the config file of your choice at the start of the deployment process. The example is for a `database.yml` but you could use it for any config file.
@@ -422,7 +422,7 @@ execute: true
 
 For more info on doing this for external databases, read our separate guide to [database management](/docs/databases/database-management#external-databases).
 
-{% /per-framework %}
+</PerFramework>
 
 
 ## Debugging deploy hooks
@@ -437,7 +437,7 @@ The deployment process is divided into a number of steps, and hook points allow 
 
 The table below is arranged in the order in which each hook point occurs in the deployment process (from earliest to latest):
 
-{% table %}
+<Table >
 |Hook point|Description|
 |--- |--- |
 |first_thing|The first thing that will happen on the server after the operating system is installed. A common use-case for this hook is to install custom packages that your application relies on.|
@@ -467,7 +467,7 @@ The table below is arranged in the order in which each hook point occurs in the 
 |before_processes|Runs before any custom processes (i.e. Procfile or simmilar)|
 |after_processes|Runs after any custom processes|
 |last_thing|This hook will run as the last thing that happens on your server. If you have multiple servers, this hook will only trigger when all of them reach this point.|
-{% /table %}
+</Table>
 
 * * *
 
@@ -484,9 +484,9 @@ There are different types of deploy hooks, and the fields available (and require
 - **Snippets:** use "off the shelf" scripts to install common packages. These snippets are [open source](https://github.com/cloud66/snippets), and are created by Cloud 66 or other third parties.
 - **Commands:** run your own commands.
 - **Inline Scripts:** use your own inline scripts for more comprehensive procedures
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 - **Existing Scripts:** use your own existing scripts for more comprehensive procedures (Rails/Node applications only)
-{% /per-framework %}
+</PerFramework>
 
 ## Hook fields reference guides
 
@@ -497,15 +497,15 @@ Each hook type has a different set of hook fields available, with some shared fi
 
 ### Hook fields: snippets 
 
-{% callout type="warning" title="Read the run_on section" %}
+<Callout type="warning" title="Read the run_on section">
 Please make sure you read the `run_on` section, if your target is not `any`
-{% /callout %}
+</Callout>
 
-{% table %}
+<Table >
 |Field|Description|
 |--- |--- |
-|snippet {% pill title="required" color="yellow" /%}|Snippet to be used - runs in `/tmp/deploy_hooks` by default|
-|target {% pill title="required" color="yellow" /%}|Target server(s), with accepted values `any`, `rails`, `mysql`, `postgresql`, `mongodb`, `redis`, `sinatra`, `padrino`, `custom`|
+|snippet <Pill title="required" color="yellow" />|Snippet to be used - runs in `/tmp/deploy_hooks` by default|
+|target <Pill title="required" color="yellow" />|Target server(s), with accepted values `any`, `rails`, `mysql`, `postgresql`, `mongodb`, `redis`, `sinatra`, `padrino`, `custom`|
 |execute  (false)|Set to true for the code to be executed during deployment|
 |executable  (false)|Set to true for the code to be made executable on the target. Defaults to true if `execute` is true|
 |apply_during  (all)|Specify when you want the deploy hook action to take place. Accepted values are `build_only`, `deploy_only` or `all`. The `build` step occurs the first time an application is deployed, and will re-occur until the application has been successfully deployed at least once. After this subsequent deployments are `deploy` steps|
@@ -514,15 +514,15 @@ Please make sure you read the `run_on` section, if your target is not `any`
 |run_on  (single server)|If you have multiple servers in the same group (e.g. scaled-up Rails servers), you can specify whether you want the deploy hook action to occur just once or once against each server in that group. Valid values are: `single_server` or `all_servers`. If you've specified `target: any` above, this will apply to all servers|
 |run_as  (server user)|If you execute a file on your target server, specify which user you would like the file to be executed as Note: you can't specify both this and `sudo`|
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
-{% /table %}
+</Table>
 
 ### Hook fields: commands
 
-{% table %}
+<Table >
 |Field|Description|
 |--- |--- |
-|command {% pill title="required" color="yellow" /%}|Command to be used - run in `/tmp/deploy_hooks` by default|
-|target {% pill title="required" color="yellow" /%}|Target server(s), with accepted values `any`, `rails`, `docker`, `mysql`, `postgresql`, `mongodb`, `redis`, `sinatra`, `padrino`, `custom`|
+|command <Pill title="required" color="yellow" />|Command to be used - run in `/tmp/deploy_hooks` by default|
+|target <Pill title="required" color="yellow" />|Target server(s), with accepted values `any`, `rails`, `docker`, `mysql`, `postgresql`, `mongodb`, `redis`, `sinatra`, `padrino`, `custom`|
 |execute  (true)|Set to true for the code to be executed during deployment|
 |executable  (false)|Set to true for the code to be made executable on the target. Defaults to true if `execute` is true|
 |apply_during  (all)|Specify when you want the deploy hook action to take place. Accepted values are `build_only`, `deploy_only` or `all`. The `build` step occurs the first time an application is deployed, and will re-occur until the application has been successfully deployed at least once. After this subsequent deployments are `deploy` steps|
@@ -531,15 +531,15 @@ Please make sure you read the `run_on` section, if your target is not `any`
 |run_on  (single server)|If you have multiple servers in the same group (e.g. scaled-up Rails servers), you can specify whether you want the deploy hook action to occur just once or once against each server in that group. Valid values are: `single_server` or `all_servers`. If you've specified `target: any` above, this will apply to all servers|
 |run_as  (server user)|If you execute a file on your target server, specify which user you would like the file to be executed as Note: you can't specify both this and `sudo`|
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
-{% /table %}
+</Table>
 
 ### Hook fields: inline scripts
 
-{% table %}
+<Table >
 |Field|Description|
 |--- |--- |
-|inline {% pill title="required" color="yellow" /%}|The shell script that will be executed during deployment|
-|target {% pill title="required" color="yellow" /%}|Target server(s), with accepted values `any`, `rails`, `mysql`, `postgresql`, `mongodb`, `redis`, `sinatra`, `padrino`, `custom`|
+|inline <Pill title="required" color="yellow" />|The shell script that will be executed during deployment|
+|target <Pill title="required" color="yellow" />|Target server(s), with accepted values `any`, `rails`, `mysql`, `postgresql`, `mongodb`, `redis`, `sinatra`, `padrino`, `custom`|
 |execute  (false)|Set to true for the code to be executed during deployment|
 |executable  (false)|Set to true for the snippet to be made executable on the target. Defaults to true if `execute` is true|
 |destination|The destination path on your target server. You can also specify environment variables in your destination field; `<%= ENV['STACK_PATH'] %>` for example|
@@ -551,19 +551,19 @@ Please make sure you read the `run_on` section, if your target is not `any`
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
 |parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/docs/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
 |owner  (your server user)|Ownership permissions for the file (and destination folder) on the target server. An example could be `user:group`|
-{% /table %}
+</Table>
 
 
 ### Hook fields: existing scripts
 
 Existing scripts are a Rails-only feature.
 
-{% table %}
+<Table >
 |Field|Description|
 |--- |--- |
-|source {% pill title="required" color="yellow" /%}|This specifies the source location of your deploy hook file within your repository|
-|destination {% pill title="required" color="yellow" /%}|The destination path on your target server. You can also specify environment variables in your destination field; `<%= ENV['STACK_PATH'] %>` for example|
-|target {% pill title="required" color="yellow" /%}|Target server(s), with accepted values `any`, `rails`, `mysql`, `postgresql`, `mongodb`, `redis`, `sinatra`, `padrino`, `custom`|
+|source <Pill title="required" color="yellow" />|This specifies the source location of your deploy hook file within your repository|
+|destination <Pill title="required" color="yellow" />|The destination path on your target server. You can also specify environment variables in your destination field; `<%= ENV['STACK_PATH'] %>` for example|
+|target <Pill title="required" color="yellow" />|Target server(s), with accepted values `any`, `rails`, `mysql`, `postgresql`, `mongodb`, `redis`, `sinatra`, `padrino`, `custom`|
 |execute  (false)|Set to true for the code to be executed during deployment|
 |env_vars|Hash of values that will be set when running this specific deploy hook. Only applies to deploy hooks that have execute = true. If the application already contains this env var it will be overridden with the value specified here.|
 |executable  (false)|Set to true for the snippet to be made executable on the target. Defaults to true if `execute` is true|
@@ -574,4 +574,4 @@ Existing scripts are a Rails-only feature.
 |sudo  (false)|If you are executing the file on your target server, specify whether you want that execution to be sudo-ed? Note: you can't specify both this and `run_as`|
 |parse  (true)|Specifies whether the file being transferred should be parsed for [environment variables](/docs/build-and-config/env-vars). Using this you can embed `<%= ENV['ENV_VAR'] %>` for example in your source file, and have it resolved during the deploy hook action|
 |owner  (your server user)|Ownership permissions for the file (and destination folder) on the target server. An example could be `user:group`|
-{% /table %}
+</Table>

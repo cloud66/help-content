@@ -27,11 +27,11 @@ An example of a standard redeployment hook:
 https://hooks.cloud66.com/stacks/redeploy/xxxx/yyyy
 ```
 
-{% callout type="info" title="Use the correct redeployment URL" %}
+<Callout type="info" title="Use the correct redeployment URL">
  The xxxx/yyyy in the examples is for illustrative purposes only and should be replaced with your redeployment URL on your Application Information page. 
-{% /callout %}
+</Callout>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Services modifiers
 
@@ -63,13 +63,13 @@ When a redeployment hook is invoked:
 
 * If you use the services modifier to **specify specific services** to deploy, then the same logic applies as in 1) and 2) above, the only difference being that we will only deploy the services you have specified.
 
-{% /per-framework %}
+</PerFramework>
 
-{% callout type="info" title="Missing branch info?" %}
+<Callout type="info" title="Missing branch info?">
  In the case where the payload of the commit hook does not contain any branch information (Github and Bitbucket payload formats are supported) then the application will redeploy without attempting to match branch. 
-{% /callout %}
+</Callout>
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Calling a deployment profile via a redeployment hook
 
@@ -93,16 +93,16 @@ $ cx settings set -s my_app_name continuous.deploy true
 
 This will create a new webhook for your repository on GitHub or simply modify an existing one to let Cloud 66 receive _deployment_ events as well.
 
-{% callout type="warning" title="Github trigger events" %}
+<Callout type="warning" title="Github trigger events">
 If you edit your webhooks manually on Github, they must be configured to be triggered by both *Push* and *Deployment* events in order for continuous deployment to work.
-{% /callout %}
+</Callout>
 
 With this feature enabled, whenever you push a new commit, Cloud 66 will automatically generate a new _deployment event_ based on receiving the _push event_ from GitHub. We will also send _deployment status events_ on different deployment statuses, such as started, canceled, succeeded and failed.
 
-{% callout type="info" title="Deployment events match your app environment" %}
+<Callout type="info" title="Deployment events match your app environment">
  The deployment event will be created with the same environment as your application. 
-{% /callout %}
-{% /per-framework %}
+</Callout>
+</PerFramework>
 
 ## Adding redeployment hooks to your pipeline
 
@@ -134,7 +134,7 @@ To invoke the redeployment hook manually, you can POST an HTTP request to your r
 curl -X POST [your redeployment hook URL]
 ```
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 You can also use your redeployment hook to deploy a specific git ref/SHA as with the following example:
 
@@ -142,11 +142,11 @@ You can also use your redeployment hook to deploy a specific git ref/SHA as with
 curl -X POST [your redeployment hook URL]?git_ref=...
 ```
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
-{% callout type="info" title="Deploying via command line" %}
+<Callout type="info" title="Deploying via command line">
  If you are manually invoking redeployments you should consider using [Cloud 66 Toolbelt](/docs/toolbelt/toolbelt#redeploy-your-stack) instead, as it has additional features! 
-{% /callout %}
-{% /per-framework %}
+</Callout>
+</PerFramework>

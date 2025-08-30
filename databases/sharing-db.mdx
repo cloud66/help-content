@@ -2,9 +2,9 @@
 title: Sharing databases between applications
 ---
 
-{% callout type="warning" title="Do not run db:schema:load" %}
+<Callout type="warning" title="Do not run db:schema:load">
 Ensure that you **do not** select the option for `db:schema:load` during the build of your second application, as this could destroy the data on the first application.
-{% /callout %}
+</Callout>
 
 Firstly, you need to [open your firewall](/docs/security/firewall-rule) on the first application to allow your second application's web servers to access the database.
 

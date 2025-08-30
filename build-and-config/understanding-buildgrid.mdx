@@ -39,9 +39,9 @@ You can then use, for example, the standard Docker terminal client to:
 1. Log into BuildGrid by running `docker login <subdomain>.buildgrid.net` and then supplying your username and password when prompted
 2. Pull any image from your repo using `docker pull <full image URL>`
 
-{% callout type="warning" title="BuildGrid is read-only" %}
+<Callout type="warning" title="BuildGrid is read-only">
 You cannot push images to BuildGrid - it is designed to be read-only. To update an image in BuildGrid you should update your code via Cloud 66 and a new version of the image will be built and stored accordingly. 
-{% /callout %}
+</Callout>
 
 ## Running an image locally
 

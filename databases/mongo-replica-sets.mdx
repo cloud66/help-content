@@ -2,9 +2,9 @@
 title: Scaling MongoDB with replica sets
 ---
 
-{% callout type="info" title="This guide does not apply to manual instances" %}
+<Callout type="info" title="This guide does not apply to manual instances">
  This guide assumes that you have added MongoDB using your Cloud 66 dashboard or Manifest file. If you have configured the service manually then this will not apply 
-{% /callout %}
+</Callout>
 
 Before scaling MongoDB, it's vital that you **understand how replica sets work and how to use them**, or you will risk downtime.
 
@@ -23,9 +23,9 @@ When you scale up MongoDB using Cloud 66, we perform the following steps:
 
 It is important for backups to keep their referential integrity, otherwise different parts of the database might be backed up at different times, affecting database performance.
 
-{% callout type="warning" title="Enabling replication will disrupt live databases" %}
+<Callout type="warning" title="Enabling replication will disrupt live databases">
  Database replication will disrupt your live database during the backup and configuration steps of the process. 
-{% /callout %}
+</Callout>
 
 ## Using a MongoDB replica set in your code
 
@@ -33,9 +33,9 @@ All MongoDB drivers support replica sets, which means that you can pass the list
 
 This is why we won't touch your configuration files after you scale your MongoDB up. This allows you to configure the client the way you see fit and go live with your replicated database backend when you are ready.
 
-{% callout type="info" title="Configuration is no longer automated" %}
+<Callout type="info" title="Configuration is no longer automated">
  We stop automatically modifying your MongoDB client configuration files after replication is enabled. 
-{% /callout %}
+</Callout>
 
 ## Environment variables
 
@@ -79,7 +79,7 @@ lion.myapp.c66.me,tiger.myapp.c66.me
 
 Once you have replica set enabled by scaling your MongoDB backend up, you will need to modify your client configuration accordingly. Your deployment might not work and your application might stop functioning if you don't do that.
 
-{% callout type="info" title="Check your client config before deploying" %}
+<Callout type="info" title="Check your client config before deploying">
  Deployments might fail after replica sets are enabled if you don't change your client configuration to use the replica set. 
-{% /callout %}
+</Callout>
 

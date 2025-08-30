@@ -3,16 +3,16 @@ title: Running multiple apps on a server
 lead: "How to configure applications to share the same infrastructure"
 ---
 
-{% per-framework includes=["rails"] %}
-{% callout type="warning" title="Requires containers" %}
+<PerFramework includes={["rails"]}>
+<Callout type="warning" title="Requires containers">
 Multi-tenancy is only supported by containerised applications - it is not available for native (monolithic) Rails applications.
-{% /callout %}
-{% /per-framework %}
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
-{% callout type="warning" title="Requires containers" %}
+</Callout>
+</PerFramework>
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
+<Callout type="warning" title="Requires containers">
 Multi-tenancy is only supported by containerised applications - it is not applicable to static sites.
-{% /callout %}
-{% /per-framework %}
+</Callout>
+</PerFramework>
 
 ## Overview
 

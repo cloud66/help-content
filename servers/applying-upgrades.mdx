@@ -8,7 +8,7 @@ Cloud 66 aims to make it easier to build **immutable** infrastructure. Building 
 
 When a new server is provisioned we automatically install the latest versions of packages. After the server is created we only auto-install packages that are marked as `security updates`. Cloud 66 doesn't (typically) automatically update other packages because it doesn't want to risk disrupting your existing application. However, depending on your configuration, we *may* update your packages each time you redeploy your app (see below).
 
-{% partial file="../../src/pages/docs/partials/_do_not_configure_servers_manually.md" /%}
+<Partial file="../../src/pages/docs/partials/_do_not_configure_servers_manually.md" />
 
 ## Controlling package updates
 
@@ -24,9 +24,9 @@ If rebuilding is impractical or impossible, there are three approaches to dealin
 - Manually update the packages by logging into the servers and using `sudo apt-get -y upgrade` or `dist-upgrade`
 - Update the packages indirectly through scaling up a new server, and then dropping the old one. New servers will have the latest packages installed on them unless you have explicitly locked package versions using Deploy Hooks.
 
-{% callout type="info" title="Rebooting servers" %}
+<Callout type="info" title="Rebooting servers">
  Some package updates require servers to be rebooted. When scaling up we restart your new servers automatically to ensure everything works correctly. Alternatively, you can reboot your servers manually or via the Toolbelt. 
-{% /callout %}
+</Callout>
 
 ## Upgrade package types
 
@@ -49,7 +49,7 @@ This will perform operating system security package upgrades and also set up [un
 Note that some security packages may require a server restart. We don't automatically restart your server, and it is at your discretion to do so. 
 
 If the file `/var/run/reboot-required` exists, that means your server requires a restart. To see which packages contributed to the requirement for a restart, read `/var/run/reboot-required.pkgs`.
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ### Ruby
 
 There are multiple options and considerations when upgrading your base version of Ruby. Please read our [detailed guide](/docs/build-and-config/managing-and-upgrading-ruby-versions) on the subject.
@@ -75,9 +75,9 @@ Rails should be upgraded in the same way as Ruby. See above for details.
 ### Passenger
 
 The recommended way to upgrade your passenger to the latest one is to deploy to a new web server and drop the old one, so the scaled up one will automatically have the [latest version](/docs/specs-and-policies/technical-specifications#component-versions) supported by Cloud 66.
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ### Docker
 
 It is best to keep your Docker version up to date as they are released quite frequently with bug/security fixes.
@@ -87,12 +87,12 @@ It is best to keep your Docker version up to date as they are released quite fre
 2. Click on **Deploy** and choose **Deploy with options**
 3. Go to the **More options** tab and tick the **Apply Docker upgrades** check box.
 
-{% callout type="error" title="In-place upgrades will result in downtime" %}
+<Callout type="error" title="In-place upgrades will result in downtime">
 Upgrading in-place involves downtime as the Docker engine and local files are all upgraded. To maintain zero down-time you should clone your application and use [failover groups](/docs/failover-groups/failover-groups) to switch to the new instance.
-{% /callout %}
-{% /per-framework %}
+</Callout>
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ## Switching from malloc to jemalloc
 
 If you’d prefer to use [jemalloc](https://jemalloc.net/) as your memory allocator, you can change this via your [manifest file](/docs/manifest/building-a-manifest-file#rails). However, when you deploy (with upgrades) this **will** cause downtime as it is applied to each server. There are two solutions for avoiding downtime: 
@@ -100,7 +100,7 @@ If you’d prefer to use [jemalloc](https://jemalloc.net/) as your memory alloca
 1. Use a [rolling deployment strategy](/docs/deployment/parallel-deployment) (requires a load balancer & at least four servers)
 2. Scale up new servers, upgrade them, and then switch them with the current servers ([see above](#managing-high-risk-updates))
 
-{% /per-framework %}
+</PerFramework>
 
 ## About manual upgrades
 

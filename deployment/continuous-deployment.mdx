@@ -6,7 +6,7 @@ title: Enabling continuous deployment
 
 Cloud 66 offers several ways to achieve continuous deployment for your applications. These methods all use triggers (such as commits to git repositories) to initiate the deployment process for your apps. This doc explores and compares each of the options.
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 | Method | Pros | Cons |
 | --- | --- | --- |
@@ -14,21 +14,21 @@ Cloud 66 offers several ways to achieve continuous deployment for your applicati
 | [Redeployment hooks](/docs/deployment/redeployment-hook) | Can be used on non-Github repos, can use deployment profiles, more extensible (for example can be used with a continuous integration platform) | Requires some manual set up, lacks some more advanced deployment features |
 | [Cloud 66 Toolbelt](#continuous-deployment-via-the-cloud-66-toolbelt) (or API) | The most customisable option with full access to all deployment features. Very flexible and extensible. | Requires some engineering work and careful configuration |
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ] %}
+<PerFramework includes={["gatsby", "docusaurus_v1", "docusaurus_v2", "hugo", "jekyll", "middleman", "nuxt", "svelte" ]}>
 
 | Method | Pros | Cons |
 | --- | --- | --- |
 | Cloud 66 GitHub application | Very quick & easy, no manual set up required | Limited to GitHub, less configurable and extensible, no access to deployment profiles |
 | [Redeployment hooks](/docs/deployment/redeployment-hook) | Can be used on non-Github repos, can use deployment profiles, more extensible (for example can be used with a continuous integration platform) | Requires some manual set up, lacks some more advanced deployment features |
 
-{% /per-framework %}
+</PerFramework>
 
 
-{% callout type="error" title="Duplicate redeployment signals" %}
+<Callout type="error" title="Duplicate redeployment signals">
 If you had already enabled continuous integration via the Toolbelt and added redeployment hooks to your GitHub repo (before January 2022), you will now be sending two deployment signals to Cloud 66. Please remove any redeployment hooks from GitHub if you are using automated continuous deployment (see below).
-{% /callout %}
+</Callout>
 
 ## Enabling automated continuous deployment
 
@@ -41,7 +41,7 @@ you can enable (and disable) continuous deployment in the Cloud 66 Dashboard:
 3. Click on *Deployment* in the sub nav
 4. Check the box next to **Continuous Deployment**
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 You can also enable (and disable) continuous deployment via the Cloud 66 Toolbelt:
 
@@ -51,13 +51,13 @@ To do this modify your **[application settings](/docs/toolbelt/toolbelt#setting
 $ cx settings set -s my_app_name continuous.deploy true
 ```
 
-{% /per-framework %}
+</PerFramework>
 
 Your application will now be deployed every time you commit changes to the branch of your repo which the application is set to use. 
 
-{% callout type="warning" title="Use extra caution with live applications" %}
+<Callout type="warning" title="Use extra caution with live applications">
 This is particularly useful for development versions of your application, but we advise caution when using this feature with your live application.
-{% /callout %}
+</Callout>
 
 ## Continuous integration tests
 
@@ -71,7 +71,7 @@ Redeployment hooks are unique (per application) webhooks that trigger a deployme
 
 Read our guide to [redeployment hooks](/docs/deployment/redeployment-hook) for more information on setting them up.
 
-{% per-framework includes=["rails", "django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Continuous deployment via the Cloud 66 Toolbelt
 
@@ -83,7 +83,7 @@ The `redeploy` command can be used to trigger the deployment of any existing app
 
 You can find more info about Toolbelt commands in the [full reference guide](/docs/toolbelt/toolbelt).
 
-{% /per-framework %}
+</PerFramework>
 
 ## Via the Cloud 66 API
 

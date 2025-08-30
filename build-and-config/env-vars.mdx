@@ -44,9 +44,9 @@ To do this:
 
 You can test this by accessing your server via SSH using [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt#access-your-servers-via-toolbelt) and logging into MySQL with the new password.  
 
-{% callout type="warning" title="Be careful when changing env vars!" %}
+<Callout type="warning" title="Be careful when changing env vars!">
 Updating default environment variables can cause an application to break unless it has been coded to cope with such changes. Proceed carefully! 
-{% /callout %}
+</Callout>
 
 ## Listing environment variables
 
@@ -185,9 +185,9 @@ or
 
 `_env(STACK[APP_UID].ENV_VAR)`
 
-{% callout type="info" title="Stack vs Application" %}
+<Callout type="info" title="Stack vs Application">
 This syntax still uses the term "stack" which in the process of being deprecated in Cloud 66. "Stack" means, for all intents and purposes, the same thing as "application".
-{% /callout %}
+</Callout>
 
 ### Intra-service referencing
 

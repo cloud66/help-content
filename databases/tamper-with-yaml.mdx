@@ -7,11 +7,11 @@ If your Rails application uses a MySQL, Postgres or MongoDB instance that is man
 
 We will automatically apply these changes during your deployment.
 
-{% callout type="info" title="Custom database configs" %}
+<Callout type="info" title="Custom database configs">
 
 If you have significantly customised your `database.yml` (for example with multiple databases and/or external databases) and you have not disabled our "tampering" (see below) then you may encounter issues.
 
-{% /callout %}
+</Callout>
 
 ## Disabling automated config updates
 
@@ -27,11 +27,11 @@ rails:
 		tamper_with_yml: false
 ```
 
-{% callout type="warning" title="Check your configs carefully" %}
+<Callout type="warning" title="Check your configs carefully">
 
 Adding this setting means that you need to ensure that the contents of your database configuration(s) are correct as Cloud 66 will no longer be able to update the file(s). 
 
-{% /callout %}
+</Callout>
 
 ## Examples per database
 

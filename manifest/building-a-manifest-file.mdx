@@ -13,7 +13,7 @@ These are just some examples of the settings you can control with a manifest fil
 - Configuring application components to share a server
 - Customizing component-specific configurations
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ## How do I use a manifest file?
 
 Manifest settings are defined in a file called `manifest.yml`. For Rails/Rack applications the path for `manifest.yml` is:
@@ -29,8 +29,8 @@ To get started:
 3. Commit your changes to your repository 
 4. Build your application
 
-{% /per-framework %}
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+</PerFramework>
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Editing a manifest file
 
@@ -42,18 +42,18 @@ Every application automatically has a manifest file. To edit the manifest file f
 
 You can now edit the text of your manifest file directly.
 
-{% /per-framework %}
+</PerFramework>
 
-{% callout type="warning" title="Take care when editing" %}
+<Callout type="warning" title="Take care when editing">
 Be cautious when editing the manifest file for any application particularly if it is running in a production environment. A single stray character or space can cause the application to fail to deploy or to deploy in a degraded state. 
-{% /callout %}
+</Callout>
 
 
-{% callout type="info" title="Is your yaml valid?" %}
+<Callout type="info" title="Is your yaml valid?">
 The manifest file is YAML formatted. You can check its validity at [YAML Validator](https://codebeautify.org/yaml-validator) or with this command:
 `$ ruby -e "require 'yaml'; YAML.load_file('.cloud66/manifest.yml')"`
 
-{% /callout %}
+</Callout>
 
 ## Manifest Tutorial
 
@@ -61,7 +61,7 @@ In this example we are going to modify the configuration of the simple applicati
 
 ### Updating the Manifest file
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 First add a Manifest file to the following location in your repo:
 
@@ -81,9 +81,9 @@ You'll see that we're defining several things in this YAML:
 
 - The component type we are configuring (`rails`)
 - The version of Ruby that will be installed as part of this component ( `ruby_version`)
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ```yaml
 node:
@@ -96,7 +96,7 @@ You'll see that we're defining several things in this YAML:
 - The framework we are configuring (`node`)
 - The location of our custom log files ( `["/tmp/mylog/*/*.log"]`)
 
-{% /per-framework %}
+</PerFramework>
 
 Next, deploy your application and the new setting will take effect!
 
@@ -104,7 +104,7 @@ Next, deploy your application and the new setting will take effect!
 
 The Manifest file gives you a lot of control over your components. For example, you can use the `server` settings to specify the exact size and region for your application server. The YAML below is an example of this in action:
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ```yaml
 rails:
   configuration:
@@ -120,9 +120,9 @@ rails:
 ```
 
 This would install a Rails server on DigitalOcean, at their London data centre and on a 2CPU and 2GB cloud server. 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ```yaml
 node:
   configuration:
@@ -139,18 +139,18 @@ node:
 
 This would install your Node application on DigitalOcean, at their London data centre and on a 2CPU and 2GB cloud server. 
 
-{% /per-framework %}
+</PerFramework>
 
 - You can find the available values for `size` and `region` in our [API documentation](https://developers.cloud66.com#cloud-vendor-instance-names).
 - You can find the `key_name` for your cloud provider(s) listed [on your Dashboard](https://app.cloud66.com/clouds).
 
-{% callout type="warning" title="Existing applications" %}
+<Callout type="warning" title="Existing applications">
 Editing the manifest file of an **existing application** may not necessarily result in changes to the deployed instance(s) of that application, even if the application is subsequently redeployed. See the [Understanding Manifest Files](#understanding-manifest-files) section below. 
-{% /callout %}
+</Callout>
 
-{% callout type="info" title="Problems upgrading?" %}
+<Callout type="info" title="Problems upgrading?">
 If you explicitly set the version of any component in your manifest file, we will respect that setting even if it conflicts with other system changes or upgrades (for example upgrading Ubuntu). If you are having trouble upgrading any component of your application, remember to check your manifest file to ensure you have not previously locked the version of that component or one of its dependents. 
-{% /callout %}
+</Callout>
 
 ## The structure of a Manifest file
 
@@ -186,7 +186,7 @@ If you would like your manifest setting to apply to **all environments**, you ca
 
 The (mandatory) component settings define how a component is configured. The Manifest file currently supports the following components (click on any component name for details):
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 *   [Docker](#docker)
 *   [ElasticSearch](#elasticsearch)
 *   [GlusterFS](#glusterfs)
@@ -199,9 +199,9 @@ The (mandatory) component settings define how a component is configured. The Man
 *   [Postgres](#postgres)
 *   [Redis](#redis)
 *   [Post-deployment global availability checks](#post-deployment-availability-checks)
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 *   [ElasticSearch](#elasticsearch)
 *   [Gateway](#gateway)
 *   [GlusterFS](#glusterfs)
@@ -217,14 +217,14 @@ The (mandatory) component settings define how a component is configured. The Man
 *   [Sinatra](#sinatra)
 *   [Rails](#rails)
 *   [Post-deployment global availability checks](#post-deployment-availability-checks)
-{% /per-framework %}
+</PerFramework>
 
 
 
 
-{% callout type="warning" title="Locking versions" %}
+<Callout type="warning" title="Locking versions">
 If you explicitly set the version of any component in your manifest file, we will respect that setting even if it conflicts with other system changes or upgrades (for example upgrading Ubuntu). If you are having trouble upgrading any component of your application, remember to check your manifest file to ensure you have not previously locked the version of that component or one of its dependents. 
-{% /callout %}
+</Callout>
 
 ### Server definitions
 
@@ -246,19 +246,19 @@ These are the parameters that the _server_ section can take:
 
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`availability_zone`|{% glyph icon="build" /%}|Availability zone of the server instance in AWS EC2 region or Azure region.|AWS, Azure|
-|`key_name`|{% glyph icon="build" /%}|The name of the API key for the cloud account where the server will be built. You can see (and edit) all your cloud API key names in your [Dashboard Settings](https://app.cloud66.com/clouds). This is used when an account has multiple keys for a given cloud vendor. The default value is `Default`.|All|
-|`region`|{% glyph icon="build" /%}|The [data center region](https://developers.cloud66.com#cloud-vendor-instance-regions) where the server will be built.|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by your application. Default value is 50.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-|`size`|{% glyph icon="build" /%}|The [size of the server instance](https://developers.cloud66.com#cloud-vendor-instance-names) to be created.|All|
-|`subnet_id`|{% glyph icon="build" /%}|**ID** or **name** of the AWS subnet in which you would like to create your servers. If not supplied, we will attempt to identify the single [map_public_ip_on_launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet#cfn-ec2-subnet-mappubliciponlaunch) set to true|AWS|
-|`unique_name`|{% glyph icon="build" /%}|A unique name for this server (**Required** if you are specifying a server type)|All|
-|`vendor`|{% glyph icon="build" /%}|Cloud vendor where the server will be built. Valid values: `aws`, `azure_rm` (use `azure` for older Azure accounts), `digitalocean`, `googlecloud`, `hetzner`, `linode`, `maxihost`, `ovh`, and `vultr`|All|
+|`availability_zone`|<Glyph icon="build" />|Availability zone of the server instance in AWS EC2 region or Azure region.|AWS, Azure|
+|`key_name`|<Glyph icon="build" />|The name of the API key for the cloud account where the server will be built. You can see (and edit) all your cloud API key names in your [Dashboard Settings](https://app.cloud66.com/clouds). This is used when an account has multiple keys for a given cloud vendor. The default value is `Default`.|All|
+|`region`|<Glyph icon="build" />|The [data center region](https://developers.cloud66.com#cloud-vendor-instance-regions) where the server will be built.|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by your application. Default value is 50.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+|`size`|<Glyph icon="build" />|The [size of the server instance](https://developers.cloud66.com#cloud-vendor-instance-names) to be created.|All|
+|`subnet_id`|<Glyph icon="build" />|**ID** or **name** of the AWS subnet in which you would like to create your servers. If not supplied, we will attempt to identify the single [map_public_ip_on_launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet#cfn-ec2-subnet-mappubliciponlaunch) set to true|AWS|
+|`unique_name`|<Glyph icon="build" />|A unique name for this server (**Required** if you are specifying a server type)|All|
+|`vendor`|<Glyph icon="build" />|Cloud vendor where the server will be built. Valid values: `aws`, `azure_rm` (use `azure` for older Azure accounts), `digitalocean`, `googlecloud`, `hetzner`, `linode`, `maxihost`, `ovh`, and `vultr`|All|
 
-{% callout type="warning" title="An app must use a single cloud region" %}
+<Callout type="warning" title="An app must use a single cloud region">
 All of the servers for an application must belong to a single cloud vendor and region. Different applications may use different clouds, but a single application cannot use multiple clouds. 
-{% /callout %}
+</Callout>
 
 A more complex server example
 
@@ -372,8 +372,8 @@ You can deploy to one of your [Registered servers](/docs/servers/registered-serv
 
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`address`|{% glyph icon="build" /%}|IP address of the server, only applicable to [Registered Servers](/docs/servers/registered-servers)|Registered servers|
-|`unique_name`|{% glyph icon="build" /%}|Unique name for the registered server|Registered servers|
+|`address`|<Glyph icon="build" />|IP address of the server, only applicable to [Registered Servers](/docs/servers/registered-servers)|Registered servers|
+|`unique_name`|<Glyph icon="build" />|Unique name for the registered server|Registered servers|
 
 
 #### Example of registered server
@@ -392,7 +392,7 @@ You can share a server between two components. This allows you to, for example, 
 
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`same_as`|{% glyph icon="build" /%}|The name of another server definition in the same manifest file. This component will use the same server when it is deployed.|All|
+|`same_as`|<Glyph icon="build" />|The name of another server definition in the same manifest file. This component will use the same server when it is deployed.|All|
 
 
 #### Example of shared server
@@ -522,7 +522,7 @@ production:
 
 Notice that *we haven't specified a server for the MySQL instance* in this YAML. In cases like this the Cloud 66 Dashboard will prompt you to specify a server during the deployment process, and that server will be installed with MySQL V8.0.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ### Processes
 
 [Background processes](/docs/servers/systemd) can be deployed and managed by Cloud 66. Any process in a `Procfile` will be picked up, deployed and monitored by the system.
@@ -559,7 +559,7 @@ For non-web processes:
 - [systemd](/docs/servers/systemd) (our default process manager)
 - [Bluepill](/docs/servers/bluepill-legacy) (legacy pre-June 2020)
 
-{% /per-framework %}
+</PerFramework>
 
 ## Manifest settings for web components
 
@@ -569,37 +569,37 @@ For non-web processes:
 * **Applied on** - the type of deployment required to update this setting. In many cases settings only apply when an application is first built, or when new servers are created or it is cloned. Hover over the names of each condition to see more info.
 * **Clouds** - the cloud providers on which a setting can be used.
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ### Docker
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`activeprotect`|{% glyph icon="redeploy" /%}|The parent node for ActiveProtect settings (see `whitelist` and `http_ban_rate` below)|All|
-|`activeprotect / whitelist`|{% glyph icon="redeploy" /%}|A comma-separated whitelist of IPs that should be ignored by your ActiveProtect configuration. Must be nested under `activeprotect`.|All|
-|`activeprotect / http_ban_rate`|{% glyph icon="redeploy" /%}|Set the threshold of *requests per minute* from a single IP address. The default is `2000`. Must be nested under `activeprotect`.|All|
-|`docker_version`|{% glyph icon="build" /%}|Specify the version of Docker you want to install.|All|
-|`firewall / create_web_rules`|{% glyph icon="redeploy" /%}|Cloud 66 automatically creates firewall rules to expose your web application to the outside world. You can configure this via your [Traffic settings](/docs/networking/network-configuration#firewall), or disable it completely by setting this value to `false`. Default is `true`.|All|
-|`iam_instance_profile_name`|{% glyph icon="build" /%}|The name of the [IAM instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) that should be used when provisioning this server. [Read our guide](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers).|AWS|
-|`image_keep_count`|{% glyph icon="build" /%}|Set the number of old images to save on your servers (besides the running image). Defaults to `2`.|All|
-|`instance_service_account_name`|{% glyph icon="build" /%}|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`nameservers`|{% glyph icon="build" /%}|Set DNS servers for your application.  Note that if you specify empty array i.e **[ ]**, it won't add any nameserver to your servers. Default is an empty array: `[ ]`|All|
-|`network` / `mode`|{% glyph icon="build" /%}|Specifies whether your servers should communicate over `private` or `public` IP addresses. Defaults to `private` if your servers are *either* all cloud *or* all [Registered](/docs/servers/registered-servers). If your application uses a *mix* of cloud and Registered servers, the default will be `public`.|All|
-|`network` / `container_ip_range`|{% glyph icon="build" /%}|The internal ip range of the pods in your application. Default is `25.0.0.0/16`.|All|
-|`operating_system`|{% glyph icon="build" /%}|The version of Ubuntu to install on the server that hosts your app. Accepted values: `ubuntu2004`, `ubuntu2204` or `ubuntu2404`|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by your application. Default value is 50.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-|`subnet_id`|{% glyph icon="build" /%}|**ID** or **name** of the AWS subnet in which you would like to create your servers. If not supplied, we will attempt to identify the single [map_public_ip_on_launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet#cfn-ec2-subnet-mappubliciponlaunch) set to true|AWS|
-| `tags` | {% glyph icon="build" /%} | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
-|`vn_name`|{% glyph icon="build" /%}|The name of the Virtual Network in which you would like to create your servers.|Azure|
-|`vpc_id`|{% glyph icon="build" /%}|**ID** or **name** of the VPC in which you would like to create your servers.|AWS, Azure, DigitalOcean, Hetzner|
-|`weave_version` (Container Service V1 only)|{% glyph icon="upgrade" /%}|Specify the version of Weave you want to install. Container Service V1 only.|All|
-{% /table %}
+|`activeprotect`|<Glyph icon="redeploy" />|The parent node for ActiveProtect settings (see `whitelist` and `http_ban_rate` below)|All|
+|`activeprotect / whitelist`|<Glyph icon="redeploy" />|A comma-separated whitelist of IPs that should be ignored by your ActiveProtect configuration. Must be nested under `activeprotect`.|All|
+|`activeprotect / http_ban_rate`|<Glyph icon="redeploy" />|Set the threshold of *requests per minute* from a single IP address. The default is `2000`. Must be nested under `activeprotect`.|All|
+|`docker_version`|<Glyph icon="build" />|Specify the version of Docker you want to install.|All|
+|`firewall / create_web_rules`|<Glyph icon="redeploy" />|Cloud 66 automatically creates firewall rules to expose your web application to the outside world. You can configure this via your [Traffic settings](/docs/networking/network-configuration#firewall), or disable it completely by setting this value to `false`. Default is `true`.|All|
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) that should be used when provisioning this server. [Read our guide](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers).|AWS|
+|`image_keep_count`|<Glyph icon="build" />|Set the number of old images to save on your servers (besides the running image). Defaults to `2`.|All|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`nameservers`|<Glyph icon="build" />|Set DNS servers for your application.  Note that if you specify empty array i.e **[ ]**, it won't add any nameserver to your servers. Default is an empty array: `[ ]`|All|
+|`network` / `mode`|<Glyph icon="build" />|Specifies whether your servers should communicate over `private` or `public` IP addresses. Defaults to `private` if your servers are *either* all cloud *or* all [Registered](/docs/servers/registered-servers). If your application uses a *mix* of cloud and Registered servers, the default will be `public`.|All|
+|`network` / `container_ip_range`|<Glyph icon="build" />|The internal ip range of the pods in your application. Default is `25.0.0.0/16`.|All|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts your app. Accepted values: `ubuntu2004`, `ubuntu2204` or `ubuntu2404`|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by your application. Default value is 50.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+|`subnet_id`|<Glyph icon="build" />|**ID** or **name** of the AWS subnet in which you would like to create your servers. If not supplied, we will attempt to identify the single [map_public_ip_on_launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet#cfn-ec2-subnet-mappubliciponlaunch) set to true|AWS|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`vn_name`|<Glyph icon="build" />|The name of the Virtual Network in which you would like to create your servers.|Azure|
+|`vpc_id`|<Glyph icon="build" />|**ID** or **name** of the VPC in which you would like to create your servers.|AWS, Azure, DigitalOcean, Hetzner|
+|`weave_version` (Container Service V1 only)|<Glyph icon="upgrade" />|Specify the version of Weave you want to install. Container Service V1 only.|All|
+</Table>
 
-{% callout type="warning" title="AWS VPC requires subnet_id" %}
+<Callout type="warning" title="AWS VPC requires subnet_id">
 In order to use an AWS *vpc_id*, you must provide *subnet_id* for all servers used by your application.
-{% /callout %}
+</Callout>
 
 #### Example YAML for Docker
 
@@ -626,21 +626,21 @@ docker:
     root_disk_type: ssd
     image_keep_count: 15
 ```
-{% /per-framework %}
+</PerFramework>
 
 ### Gateway
 
-{% callout type="info" title="Gateway must be defined first" %}
+<Callout type="info" title="Gateway must be defined first">
 The gateway should be defined and open before you can use it in manifest.
-{% /callout %}
+</Callout>
 
 The following settings are available via the Manifest file:
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`name`|{% glyph icon="redeploy" /%}|Specify the name of gateway you want to use for your application.|All|
-|`username`|{% glyph icon="redeploy" /%}|Specify the username which should be used to connect to Bastion server.|All|
-{% /table %}
+|`name`|<Glyph icon="redeploy" />|Specify the name of gateway you want to use for your application.|All|
+|`username`|<Glyph icon="redeploy" />|Specify the username which should be used to connect to Bastion server.|All|
+</Table>
 
 #### Example YAML for gateway
 
@@ -656,26 +656,26 @@ Nginx is the default webserver & reverse proxy for applications managed by Cloud
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`cors`|{% glyph icon="redeploy" /%}|Enable Cross Origin Resource Sharing|All|
-|`nginx/precompiled_url`|{% glyph icon="build" /%}|A URL pointing to a file in `tar.gz` format that contains a custom version of Nginx that will be used with your application. This Nginx package **MUST** be compiled using our [Cloud 66 compiler](https://github.com/cloud66-oss/nginx-compiler). Please read the [docs on the Github page](https://github.com/cloud66-oss/nginx-compiler#readme) for more details.|All|
-|`extra_build_arguments` (*deprecated*)|{% glyph icon="build" /%}|Extra build argument string that will be added to the `nginx build` command. If you require additional modules that themselves require specific source to be present, you should use a `BEFORE_NGINX` [deploy hook](/docs/deploy-hooks/deploy-hooks#hook-points) to ensure that source is present. You can use the `cloud66/download` snippet to achieve this easily. The following build arguments are currently always added: `--with-http_realip_module --with-ipv6 --with-http_v2_module` regardless of this value.|All|
-|`perfect_forward_secrecy` (*deprecated*)|{% glyph icon="redeploy" /%}|Enable Perfect Forward Secrecy|All|
-{% /table %}
+|`cors`|<Glyph icon="redeploy" />|Enable Cross Origin Resource Sharing|All|
+|`nginx/precompiled_url`|<Glyph icon="build" />|A URL pointing to a file in `tar.gz` format that contains a custom version of Nginx that will be used with your application. This Nginx package **MUST** be compiled using our [Cloud 66 compiler](https://github.com/cloud66-oss/nginx-compiler). Please read the [docs on the Github page](https://github.com/cloud66-oss/nginx-compiler#readme) for more details.|All|
+|`extra_build_arguments` (*deprecated*)|<Glyph icon="build" />|Extra build argument string that will be added to the `nginx build` command. If you require additional modules that themselves require specific source to be present, you should use a `BEFORE_NGINX` [deploy hook](/docs/deploy-hooks/deploy-hooks#hook-points) to ensure that source is present. You can use the `cloud66/download` snippet to achieve this easily. The following build arguments are currently always added: `--with-http_realip_module --with-ipv6 --with-http_v2_module` regardless of this value.|All|
+|`perfect_forward_secrecy` (*deprecated*)|<Glyph icon="redeploy" />|Enable Perfect Forward Secrecy|All|
+</Table>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ### Customizing Nginx for containerized apps
 
 Nginx uses the `docker` node in `manifest.yml`. See below for examples.
 
-{% /per-framework %}
+</PerFramework>
 
 #### Example YAML for Nginx
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ```yaml
 rails:
   configuration:
@@ -683,9 +683,9 @@ rails:
       extra_build_arguments: "--add-module=/path/to/module"
       perfect_forward_secrecy: true # deprecated
 ```
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ```yaml
 docker:
   configuration:
@@ -693,13 +693,13 @@ docker:
       perfect_forward_secrecy: true # deprecated
 ```
 
-{% /per-framework %}
+</PerFramework>
 
 ### CORS configuration
 
 If required, you can also specify the allowed origin (as '\*' or a single origin) and methods. You can also specify a comma-separated list of origins, headers, and whether to allow credentials for CORS.
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ```yaml
 rails:
@@ -712,9 +712,9 @@ rails:
         credentials: true
 ```
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ```yaml
 docker:
@@ -726,9 +726,9 @@ docker:
         headers: 'Custom-Header, Another-Header'
         credentials: true
 ```
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### Node version (for Rails applications)
 
@@ -749,35 +749,35 @@ rails:
 If you need a newer version of Node, you can install one using the same method above. We support any version of Node that is supported by our [version manager](https://github.com/tj/n) (which itself supports the [Node distribution list](https://nodejs.org/dist/)).
 
 
-{% callout type="warning" title="Applying changes" %}
+<Callout type="warning" title="Applying changes">
 To apply changes to the Node version you need to update your manifest file, then deploy-with-options and select the **Apply Ruby/Node upgrades** option.
-{% /callout %}
+</Callout>
 
-{% /per-framework %}
+</PerFramework>
 
 ### Post-deployment availability checks
 
 You can configure your application to automatically run [global availability checks](/docs/servers/application-health-checks) against an HTTP endpoint each time it is deployed. Results of these checks are available on your Cloud 66 dashboard under *ActiveProtect*. 
 
-{% callout type="info" title="Positioning Health Check settings" %}
+<Callout type="info" title="Positioning Health Check settings">
  Note that all of the Health Check settings must be nested under the `configuration` &rarr; `activeprotect` &rarr; `health_check` sub-node. 
-{% /callout %}
+</Callout>
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`endpoint`|{% glyph icon="redeploy" /%}|The endpoint to that will be queried during the check|All|
-|`accept`|{% glyph icon="redeploy" /%}|The set of HTTP codes we will accept as valid from the endpoint (as an array)|All|
-|`timeout`|{% glyph icon="redeploy" /%}|The timeout limit in seconds of the endpoint (limit: `10`)|All|
-|`max_redirects`|{% glyph icon="redeploy" /%}|The number of acceptable HTTP redirects (limit: `10`)|All|
-|`cooldown`|{% glyph icon="redeploy" /%}|The delay between the end of the deployment process and the start of the test, in seconds. (limit: `1800`)|All|
-{% /table %}
+|`endpoint`|<Glyph icon="redeploy" />|The endpoint to that will be queried during the check|All|
+|`accept`|<Glyph icon="redeploy" />|The set of HTTP codes we will accept as valid from the endpoint (as an array)|All|
+|`timeout`|<Glyph icon="redeploy" />|The timeout limit in seconds of the endpoint (limit: `10`)|All|
+|`max_redirects`|<Glyph icon="redeploy" />|The number of acceptable HTTP redirects (limit: `10`)|All|
+|`cooldown`|<Glyph icon="redeploy" />|The delay between the end of the deployment process and the start of the test, in seconds. (limit: `1800`)|All|
+</Table>
 
 #### Example YAML for post-deployment global availability checks
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ```yaml
 docker:
@@ -790,9 +790,9 @@ docker:
         max_redirects: 5 # Default is 3
         cooldown: 120 # Default is 0 
 ```
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ```yaml
 rails:
@@ -805,47 +805,47 @@ rails:
         max_redirects: 5 # Default is 3
         cooldown: 120 # Default is 0 
 ```
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### Rails
 
 A Rails application type in the manifest file gives you fine control over things like the Ruby version or the server the rails application is deployed on.
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`activeprotect`|{% glyph icon="redeploy" /%}|The parent node for ActiveProtect settings (see `whitelist` and `http_ban_rate` below)|All|
-|`activeprotect / whitelist`|{% glyph icon="redeploy" /%}|A comma-separated whitelist of IPs that should be ignored by your ActiveProtect configuration. Must be nested under `activeprotect`.|All|
-|`activeprotect / http_ban_rate`|{% glyph icon="redeploy" /%}|Set the threshold of *requests per minute* from a single IP address. The default is `2000`. Must be nested under `activeprotect`.|All|
-|`asset_pipeline_precompile`|{% glyph icon="redeploy" /%}|Specify whether to use asset pipeline compilation - this will be taken into account during redeployment. NOTE: **Rails only** - does not apply to other Rack servers.|All|
-|`bundler / options`|{% glyph icon="redeploy" /%}|Customise your `bundle install` command by specifying options. [See below](#examples-of-bundle-install-options-railsrack) for some example options and defaults.|All|
-|`do_initial_db_schema_load`|{% glyph icon="build" /%}|Specify whether to perform `rake db:schema:load` on a new application build.|All|
-|`firewall / create_web_rules`|{% glyph icon="redeploy" /%}|Cloud 66 automatically creates firewall rules to expose your web application to the outside world. You can configure this via your [Traffic settings](/docs/networking/network-configuration#firewall), or disable it completely by setting this value to `false`. Default is `true`.|All|
-|`iam_instance_profile_name`|{% glyph icon="build" /%}|The name of the [IAM instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles/) that should be used when provisioning this server. [Read our guide](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers).|AWS|
-|`include_submodules`|{% glyph icon="redeploy" /%}|Set this to `false` to exclude any Git submodules from being pulled during a build. Default is `true`|All|
-|`instance_service_account_name`|{% glyph icon="build" /%}|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`keep_releases`|{% glyph icon="redeploy" /%}|Specify the number of releases to keep on your server(s). Default is `5`.|All|
-|`locked_passenger_version`|{% glyph icon="upgrade" /%}|Force the app to use a specific version of Passenger. This is not supported on Passenger Enterprise applications.|All|
-|`memory_allocator`|{% glyph icon="upgrade" /%}|The memory allocation library that will be used for your Ruby installation. Options are `malloc` or `jemalloc`. Defaults to `malloc`.|All|
-|`nameservers`|{% glyph icon="build" /%}|Set DNS servers for your application.  Note that if you specify empty array i.e **[ ]**, it won't add any nameserver to your servers. Default is an empty array: `[ ]`|All|
-|`network` / `mode`|{% glyph icon="build" /%}|Specifies whether your servers should communicate over `private` or `public` IP addresses. Defaults to `private` if your servers are *either* all cloud *or* all [Registered](/docs/servers/registered-servers). If your application uses a *mix* of cloud and Registered servers, the default will be `public`.|All|
-|`operating_system`|{% glyph icon="build" /%}|The version of Ubuntu to install on the server that hosts your application. Accepted values: `ubuntu2004`,  `ubuntu2204` or `ubuntu2404` - this is [governed by Ruby version](/docs/build-and-config/managing-and-upgrading-ruby-versions#ruby-and-ubuntu-versions).|All|
-|`passenger_process_memory`|{% glyph icon="redeploy" /%}|A value (in MB) that Cloud 66 will use for each Passenger process. This is also used to calculate the value of the `passenger_pool_max` variable in your [Nginx configuration](/docs/servers/nginx#pool-max) which in turn sets `passenger_max_pool_size`.|All|
-|`reserved_server_memory`|{% glyph icon="redeploy" /%}|A value in MB that Cloud 66 will assume should be left available. This will affect any automatically calculated values.|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by your application. Default value is 50.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-|`ruby_version`|{% glyph icon="upgrade" /%}|Specify the version of Ruby to use. Also applies when you want to [upgrade your Ruby version](/docs/build-and-config/managing-and-upgrading-ruby-versions). We recommend that you use this and *remove the Ruby version declaration from your Gemfile* to avoid situations where your application will not run on every server during an upgrade. Older versions of Ruby will [limit the version of Ubuntu](/docs/build-and-config/managing-and-upgrading-ruby-versions#ruby-and-ubuntu-versions) your servers can use.|All|
-|`subnet_id`|{% glyph icon="build" /%}|**ID** or **name** of the AWS subnet in which you would like to create your servers. If not supplied, we will attempt to identify the single subnet with [map_public_ip_on_launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet#cfn-ec2-subnet-mappubliciponlaunch) set to true|AWS|
-| `tags` | {% glyph icon="build" /%} | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
-|`vn_name`|{% glyph icon="build" /%}|The name of the Virtual Network in which you would like to create your servers.|Azure|
-|`vpc_id`|{% glyph icon="build" /%}|**ID** or **name** of the VPC in which you would like to create your servers.|AWS, Azure, DigitalOcean, Hetzner|
-{% /table %}
+|`activeprotect`|<Glyph icon="redeploy" />|The parent node for ActiveProtect settings (see `whitelist` and `http_ban_rate` below)|All|
+|`activeprotect / whitelist`|<Glyph icon="redeploy" />|A comma-separated whitelist of IPs that should be ignored by your ActiveProtect configuration. Must be nested under `activeprotect`.|All|
+|`activeprotect / http_ban_rate`|<Glyph icon="redeploy" />|Set the threshold of *requests per minute* from a single IP address. The default is `2000`. Must be nested under `activeprotect`.|All|
+|`asset_pipeline_precompile`|<Glyph icon="redeploy" />|Specify whether to use asset pipeline compilation - this will be taken into account during redeployment. NOTE: **Rails only** - does not apply to other Rack servers.|All|
+|`bundler / options`|<Glyph icon="redeploy" />|Customise your `bundle install` command by specifying options. [See below](#examples-of-bundle-install-options-railsrack) for some example options and defaults.|All|
+|`do_initial_db_schema_load`|<Glyph icon="build" />|Specify whether to perform `rake db:schema:load` on a new application build.|All|
+|`firewall / create_web_rules`|<Glyph icon="redeploy" />|Cloud 66 automatically creates firewall rules to expose your web application to the outside world. You can configure this via your [Traffic settings](/docs/networking/network-configuration#firewall), or disable it completely by setting this value to `false`. Default is `true`.|All|
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles/) that should be used when provisioning this server. [Read our guide](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers).|AWS|
+|`include_submodules`|<Glyph icon="redeploy" />|Set this to `false` to exclude any Git submodules from being pulled during a build. Default is `true`|All|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`keep_releases`|<Glyph icon="redeploy" />|Specify the number of releases to keep on your server(s). Default is `5`.|All|
+|`locked_passenger_version`|<Glyph icon="upgrade" />|Force the app to use a specific version of Passenger. This is not supported on Passenger Enterprise applications.|All|
+|`memory_allocator`|<Glyph icon="upgrade" />|The memory allocation library that will be used for your Ruby installation. Options are `malloc` or `jemalloc`. Defaults to `malloc`.|All|
+|`nameservers`|<Glyph icon="build" />|Set DNS servers for your application.  Note that if you specify empty array i.e **[ ]**, it won't add any nameserver to your servers. Default is an empty array: `[ ]`|All|
+|`network` / `mode`|<Glyph icon="build" />|Specifies whether your servers should communicate over `private` or `public` IP addresses. Defaults to `private` if your servers are *either* all cloud *or* all [Registered](/docs/servers/registered-servers). If your application uses a *mix* of cloud and Registered servers, the default will be `public`.|All|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts your application. Accepted values: `ubuntu2004`,  `ubuntu2204` or `ubuntu2404` - this is [governed by Ruby version](/docs/build-and-config/managing-and-upgrading-ruby-versions#ruby-and-ubuntu-versions).|All|
+|`passenger_process_memory`|<Glyph icon="redeploy" />|A value (in MB) that Cloud 66 will use for each Passenger process. This is also used to calculate the value of the `passenger_pool_max` variable in your [Nginx configuration](/docs/servers/nginx#pool-max) which in turn sets `passenger_max_pool_size`.|All|
+|`reserved_server_memory`|<Glyph icon="redeploy" />|A value in MB that Cloud 66 will assume should be left available. This will affect any automatically calculated values.|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by your application. Default value is 50.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+|`ruby_version`|<Glyph icon="upgrade" />|Specify the version of Ruby to use. Also applies when you want to [upgrade your Ruby version](/docs/build-and-config/managing-and-upgrading-ruby-versions). We recommend that you use this and *remove the Ruby version declaration from your Gemfile* to avoid situations where your application will not run on every server during an upgrade. Older versions of Ruby will [limit the version of Ubuntu](/docs/build-and-config/managing-and-upgrading-ruby-versions#ruby-and-ubuntu-versions) your servers can use.|All|
+|`subnet_id`|<Glyph icon="build" />|**ID** or **name** of the AWS subnet in which you would like to create your servers. If not supplied, we will attempt to identify the single subnet with [map_public_ip_on_launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet#cfn-ec2-subnet-mappubliciponlaunch) set to true|AWS|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`vn_name`|<Glyph icon="build" />|The name of the Virtual Network in which you would like to create your servers.|Azure|
+|`vpc_id`|<Glyph icon="build" />|**ID** or **name** of the VPC in which you would like to create your servers.|AWS, Azure, DigitalOcean, Hetzner|
+</Table>
 
-{% callout type="warning" title="AWS VPC requires subnet_id" %}
+<Callout type="warning" title="AWS VPC requires subnet_id">
 In order to use an AWS *vpc_id*, you must provide *subnet_id* for all servers used by your application.
-{% /callout %}
+</Callout>
 
 #### Example YAML for Rails
 
@@ -871,9 +871,9 @@ rails:
     nameservers: ['8.8.8.8', '8.8.4.4']
     iam_instance_profile_name: rails-perms
 ```
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### Examples of Bundle Install options (Rails/Rack)
 
@@ -881,19 +881,19 @@ This allows you to customise your `bundle install` command by specifying options
 
 Please note that `--shebang` and `--with` bundler options are NOT currently supported. 
 
-{% callout type="warning" title="Take care" %}
+<Callout type="warning" title="Take care">
 This is an advanced feature for expert users of Bundler. 
-{% /callout %}
+</Callout>
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`bundler / options / without`|{% glyph icon="redeploy" /%}|An array of environments you want to exclude during bundle install e.g. `["development", "test", "custom"]` Default: `[]` if Rails env is development, or `["development", "mock", "test"]` otherwise.|All|
-|`bundler / options / deployment`|{% glyph icon="redeploy" /%}|Default: `true`|All|
-|`bundler / options / quiet`|{% glyph icon="redeploy" /%}|Default: `true`|All|
-|`bundler / options / full-index`|{% glyph icon="redeploy" /%}|Default: `false`|All|
-|`bundler / options / ...`|{% glyph icon="redeploy" /%}|Any other valid `bundle install` options you want to apply|All|
-{% /table %}
+|`bundler / options / without`|<Glyph icon="redeploy" />|An array of environments you want to exclude during bundle install e.g. `["development", "test", "custom"]` Default: `[]` if Rails env is development, or `["development", "mock", "test"]` otherwise.|All|
+|`bundler / options / deployment`|<Glyph icon="redeploy" />|Default: `true`|All|
+|`bundler / options / quiet`|<Glyph icon="redeploy" />|Default: `true`|All|
+|`bundler / options / full-index`|<Glyph icon="redeploy" />|Default: `false`|All|
+|`bundler / options / ...`|<Glyph icon="redeploy" />|Any other valid `bundle install` options you want to apply|All|
+</Table>
 
 #### Example YAML for Bundle Install options in Rails
 
@@ -909,9 +909,9 @@ rails:
 
 * * *
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 ### Rack
 
@@ -936,23 +936,23 @@ rack:
     nameservers: ['8.8.8.8', '8.8.4.4']
     iam_instance_profile_name: rack-perms
 ```
-{% /per-framework %}
-{% per-framework includes=["rails"] %}
+</PerFramework>
+<PerFramework includes={["rails"]}>
 ### Deployment Success Checks
 
 These checks define tests to confirm whether your application has been successfully deployed, and to mark a deployment as "failed" if any do not pass. For more details on health checks please read our [how-to guide](/docs/servers/application-health-checks#deployment-success-checks). Health Checks have the following Manifest options:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`protocol`|{% glyph icon="redeploy" /%}|The protocol(s) to use when running the check(s). Acceptable values are `http` or `https`.|All|
-|`host`|{% glyph icon="redeploy" /%}|The hostname or IP address that will we called during the check.|All|
-|`port`|{% glyph icon="redeploy" /%}|The port number that must be used when submitting the request. The default is `80` if you set `http` as your protocol and `443` if you set it to `https`|All|
-|`endpoint`|{% glyph icon="redeploy" /%}|The URL, path or endpoint that should be checked. This can be any URL in the application.|All|
-|`accept`|{% glyph icon="redeploy" /%}|A comma separated list of the HTTP response codes that should be considered as a "pass" of this check. All values must be enclosed in quotes.  Ranges can be defined with dashes and both the first and last port numbers must be included. For example `["200-201", "300-305"]`|All|
-|`follow_redirects`|{% glyph icon="redeploy" /%}|Whether to follow redirects when performing the check. The default value is true.|All|
-|`timeout`|{% glyph icon="redeploy" /%}|The wait, in seconds, before the check will time out. The max is 300.|All|
-{% /table %}
+|`protocol`|<Glyph icon="redeploy" />|The protocol(s) to use when running the check(s). Acceptable values are `http` or `https`.|All|
+|`host`|<Glyph icon="redeploy" />|The hostname or IP address that will we called during the check.|All|
+|`port`|<Glyph icon="redeploy" />|The port number that must be used when submitting the request. The default is `80` if you set `http` as your protocol and `443` if you set it to `https`|All|
+|`endpoint`|<Glyph icon="redeploy" />|The URL, path or endpoint that should be checked. This can be any URL in the application.|All|
+|`accept`|<Glyph icon="redeploy" />|A comma separated list of the HTTP response codes that should be considered as a "pass" of this check. All values must be enclosed in quotes.  Ranges can be defined with dashes and both the first and last port numbers must be included. For example `["200-201", "300-305"]`|All|
+|`follow_redirects`|<Glyph icon="redeploy" />|Whether to follow redirects when performing the check. The default value is true.|All|
+|`timeout`|<Glyph icon="redeploy" />|The wait, in seconds, before the check will time out. The max is 300.|All|
+</Table>
 
 #### Example YAML for Deployment Success Checks
 
@@ -973,7 +973,7 @@ These checks define tests to confirm whether your application has been successfu
 
 For Sinatra use [Rack](#rack)
 
-{% /per-framework %}
+</PerFramework>
 
 ## Manifest settings for databases
 
@@ -989,18 +989,18 @@ For Sinatra use [Rack](#rack)
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`groups`|{% glyph icon="upgrade" /%}|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
-|`iam_instance_profile_name`|{% glyph icon="build" /%}|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
-|`instance_service_account_name`|{% glyph icon="build" /%}|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`operating_system`|{% glyph icon="build" /%}|The version of Ubuntu to install on the server that hosts ElasticSearch. Accepted values `ubuntu2004`, `ubuntu2204`, `ubuntu2404`|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by ElasticSearch. Default value is `50`.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type for servers used by ElasticSearch, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-| `tags` | {% glyph icon="build" /%} | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
-|`version`|{% glyph icon="build" /%}|The version of ElasticSearch you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-{% /table %}
+|`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts ElasticSearch. Accepted values `ubuntu2004`, `ubuntu2204`, `ubuntu2404`|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by ElasticSearch. Default value is `50`.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by ElasticSearch, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`version`|<Glyph icon="build" />|The version of ElasticSearch you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
+</Table>
 
 #### Example YAML for ElasticSearch
 
@@ -1028,18 +1028,18 @@ If you need help specifying multiple databases of the same type via your Manifes
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`iam_instance_profile_name`|{% glyph icon="build" /%}|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
-|`instance_service_account_name`|{% glyph icon="build" /%}|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`mount_targets`|{% glyph icon="redeploy" /%}|List of servers and server groups on which GlusterFS should be mounted. You can specify the name of the server or server group (e.g. `rails` or `mysql`). You can also use app and db keywords: `app` is your main app server group (e.g. rails) and `db` is your database server groups (e.g. `mysql` or `redis`). The default value is `app`.|All|
-|`replica_count`|{% glyph icon="build" /%}|The number of nodes in the GlusterFS cluster to which data will be replicated (e.g. `2` means your data exist on two nodes). Default value is `1`.|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by GlusterFS. Default value is `50`.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type for servers used by GlusterFS, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-| `tags` | {% glyph icon="build" /%} | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
-|`version`|{% glyph icon="build" /%}|The version of GlusterFS you wish to install.NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-{% /table %}
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`mount_targets`|<Glyph icon="redeploy" />|List of servers and server groups on which GlusterFS should be mounted. You can specify the name of the server or server group (e.g. `rails` or `mysql`). You can also use app and db keywords: `app` is your main app server group (e.g. rails) and `db` is your database server groups (e.g. `mysql` or `redis`). The default value is `app`.|All|
+|`replica_count`|<Glyph icon="build" />|The number of nodes in the GlusterFS cluster to which data will be replicated (e.g. `2` means your data exist on two nodes). Default value is `1`.|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by GlusterFS. Default value is `50`.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by GlusterFS, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`version`|<Glyph icon="build" />|The version of GlusterFS you wish to install.NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
+</Table>
 
 #### Example YAML for GlusterFS
 
@@ -1057,13 +1057,13 @@ glusterfs:
 
 The following settings are available via the Manifest file :
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`listen_ip`|{% glyph icon="redeploy" /%}|Specify which IP address to listen on (default value is `0.0.0.0`)|All|
-|`memory`|{% glyph icon="redeploy" /%}|Specify maximum memory (in MB) that can be used (default is `64`)|All|
-|`port`|{% glyph icon="redeploy" /%}|Specify connection port (default is `11211`)|All|
-{% /table %}
+|`listen_ip`|<Glyph icon="redeploy" />|Specify which IP address to listen on (default value is `0.0.0.0`)|All|
+|`memory`|<Glyph icon="redeploy" />|Specify maximum memory (in MB) that can be used (default is `64`)|All|
+|`port`|<Glyph icon="redeploy" />|Specify connection port (default is `11211`)|All|
+</Table>
 
 #### Example YAML for Memcached
 
@@ -1081,19 +1081,19 @@ memcached:
 
 The following settings are available via the Manifest file :
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`groups`|{% glyph icon="upgrade" /%}|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
-|`iam_instance_profile_name`|{% glyph icon="build" /%}|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
-|`instance_service_account_name`|{% glyph icon="build" /%}|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`operating_system`|{% glyph icon="build" /%}|The version of Ubuntu to install on the server that hosts MongoDB. Accepted values `ubuntu2004`, `ubuntu2204`,`ubuntu2404`|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by MongoDB. Default value is `50`.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type for servers used by MongoDB, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-| `tags` | {% glyph icon="build" /%} | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
-|`tamper_with_yml`|{% glyph icon="redeploy" /%}|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
-|`version`|{% glyph icon="build" /%}|Specify the version of MongoDB you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-{% /table %}
+|`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts MongoDB. Accepted values `ubuntu2004`, `ubuntu2204`,`ubuntu2404`|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by MongoDB. Default value is `50`.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by MongoDB, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`tamper_with_yml`|<Glyph icon="redeploy" />|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
+|`version`|<Glyph icon="build" />|Specify the version of MongoDB you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
+</Table>
 
 #### Example YAML for MongoDB
 
@@ -1112,21 +1112,21 @@ If you need help specifying multiple databases of the same type via your Manifes
 
 The following settings are available via the Manifest file :
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`encoding`|{% glyph icon="build" /%}|Specify the encoding (AKA charset) for the database. Valid values can be found in the [MySQL charset docs](https://dev.mysql.com/doc/refman/8.0/en/charset-charsets/).|All|
-|`engine`|{% glyph icon="build" /%}|Specify the MySQL engine you want to install. Valid values are `mysql` and `percona`|All|
-|`groups`|{% glyph icon="upgrade" /%}|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
-|`iam_instance_profile_name`|{% glyph icon="build" /%}|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
-|`instance_service_account_name`|{% glyph icon="build" /%}|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`operating_system`|{% glyph icon="build" /%}|The version of Ubuntu to install on the server that hosts MySQL. Accepted values `ubuntu2004`, `ubuntu2204`,`ubuntu2404`|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by MySQL. Default value is `50`.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type for servers used by MySQL, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-| `tags` | {% glyph icon="build" /%} | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
-|`tamper_with_yml`|{% glyph icon="redeploy" /%}|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
-|`version`|{% glyph icon="build" /%}|Specify the version of MySQL you want to install. Valid values are `5.7` or `8.0` NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-{% /table %}
+|`encoding`|<Glyph icon="build" />|Specify the encoding (AKA charset) for the database. Valid values can be found in the [MySQL charset docs](https://dev.mysql.com/doc/refman/8.0/en/charset-charsets/).|All|
+|`engine`|<Glyph icon="build" />|Specify the MySQL engine you want to install. Valid values are `mysql` and `percona`|All|
+|`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts MySQL. Accepted values `ubuntu2004`, `ubuntu2204`,`ubuntu2404`|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by MySQL. Default value is `50`.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by MySQL, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`tamper_with_yml`|<Glyph icon="redeploy" />|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
+|`version`|<Glyph icon="build" />|Specify the version of MySQL you want to install. Valid values are `5.7` or `8.0` NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
+</Table>
 
 #### Example YAML for MySQL
 
@@ -1148,22 +1148,22 @@ If you need help specifying multiple databases of the same type via your Manifes
 
 The following settings are available via the Manifest file :
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`encoding`|{% glyph icon="build" /%}|Specify the encoding (AKA charset) for the database. Valid values can be found in the [Postgres character set docs](https://www.postgresql.org/docs/current/multibyte#MULTIBYTE-CHARSET-SUPPORTED).|All|
-|`groups`|{% glyph icon="upgrade" /%}|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
-|`iam_instance_profile_name`|{% glyph icon="build" /%}|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
-|`instance_service_account_name`|{% glyph icon="build" /%}|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`operating_system`|{% glyph icon="build" /%}|The version of Ubuntu to install on the server that hosts Postgres. Accepted values `ubuntu1804`, `ubuntu2004`, `ubuntu2204`|All|
-|`postgis`|{% glyph icon="build" /%}|Specify whether to include [PostGIS](https://postgis.net/)|All|
-|`postgis / version`|{% glyph icon="build" /%}|Specify the version of PostGIS you want to install. Must be nested in `postgres` settings|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by Postgres. Default value is `50`.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type for servers used by Postgres, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-| `tags` | {% glyph icon="build" /%} | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
-|`tamper_with_yml`|{% glyph icon="redeploy" /%}|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
-|`version`|{% glyph icon="build" /%}|Specify the version of Postgres you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-{% /table %}
+|`encoding`|<Glyph icon="build" />|Specify the encoding (AKA charset) for the database. Valid values can be found in the [Postgres character set docs](https://www.postgresql.org/docs/current/multibyte#MULTIBYTE-CHARSET-SUPPORTED).|All|
+|`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts Postgres. Accepted values `ubuntu1804`, `ubuntu2004`, `ubuntu2204`|All|
+|`postgis`|<Glyph icon="build" />|Specify whether to include [PostGIS](https://postgis.net/)|All|
+|`postgis / version`|<Glyph icon="build" />|Specify the version of PostGIS you want to install. Must be nested in `postgres` settings|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by Postgres. Default value is `50`.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by Postgres, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`tamper_with_yml`|<Glyph icon="redeploy" />|Determines whether Cloud 66 can automatically update your database configuration (username, password and server address). Default is `yes`.|All|
+|`version`|<Glyph icon="build" />|Specify the version of Postgres you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
+</Table>
 
 #### Example YAML for Postgres
 
@@ -1194,18 +1194,18 @@ postgresql:
 
 The following settings are available via the Manifest file :
 
-{% table %}
+<Table >
 |Option|Applied on|Description|Clouds|
 |--- |--- |--- |--- |
-|`iam_instance_profile_name`|{% glyph icon="build" /%}|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
-|`instance_service_account_name`|{% glyph icon="build" /%}|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`groups`|{% glyph icon="upgrade" /%}|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
-|`operating_system`|{% glyph icon="build" /%}|The version of Ubuntu to install on the server that hosts Redis. Accepted values `ubuntu1804`, `ubuntu2004`,`ubuntu2204`|All|
-|`root_disk_size`|{% glyph icon="build" /%}|Default size of root disk (in GB) for servers used by Redis. Default value is `50`.|AWS, Azure, GCE|
-|`root_disk_type`|{% glyph icon="build" /%}|Disk type for servers used by Redis, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
-| `tags` | {% glyph icon="build" /%} | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
-|`version`|{% glyph icon="build" /%}|Specify the version of Redis you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
-{% /table %}
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/docs/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/docs/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/docs/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts Redis. Accepted values `ubuntu1804`, `ubuntu2004`,`ubuntu2204`|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by Redis. Default value is `50`.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by Redis, accepted values are `ssd` and `magnetic` (AWS accepts `gp2` and `gp3`, Azure accepts [these types](https://learn.microsoft.com/en-us/javascript/api/@azure/arm-computefleet/knownstorageaccounttypes)). Default is `ssd`.|AWS, Azure, GCE|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/docs/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`version`|<Glyph icon="build" />|Specify the version of Redis you want to install. NOTE: You can use [database groups](/docs/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
+</Table>
 
 #### Example YAML for Redis
 
@@ -1237,14 +1237,14 @@ You can use your Manifest file to customize the Azure load balancer deployed by 
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|
 |--- |--- |--- |
-|`availability_zones`|{% glyph icon="build" /%}|An array of the availability zones in which the load balancer will be active e.g. `["1", "3"]` |
-|`httpchk`|{% glyph icon="build" /%}|The URL visited to [check your server health](#automatic-endpoint-test)|
-|`wait_after_adding_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-|`wait_after_removing_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-{% /table %}
+|`availability_zones`|<Glyph icon="build" />|An array of the availability zones in which the load balancer will be active e.g. `["1", "3"]` |
+|`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
+|`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+|`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+</Table>
 
 
 ### AWS load balancer
@@ -1253,15 +1253,15 @@ You can use your Manifest file to customize the AWS load balancer deployed by Cl
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|
 |--- |--- |--- |
-|`alb_ssl_policy`|{% glyph icon="redeploy" /%}|The SSL policy to associate with your ALB when performing SSL termination. See the official AWS docs for [available ALB SSL policies.](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener#describe-ssl-policies) (Applies only to Application Load Balancers)|
-|`elb_ssl_policy`|{% glyph icon="redeploy" /%}|The SSL policy to associate with your ELB when performing SSL termination. See the official AWS docs for [available ELB SSL policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table/). (Applies only to Classic Load Balancers)|
-|`httpchk`|{% glyph icon="build" /%}|The URL visited to [check your server health](#automatic-endpoint-test)|
-|`wait_after_adding_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-|`wait_after_removing_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-{% /table %}
+|`alb_ssl_policy`|<Glyph icon="redeploy" />|The SSL policy to associate with your ALB when performing SSL termination. See the official AWS docs for [available ALB SSL policies.](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener#describe-ssl-policies) (Applies only to Application Load Balancers)|
+|`elb_ssl_policy`|<Glyph icon="redeploy" />|The SSL policy to associate with your ELB when performing SSL termination. See the official AWS docs for [available ELB SSL policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-policy-table/). (Applies only to Classic Load Balancers)|
+|`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
+|`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+|`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+</Table>
 
 #### Example YAML for AWS load balancers
 
@@ -1283,13 +1283,13 @@ You can use a manifest file to configure Hetzner Cloud Load Balancers deployed b
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|
 |--- |--- |--- |
-|`httpchk`|{% glyph icon="build" /%}|The URL visited to [check your server health](#automatic-endpoint-test)|
-|`wait_after_adding_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-|`wait_after_removing_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-{% /table %}
+|`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
+|`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+|`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+</Table>
 
 Refer to the [DigitalOcean documentation](https://docs.digitalocean.com/products/networking/load-balancers/) for more detail on these settings.
 
@@ -1302,14 +1302,14 @@ You can use your Manifest file to customize any GCE load balancers deployed by C
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|
 |--- |--- |--- |
-|`balance`|{% glyph icon="build" /%}|The load balancing strategy. Valid values: `NONE`, `CLIENT_IP` or `CLIENT_IP_PROTO`|
-|`httpchk`|{% glyph icon="build" /%}|The URL visited to [check your server health](#automatic-endpoint-test)|
-|`wait_after_adding_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-|`wait_after_removing_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-{% /table %}
+|`balance`|<Glyph icon="build" />|The load balancing strategy. Valid values: `NONE`, `CLIENT_IP` or `CLIENT_IP_PROTO`|
+|`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
+|`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+|`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+</Table>
 
 Refer to the [GCE documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools) for more detail on these settings.
 
@@ -1331,28 +1331,28 @@ You can use your Manifest file to configure and define any HAProxy load balancer
 
 Because HAProxy load balancers are not "cloud native", you will need to specify the **server configuration** in the same YAML node as your HAproxy settings. The server configuration settings are :
 
-{% table %}
+<Table >
 |Server options|Applied on|Description|
 |--- |--- |--- |
-|`key_name`|{% glyph icon="build" /%}|Default|
-|`region`|{% glyph icon="build" /%}|DigitalOcean's region|
-|`size`|{% glyph icon="build" /%}|The size of the instance|
-|`unique_name`|{% glyph icon="build" /%}|Name of the instance|
-{% /table %}
+|`key_name`|<Glyph icon="build" />|Default|
+|`region`|<Glyph icon="build" />|DigitalOcean's region|
+|`size`|<Glyph icon="build" />|The size of the instance|
+|`unique_name`|<Glyph icon="build" />|Name of the instance|
+</Table>
 
 The following **HAproxy settings** are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|
 |--- |--- |--- |
-|`balance`|{% glyph icon="redeploy" /%}|The load balancing strategy. Valid values: `roundrobin`, `leastconn` or `source`|
-|`errorfile_*ERROR_CODE*`|{% glyph icon="build" /%}|Location of your own custom error page(s) to serve in the case of receiving a HTTP error code on the load balancer. You can configure one page per error code.|
-|`haproxy_password`|{% glyph icon="redeploy" /%}|The password for your HAproxy stats interface.|
-|`haproxy_username`|{% glyph icon="redeploy" /%}|The username for your HAproxy stats interface.|
-|`httpchk`|{% glyph icon="redeploy" /%}|The URL visited to [check your server health](#automatic-endpoint-test)|
-|`wait_after_adding_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-|`wait_after_removing_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-{% /table %}
+|`balance`|<Glyph icon="redeploy" />|The load balancing strategy. Valid values: `roundrobin`, `leastconn` or `source`|
+|`errorfile_*ERROR_CODE*`|<Glyph icon="build" />|Location of your own custom error page(s) to serve in the case of receiving a HTTP error code on the load balancer. You can configure one page per error code.|
+|`haproxy_password`|<Glyph icon="redeploy" />|The password for your HAproxy stats interface.|
+|`haproxy_username`|<Glyph icon="redeploy" />|The username for your HAproxy stats interface.|
+|`httpchk`|<Glyph icon="redeploy" />|The URL visited to [check your server health](#automatic-endpoint-test)|
+|`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+|`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+</Table>
 
 Refer to the [HAProxy documentation](http://haproxy.1wt.eu/download/1.3/doc/configuration.txt) for more information
 
@@ -1385,14 +1385,14 @@ You can use a manifest file to configure Hetzner Cloud Load Balancers deployed b
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|
 |--- |--- |--- |
-|`balance`|{% glyph icon="build" /%}|The load balancing strategy. Valid values: `round_robin` or `least_connections`|
-|`httpchk`|{% glyph icon="build" /%}|The URL visited to [check your server health](#automatic-endpoint-test)|
-|`wait_after_adding_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-|`wait_after_removing_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-{% /table %}
+|`balance`|<Glyph icon="build" />|The load balancing strategy. Valid values: `round_robin` or `least_connections`|
+|`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
+|`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+|`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+</Table>
 
 Refer to the [Hetzner documentation](https://docs.hetzner.com/cloud/load-balancers/overview) for more detail on these settings.
 
@@ -1404,15 +1404,15 @@ You can use a manifest file to configure Linode Nodebalancers deployed by Cloud 
 
 The following settings are available via the Manifest file:
 
-{% table %}
+<Table >
 |Option|Applied on|Description|
 |--- |--- |--- |
-|`algorithm` or `balance`|{% glyph icon="build" /%}|The load balancing algorithm. Valid values: `roundrobin`, `leastconn` or `source`. Default: `roundrobin`|
-|`stickiness`|{% glyph icon="build" /%}|The load balancing stickiness. Valid values: `none`, `table` or `http_cookie`. Default: `table`|
-|`httpchk`|{% glyph icon="build" /%}|The URL visited to [check your server health](#automatic-endpoint-test)|
-|`wait_after_adding_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-|`wait_after_removing_servers`|{% glyph icon="redeploy" /%}|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
-{% /table %}
+|`algorithm` or `balance`|<Glyph icon="build" />|The load balancing algorithm. Valid values: `roundrobin`, `leastconn` or `source`. Default: `roundrobin`|
+|`stickiness`|<Glyph icon="build" />|The load balancing stickiness. Valid values: `none`, `table` or `http_cookie`. Default: `table`|
+|`httpchk`|<Glyph icon="build" />|The URL visited to [check your server health](#automatic-endpoint-test)|
+|`wait_after_adding_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+|`wait_after_removing_servers`|<Glyph icon="redeploy" />|The time (in seconds) we will wait after adding a server back to the load balancer before we begin routing traffic to that server. Read our [in-depth guide on configuration lag](/docs/deployment/parallel-deployment#coping-with-load-balancer-configuration-lag) for more details.|
+</Table>
 
 Refer to the [Linode documentation](https://www.linode.com/docs/platform/nodebalancer/nodebalancer-reference-guide) for more detail on these settings.
 

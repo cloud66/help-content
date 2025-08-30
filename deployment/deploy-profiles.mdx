@@ -25,50 +25,50 @@ You can use a deployment profile:
 
 ## Option for deployments
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ### Git branch or Tag to Deploy
 
 You can set a profile to deploy a specific Git branch or Tag. If you don’t see the branch or tag in the list, click the reload button next to the dropdown to fetch the latest info from your git repo.
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ### Build / Publish Services
 
 Under this section, you can see all your services are listed. You can choose one or both of the following operations for each service.
 
 - **Build**:     Builds the code into a docker image.
 - **Publish**:   Push the built image to servers.
-{% /per-framework %}
+</PerFramework>
 
 ### Deployment strategy
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 - **Parallel Deployment**: Complete deployment of all services
 - [**Fast Deployment**](/docs/deployment/parallel-deployment#fast-deployments): Deploys only changes to code and/or images.
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 - **Parallel Deployment**: Deploy to all your servers simultaneously
 - **Serial Deployment**:   Deploy to your servers sequentially.
 - **Rolling Deployment**:   Deploy to your servers in two batches 
 
 For more information on how these strategies work, please read our [detailed guide to deployment strategies](/docs/deployment/parallel-deployment).
-{% /per-framework %}
+</PerFramework>
 
 ### Pause Jobs
 
 You can choose to pause all your server and application jobs while you’re deploying. The jobs will be automatically resumed once the deployment is completed.
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ### Upgrades
 
 - **Apply Kubernetes upgrades**: Apply the latest Kubernetes version - you can choose to specify a version in your Manifest and/or to run a clean installation.
 - **Apply Security Upgrades**: Install the latest Ubuntu security packages immediately (they are applied once a day by default).
 - **Reboot My Servers If Required** - this option will allow your servers to reboot if an upgrade or update process requests it. This will obviously cause downtime during the deployment. 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ### Database migration
 
 You can choose whether or not to run database migrations as part of deployments that use this profile. Read our [database management guide](/docs/databases/database-management#control-your-rails-database-migrations) for more info. 
@@ -82,7 +82,7 @@ This is quite likely to result in some downtime. We strongly recommend reading [
 - **Apply Security Upgrades**: Install the latest Ubuntu security packages immediately (they are applied once a day by default).
 - **Apply Ruby/Node upgrades**: Upgrade the version(s) of Ruby and Node to the latest stable version. 
 - **Reboot My Servers If Required** - this option will allow your servers to reboot if an upgrade or update process requests it. This will obviously cause downtime during the deployment. 
-{% /per-framework %}
+</PerFramework>
 
 ## Calling a deployment profile via a redeployment hook
 

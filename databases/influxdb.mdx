@@ -17,10 +17,10 @@ To add InfluxDB to your application:
 
 You can now watch the logs, as usual to see the progress of the process.
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
-{% callout type="error" title="Added to host not container" %}
+<Callout type="error" title="Added to host not container">
 For docker applications InfluxDB will be added to the host not as a container.
-{% /callout %}
+</Callout>
 
-{% /per-framework %}
+</PerFramework>

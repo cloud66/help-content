@@ -8,13 +8,13 @@ A load balancer is used to distribute traffic across your web servers, and offer
 
 You can add either native load balancers (for [cloud vendors with native load balancer support](#supported-cloud-load-balancers)) or an HAProxy load balancer for cloud vendors with no native load balancer support (currently OVH and Vultr) and [Registered Servers](/docs/servers/registered-servers).
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
-{% callout type="warning" title="Check your config.hosts" %}
+<Callout type="warning" title="Check your config.hosts">
 If you have set your `config.hosts` in Rails to only allow traffic from your own domain(s), your load balancer can be seen as a different host and be blocked by your application, which can bring down your entire application. You will need to add your load balancer's hostname to your allowed list, or disable the config.hosts feature (which we recommend against)
-{% /callout %}
+</Callout>
 
-{% /per-framework %}
+</PerFramework>
 
 ## Add a load balancer
 
@@ -45,15 +45,15 @@ If your application does not have a valid endpoint or route set for `/` then you
 
 If your servers respond positively to the ping test, the load balancer will begin to distribute the load between them. If any of these ping tests fail, the load balancer will not distribute traffic to those servers that failed.
 
-{% callout type="info" title="Cloud vendors only" %}
+<Callout type="info" title="Cloud vendors only">
 This feature is only available if you have deployed using a cloud vendor, and for applications running in production.
-{% /callout %}
+</Callout>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ### Parallel deployments
 
 When you have a load balancer on your application, your deployments can take place in serial to reduce downtime, or in [parallel](/docs/deployment/parallel-deployment). Deploying in serial involves removing each server from the load balancer, deploying to it and then re-adding it to the load balancer in sequence.
-{% /per-framework %}
+</PerFramework>
 
 ## Adding multiple load balancers
 

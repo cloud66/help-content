@@ -23,9 +23,9 @@ Database replication can be set up for a single application, between application
 - Improved redundancy: Allows you to have a failover application in a different region.
 - Data migration: Makes it easy to migrate your application with minimal downtime.
 
-{% callout type="info" title="Inter-application replication" %}
+<Callout type="info" title="Inter-application replication">
 Replication between different applications is not supported for MongoDB. 
-{% /callout %}
+</Callout>
 
 ## How it works
 
@@ -38,9 +38,9 @@ When you start replicating your database, the Cloud 66 will do the following:
 
 In the case of a single application, we create a secondary database server in your cloud and restore a backup to it. For databases that span applications, we restore your backup on the database server of the second application. For **database groups** you need to set up the new group first, and then set up replication once it is in place.
 
-{% callout type="warning" title="Enabling replication will delete all data from replica" %}
-If you enable replication, all data on the target server (i.e. the replica) will be deleted - including {% hint caption="logical databases" %}i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases){% /hint %} and users. 
-{% /callout %}
+<Callout type="warning" title="Enabling replication will delete all data from replica">
+If you enable replication, all data on the target server (i.e. the replica) will be deleted - including <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases)</Hint> and users. 
+</Callout>
 
 Similarly, when you disable replication, we do the following:
 
@@ -61,9 +61,9 @@ In the case that an environment variable contains multiple values, such as IP ad
 
 The process of enabling database replication varies slightly for a single application compared to replication between applications.
 
-{% callout type="warning" title="Enabling replication will disrupt live databases" %}
+<Callout type="warning" title="Enabling replication will disrupt live databases">
 Enabling database replication will disrupt the database serving your application during the replication configuration process. The disruption time depends entirely on your database type and size, and different databases may require a restart and/or a complete backup in order to warm-up the new server. This disruption will occur every time you scale your servers. 
-{% /callout %}
+</Callout>
 
 ### Single application
 
@@ -121,7 +121,7 @@ From time-to-time your replica database may go out of sync with its master. You 
 - Via the Dashboard (click through to the detail page for the replica and then click Resync Replica)
 - Via the Cloud 66 Toolbelt's [database management commands](/docs/toolbelt/toolbelt#databases-promote-replica).
 
-{% callout type="warning" title="Backups running on replicas" %}
+<Callout type="warning" title="Backups running on replicas">
 If your managed backups are set to run on your replica server, you will not be able to automatically resync your replica from that backup. You will need to disable this option and run the backup on your master server before you can resync.
-{% /callout %}
+</Callout>
 

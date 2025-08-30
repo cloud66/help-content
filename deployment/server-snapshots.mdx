@@ -6,9 +6,9 @@ title: Using Server Snapshots
 
 Server Snapshots can make scaling your application (i.e. adding servers) significantly quicker. Instead of provisioning servers from scratch we save a “snapshot” of the server disk and use that as a base for your additional servers. 
 
-{% callout type="info" title="Server Snapshots availability" %}
+<Callout type="info" title="Server Snapshots availability">
 Server Snapshots are only available for supported cloud providers - at the moment this includes **AWS**, **Microsoft Azure**, **DigitalOcean**, **Google Cloud**, and **Hetzner Cloud**.
-{% /callout %}
+</Callout>
 
 ## How to enable Server Snapshots
 
@@ -17,9 +17,9 @@ You can enable Server Snapshots at two levels:
 1. At application level - for any new server added to your application
 2. At account level - for any new application created on your account
 
-{% callout type="warning" title="Some cloud providers require additional permissions" %}
+<Callout type="warning" title="Some cloud providers require additional permissions">
 For some cloud providers (AWS & Google) you will need to give Cloud 66 additional permissions to your cloud account in order for us to store and fetch the Snapshots. [See below](#permissions-required) for details. 
-{% /callout %}
+</Callout>
 
 ### Enabling Server Snapshots per application
 

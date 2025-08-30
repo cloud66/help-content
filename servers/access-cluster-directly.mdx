@@ -6,9 +6,9 @@ title: Accessing your Kubernetes instance directly
 
 Although Cloud 66 is designed to make managing your clusters a hands-off experience, you still have full access to all the features of Kubernetes whenever you need them. If you'd like to access a Kubernetes instance directly (for example to perform in-depth debugging) you can easily access your cluster using one of the two methods below. 
 
-{% callout type="warning" title="Take care when connecting to production clusters" %}
+<Callout type="warning" title="Take care when connecting to production clusters">
  We don't recommend that users who are new to Kubernetes access their cluster directly on production environments until they're comfortable with doing so in testing environment (like minikube). 
-{% /callout %}
+</Callout>
 
 ## Method 1: Connect to the server
 
@@ -46,6 +46,6 @@ To set this up, you first need to have Kubernetes installed on your local machin
 kubectl get nodes
 ```
 
-{% callout type="warning" title="Use this method with great caution" %}
+<Callout type="warning" title="Use this method with great caution">
 Because this method gives a remote machine direct, super-admin-style access to a cluster, we recommend using it with caution and treating the `kubeconfig` file with care.
-{% /callout %}
+</Callout>

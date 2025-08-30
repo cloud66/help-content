@@ -15,7 +15,7 @@ If you need help with the second aspect - how the new version of your applicatio
 
 ## Types of deployment strategies
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 Your application's deployment strategy dictates how we push changes out to your servers. There are three strategies available:
 
@@ -25,13 +25,13 @@ Your application's deployment strategy dictates how we push changes out to your 
 
 We cover how to set the strategy for your application, as well as the [pros and cons](#pros-and-cons-of-each-deployment-strategy) of each strategy below. 
 
-{% callout type="info" title="Default deployment strategies" %}
+<Callout type="info" title="Default deployment strategies">
 Cloud 66 defaults to the safest available deployment strategy for your web server. For webservers that support rolling restarts (Puma, Unicorn, Passenger Enterprise) we will default to parallel deployment. For Passenger Community, we will default to serial. You can override this decision at any point choosing any of the available strategies.
-{% /callout %}
+</Callout>
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel", "container"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
 
 Cloud 66 supports two deployment strategies:
 
@@ -52,7 +52,7 @@ Fast Deployments are designed to quickly push out changes to the code of your ap
 
 If you have made any other changes to your application apart from changing the code, a fast deploy will not capture those changes. It is not intended to handle structural or configuration changes.
 
-{% /per-framework %}
+</PerFramework>
 
 ## Changing your application's deployment strategy
 
@@ -68,9 +68,9 @@ You can trigger a deployment that uses any of the three strategies by clicking t
 
 *This will only apply to the current deployment* - it does not change the default deployment strategy for your app.
 
-{% callout type="info" title="Deployment strategies require multiple web servers" %}
+<Callout type="info" title="Deployment strategies require multiple web servers">
 You won't be given the option to choose a deployment strategy unless you have multiple servers.
-{% /callout %}
+</Callout>
 
 ### Using a deployment profile
 
@@ -94,7 +94,7 @@ For more information on deployment profiles, please read [our reference guide](/
 
 ### Using the Toolbelt (command line)
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 
 You can use Toolbelt to set the deployment strategy for an application. The command is `cx setting set deploy.strategy <strategy>` and valid values for the `strategy` parameter are:
 
@@ -104,9 +104,9 @@ You can use Toolbelt to set the deployment strategy for an application. The comm
 
 This is a **persistent change** to your app's deployment strategy - the app will use this strategy for all future deployments (until you change this setting).
 
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel", "container"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
 
 You can also trigger a Fast Deployment using Cloud 66 Toolbelt using the following command:
 
@@ -120,9 +120,9 @@ Remember you can also trigger deployment profiles using Toolbelt:
 ```shell
 cx stacks redeploy --deployment-profile my-fast-deploy
 ```
-{% /per-framework %}
+</PerFramework>
 
-{% per-framework includes=["rails"] %}
+<PerFramework includes={["rails"]}>
 ## How deployment strategies work
 
 All the deployment strategies have a few things in common:
@@ -130,9 +130,9 @@ All the deployment strategies have a few things in common:
 - Database migrations always occur first, regardless of strategy. Given that some of your servers will be running legacy code for a (hopefully short) period, you should follow best practice around migrations. For example, don't delete columns/tables that are currently in use by legacy code.
 - By definition all three strategies require at least some of your servers to be unavailable during deployment - the only difference is how many servers, and for how long. If your application has no redundancy, we strongly recommend scaling your application up (even temporarily).
 
-{% callout type="info" title="Add health checks to your deployment process" %}
+<Callout type="info" title="Add health checks to your deployment process">
 If you're planning to use parallel or rolling deployments, we recommend [adding health checks](/docs/servers/application-health-checks#deployment-success-checks) to your deployment process. 
-{% /callout %}
+</Callout>
 
 ### Serial deployment
 
@@ -160,19 +160,19 @@ Rolling deployments work as follows:
 
 You can [tag your application servers](/docs/servers/tagging-components) as either `c66.deployment.group.sapphire` or `c66.deployment.group.emerald` to indicate your preference for grouping.
 
-{% callout type="warning" title="Deployment success checks" %}
+<Callout type="warning" title="Deployment success checks">
  We strongly recommend adding [deployment success checks](/docs/servers/application-health-checks#deployment-success-checks) to your application to help catch a wider range of errors (i.e. errors that may not disrupt code deployment but that nonetheless break your application). 
-{% /callout %}
+</Callout>
 
 ## Pros and cons of each deployment strategy
 
-{% table %}
+<Table >
 |Strategy|Pros|Cons|
 |--- |--- |--- |
 |Serial|The safest option - only one server is ever affected|The slowest option with a long period of overlap between old and new code being served|
 |Parallel|The fastest option with a very brief overlap of old and new code being served|The riskiest strategy - a bad deploy can impair all your servers. Will result in some downtime for webservers that don't support live reloads|
 |Rolling|A balance between safe and fast. Very brief overlap of old and new code being served|Requires at least 4 servers and a load balancer. Half your servers will be unavailable during deployment so load on the application needs to be managed carefully|
-{% /table %}
+</Table>
 
 ## Coping with load balancer configuration lag
 
@@ -188,19 +188,19 @@ Bear in mind that adding these delays can slow down the deployment process signi
 
 *(wait time per server)x(number of servers) = (extra deployment time).* 
 
-{% callout type="warning" title="How to remove the delay" %}
+<Callout type="warning" title="How to remove the delay">
 If you use this option in your manifest, subsequent deployments will use the value set. To remove this delay, set the value to `0` in your manifest, and then redeploy. Simply deleting this value from your manifest will not result in removing the setting once it has been applied.
-{% /callout %}
+</Callout>
 
-{% /per-framework %}
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel", "container"] %}
+</PerFramework>
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
 
 ## Serial deployment (V1 only)
 
-{% callout type="error" title="Legacy feature" %}
+<Callout type="error" title="Legacy feature">
 PLEASE NOTE: This feature is only available in the legacy version of Cloud 66 container service (also know as *CSv1*).
-{% /callout %}
+</Callout>
 
 In this strategy we deploy to each server one at a time. We take each server off the load balancer and then add it back once the deployment has succeeded. If a server fails to deploy we will halt the process and alert you.
 
-{% /per-framework %}
+</PerFramework>

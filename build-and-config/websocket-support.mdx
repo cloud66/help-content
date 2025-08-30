@@ -6,13 +6,13 @@ title: Websocket Support
 
 WebSocket is a protocol that allows bi-directional web communication between client and server. You can configure your application to communicate via WebSocket using the method below.
 
-{% callout type="warning" title="AWS Classic Load Balancers" %}
+<Callout type="warning" title="AWS Classic Load Balancers">
 AWS Classic Load Balancers do not support websockets natively. We recommend switching to one of Amazon's newer load balancers.
-{% /callout %}
+</Callout>
 
 ## Configuring for WebSocket
 
-{% per-framework includes=["django", "expressjs", "nextjs", "node", "laravel"] %}
+<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 Cloud 66 opens ports **8080** and **8443** by default on your servers to allow you to use WebSocket. To work with optimally Cloud 66, your WebSocket servers need to listen to these ports.
 
 To configure your Cloud 66 app to communicate with your WebSocket server, you need to set up your [Service's ports](/docs/networking/service-networking#mapping-container-ports) to allow your container to communicate via port 8080 (or 8443 for TLS). 
@@ -28,10 +28,10 @@ For example, this service (**ws-app**) is running on port `3000`, and communicat
           http: 8080
 ```    
 
-{% /per-framework %}
-{% per-framework includes=["rails"] %}
+</PerFramework>
+<PerFramework includes={["rails"]}>
 Cloud 66 opens ports **8080** and **8443** (for TLS) by default on your servers to allow you to use WebSocket. To work with optimally Cloud 66, your WebSocket servers need to listen to these ports.
-{% /per-framework %}
+</PerFramework>
 
 ### Using custom ports for WebSocket
 
@@ -39,7 +39,7 @@ If necessary you can use different ports for WebSocket, but you will need to [ma
 
 ## Testing a WebSocket connection
 
-To test if your WebSocket server is connecting to your application correctly, you can create a `/` file with the code below. Make sure to replace *<your_address>* with your WebSocket server IP address and finally, open it in a web browser.
+To test if your WebSocket server is connecting to your application correctly, you can create a `/` file with the code below. Make sure to replace **your_address** with your WebSocket server IP address and finally, open it in a web browser.
 
 ```html
     <html>
@@ -49,7 +49,7 @@ To test if your WebSocket server is connecting to your application correctly, yo
           $(document).ready(function(){
             function debug( str ) {
               $("#debug").append( str );
-            };
+            }
     
             ws = new WebSocket("ws://your address");
             ws.onmessage = function(evt) {

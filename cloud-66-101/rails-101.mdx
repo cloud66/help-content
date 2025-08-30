@@ -39,9 +39,9 @@ You can have your application set up in 4 simple steps.
 
 ## Rails / Rack application servers
 
-{% callout type="info" title="Traditional vs containerized" %}
+<Callout type="info" title="Traditional vs containerized">
 We support both traditional Rails apps and containerized Rails apps. This guide is specifically for traditional setups, but we have separate documentation for containerized Rails. 
-{% /callout %}
+</Callout>
 
 
 Cloud 66’s default Rails server is Passenger (including Passenger Enterprise if you bring the license), but we also support:
@@ -96,9 +96,9 @@ Cloud 66 analyses your application code (for example your Gemfile), and supporti
 
 You can do this during initial app setup by clicking the *Add Environment Variables* button during after your app has been analyzed. If you need to change env vars to an existing app, you can use your preferred method below:
 
-{% tabs %}
+<Tabs >
 
-{% tab label="Dashboard" %}
+<Tab label="Dashboard">
 
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on ⚙️ *Settings* in the left-hand nav
@@ -108,9 +108,9 @@ You can do this during initial app setup by clicking the *Add Environment Variab
 6. Click *Save Changes*
 7. Changes to env vars are only applied to your application server(s) when you deploy. Do that now by clicking the *Deploy* button
 
-{% /tab %}
+</Tab>
 
-{% tab label="Command line" %}
+<Tab label="Command line">
 
 You can set an env var as follows: 
 
@@ -134,9 +134,9 @@ $ cx env-vars upload -s my_other_app --file new_env_vars_json --file-type json
 
 For more commands, see our [Toolbelt guide](/docs/toolbelt/toolbelt#env-vars-list).
 
-{% /tab %}
+</Tab>
 
-{% /tabs %}
+</Tabs>
 
 
 ## Encrypted credentials
@@ -165,7 +165,7 @@ You can manually enable/disable compilation either:
 
 - When you first deploy your app (after the analysis step)
 
-{% figure src="/images/rails-101-apc.png" /%}
+<Figure src="/images/rails-101-apc.png" />
 
 - In your Manifest file (*[what is a Manifest file?](/docs/manifest/building-a-manifest-file#what-is-a-manifest-file)*) - for apps that are already deployed
 
@@ -214,7 +214,7 @@ We also support running processes with unique identifiers.
 
 You can scale your workers up and down in your Dashboard:
 
-{% figure src="/images/rails-101-scale-workers.png" /%}
+<Figure src="/images/rails-101-scale-workers.png" />
 
 1. Sign into your Dashboard and click on your app
 2. Click on Workers in the left-hand nav
@@ -231,9 +231,9 @@ To use Action Cable, mount it in the application itself rather than as a separat
 To run Rake tasks on your application, choose your preferred method:
 
 
-{% tabs %}
+<Tabs >
 
-{% tab label="Dashboard" %}
+<Tab label="Dashboard">
 
 1. Open your Dashboard & click on your app
 2. Click Jobs in the left nav
@@ -241,9 +241,9 @@ To run Rake tasks on your application, choose your preferred method:
 4. Choose the server and set up the task 
 5. Set up a schedule or choose to run it on demand
 
-{% /tab %}
+</Tab>
 
-{% tab label="Command line" %}
+<Tab label="Command line">
 
 First SSH to your app server using Toolbelt:
 
@@ -258,9 +258,9 @@ $ cd $STACK_PATH
 $ bundle exec rake your:task
 ```
 
-{% /tab %}
+</Tab>
 
-{% /tabs %}
+</Tabs>
 
 
 ### Running Rake tasks with Deploy Hooks
