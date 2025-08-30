@@ -182,7 +182,7 @@ This can also work in the opposite direction - the load balancer may report that
 
 For many lag-tolerant applications this short delay does not matter, but some applications are more sensitive and can suffer adverse affects from this configuration lag.
 
-If your application is "lag-sensitive" we recommend adding short delays to your [load balancer configurations](/:product/:version?/manifest/building-a-manifest-file#aws-load-balancer). You can do this using the **`wait_after_adding_servers`** and **`wait_after_removing_servers`** options under the load balancers section of your application's [manifest file](/:product/:version?/manifest/building-a-manifest-file#aws-load-balancer). 
+If your application is "lag-sensitive" we recommend adding short delays to your [load balancer configurations](/:product/:version?/manifest/building-a-manifest-file/_aws-load-balancer. You can do this using the **`wait_after_adding_servers`** and **`wait_after_removing_servers`** options under the load balancers section of your application's [manifest file](/:product/:version?/manifest/building-a-manifest-file/_aws-load-balancer.
 
 Bear in mind that adding these delays can slow down the deployment process significantly. For **serial deployments** the additional delay will be: 
 

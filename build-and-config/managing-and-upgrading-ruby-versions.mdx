@@ -41,7 +41,7 @@ Older versions of Ruby require that your application servers are built using old
 - If your Ruby version is < 2.5.0 then the maximum allowed version of Ubuntu is 18.04
 - If your Ruby version < 3.1.0 (but higher than 2.5.0) then the maximum allowed version of Ubuntu is 20.04
 
-The version of Ubuntu used by your application is set using your application's [Manifest file](/:product/:version?/manifest/building-a-manifest-file#rails).
+The version of Ubuntu used by your application is set using your application's [Manifest file](/:product/:version?/manifest/building-a-manifest-file/_rails.
 
 Please be sure to take this into account when configuring and building your application, and also consider the [lifespan of that version of Ubuntu](/:product/:version?/servers/out-of-ubuntu-lts). It may make more sense to upgrade Ruby than to rely on a version of Ubuntu that is no longer supported by its maker.
 
@@ -65,7 +65,7 @@ This is obviously for applications using Rails, but you can do something similar
           ruby_version: x.y.z
 ```
 
-If you'd like more context, we have a detailed guide to all the settings available via Manifest files for both [Rails](/:product/:version?/manifest/building-a-manifest-file#rails) and [Rack](/:product/:version?/manifest/building-a-manifest-file#rack) applications.
+If you'd like more context, we have a detailed guide to all the settings available via Manifest files for both [Rails](/:product/:version?/manifest/building-a-manifest-file/_rails and [Rack](/:product/:version?/manifest/building-a-manifest-file/_rack applications.
 
 <Callout type="warning" title="Define your Ruby version in Manifest">
 If you're currently defining your Ruby version in a Gemfile or a `.ruby_version` file, we strongly recommend moving to using a Manifest file whenever you deploy code. The alternative is likely to result in significant conflicts and issues between servers and applications. Gemfile version declarations can cause problems when upgrading, because your application will no longer run unless the version declared is the same as the underlying version of Ruby.

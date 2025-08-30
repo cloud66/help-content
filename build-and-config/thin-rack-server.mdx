@@ -29,7 +29,7 @@ The default shutdown command for Unicorn servers on Cloud 66 is `HUP` and the de
 quit, 75, int, 15, kill
 ```
 
-If you need your web server to shut down using a different command, or in a particular sequence, or with longer or shorter delays, you can define a custom restart sequence in the [procfile_metadata](/:product/:version?/manifest/building-a-manifest-file#processes) section of your [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
+If you need your web server to shut down using a different command, or in a particular sequence, or with longer or shorter delays, you can define a custom restart sequence in the [procfile_metadata](/:product/:version?/manifest/building-a-manifest-file/_processes section of your [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
 
 For non-web process signals, please consult our [systemd guide](/:product/:version?/servers/systemd#process-signals).
 
@@ -54,5 +54,5 @@ sudo systemctl start cloud66_web_server.service
 sudo systemctl restart cloud66_web_server.service
 ```
 
-If you need more control over your restarts, you can define a custom restart sequence in the [procfile_metadata](/:product/:version?/manifest/building-a-manifest-file#processes) section of your [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
+If you need more control over your restarts, you can define a custom restart sequence in the [procfile_metadata](/:product/:version?/manifest/building-a-manifest-file/_processes section of your [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
 

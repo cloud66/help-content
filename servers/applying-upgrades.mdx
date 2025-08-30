@@ -98,7 +98,7 @@ Upgrading in-place involves downtime as the Docker engine and local files are al
 <PerProduct includes={["rails"]}>
 ## Switching from malloc to jemalloc
 
-If you’d prefer to use [jemalloc](https://jemalloc.net/) as your memory allocator, you can change this via your [manifest file](/:product/:version?/manifest/building-a-manifest-file#rails). However, when you deploy (with upgrades) this **will** cause downtime as it is applied to each server. There are two solutions for avoiding downtime: 
+If you’d prefer to use [jemalloc](https://jemalloc.net/) as your memory allocator, you can change this via your [manifest file](/:product/:version?/manifest/building-a-manifest-file/_rails. However, when you deploy (with upgrades) this **will** cause downtime as it is applied to each server. There are two solutions for avoiding downtime:
 
 1. Use a [rolling deployment strategy](/:product/:version?/deployment/parallel-deployment) (requires a load balancer & at least four servers)
 2. Scale up new servers, upgrade them, and then switch them with the current servers ([see above](#managing-high-risk-updates))
