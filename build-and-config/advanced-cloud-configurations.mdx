@@ -19,7 +19,7 @@ title: Advanced cloud provider configurations
 
 Instance profiles are a way to set specific roles on new servers that you spin up with AWS. You can read more about [creating your own instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) in the AWS docs.
 
-You can use your instance profiles via Cloud 66 by calling them in the [manifest file](/:product/:version?/manifest/building-a-manifest-file) of your application. You can set a different profile for each component of an application (e.g. MySQL or Redis). We will then use that profile whenever we provision a server for that component.
+You can use your instance profiles via Cloud 66 by calling them in the [manifest file/:product/:version?/manifest/what-is-a-manifest-file of your application. You can set a different profile for each component of an application (e.g. MySQL or Redis). We will then use that profile whenever we provision a server for that component.
 
 ## Cloud 66 Security Groups on AWS
 
@@ -44,7 +44,7 @@ EC2 Classic is now [completely deprecated](https://aws.amazon.com/blogs/aws/ec2-
 
 A [service account](https://cloud.google.com/iam/docs/service-accounts#types) is a GCE identity that Google Cloud can use to run API requests on your behalf. If you’ve never used a GCE service account before, please read [Google’s documentation](https://cloud.google.com/iam/docs/service-accounts#types) before starting.
 
-To use a GCE service account with a Cloud 66 application, you must add the name of the account to your [manifest](/:product/:version?/manifest/building-a-manifest-file) using the format `configuration/instance_service_account_name`. For example, this would configure MySQL to use the GCE service account named `mysql-user@my-project-name.iam.gserviceaccount.com`:
+To use a GCE service account with a Cloud 66 application, you must add the name of the account to your [manifest/:product/:version?/manifest/what-is-a-manifest-file using the format `configuration/instance_service_account_name`. For example, this would configure MySQL to use the GCE service account named `mysql-user@my-project-name.iam.gserviceaccount.com`:
 
 ```yaml
 mysql:

@@ -65,10 +65,10 @@ By default Cloud 66 builds a GlusterFS cluster for your application, creates a d
 <PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 But what if you need to make sure some services have read/write access to your data and some only readonly access?
 
-This is achieved using the [manifest](/:product/:version?/manifest/building-a-manifest-file) file. Using manifest file, you can control the GlusterFS volumes you have as well as grant read/write or readonly access to containers of a specific service.
+This is achieved using the [manifest/:product/:version?/manifest/what-is-a-manifest-file file. Using manifest file, you can control the GlusterFS volumes you have as well as grant read/write or readonly access to containers of a specific service.
 </PerProduct>
 
-Using the [manifest](/:product/:version?/manifest/building-a-manifest-file) file allows you to choose the servers on which you would like to have the volumes mounted.
+Using the [manifest/:product/:version?/manifest/what-is-a-manifest-file file allows you to choose the servers on which you would like to have the volumes mounted.
  
 ## Accessing your GlusterFS servers
 GlusterFS servers are added to a new group called _GlusterFS Cluster_ under your application. These servers are accessible via the usual GlusterFS tooling (available from [GlusterFS website](https://www.gluster.org/)).
