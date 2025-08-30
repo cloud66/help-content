@@ -10,18 +10,18 @@ Cloud 66 supports two types of backups: _managed_ and _unmanaged_.
 
 Using managed backups has several benefits:
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 - You can easily [restore](/docs/databases/manage-backups) or download database backups using the Dashboard or [Toolbelt](/docs/toolbelt/toolbelt#backups-download) (CLI)
 - [Backup verifiers](/docs/databases/backup-verifiers) ensure that your backups actually contain what you expect
 - Allows you to use [database replication](/docs/databases/database-replication) to scale your databases
 - Managed Backups are stored in Cloud 66's secure storage
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 - You can easily restore or download database backups using the Dashboard or Toolbelt (CLI)
 - Allows you to use [database replication](/docs/databases/database-replication) to scale your databases
 - Managed Backups are stored in Cloud 66's [secure storage](#managed-backup-storage-locations)
-</PerFramework>
+</PerProduct>
 
 The 100 most recent managed backups are kept by default. 
 

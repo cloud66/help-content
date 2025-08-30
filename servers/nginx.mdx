@@ -101,7 +101,7 @@ The following variables are available for use in your Nginx CustomConfig.
 |upstreams|array|Part of the *service_containers* hiearchy, containing an upstream name, private IPs, traffic matches and port|
 </Table>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ### How passenger pool max is calculated
 
@@ -113,7 +113,7 @@ passenger_pool_max = ( server's memory - reserved_server_memory ) / [passenger_p
 
 ...and this is rounded down to the nearest integer. So if your server has 4GB of free RAM and each process uses 600MB the your `passenger_pool_max` will be 6. 
 
-</PerFramework>
+</PerProduct>
 
 ## Nginx worker configuration
 
@@ -121,7 +121,7 @@ Nginx now supports [autodetection of CPU cores](https://nginx.org/en/docs/ngx_co
 
 ## Customizing Nginx configurations
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Web* in the left-hand nav
 3. Click the *&#8615; More* button at the top right of the server group you wish to configure and select *NGINX Custom Config*
@@ -130,9 +130,9 @@ Nginx now supports [autodetection of CPU cores](https://nginx.org/en/docs/ngx_co
 6. Add a commit message and click *Commit to Server*
 
 Editing and committing your Nginx CustomConfig will perform the following steps on **every web server in that group**, one by one, sequentially:
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
 2. Click on *Application* in the left-hand nav
 3. Click on *Servers* in the sub nav
@@ -142,7 +142,7 @@ Editing and committing your Nginx CustomConfig will perform the following steps 
 7. Add a commit message and click *Commit to Server*
 
 Editing and committing your Nginx CustomConfig will perform the following steps on **every application server in that group**, one by one, sequentially:
-</PerFramework>
+</PerProduct>
 
 *   Check your template for Liquid syntax errors
 *   Count the number of cores on the server

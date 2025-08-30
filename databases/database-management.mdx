@@ -15,20 +15,20 @@ We currently support the following databases, with no need for additional config
 
 ## How to deploy databases with Cloud 66
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 For Rack-based stacks, Cloud 66 automatically detects whether your application relies on a database or not during your code analysis. This is based on a combination of your Gemfile and your `database.yml` or `mongoid.yml` files.
-</PerFramework>
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+</PerProduct>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 When creating a Cloud 66 application, you can add as many databases as you need in your [service configuration](/docs/build-and-config/docker-service-configuration#database-configurations) during the application build.
-</PerFramework> 
+</PerProduct>
 
 After you have analyzed your code, ensure that your desired database type is displayed in the _About your app_ section of the analysis results. 
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 <Callout type="info" title="Using Active Record instead">
 Cloud 66 supports multiple databases for Rails (i.e. multiple databases with Active Record). Please read our [MultiDB for Rails guide](/docs/databases/rails-multidb) to learn how to configure this feature.
 </Callout>
-</PerFramework> 
+</PerProduct>
 
 ### Adding databases after initial deployment
 
@@ -50,7 +50,7 @@ The Application and Replication users always have **the same password**. The ass
 If you switch to managing your passwords manually, be sure to update all of these users whenever you change passwords. Remember that the Application and Replication users must use the same password.
 </Callout>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 If you'd prefer to manage your users and password manually (i.e. your config files), you can [prevent your configs from being modified](/docs/databases/tamper-with-yaml).
 
 <Callout type="warning" title="Self-managed databases">
@@ -93,8 +93,8 @@ after_checkout:
 ```
 
 This hook simply overwrites the standard config file with the config file of your choice at the start of the deployment process. Please read our [full guide to deploy hooks](/docs/deploy-hooks/using-deploy-hooks) to learn how to implement this hook.
-</PerFramework>
-<PerFramework includes={["rails"]}>
+</PerProduct>
+<PerProduct includes={["rails"]}>
 ### Environment variables during deployment
 
 When you set up an application on Cloud 66, we detect its database type(s) (from your code) and generate a set of variables for things like `username` and `password` and `URL`. We only generate these "analyzed variables" **after** you have confirmed that we will be managing the database(s). 
@@ -108,8 +108,8 @@ If your application uses an externally hosted (self-managed) database, **we will
 ### Setting variables manually (overriding)
 
 To add your own values to the analyzed variables, click on the *Add Environment Variables* button and then click the *Override* link next to each of the variables you wish to update. Remember, for **external databases**, we will discard any variables which do not have values set manually.
-</PerFramework>
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+</PerProduct>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ## Connecting your container to your DB
 
 Databases in Cloud 66 run as separate components and aren't containerized. Even though they may be running on the same private network as your cluster servers, you will not be able to connect to them via localhost because of the nature of containers (which are, by definition, abstracted from operating the system).
@@ -157,7 +157,7 @@ $ postgresql://username:password@service_name/database
 ## Connecting your app to your DB in Cloud 66 Container Service V1
 
 To connect to a database in Version 1 of Cloud 66 Container Management Service (CSv1), you should use its ElasticDNS address. Please read our [full guide on ElasticDNS](/docs/legacy/service-network-configuration#elasticdns) for more details.
-</PerFramework>
+</PerProduct>
 
 ## Database deployment types
 
@@ -165,9 +165,9 @@ To connect to a database in Version 1 of Cloud 66 Container Management Service (
 
 This option allows you to deploy your application without a database managed by Cloud 66, and is ideal for externally hosted databases. 
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 For Rails apps, if you have a `url` set in your `database.yml` then we will assume that you are using an external DB. You will need to [set your own env vars](#environment-variables-during-deployment) during deployment, to ensure we can connect to it.
-</PerFramework>
+</PerProduct>
 
 You can also configure an external database via your [Manifest file](/docs/manifest/building-a-manifest-file#manifest-settings-for-databases#specifying-external-databases-via-your-manifest) by specifying the `server` node as `external`. 
 
@@ -208,7 +208,7 @@ You can make a new instance of your application by [cloning it](/docs/cloud-66-1
 
 Once the new application is created, you can migrate data from your old application to your new application.
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ## How to run database schema migrations
 
 If you’ve made structural changes to your databases, you will typically need to run migration commands during your build process, so that those changes are applied to your live database. The nature of these commands depend on your framework.
@@ -235,9 +235,9 @@ databases:
 - mysql
 
 ``` 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ## Control your Rails database migrations
 
 Cloud 66 chooses a server to perform the migrations - all other servers will wait until the migrations are finished before continuing with deployment. You can see which server performs the migrations in the application, and change it using the `c66.migrations.run` [reserved tag](/docs/servers/reserved-tags).
@@ -256,7 +256,7 @@ When you have disabled `run.deploy.command` in [Application settings](/docs/tool
 Sometimes operations can cause database migrations to lock the entire database for minutes at a time - even if the structural change is simple, or made to a relatively small table. If you'd like to understand the mechanisms behind this, we recommend reading this excellent [blog post](https://medium.com/doctolib/stop-worrying-about-postgresql-locks-in-your-rails-migrations-3426027e9cc9). 
 
 To mitigate the potential for this to happen, we recommend including the [Strong Migration](https://github.com/ankane/strong_migrations) gem in your application. This will catch any potentially unsafe migrations and suggest how to avoid or reduce the risk.
-</PerFramework>
+</PerProduct>
 
 ## Customize your database configuration
 

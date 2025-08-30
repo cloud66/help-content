@@ -43,7 +43,7 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 - Replication is generally not possible between different (minor and major) versions of database engines. If your new servers will need to use a significantly different version of the engine, you will need to upgrade manually - [see our section below](#how-to-upgrade-databases-between-versions).
 - We strongly advise you to test a version of your application locally on the same version of Ubuntu that will be deployed.
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ### How to upgrade Ubuntu using the scaling up method
 
@@ -60,9 +60,9 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 11. Test your live application thoroughly (consider leaving your old servers in place for a few hours to allow for rapid rollback if needed)
 12. Once you are comfortable that things are running smoothly, scale down your old servers
 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ### How to upgrade Ubuntu using the scaling up method
 
@@ -75,7 +75,7 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 7. Test your live application thoroughly (consider leaving your old servers in place for a few hours to allow for rapid rollback if needed)
 8. Once you are comfortable that things are running smoothly, scale down your old servers
 
-</PerFramework>
+</PerProduct>
 
 ### How to upgrade Ubuntu using the app cloning method
 

@@ -15,7 +15,7 @@ If you need help with the second aspect - how the new version of your applicatio
 
 ## Types of deployment strategies
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 Your application's deployment strategy dictates how we push changes out to your servers. There are three strategies available:
 
@@ -29,9 +29,9 @@ We cover how to set the strategy for your application, as well as the [pros and 
 Cloud 66 defaults to the safest available deployment strategy for your web server. For webservers that support rolling restarts (Puma, Unicorn, Passenger Enterprise) we will default to parallel deployment. For Passenger Community, we will default to serial. You can override this decision at any point choosing any of the available strategies.
 </Callout>
 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
 
 Cloud 66 supports two deployment strategies:
 
@@ -52,7 +52,7 @@ Fast Deployments are designed to quickly push out changes to the code of your ap
 
 If you have made any other changes to your application apart from changing the code, a fast deploy will not capture those changes. It is not intended to handle structural or configuration changes.
 
-</PerFramework>
+</PerProduct>
 
 ## Changing your application's deployment strategy
 
@@ -94,7 +94,7 @@ For more information on deployment profiles, please read [our reference guide](/
 
 ### Using the Toolbelt (command line)
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 You can use Toolbelt to set the deployment strategy for an application. The command is `cx setting set deploy.strategy <strategy>` and valid values for the `strategy` parameter are:
 
@@ -104,9 +104,9 @@ You can use Toolbelt to set the deployment strategy for an application. The comm
 
 This is a **persistent change** to your app's deployment strategy - the app will use this strategy for all future deployments (until you change this setting).
 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
 
 You can also trigger a Fast Deployment using Cloud 66 Toolbelt using the following command:
 
@@ -120,9 +120,9 @@ Remember you can also trigger deployment profiles using Toolbelt:
 ```shell
 cx stacks redeploy --deployment-profile my-fast-deploy
 ```
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ## How deployment strategies work
 
 All the deployment strategies have a few things in common:
@@ -192,8 +192,8 @@ Bear in mind that adding these delays can slow down the deployment process signi
 If you use this option in your manifest, subsequent deployments will use the value set. To remove this delay, set the value to `0` in your manifest, and then redeploy. Simply deleting this value from your manifest will not result in removing the setting once it has been applied.
 </Callout>
 
-</PerFramework>
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
+</PerProduct>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel", "container"]}>
 
 ## Serial deployment (V1 only)
 
@@ -203,4 +203,4 @@ PLEASE NOTE: This feature is only available in the legacy version of Cloud 66 co
 
 In this strategy we deploy to each server one at a time. We take each server off the load balancer and then add it back once the deployment has succeeded. If a server fails to deploy we will halt the process and alert you.
 
-</PerFramework>
+</PerProduct>

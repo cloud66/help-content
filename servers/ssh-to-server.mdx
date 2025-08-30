@@ -39,7 +39,7 @@ You can use [Cloud 66 Toolbelt](/docs/toolbelt/using-cloud66-toolbelt) to easi
 2. Ensure you have [added your public SSH key](#adding-your-ssh-key-to-your-cloud-66-account) to your Cloud 66 account
 3. Run one of the commands below
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ```shell
 cx ssh [--gateway-key <The path to the key of gateway server>] [-s "your application name"] "your server name"|<server ip>|<server role> [-i <your private key>]
 ```
@@ -52,8 +52,8 @@ Many of these parameters are optional or mutually exclusive. For example you don
 cx ssh -s "My Awesome App" web
 cx ssh --gateway-key ~/.ssh/bastion_key  -s "My Awesome App" Lion -e production
 ```
-</PerFramework>
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+</PerProduct>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ```shell
 cx ssh [-s "your application name"] "your server name"|<server ip>|<server role> [-i <your private key>] 
 ```
@@ -66,7 +66,7 @@ Many of these parameters are optional or mutually exclusive. For example you don
 cx ssh -s "My Awesome App" web
 cx ssh -s "My Awesome App" Lion -e production
 ```
-</PerFramework>
+</PerProduct>
 
 See [toolbelt shortcuts](/docs/toolbelt/using-cloud66-toolbelt), for information on to do this via our CLI.
 

@@ -13,11 +13,11 @@ If you’d prefer to add another <Hint caption="logical database">i.e. the table
 </Callout>
 
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 If you are using the **native** Rails multiDB feature (i.e. multiple databases with Active Record) then please read our [Rails MultiDB guide](/docs/databases/rails-multidb). (The feature actually uses Database Groups, but does so via another method).
 
-</PerFramework>
+</PerProduct>
 
 ## Understanding database groups
 
@@ -112,9 +112,9 @@ To set a new default group in your Dashboard:
 
 **We will not apply any changes in env vars to your application immediately.** They will only be applied when you next redeploy your stack (we recommend you do this immediately or as soon as possible).
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 This pattern also applies to the **service networking addresses** of your Cloud 66 components. For more details please read our [full guide on the subject](/docs/databases/database-management#service-names-for-database-groups).
-</PerFramework>
+</PerProduct>
 
 <Callout type="info" title="Using group-specific env_vars">
  You can choose to use the **group-specific environment variables** in your app configuration, rather than using the root level environment variables. So if, for example, your current default group is named "Upgrade" you can still use `MYSQL_UPGRADE_ADDRESS` rather than `MYSQL_ADDRESS`. 

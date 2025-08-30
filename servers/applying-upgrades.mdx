@@ -49,7 +49,7 @@ This will perform operating system security package upgrades and also set up [un
 Note that some security packages may require a server restart. We don't automatically restart your server, and it is at your discretion to do so. 
 
 If the file `/var/run/reboot-required` exists, that means your server requires a restart. To see which packages contributed to the requirement for a restart, read `/var/run/reboot-required.pkgs`.
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ### Ruby
 
 There are multiple options and considerations when upgrading your base version of Ruby. Please read our [detailed guide](/docs/build-and-config/managing-and-upgrading-ruby-versions) on the subject.
@@ -75,9 +75,9 @@ Rails should be upgraded in the same way as Ruby. See above for details.
 ### Passenger
 
 The recommended way to upgrade your passenger to the latest one is to deploy to a new web server and drop the old one, so the scaled up one will automatically have the [latest version](/docs/specs-and-policies/technical-specifications#component-versions) supported by Cloud 66.
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ### Docker
 
 It is best to keep your Docker version up to date as they are released quite frequently with bug/security fixes.
@@ -90,9 +90,9 @@ It is best to keep your Docker version up to date as they are released quite fre
 <Callout type="error" title="In-place upgrades will result in downtime">
 Upgrading in-place involves downtime as the Docker engine and local files are all upgraded. To maintain zero down-time you should clone your application and use [failover groups](/docs/failover-groups/failover-groups) to switch to the new instance.
 </Callout>
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ## Switching from malloc to jemalloc
 
 If you’d prefer to use [jemalloc](https://jemalloc.net/) as your memory allocator, you can change this via your [manifest file](/docs/manifest/building-a-manifest-file#rails). However, when you deploy (with upgrades) this **will** cause downtime as it is applied to each server. There are two solutions for avoiding downtime: 
@@ -100,7 +100,7 @@ If you’d prefer to use [jemalloc](https://jemalloc.net/) as your memory alloca
 1. Use a [rolling deployment strategy](/docs/deployment/parallel-deployment) (requires a load balancer & at least four servers)
 2. Scale up new servers, upgrade them, and then switch them with the current servers ([see above](#managing-high-risk-updates))
 
-</PerFramework>
+</PerProduct>
 
 ## About manual upgrades
 

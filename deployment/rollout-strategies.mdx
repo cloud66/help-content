@@ -31,11 +31,11 @@ There are three ways to set a rollout strategy for an app:
 2. Creating a deployment profile that defines a strategy
 3. Deploying via Cloud 66 Toolbelt using the `rollout-strategy` parameter
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 <Callout type="info" title="Acknowledge Unicorn configs">
 If you are using Unicorn, you will need to acknowledge that you have made the required changes to your [Unicorn configuration](/docs/build-and-config/unicorn-rack-server) in your code, otherwise these strategies will not work as desired. 
 </Callout>
-</PerFramework>
+</PerProduct>
 
 ### Using "Deploy with options"
 
@@ -209,9 +209,12 @@ As such if a new version of an application requires a new value for an environme
 
 ## Manage rollouts using Cloud 66 Toolbelt (cx)
 
-<Tabs >
-<Tab label="cx-command">
-
+<Tabs defaultValue="cx-command">
+    <TabsList>
+        <TabsTrigger value="cx-command">cx-command</TabsTrigger>
+        <TabsTrigger value="cx-examples">cx-examples</TabsTrigger>
+    </TabsList>
+<TabsContent value="cx-command">
 You can control your rollouts entirely via your command line Toolbelt. The operative command is: `cx stacks variants`
 
 
@@ -229,9 +232,8 @@ cx stacks variants [global options] command [command options] [arguments...]
    delete		delete an existing preview application variant
    help, h		Shows a list of commands or help for one command   
 ```
-</Tab>
-
-<Tab label="cx-examples">
+</TabsContent>
+    <TabsContent value="cx-examples">
 
 This command will **commit** the "new" rollout variant (aka "green") for the application named `my-application`:
 
@@ -251,7 +253,7 @@ This command will set the Canary variant ("green") to receive 25% of all traffic
 cx stacks variants update-percentage 25 -s my-application
 ```
 
-</Tab>
+    </TabsContent>
 </Tabs>
 
 

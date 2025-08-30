@@ -14,16 +14,16 @@ You should only consult this guide if you are having trouble deploying to your s
 
 In order to manage your servers we need full access to two TCP ports from specific (static) IP addresses:
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 - Port `22` from our entire range of [authorized IP addresses](#cloud-66s-authorized-ip-addresses) (see below).
 - Port `3022` from our IP address `159.89.253.143` (this IP is static)
 - Port `6443` from our entire range of [authorized IP addresses](#cloud-66s-authorized-ip-addresses) (see below).
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 - Port `22` from our entire range of [authorized IP addresses](#cloud-66s-authorized-ip-addresses) (see below).
 - Port `3022` from our IP address `159.89.253.143` (this IP is static)
-</PerFramework>
+</PerProduct>
 
 In general, with most cloud providers, we are able to gain access to these ports and set everything up automatically. It's generally only when we're dealing with [registered servers](/docs/servers/registered-servers), or with cloud accounts in which additional security has been implemented, that we need your manual intervention. 
 

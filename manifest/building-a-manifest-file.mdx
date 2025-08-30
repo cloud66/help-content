@@ -13,7 +13,7 @@ These are just some examples of the settings you can control with a manifest fil
 - Configuring application components to share a server
 - Customizing component-specific configurations
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ## How do I use a manifest file?
 
 Manifest settings are defined in a file called `manifest.yml`. For Rails/Rack applications the path for `manifest.yml` is:
@@ -29,8 +29,8 @@ To get started:
 3. Commit your changes to your repository 
 4. Build your application
 
-</PerFramework>
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+</PerProduct>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Editing a manifest file
 
@@ -42,7 +42,7 @@ Every application automatically has a manifest file. To edit the manifest file f
 
 You can now edit the text of your manifest file directly.
 
-</PerFramework>
+</PerProduct>
 
 <Callout type="warning" title="Take care when editing">
 Be cautious when editing the manifest file for any application particularly if it is running in a production environment. A single stray character or space can cause the application to fail to deploy or to deploy in a degraded state. 
@@ -61,7 +61,7 @@ In this example we are going to modify the configuration of the simple applicati
 
 ### Updating the Manifest file
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 First add a Manifest file to the following location in your repo:
 
@@ -81,9 +81,9 @@ You'll see that we're defining several things in this YAML:
 
 - The component type we are configuring (`rails`)
 - The version of Ruby that will be installed as part of this component ( `ruby_version`)
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ```yaml
 node:
@@ -96,7 +96,7 @@ You'll see that we're defining several things in this YAML:
 - The framework we are configuring (`node`)
 - The location of our custom log files ( `["/tmp/mylog/*/*.log"]`)
 
-</PerFramework>
+</PerProduct>
 
 Next, deploy your application and the new setting will take effect!
 
@@ -104,7 +104,7 @@ Next, deploy your application and the new setting will take effect!
 
 The Manifest file gives you a lot of control over your components. For example, you can use the `server` settings to specify the exact size and region for your application server. The YAML below is an example of this in action:
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ```yaml
 rails:
   configuration:
@@ -120,9 +120,9 @@ rails:
 ```
 
 This would install a Rails server on DigitalOcean, at their London data centre and on a 2CPU and 2GB cloud server. 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ```yaml
 node:
   configuration:
@@ -139,7 +139,7 @@ node:
 
 This would install your Node application on DigitalOcean, at their London data centre and on a 2CPU and 2GB cloud server. 
 
-</PerFramework>
+</PerProduct>
 
 - You can find the available values for `size` and `region` in our [API documentation](https://developers.cloud66.com#cloud-vendor-instance-names).
 - You can find the `key_name` for your cloud provider(s) listed [on your Dashboard](https://app.cloud66.com/clouds).
@@ -186,7 +186,7 @@ If you would like your manifest setting to apply to **all environments**, you ca
 
 The (mandatory) component settings define how a component is configured. The Manifest file currently supports the following components (click on any component name for details):
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 *   [Docker](#docker)
 *   [ElasticSearch](#elasticsearch)
 *   [GlusterFS](#glusterfs)
@@ -199,9 +199,9 @@ The (mandatory) component settings define how a component is configured. The Man
 *   [Postgres](#postgres)
 *   [Redis](#redis)
 *   [Post-deployment global availability checks](#post-deployment-availability-checks)
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 *   [ElasticSearch](#elasticsearch)
 *   [Gateway](#gateway)
 *   [GlusterFS](#glusterfs)
@@ -217,7 +217,7 @@ The (mandatory) component settings define how a component is configured. The Man
 *   [Sinatra](#sinatra)
 *   [Rails](#rails)
 *   [Post-deployment global availability checks](#post-deployment-availability-checks)
-</PerFramework>
+</PerProduct>
 
 
 
@@ -522,7 +522,7 @@ production:
 
 Notice that *we haven't specified a server for the MySQL instance* in this YAML. In cases like this the Cloud 66 Dashboard will prompt you to specify a server during the deployment process, and that server will be installed with MySQL V8.0.
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ### Processes
 
 [Background processes](/docs/servers/systemd) can be deployed and managed by Cloud 66. Any process in a `Procfile` will be picked up, deployed and monitored by the system.
@@ -559,7 +559,7 @@ For non-web processes:
 - [systemd](/docs/servers/systemd) (our default process manager)
 - [Bluepill](/docs/servers/bluepill-legacy) (legacy pre-June 2020)
 
-</PerFramework>
+</PerProduct>
 
 ## Manifest settings for web components
 
@@ -569,7 +569,7 @@ For non-web processes:
 * **Applied on** - the type of deployment required to update this setting. In many cases settings only apply when an application is first built, or when new servers are created or it is cloned. Hover over the names of each condition to see more info.
 * **Clouds** - the cloud providers on which a setting can be used.
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ### Docker
 
@@ -626,7 +626,7 @@ docker:
     root_disk_type: ssd
     image_keep_count: 15
 ```
-</PerFramework>
+</PerProduct>
 
 ### Gateway
 
@@ -665,17 +665,17 @@ The following settings are available via the Manifest file:
 |`perfect_forward_secrecy` (*deprecated*)|<Glyph icon="redeploy" />|Enable Perfect Forward Secrecy|All|
 </Table>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ### Customizing Nginx for containerized apps
 
 Nginx uses the `docker` node in `manifest.yml`. See below for examples.
 
-</PerFramework>
+</PerProduct>
 
 #### Example YAML for Nginx
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ```yaml
 rails:
   configuration:
@@ -683,9 +683,9 @@ rails:
       extra_build_arguments: "--add-module=/path/to/module"
       perfect_forward_secrecy: true # deprecated
 ```
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ```yaml
 docker:
   configuration:
@@ -693,13 +693,13 @@ docker:
       perfect_forward_secrecy: true # deprecated
 ```
 
-</PerFramework>
+</PerProduct>
 
 ### CORS configuration
 
 If required, you can also specify the allowed origin (as '\*' or a single origin) and methods. You can also specify a comma-separated list of origins, headers, and whether to allow credentials for CORS.
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ```yaml
 rails:
@@ -712,9 +712,9 @@ rails:
         credentials: true
 ```
 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ```yaml
 docker:
@@ -726,9 +726,9 @@ docker:
         headers: 'Custom-Header, Another-Header'
         credentials: true
 ```
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ### Node version (for Rails applications)
 
@@ -753,7 +753,7 @@ If you need a newer version of Node, you can install one using the same method a
 To apply changes to the Node version you need to update your manifest file, then deploy-with-options and select the **Apply Ruby/Node upgrades** option.
 </Callout>
 
-</PerFramework>
+</PerProduct>
 
 ### Post-deployment availability checks
 
@@ -777,7 +777,7 @@ The following settings are available via the Manifest file:
 
 #### Example YAML for post-deployment global availability checks
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ```yaml
 docker:
@@ -790,9 +790,9 @@ docker:
         max_redirects: 5 # Default is 3
         cooldown: 120 # Default is 0 
 ```
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ```yaml
 rails:
@@ -805,9 +805,9 @@ rails:
         max_redirects: 5 # Default is 3
         cooldown: 120 # Default is 0 
 ```
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ### Rails
 
@@ -871,9 +871,9 @@ rails:
     nameservers: ['8.8.8.8', '8.8.4.4']
     iam_instance_profile_name: rails-perms
 ```
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ### Examples of Bundle Install options (Rails/Rack)
 
@@ -909,9 +909,9 @@ rails:
 
 * * *
 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ### Rack
 
@@ -936,8 +936,8 @@ rack:
     nameservers: ['8.8.8.8', '8.8.4.4']
     iam_instance_profile_name: rack-perms
 ```
-</PerFramework>
-<PerFramework includes={["rails"]}>
+</PerProduct>
+<PerProduct includes={["rails"]}>
 ### Deployment Success Checks
 
 These checks define tests to confirm whether your application has been successfully deployed, and to mark a deployment as "failed" if any do not pass. For more details on health checks please read our [how-to guide](/docs/servers/application-health-checks#deployment-success-checks). Health Checks have the following Manifest options:
@@ -973,7 +973,7 @@ These checks define tests to confirm whether your application has been successfu
 
 For Sinatra use [Rack](#rack)
 
-</PerFramework>
+</PerProduct>
 
 ## Manifest settings for databases
 

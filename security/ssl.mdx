@@ -22,7 +22,7 @@ Standard certificates use Let's Encrypt to provision certificates for your domai
 
 To add a standard certificate:
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 1. If you have not already done so, you must add (or update) your [DNS records](/docs/networking/configure-dns) to point to your application (either directly, or via your load balancer) 
 2. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
 3. Click on *Web* → *SSL Certificate* in the left-hand nav 
@@ -30,9 +30,9 @@ To add a standard certificate:
 5. Add your domain name and any subdomains (wildcards aren’t supported for this kind of certificate) 
 6. Check or uncheck the *SSL termination* option (depending on your requirements)
 7. Click *Create*
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. If you have not already done so, you must add (or update) your [DNS records](/docs/networking/configure-dns) to point to your application (either directly, or via your load balancer) 
 2. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
 3. Click on *Application* → *SSL Certificate* in the left-hand nav 
@@ -40,7 +40,7 @@ To add a standard certificate:
 5. Add your domain name and any subdomains (wildcards aren’t supported for this kind of certificate) 
 6. Check or uncheck the *SSL termination* option (depending on your requirements)
 7. Click *Create*
-</PerFramework>
+</PerProduct>
 
 Cloud 66 will now attempt to add a standard certificate based on your configuration. Watch the timeline to see the outcome. 
 
@@ -84,23 +84,23 @@ If your provider is not listed, consider using [RFC 2136](https://www.rfc-editor
 
 Once you have have a DNS provider, you can set up a certificate:
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 1. Navigate to your application and click on *Web* → *SSL Certificate* in the left-hand nav 
 2. Click *Add SSL Certificate*
 3. Choose your DNS provider from the dropdown
 4. Add your (wildcard) domain name
 5. Check or uncheck the *SSL termination* option (depending on your requirements)
 6. Click *Create*
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Navigate to your application and click on *Application* → *SSL Certificate* in the left-hand nav 
 2. Click *Add SSL Certificate*
 3. Choose your DNS provider from the dropdown
 4. Add your (wildcard) domain name
 5. Check or uncheck the *SSL termination* option (depending on your requirements)
 6. Click *Create*
-</PerFramework>
+</PerProduct>
 
 Cloud 66 will now attempt to add a wildcard LetsEncrypt certificate based on your configuration. Watch the timeline to see the outcome.
 
@@ -112,7 +112,7 @@ External certificates are SSL certificates that you have obtained from another p
 
 To set up an external SSL certificate:
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 1. Generate a private key and create a certificate signing request through your command line, without specifying a passphrase
 2. Provide this CSR file to your certificate authority, who will, in turn, provide you with a certificate (CRT) file (download it to your local machine and keep it somewhere safe).
 3. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
@@ -122,9 +122,9 @@ To set up an external SSL certificate:
 7. You can also add intermediate certificates and specify allowed server names if needed - [see below for instructions](#intermediate-certificates).
 8. Check or uncheck the *SSL termination* option (depending on your requirements)
 9. Click *Add SSL Certificate* 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 1. Generate a private key and create a certificate signing request through your command line, without specifying a passphrase
 2. Provide this CSR file to your certificate authority, who will, in turn, provide you with a certificate (CRT) file (download it to your local machine and keep it somewhere safe).
 3. Open your application in your [Cloud 66 Dashboard](https://app.cloud66.com/) 
@@ -134,7 +134,7 @@ To set up an external SSL certificate:
 7. You can also add intermediate certificates and specify allowed server names if needed - [see below for instructions](#intermediate-certificates).
 8. Check or uncheck the *SSL termination* option (depending on your requirements)
 9. Click *Add SSL Certificate*
-</PerFramework>
+</PerProduct>
 
 
 Cloud 66 will now attempt to add the certificate based on your configuration. Watch the timeline to see the outcome.

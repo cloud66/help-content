@@ -31,7 +31,7 @@ https://hooks.cloud66.com/stacks/redeploy/xxxx/yyyy
  The xxxx/yyyy in the examples is for illustrative purposes only and should be replaced with your redeployment URL on your Application Information page. 
 </Callout>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Services modifiers
 
@@ -63,13 +63,13 @@ When a redeployment hook is invoked:
 
 * If you use the services modifier to **specify specific services** to deploy, then the same logic applies as in 1) and 2) above, the only difference being that we will only deploy the services you have specified.
 
-</PerFramework>
+</PerProduct>
 
 <Callout type="info" title="Missing branch info?">
  In the case where the payload of the commit hook does not contain any branch information (Github and Bitbucket payload formats are supported) then the application will redeploy without attempting to match branch. 
 </Callout>
 
-<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Calling a deployment profile via a redeployment hook
 
@@ -102,7 +102,7 @@ With this feature enabled, whenever you push a new commit, Cloud 66 will automat
 <Callout type="info" title="Deployment events match your app environment">
  The deployment event will be created with the same environment as your application. 
 </Callout>
-</PerFramework>
+</PerProduct>
 
 ## Adding redeployment hooks to your pipeline
 
@@ -134,7 +134,7 @@ To invoke the redeployment hook manually, you can POST an HTTP request to your r
 curl -X POST [your redeployment hook URL]
 ```
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 You can also use your redeployment hook to deploy a specific git ref/SHA as with the following example:
 
@@ -142,11 +142,11 @@ You can also use your redeployment hook to deploy a specific git ref/SHA as with
 curl -X POST [your redeployment hook URL]?git_ref=...
 ```
 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
 
 <Callout type="info" title="Deploying via command line">
  If you are manually invoking redeployments you should consider using [Cloud 66 Toolbelt](/docs/toolbelt/toolbelt#redeploy-your-stack) instead, as it has additional features! 
 </Callout>
-</PerFramework>
+</PerProduct>

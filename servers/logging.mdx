@@ -6,7 +6,7 @@ title: Managing log files
 
 When Cloud 66 provisions servers, we automatically configure logging for various services. There are several logs available for different server components. Depending on the specifics of your application, log names and directories may vary. The information below is for a typical case.
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 
 ## Containerized applications
 
@@ -29,9 +29,9 @@ This will store the logs for your service in **two places**:
 
 The log path for a service is mounted **on the server hosting that pod** - not (necessarily) the Master.
 
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 
 ## Rails applications
 
@@ -55,7 +55,7 @@ If you are using a [custom web server](/docs/servers/custom-web-servers), such a
   - Web server: `sudo journalctl -u cloud66_web_server`  
   - Background processes: `sudo journalctl -u cloud66_process_<PROCESS_NAME>@* -f`
 
-</PerFramework>
+</PerProduct>
 
 ## Other log directories
 

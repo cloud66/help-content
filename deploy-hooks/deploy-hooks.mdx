@@ -17,7 +17,7 @@ Before you start, please check you have the following:
 
 ### Creating a deploy hook
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 To make use of deploy hooks, your application should have a file called *deploy_hooks.yml*.
 
 For **Rails/Rack** applications this file should be present within a folder named _.cloud66_, which is in turn located in the root of your source code.
@@ -27,10 +27,10 @@ For **Rails/Rack** applications this file should be present within a folder name
 ```
 
 This file should be YAML formatted, and you can use a service like [YAML Validator](https://codebeautify.org/yaml-validator) to validate it.
-</PerFramework>
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+</PerProduct>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 Deploy hooks can be added to an application via the Dashboard. Like most other configuration templates in Cloud 66, Deploy hooks are YAML-formatted.
-</PerFramework>
+</PerProduct>
 
 A deploy hook needs, at a minimum:
 
@@ -72,7 +72,7 @@ This hook will install the `nmap` package on our server during the deployment pr
 When automating the installation of packages, remember to use the `-y` flag to answer yes to all prompts.
 </Callout>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 ### Adding the hook to your app
 
 To add the hook:
@@ -83,8 +83,8 @@ To add the hook:
 4. Copy and paste the example code above into the text area
 5. Click *Preview* and then check there are no errors in the parsed template file
 6. Add a commit message and click *Commit to server* 
-</PerFramework>
-<PerFramework includes={["rails"]}>
+</PerProduct>
+<PerProduct includes={["rails"]}>
 ### Adding the hook to your app
 
 To add a hook to your app:
@@ -92,7 +92,7 @@ To add a hook to your app:
 1. Create (or, if it exists, open) a file named *deploy_hooks.yml* in a folder named _.cloud66_ in the root of your source code repo.
 2. Paste in your (validated) YAML
 3. Commit the file to your repo
-</PerFramework>
+</PerProduct>
 
 ### Deploying and testing
 
@@ -118,7 +118,7 @@ Deploy hooks are a powerful tool for customising the components on your servers,
 
 ### Creating or editing deploy hooks
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 All deploy hooks for Rails applications use a file called *deploy_hooks.yml*. This file is found within a folder named *.cloud66*, which is in turn located in the root of your source code.
 
 ```bash
@@ -126,9 +126,9 @@ All deploy hooks for Rails applications use a file called *deploy_hooks.yml*. Th
 ```
 
 This file should be YAML formatted, and you can use a service like [YAMLlint](https://codebeautify.org/yaml-validator) to validate it.
-</PerFramework>
+</PerProduct>
 
-<PerFramework includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
 Deploy hooks for a Cloud 66 application are managed via the Dashboard. The hooks must be YAML formatted, and you can use a service like [YAMLlint](https://codebeautify.org/yaml-validator) to validate them.
 
 To add or edit hooks:
@@ -140,7 +140,7 @@ To add or edit hooks:
 5. Click *Preview* and check there are no errors
 6. Add a commit message and click *Commit to server*
 
-</PerFramework>
+</PerProduct>
 
 Every deploy hook needs, at a minimum:
 
@@ -152,7 +152,7 @@ Every deploy hook needs, at a minimum:
 Any hook may (optionally) also have:
 - a **name** which appears in your logs and user interface when the hook runs (to help you identify what is running)
 
-<PerFramework includes={["rails"]}> 
+<PerProduct includes={["rails"]}>
 #### Specifiying app environment
 
 Unless you explicitly specify an **environment** - e.g. `production` - as the top node of your yaml, your hook will be applied to all of your application environments. For example:
@@ -166,7 +166,7 @@ Unless you explicitly specify an **environment** - e.g. `production` - as the t
         execute: true
 ```
 
-</PerFramework>
+</PerProduct>
 
 ### Understanding hook points and ordering
 
@@ -218,9 +218,9 @@ There are different types of deploy hooks, and the fields available (and require
 - **Commands:** run standard Linux shell commands.
 - **Snippets:** use “off the shelf” scripts to install common packages. These snippets are [open source](https://github.com/cloud66/snippets), and are created by Cloud 66 or other third parties.
 - **Inline Scripts:** use your own inline shell scripts for more complex procedures
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 - **Existing Scripts:** use your own existing scripts for more comprehensive procedures
-</PerFramework>
+</PerProduct>
 
 ### Using command hooks
 
@@ -407,7 +407,7 @@ Now that we have our hook code ready, we need to add it to our application. We d
 
 Once you have added the `deploy_hooks.yml` file to your repo you can deploy (or redeploy) your application and version 6.9.9-51 of ImageMagick will be installed during the process. To test that it is installed correctly you can SSH into your server and run `identify -version`.
 
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 ### Switching config files during build
 
 This hook simply overwrites a standard config file with the config file of your choice at the start of the deployment process. The example is for a `database.yml` but you could use it for any config file.
@@ -422,7 +422,7 @@ execute: true
 
 For more info on doing this for external databases, read our separate guide to [database management](/docs/databases/database-management#external-databases).
 
-</PerFramework>
+</PerProduct>
 
 
 ## Debugging deploy hooks
@@ -484,9 +484,9 @@ There are different types of deploy hooks, and the fields available (and require
 - **Snippets:** use "off the shelf" scripts to install common packages. These snippets are [open source](https://github.com/cloud66/snippets), and are created by Cloud 66 or other third parties.
 - **Commands:** run your own commands.
 - **Inline Scripts:** use your own inline scripts for more comprehensive procedures
-<PerFramework includes={["rails"]}>
+<PerProduct includes={["rails"]}>
 - **Existing Scripts:** use your own existing scripts for more comprehensive procedures (Rails/Node applications only)
-</PerFramework>
+</PerProduct>
 
 ## Hook fields reference guides
 
