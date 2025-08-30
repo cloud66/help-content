@@ -11,14 +11,14 @@ $ cx stacks ssl --stack <application name> --type <certificate type> --domain <d
 <Tab label="arguments">
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
-| \--stack, -s <application name> | yes | — | The application name |
-| \--type <certificate type> | yes | — | The type of certificate (lets_encrypt or manual) |
-| \--domain <domain name> | Depends on --type | — | Domain name applicable to this SSL certificate (required for  lets_encrypt, optional for manual). Repeatable for multiple domains |
-| \--ssl-termination | no | — | Enable SSL termination |
-| \--cert <certificate file> | Depends on --type | — | SSL certificate file path (required for manual) |
-| \--key <SSL key file> | Depends on --type | — | SSL key file path (required for manual) |
-| \--intermediate <intermediate cert file> | no | — | SSL intermediate certificate file path |
-| \--overwrite | yes, if cert already exists | — | Required confirmation flag to update an existing SSL certificate |
+| `--stack, -s <application name>` | yes | — | The application name |
+| `--type <certificate type>` | yes | — | The type of certificate (lets_encrypt or manual) |
+| `--domain <domain name>` | Depends on --type | — | Domain name applicable to this SSL certificate (required for  lets_encrypt, optional for manual). Repeatable for multiple domains |
+| `--ssl-termination` | no | — | Enable SSL termination |
+| `--cert <certificate file>` | Depends on --type | — | SSL certificate file path (required for manual) |
+| `--key <SSL key file>` | Depends on --type | — | SSL key file path (required for manual) |
+| `--intermediate <intermediate cert file>` | no | — | SSL intermediate certificate file path |
+| `--overwrite` | yes, if cert already exists | — | Required confirmation flag to update an existing SSL certificate |
 </Tab>
 <Tab label="examples">
 
