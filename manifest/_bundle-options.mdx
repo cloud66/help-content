@@ -1,0 +1,86 @@
+---
+title: Bundle Install Options
+products: ["rails"]
+category: manifest
+---
+
+## Examples of Bundle Install options (Rails/Rack)
+
+This allows you to customise your `bundle install` command by specifying options in your Manifest. We've listed some common examples below. 
+
+Please note that `--shebang` and `--with` bundler options are NOT currently supported. 
+
+<Callout type="warning" title="Take care">
+This is an advanced feature for expert users of Bundler.
+</Callout>
+
+|Option|Applied on|Description|Clouds|
+|--- |--- |--- |--- |
+|`bundler / options / without`|<Glyph icon="redeploy" />|An array of environments you want to exclude during bundle install e.g. `["development", "test", "custom"]` Default: `[]` if Rails env is development, or `["development", "mock", "test"]` otherwise.|All|
+|`bundler / options / deployment`|<Glyph icon="redeploy" />|Default: `true`|All|
+|`bundler / options / quiet`|<Glyph icon="redeploy" />|Default: `true`|All|
+|`bundler / options / full-index`|<Glyph icon="redeploy" />|Default: `false`|All|
+|`bundler / options / ...`|<Glyph icon="redeploy" />|Any other valid `bundle install` options you want to apply|All|
+
+### Example YAML for Bundle Install options in Rails
+
+```yaml
+rails:
+    configuration:
+      bundler:
+        options:
+          without: ["development", "test", "custom"]
+          deployment: true
+          quiet: true
+```
+
+## Common Use Cases
+
+### Excluding Groups
+
+To exclude certain gem groups from installation:
+
+```yaml
+rails:
+  configuration:
+    bundler:
+      options:
+        without: ["development", "test", "staging"]
+```
+
+### Using Local Gems
+
+To use local gem repositories:
+
+```yaml
+rails:
+  configuration:
+    bundler:
+      options:
+        local: true
+```
+
+### Verbose Output
+
+For debugging bundle issues:
+
+```yaml
+rails:
+  configuration:
+    bundler:
+      options:
+        quiet: false
+        verbose: true
+```
+
+### Jobs Configuration
+
+To control parallel gem installation:
+
+```yaml
+rails:
+  configuration:
+    bundler:
+      options:
+        jobs: 4
+```

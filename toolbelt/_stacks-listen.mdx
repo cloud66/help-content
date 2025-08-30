@@ -1,24 +1,22 @@
 ---
-products: 'all'
+category: toolbelt
+title: stacks listen
 ---
 
 Acts like a `tail` for all the deployment logs for an application (to tail a specific log file, see the function below).
-
-### Usage
 
 ```shell
 $ cx stacks listen --stack <application name>
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | The application name |
 
-### examples
+#### Examples
 
 ```shell
 $ cx stacks listen -s my-app
 ```
-

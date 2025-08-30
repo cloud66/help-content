@@ -1,0 +1,35 @@
+---
+title: Redis Configuration
+products: all
+category: manifest
+---
+
+## Redis
+
+[Redis](https://redis.io/) is an in-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker, with optional durability.
+
+The following settings are available via the Manifest file :
+
+|Option|Applied on|Description|Clouds|
+|--- |--- |--- |--- |
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/:product/:version?/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/:product/:version?/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/:product/:version?/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts Redis. Accepted values `ubuntu1804`, `ubuntu2004`,`ubuntu2204`|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by Redis. Default value is `50`.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by Redis, accepted values being `ssd` and `magnetic`. Default value is `ssd`.|AWS, GCE|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/:product/:version?/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`version`|<Glyph icon="build" />|Specify the version of Redis you want to install. NOTE: You can use [database groups](/:product/:version?/databases/attaching-multiple-databases) to run different versions of the same database in parallel with each other.|All|
+
+### Example YAML for Redis
+
+```yaml
+redis:
+  configuration:
+    version: 5.0.5
+    root_disk_size: 100
+    root_disk_type: ssd
+    iam_instance_profile_name: redis-perms
+```
+
+If you need help specifying multiple databases of the same type via your Manifest, please read our guide on [Database Groups](/:product/:version?/manifest/database-groups).

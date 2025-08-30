@@ -1,0 +1,24 @@
+---
+title: Registered Servers
+products: all
+category: manifest
+---
+
+## Deploy to your own server
+
+You can deploy to one of your [Registered servers](/:product/:version?/servers/registered-servers) via manifest settings. The server must be registered before deployment.
+
+|Option|Applied on|Description|Clouds|
+|--- |--- |--- |--- |
+|`address`|<Glyph icon="build" />|IP address of the server, only applicable to [Registered Servers](/:product/:version?/servers/registered-servers)|Registered servers|
+|`unique_name`|<Glyph icon="build" />|Unique name for the registered server|Registered servers|
+
+### Example of registered server
+
+```yaml
+redis:
+  servers:
+  - server:
+      unique_name: redis-main
+      address: 123.123.123.123
+```

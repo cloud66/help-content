@@ -1,5 +1,6 @@
 ---
-products: 'all'
+category: toolbelt
+title: tunnel
 ---
 
 Opens an SSH tunnel between your local machine and the remote server on a specific port. This is useful when connecting to remote databases or other services using local tools.
@@ -23,26 +24,23 @@ If a local port is not specified, cx will use "remote + 1" as a convention for t
 
 This command is only supported on Linux and OS X (for Windows you can run this in a virtual machine if necessary)
 
-### Usage
-
 ```shell
 $ cx tunnel --stack <application name> --server <server name> | <server IP> | <server role> --local <local port> --remote <remote port>
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | The application name |
-| `--server <server name>` | `<server ip>`  | `<server role>` | either/or | — | Name or IP or role of the server to access |
+| `--server <server name> \| <server ip> \| <server role>` | either/or | — | Name or IP or role of the server to access |
 | `-local, -l <local port>` | no | — | Local port for the tunnel |
 | `-remote, -r <remote port>` | yes | — | Remote port for the tunnel |
 
-### examples
+#### Examples
 
 ```shell
 $ cx tunnel -s mystack --server lion --local 3307 --remote 3306
 $ cx tunnel -s mystack --server 52.65.34.98 --local 3307 --remote 3306
 $ cx tunnel -s mystack --server web -l 3307 -r 3306
 ```
-

@@ -1,16 +1,15 @@
 ---
-products: 'all'
+category: toolbelt
+title: register server
 ---
 
 A shortcut to run the server registration script on a group of servers.
-
-### Usage
 
 ```shell
 $ cx register-server [--org <organization>] [--server <IP address>] [--file <filename.txt>] [--user <username>] [--key <private SSH key>] [--force-local-ip <bool>] [--tags <tagA,tagB>]
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
@@ -22,7 +21,7 @@ $ cx register-server [--org <organization>] [--server <IP address>] [--file <fil
 | `--force-local-ip <bool>` | no | false | Use the local ip address of the registered server |
 | `--tags <tagA,tagB>` | no | — | Comma separated list of tags to add to the server(s) |
 
-### examples
+#### Examples
 
 ```shell
 $ cx register-server --org team --user root --server 149.56.134.22 --key ~/.ssh/private_key
@@ -30,4 +29,3 @@ $ cx register-server --org team --user ubuntu --file servers.txt --key ~/.ssh/pr
 $ cx register-server --org team --user ubuntu --file servers.txt --key ~/.ssh/private_key --force-local-ip true
 $ cx register-server --org team --user ubuntu --file servers.txt --key ~/.ssh/private_key --tags "dc 1,az2"
 ```
-

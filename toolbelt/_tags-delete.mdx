@@ -1,16 +1,15 @@
 ---
-products: 'all'
+category: toolbelt
+title: tags delete
 ---
 
 Remove tags from a given entity.
-
-### Usage
 
 ```shell
 $ cx tags delete --entity <entity type> --id <entity ID> --tags <tag>
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
@@ -18,9 +17,8 @@ $ cx tags delete --entity <entity type> --id <entity ID> --tags <tag>
 | `--id <entity ID>` | yes | — | The id of the entity |
 | `--tags <tag>` | yes | — | Tags to remove from the given entity (can be multiple) |
 
-### examples
+#### Examples
 
 ```shell
 $ cx tags delete --entity stack --id 45 --tags buzz --tags fuzz
 ```
-

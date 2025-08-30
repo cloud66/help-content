@@ -1,16 +1,15 @@
 ---
-products: 'all'
+category: toolbelt
+title: services list
 ---
 
 List all the services and running containers of a whole application or a specific server.
-
-### Usage
 
 ```shell
 $ cx services list --stack <application name> [--server <server name>] [<service name>]
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
@@ -18,7 +17,7 @@ $ cx services list --stack <application name> [--server <server name>] [<service
 | `--server <server name>` | no | — | The name of a server to query |
 | `<service name>` | no | — | The service to query |
 
-### examples
+#### Examples
 
 ```shell
 $ cx services list -s mystack
@@ -26,4 +25,3 @@ $ cx services list -s mystack --server orca
 $ cx services list -s mystack --server orca --service web
 $ cx services list -s mystack --service web
 ```
-

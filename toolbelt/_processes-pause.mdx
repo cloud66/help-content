@@ -1,16 +1,15 @@
 ---
-products: 'all'
+category: toolbelt
+title: processes pause
 ---
 
 Pauses all processes for the given service and/or server.
-
-### Usage
 
 ```shell
 $ cx processes pause --stack <application name> [--server <server name>] [<process name>]
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
@@ -18,11 +17,10 @@ $ cx processes pause --stack <application name> [--server <server name>] [<proce
 | `--server <server name>` | no | — | The name of the server to query |
 | `<process name>` | no | — | The name of a specific process to be paused |
 
-### examples
+#### Examples
 
 ```shell
 $ cx processes pause -s mystack a_backend_process
 $ cx processes pause -s mystack --server my_server
 $ cx processes pause -s mystack --server my_server a_backend_process
 ```
-

@@ -1,25 +1,23 @@
 ---
-products: 'all'
+category: toolbelt
+title: servers reboot
 ---
 
 Reboot a specific server.
-
-### Usage
 
 ```shell
 $ cx servers reboot --stack <application name> --server <server name>
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--stack, -s <application name>` | yes | — | Name of the application |
 | `--server <server name>` | yes | — | The name of the server to reboot |
 
-### examples
+#### Examples
 
 ```shell
 $ cx server reboot --stack my-app --server lion
 ```
-

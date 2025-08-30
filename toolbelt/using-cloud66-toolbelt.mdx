@@ -1,6 +1,7 @@
 ---
-title: Getting started with Cloud 66 Toolbelt
-products: 'all'
+title: Getting started with Toolbelt
+products: all
+category: toolbelt
 ---
 
 ## What is Toolbelt?
@@ -29,17 +30,17 @@ It will then ask for your authorization to allow Toolbelt to view, edit, redeplo
 
 ### Installing cx without a browser
 
-You can also install a "headless" Toolbelt on servers or machines without a browser. Our [detailed reference guide](/docs/toolbelt/toolbelt#installing-on-a-server-headless) has details on how to do this.
+You can also install a "headless" Toolbelt on servers or machines without a browser. Our [detailed reference guide](/:product/:version?/toolbelt/toolbelt#installing-on-a-server-headless) has details on how to do this.
 
 ### Advanced
 
 The authorization information is stored on your computer in the **~/.cloud66/cx.json** file. Removing this file will remove the authorization code from your client.
 
 <Callout type="info" title="Revoking access">
- To deauthorize Toolbelt, login to your Cloud 66 account and click on the *Revoke access* button under your *Account* page. 
+To deauthorize Toolbelt, login to your Cloud 66 account and click on the *Revoke access* button under your *Account* page.
 </Callout>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ## Access your servers via Toolbelt
 
@@ -71,7 +72,7 @@ When you join a Team on Cloud 66, your Toolbelt will automatically work with the
 If you have more than one Cloud 66 account (i.e. you are the owner of more than one account and not just a team member), then you will need to set up profiles in Toolbelt to switch between your accounts.
 
 <Callout type="warning" title="--account function is deprecated">
-The `--account` function is now deprecated and has been replaced by cx profiles 
+The `--account` function is now deprecated and has been replaced by cx profiles
 </Callout>
 
 ## Creating a cx profile
@@ -115,7 +116,7 @@ cx config use NAME
 So, following our example above, the command would be `cx config use MY_NICE_NAME`. 
 
 <Callout type="info" title="Default profile">
-You always have a `default` profile which cannot be deleted or renamed. 
+You always have a `default` profile which cannot be deleted or renamed.
 </Callout>
 
 ## Update Toolbelt
@@ -136,3 +137,8 @@ We apply naming shortcuts to both application and server names, as well as serve
 
 We just need you to type enough of a name for it to be unique. For example, if you only have one application that starts with _m_, you can simply type _m_.
 Similarly, if you only have one web server, you can type _w_ instead of _web_.
+
+### How to uninstall the toolbelt
+
+If you need to uninstall the toolbelt you can simply delete the `.cloud66` folder from your computer. If you're not sure where it is, query your PATH and you will find it listed there.
+

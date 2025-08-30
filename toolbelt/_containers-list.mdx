@@ -1,16 +1,16 @@
 ---
-products: 'all'
+category: toolbelt
+title: containers list
+alias: container list
 ---
 
 Lists all the containers running on an application or server (depending on your parameters).
-
-### Usage
 
 ```shell
 $ cx containers list --stack <application name> [--server <server name>][--environment <environment name>][--verbose]
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
@@ -19,11 +19,10 @@ $ cx containers list --stack <application name> [--server <server name>][--envir
 | `--environment <environment name>` | no | — | The application environment |
 | `--verbose` | no | — | Show more detailed information about each container |
 
-### examples
+#### Examples
 
 ```shell
 $ cx containers list -s mystack
 $ cx containers list -s mystack --server orca
 $ cx containers list -s mystack --verbose --server orca
 ```
-

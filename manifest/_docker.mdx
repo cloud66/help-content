@@ -1,0 +1,63 @@
+---
+title: Docker Configuration
+products: ["deploy"]
+category: manifest
+---
+
+## Docker
+
+|Option|Applied on|Description|Clouds|
+|--- |--- |--- |--- |
+|`activeprotect`|<Glyph icon="redeploy" />|The parent node for ActiveProtect settings (see `whitelist` and `http_ban_rate` below)|All|
+|`activeprotect / whitelist`|<Glyph icon="redeploy" />|A comma-separated whitelist of IPs that should be ignored by your ActiveProtect configuration. Must be nested under `activeprotect`.|All|
+|`activeprotect / http_ban_rate`|<Glyph icon="redeploy" />|Set the threshold of *requests per minute* from a single IP address. The default is `2000`. Must be nested under `activeprotect`.|All|
+|`docker_version`|<Glyph icon="build" />|Specify the version of Docker you want to install.|All|
+|`firewall / create_web_rules`|<Glyph icon="redeploy" />|Cloud 66 automatically creates firewall rules to expose your web application to the outside world. You can configure this via your [Traffic settings](/:product/:version?/networking/network-configuration#firewall), or disable it completely by setting this value to `false`. Default is `true`.|All|
+|`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) that should be used when provisioning this server. [Read our guide](/:product/:version?/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers).|AWS|
+|`image_keep_count`|<Glyph icon="build" />|Set the number of old images to save on your servers (besides the running image). Defaults to `2`.|All|
+|`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/:product/:version?/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
+|`nameservers`|<Glyph icon="build" />|Set DNS servers for your application.  Note that if you specify empty array i.e **[ ]**, it won't add any nameserver to your servers. Default is an empty array: `[ ]`|All|
+|`network` / `mode`|<Glyph icon="build" />|Specifies whether your servers should communicate over `private` or `public` IP addresses. Defaults to `private` if your servers are *either* all cloud *or* all [Registered](/:product/:version?/servers/registered-servers). If your application uses a *mix* of cloud and Registered servers, the default will be `public`.|All|
+|`network` / `container_ip_range`|<Glyph icon="build" />|The internal ip range of the pods in your application. Default is `25.0.0.0/16`.|All|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts your app. Accepted values: `ubuntu1804`, `ubuntu2004` or `ubuntu2204`|All|
+|`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by application. Default value is 50.|AWS, Azure, GCE|
+|`root_disk_type`|<Glyph icon="build" />|Disk type, accepted values being `ssd` and `magnetic`. Default is `ssd`.|AWS, GCE|
+|`subnet_id`|<Glyph icon="build" />|**ID** or **name** of the AWS subnet in which you would like to create your servers. If not supplied, we will attempt to identify the single [map_public_ip_on_launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet#cfn-ec2-subnet-mappubliciponlaunch) set to true|AWS|
+| `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/:product/:version?/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
+|`vn_name`|<Glyph icon="build" />|The name of the Virtual Network in which you would like to create your servers.|Azure|
+|`vpc_id`|<Glyph icon="build" />|**ID** or **name** of the VPC in which you would like to create your servers.|AWS, Azure, DigitalOcean, Hetzner|
+|`weave_version` (Container Service V1 only)|<Glyph icon="upgrade" />|Specify the version of Weave you want to install. Container Service V1 only.|All|
+
+<Callout type="warning" title="AWS VPC requires subnet_id">
+In order to use an AWS *vpc_id*, you must provide *subnet_id* for all servers used by your application.
+</Callout>
+
+### Example YAML for Docker
+
+```yaml
+docker:
+  configuration:
+    iam_instance_profile_name: docker-perms
+    docker_version: 1.7.0
+    weave_version: 1.0.3
+    vpc_id: vpc-64872001
+    root_disk_size: 100
+    root_disk_type: ssd
+    image_keep_count: 5
+    nameservers: ['8.8.8.8', '8.8.4.4']
+```
+
+```yaml
+docker:
+  configuration:
+    docker_version: 1.12.0
+    weave_version: 1.0.3
+    vn_name: your_vn_name
+    root_disk_size: 100
+    root_disk_type: ssd
+    image_keep_count: 15
+```
+
+## Customizing Nginx for containerized apps
+
+Nginx uses the `docker` node in `manifest.yml`. See [Nginx configuration](/:product/:version?/manifest/nginx) for details.

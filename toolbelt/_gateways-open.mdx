@@ -1,26 +1,24 @@
 ---
-products: 'all'
+category: toolbelt
+title: gateways open
 ---
 
 Opens a gateway for use with Cloud 66 for a specified amount of time (TTL).
 
-### Usage
-
 ```shell
-$ cx gateways open --name <gateway name> --key <path/to/gateway/key/file>
+$ cx gateways open --name <gateway name> --key <path/to/gateway/key/file>  --ttl <time to live>
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
 | `--name <gateway name>` | yes | — | The name of the gateway |
 | `--key <path/to/gateway/key/file>` | yes | — | The path to the gateway key file on your local machine |
-| `--ttl <time to live>` | no | forever | The length of time the gateway will remain open. For example  forever, 1h, 30m, 30s |
+| `--ttl <time to live>` | yes | — | The length of time the gateway will remain open. For example  1h, 30m, 30s |
 
-### examples
+#### Examples
 
 ```shell
-$ cx gateways open aws_bastion --key /tmp/gateway.pem
+$ cx gateways open aws_bastion --key /tmp/gateway.pem --ttl 45m
 ```
-

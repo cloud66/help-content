@@ -1,17 +1,20 @@
 ---
-products: 'all'
+title: Profiles
+lead: Managing multiple Cloud 66 accounts and organizations
+products: all
+category: toolbelt
 ---
 
-## Setting up a profile:
+## Setting up a profile
 
 1. Run `cx config create <name>` where `<name>` is your chosen profile name
-2. Run `cx config use <name>` to switch to the new profile and initialize it by running  `cx stacks list` 
+2. Run `cx config use <name>` to switch to the new profile and initialize it by running  `cx stacks list`
 3. Authenticate using your browser (be sure to log into the correct account)
 
-For more detailed help on installation please refer to our [Getting Started](/docs/toolbelt/using-cloud66-toolbelt) guide.
+For more detailed help on installation please refer to our [Getting Started](/:product/:version?/toolbelt/using-cloud66-toolbelt) guide.
 
 <Callout type="info" title="Default profile">
-You always have a `default` profile which cannot be deleted or renamed. 
+    You always have a `default` profile which cannot be deleted or renamed.
 </Callout>
 
 ## Switching between profiles
@@ -39,3 +42,4 @@ cx config create hobby --org my_private_sandbox
 ...will create a profile named "hobby" that is linked to a Cloud 66 organization named "my_private_sandbox".
 
 If you're unsure about the name of an organization you can run the `cx info` command and looking at the `Name` field. You can also see this by logging into your Dashboard, visiting Account Settings and clicking on Organisations in the Account panel on the left.
+

@@ -1,2 +1,8 @@
-- using-cloud66-toolbelt
-- toolbelt
+# Order configuration for Toolbelt category
+# Priority pages appear first
+
+pages:
+  - using-cloud66-toolbelt
+  - running-toolbelt-in-different-environments
+  - profiles
+  - commands

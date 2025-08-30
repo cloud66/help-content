@@ -1,16 +1,15 @@
 ---
-products: 'all'
+category: toolbelt
+title: processes resume
 ---
 
 Resumes all paused processes on the given service and/or server.
-
-### Usage
 
 ```shell
 $ cx processes resume --stack <application name> [--server <server name>] <process name>
 ```
 
-### arguments
+#### Options
 
 | Argument | Required? | Default | Description |
 |  ---  |  ---  |  ---  |  ---  |
@@ -18,11 +17,10 @@ $ cx processes resume --stack <application name> [--server <server name>] <proce
 | `--server <server name>` | no | — | The name of the server to query |
 | `<process name>` | no | — | The name of a process |
 
-### examples
+#### Examples
 
 ```shell
 $ cx processes resume -s mystack a_backend_process
 $ cx processes resume -s mystack --server my_server
 $ cx processes resume -s mystack --server my_server a_backend_process
 ```
-
