@@ -5,7 +5,7 @@ products: ['rails', 'deploy']
 
 ## Overview
 
-You can deploy Rails applications to Cloud 66 with with Solid Cache, Solid Cable and Solid Queue (we call them SolidX components). If you’d like to use these features, your app needs to meet these three criteria:
+You can deploy Rails applications to Cloud 66 with Solid Cache, Solid Cable and Solid Queue (we call them SolidX components). If you’d like to use these features, your app needs to meet these three criteria:
 
 1. Your Gemfile must contain *at least one* of these gems: `solid_cache` , `solid_cable` `solid_queue`.
 2. Your `database.yml` must contain the respective keys to support these gems (see example below).
@@ -84,4 +84,4 @@ If we can’t find a matching database group, we won’t replace that key in you
 
 ## Disabling automated configuration file changes
 
-If you’d prefer to manage your `database.yml` files manually, you can [disable our automated updates](/:product/:version?/databases/tamper-with-yaml) in your [Manifest file/:product/:version?/manifest/what-is-a-manifest-file. You can do so either globally or per database.
+If you’d prefer to manage your `database.yml` files manually, you can [disable our automated updates](/:product/:version?/databases/tamper-with-yaml) in your [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file). You can do so either globally or per database.

@@ -38,7 +38,7 @@ Whenever possible we suggest upgrading your stack one layer at a time - for exam
 
 ### Before you start the process
 
-- Check the [Manifest/:product/:version?/manifest/what-is-a-manifest-file for your application to ensure you haven’t specified a version of Ubuntu in any of your component configurations. Either remove any mention of operating system version, or update to a version of Ubuntu that is still in LTS.
+- Check the [Manifest](/:product/:version?/manifest/what-is-a-manifest-file) for your application to ensure you haven’t specified a version of Ubuntu in any of your component configurations. Either remove any mention of operating system version, or update to a version of Ubuntu that is still in LTS.
 - Check both your Manifest and your other configuration or package dependency files (e.g. `Gemfile` or `package.json`) and confirm that the package versions are compatible with the latest version of Ubuntu. Where they are not, update the versions to achieve compatibility.
 - Replication is generally not possible between different (minor and major) versions of database engines. If your new servers will need to use a significantly different version of the engine, you will need to upgrade manually - [see our section below](#how-to-upgrade-databases-between-versions).
 - We strongly advise you to test a version of your application locally on the same version of Ubuntu that will be deployed.

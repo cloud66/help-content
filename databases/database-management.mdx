@@ -170,7 +170,7 @@ This option allows you to deploy your application without a database managed by 
 For Rails apps, if you have a `url` set in your `database.yml` then we will assume that you are using an external DB. You will need to [set your own env vars](#environment-variables-during-deployment) during deployment, to ensure we can connect to it.
 </PerProduct>
 
-You can also configure an external database via your [Manifest file](/:product/:version?/manifest/_manifest-settings-for-databases#specifying-external-databases-via-your-manifest by specifying the `server` node as `external`.
+You can also configure an external database via your [Manifest file](/:product/:version?/manifest/_manifest-settings-for-databases#specifying-external-databases-via-your-manifest) by specifying the `server` node as `external`.
 
 Please note that if there is no connectivity to your external database, or your external database host is not configured correctly, the deployment will fail.
 
@@ -205,7 +205,7 @@ To upgrade your database(s) using Groups:
 
 ### Cloning your application
 
-You can make a new instance of your application by [cloning it](/:product/:version?/cloud-66-101/adding-updating-deleting#clone-an-application). We will provision new components for your application, which will use the latest versions by default. Be sure to check that you have not locked any component versions using your [Manifest file/:product/:version?/manifest/what-is-a-manifest-file.
+You can make a new instance of your application by [cloning it](/:product/:version?/cloud-66-101/adding-updating-deleting#clone-an-application). We will provision new components for your application, which will use the latest versions by default. Be sure to check that you have not locked any component versions using your [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
 
 Once the new application is created, you can migrate data from your old application to your new application.
 
