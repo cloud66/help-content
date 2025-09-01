@@ -19,7 +19,7 @@ category: manifest
 |`nameservers`|<Glyph icon="build" />|Set DNS servers for your application.  Note that if you specify empty array i.e **[ ]**, it won't add any nameserver to your servers. Default is an empty array: `[ ]`|All|
 |`network` / `mode`|<Glyph icon="build" />|Specifies whether your servers should communicate over `private` or `public` IP addresses. Defaults to `private` if your servers are *either* all cloud *or* all [Registered](/:product/:version?/servers/registered-servers). If your application uses a *mix* of cloud and Registered servers, the default will be `public`.|All|
 |`network` / `container_ip_range`|<Glyph icon="build" />|The internal ip range of the pods in your application. Default is `25.0.0.0/16`.|All|
-|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts your app. Accepted values: `ubuntu1804`, `ubuntu2004` or `ubuntu2204`|All|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts your app. Accepted values: `ubuntu2004`|All|
 |`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by application. Default value is 50.|AWS, Azure, GCE|
 |`root_disk_type`|<Glyph icon="build" />|Disk type, accepted values being `ssd` and `magnetic`. Default is `ssd`.|AWS, GCE|
 |`subnet_id`|<Glyph icon="build" />|**ID** or **name** of the AWS subnet in which you would like to create your servers. If not supplied, we will attempt to identify the single [map_public_ip_on_launch](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet#cfn-ec2-subnet-mappubliciponlaunch) set to true|AWS|
