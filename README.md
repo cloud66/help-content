@@ -30,6 +30,24 @@ Welcome to the Cloud 66 documentation! This guide will help you write, format, a
 - Be descriptive and specific: `connecting-between-containerized-services.mdx`
 - Avoid abbreviations unless well-known: `api-keys.mdx` not `api-keys.mdx`
 
+### Navigation Order Control
+
+Use `_order.yaml` files to control the order of documents within categories:
+
+```yaml
+# /src/docs/getting-started/_order.yaml
+- quick-start
+- deploy-your-first-app
+- migrate-from-heroku
+- migrate-from-forge
+```
+
+**Rules:**
+- Place `_order.yaml` in each category directory
+- List file names (without `.mdx` extension) in desired order
+- Files not listed in `_order.yaml` will appear after ordered files
+- Categories themselves are ordered by the `sequence` field in `/src/config/products.ts`
+
 ## MDX Frontmatter
 
 Every MDX file must include frontmatter metadata at the top:
