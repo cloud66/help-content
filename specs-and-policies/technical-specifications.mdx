@@ -2,9 +2,11 @@
 title: Cloud 66 Technical specifications
 ---
 
+<PerProduct includes={["rails", "deploy"]}>
 ## Operating system
 
-Your servers are deployed with **Ubuntu 24.04 LTS**.
+Your servers are deployed with <OperatingSystemsWrapper />.
+</PerProduct>
 
 ## Supported cloud providers
 
@@ -34,7 +36,7 @@ The second platform is best suited to containerized applications with a strong s
 
 The third platform is specifically designed to build and host [Jamstack](https://jamstack.org/what-is-jamstack/)-style preprocessed application on object storage services.
 
-<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "sites"]}>
 ## Component versions
 
 Cloud 66 servers have two types of components with differing policies on versioning.

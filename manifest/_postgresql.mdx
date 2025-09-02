@@ -1,6 +1,6 @@
 ---
 title: PostgreSQL Configuration
-products: all
+products: ["deploy", "rails"]
 category: manifest
 ---
 
@@ -16,7 +16,7 @@ The following settings are available via the Manifest file :
 |`groups`|<Glyph icon="upgrade" />|Used to define multiple separate [database groups](/:product/:version?/databases/attaching-multiple-databases) (of the same type), each with their own configuration. The name of each group in your Manifest must match the names in your Dashboard.|All|
 |`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/:product/:version?/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
 |`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/:product/:version?/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
-|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts Postgres. Accepted values `ubuntu2004`, `ubuntu2204`, `ubuntu2404`|All|
+|`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts Postgres. Accepted values <OperatingSystemsWrapper showAll={true} humanReadable={false} />|All|
 |`postgis`|<Glyph icon="build" />|Specify whether to include [PostGIS](https://postgis.net/)|All|
 |`postgis / version`|<Glyph icon="build" />|Specify the version of PostGIS you want to install. Must be nested in `postgres` settings|All|
 |`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by Postgres. Default value is `50`.|AWS, Azure, GCE|

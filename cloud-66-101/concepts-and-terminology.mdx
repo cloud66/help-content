@@ -18,7 +18,7 @@ Cloud 66 allows you to centralize the provisioning and management of:
 * SSL certificates
 * Monitoring and logging
 
-...as well as all of the configuration files, settings and environment variables on which these components rely.
+...as well as all the configuration files, settings and environment variables on which these components rely.
 
 <PerProduct includes={["sites"]}>
 Cloud 66 also caters for prebuilt / JAMstack apps - [see below](#prebuilt-applications).
@@ -69,13 +69,11 @@ Cloud 66 makes it easy for you to [backup your database](/:product/:version?/dat
 
 ### Operating system
 
-Your servers will be deployed with **Ubuntu 24.04 LTS**.
+Your servers will be deployed with <OperatingSystemsWrapper showAll={false} humanReadable={true} />.
 
 ### Cloud vendor
 
-You can either [deploy to your preferred cloud provider](/:product/:version?/specs-and-policies/technical-specifications#supported-cloud-providers) or [deploy to your own server](/:product/:version?/servers/registered-servers).
-
-* * *
+You can either [deploy to your preferred cloud provider](/:product/:version?/specs-and-policies/technical-specifications#supported-cloud-providers) <PerProduct includes={["rails", "deploy"]}>or [deploy to your own server](/:product/:version?/servers/registered-servers)</PerProduct>.
 
 ## Application environments
 
@@ -91,8 +89,6 @@ In addition to these environments, you can define your own environments from the
 Depending on your configuration, your application will act differently in each environment. For example, a Ruby on Rails application has a directory in `config/environments` that contains settings for each environment.
 
 There is no difference between these environments when it comes to features and supported tools apart from what you define in your code.
-
-* * *
 
 </PerProduct>
 
@@ -191,7 +187,7 @@ Cloud 66 makes it easy for you to [backup your database](/:product/:version?/dat
 
 ### Operating system
 
-Your servers will be deployed with **Ubuntu 24.04 LTS**.
+Your servers will be deployed with <OperatingSystemsWrapper />.
 
 ### Cloud vendor
 
