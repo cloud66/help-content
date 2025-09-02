@@ -33,7 +33,7 @@ You cannot change `replica_count` after GlusterFS has been added to your applica
 
 Almost all applications have some sort of data storage needs. As your application grows and runs on multiple servers, you will need to be able to share this data storage between your servers. For example, a web application that allows its users to upload images, will need to store those images on a share storage accessible by all servers. 
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 This need is more important when using containers like Docker. This is because even for smaller applications that are powered by a single server, you might have multiple containers. Each one of those containers will require access to a shared storage space.
 </PerProduct>
 
@@ -54,7 +54,7 @@ $ touch hello.txt
 
 Now SSH to another web server on your application and you should be able to see `hello.txt` under `/mnt/gfs/<volume-name>`.
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 ## What about my containers?
 So far we saw how you can create a share disk volume on every server. But what about accessing this share storage from each container? You can [mount](/:product/:version?/build-and-config/service-storage) the `/mnt/gfs/<volume-name>` directory into any directory inside your container. This means your code can read and write to `/mnt/gfs/<volume-name>` from inside a container without any further changes.
 </PerProduct>
@@ -62,7 +62,7 @@ So far we saw how you can create a share disk volume on every server. But what a
 ## Fine grained access control for your data
 By default Cloud 66 builds a GlusterFS cluster for your application, creates a default mount point on it and mounts that onto every application server. This is great to start with and for many workloads.
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 But what if you need to make sure some services have read/write access to your data and some only readonly access?
 
 This is achieved using the [manifest](/:product/:version?/manifest/what-is-a-manifest-file file). Using manifest file, you can control the GlusterFS volumes you have as well as grant read/write or readonly access to containers of a specific service.

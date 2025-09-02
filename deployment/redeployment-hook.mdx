@@ -31,7 +31,7 @@ https://hooks.cloud66.com/stacks/redeploy/xxxx/yyyy
  The xxxx/yyyy in the examples is for illustrative purposes only and should be replaced with your redeployment URL on your Application Information page. 
 </Callout>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ## Services modifiers
 
@@ -69,7 +69,7 @@ When a redeployment hook is invoked:
  In the case where the payload of the commit hook does not contain any branch information (Github and Bitbucket payload formats are supported) then the application will redeploy without attempting to match branch. 
 </Callout>
 
-<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "deploy"]}>
 
 ## Calling a deployment profile via a redeployment hook
 
@@ -144,7 +144,7 @@ curl -X POST [your redeployment hook URL]?git_ref=...
 
 </PerProduct>
 
-<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "deploy"]}>
 
 <Callout type="info" title="Deploying via command line">
  If you are manually invoking redeployments you should consider using [Cloud 66 Toolbelt](/:product/:version?/toolbelt/_redeploy) instead, as it has additional features!

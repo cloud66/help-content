@@ -13,7 +13,7 @@ Previews run on separate, unique subdomains and they are only visible via those 
 
 Applications created on Cloud 66 before June 2024 may need to be updated before they can use this functionality. [See below for more details](#preparing-existing-applications-for-previews).
 
-<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "deploy"]}>
 
 <Callout type="info" title="Previews are not separate instances">
  Preview Deployments only apply to your applications **web components**  - they use the same database(s), and the same environment variables, components and manifest settings as the base application. They are *not* a truly separate instance of your application and should not be treated as such.  
@@ -51,7 +51,7 @@ Once you have enabled Previews for your application, you will need to [enable pr
 
 </PerProduct>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ## Enabling and disabling Preview Deployments
 
@@ -104,7 +104,7 @@ You can use this interface to delete old or unwanted Preview Deployments. To do 
 
 </PerProduct>
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 
 ## Monitoring Preview Deployments
 
@@ -143,7 +143,7 @@ cx stacks variants list -s my-stack --type preview  # Lists previews with UIDs
 cx stacks variants delete [UID] -s my-stack # Deletes a preview by UID
 ```
 
-<PerProduct includes={["rails", "django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["rails", "deploy"]}>
 
 ## Preparing existing applications for Previews
 

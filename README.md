@@ -121,8 +121,8 @@ Show/hide content based on the active product:
 This content only shows for Rails users.
 </PerProduct>
 
-<PerProduct includes={["deploy", "node"]}>
-This content shows for Deploy and Node users.
+<PerProduct includes={["deploy"]}>
+This content shows for Deploy users.
 </PerProduct>
 
 <PerProduct excludes={["sites"]}>

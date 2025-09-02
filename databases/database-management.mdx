@@ -19,7 +19,7 @@ We currently support the following databases, with no need for additional config
 <PerProduct includes={["rails"]}>
 For Rack-based stacks, Cloud 66 automatically detects whether your application relies on a database or not during your code analysis. This is based on a combination of your Gemfile and your `database.yml` or `mongoid.yml` files.
 </PerProduct>
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 When creating a Cloud 66 application, you can add as many databases as you need in your [service configuration](/:product/:version?/build-and-config/docker-service-configuration#database-configurations) during the application build.
 </PerProduct>
 
@@ -110,7 +110,7 @@ If your application uses an externally hosted (self-managed) database, **we will
 
 To add your own values to the analyzed variables, click on the *Add Environment Variables* button and then click the *Override* link next to each of the variables you wish to update. Remember, for **external databases**, we will discard any variables which do not have values set manually.
 </PerProduct>
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 ## Connecting your container to your DB
 
 Databases in Cloud 66 run as separate components and aren't containerized. Even though they may be running on the same private network as your cluster servers, you will not be able to connect to them via localhost because of the nature of containers (which are, by definition, abstracted from operating the system).
@@ -209,7 +209,7 @@ You can make a new instance of your application by [cloning it](/:product/:versi
 
 Once the new application is created, you can migrate data from your old application to your new application.
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 ## How to run database schema migrations
 
 If you’ve made structural changes to your databases, you will typically need to run migration commands during your build process, so that those changes are applied to your live database. The nature of these commands depend on your framework.

@@ -11,7 +11,7 @@ Your app has multiple layers of health checks to ensure that you are kept inform
 </PerProduct>
 - [Load Balancer Checks](#load-balancer-health-checks)
 - [Global Availability Checks](#global-availability-checks)
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 - [Service Checks](#service-checks)
 </PerProduct>
 
@@ -181,7 +181,7 @@ The datacenter regions that we check from are:
 
 This testing uses our open source project, **[Watchman](https://github.com/cloud66-oss/watchman)**, a light, multi-instance service in different geographical locations that provides a full picture of a web endpoint’s general health and global accessibility.
 
-<PerProduct includes={["django", "expressjs", "nextjs", "node", "laravel"]}>
+<PerProduct includes={["deploy"]}>
 ## Service Checks
 
 Service Checks in **Cloud 66** allow you to specify different types of checks on your containers - **readiness checks**, **liveness checks**, and **startup checks**. These checks define a set of rules that determine whether your application is currently healthy. For instance, you can check whether an application is responding on an HTTP endpoint, or if a post-initialization file is present.
