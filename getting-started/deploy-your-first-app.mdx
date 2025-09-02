@@ -1,7 +1,7 @@
 ---
 title: Deploying your first app with Cloud 66
 lead: You can have your first application up and running on Cloud 66 in under 5 mins. Follow the steps below to see how easy it is to get your app configured, built, and deployed.
-products: ['rails', 'deploy']
+products: ['rails', 'deploy', 'sites']
 ---
 
 import GitPartial from '../partials/_git.mdx';
@@ -249,6 +249,7 @@ If your application relies on specific components or non-standard settings or pa
 
 The method you use to configure a component depends on the nature of the customization. The table below will help you find the right tool:
 
+<PerProduct includes={["rails", "deploy"]}>
 | Customization required | Configuration tool |
 | --- | --- |
 | Specific versions of a framework or package | [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file) |
@@ -257,3 +258,11 @@ The method you use to configure a component depends on the nature of the customi
 | Environment Variables  | Dashboard or [Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt) |
 | Non-standard Linux packages or libraries | [Deploy hooks](/:product/:version?/deploy-hooks/deploy-hooks) |
 | Running multiple database types or versions (groups) | [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file) or Dashboard |
+</PerProduct>
+
+<PerProduct includes={["sites"]}>
+| Customization required | Configuration tool |
+| --- | --- |
+| Specific versions of a framework or package | [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file) |
+| Environment Variables  | Dashboard or [Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt) |
+</PerProduct>
