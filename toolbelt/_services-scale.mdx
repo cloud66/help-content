@@ -1,6 +1,7 @@
 ---
 category: toolbelt
 title: services scale
+products: ['rails', 'deploy']
 ---
 
 Starts `<count>` containers for the given service across the stack. If `<count>` is an absolute value like `2`, then that will be the total of `<count>` containers across the application. If `<count>` is a relative value like `[+2]` or `[-3]`, then the current total count of containers across the application will be changed by `<count>`. NOTE: the square brackets are required for relative count values.
