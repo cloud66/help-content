@@ -306,6 +306,17 @@ npm install @cloud66/cli
 </CodeBlock>
 ```
 
+#### PartialWrapper
+Wraps imported MDX partials to ensure proper SmartLink functionality:
+
+```mdx
+import MyPartial from '../partials/_my_partial.mdx';
+
+<PartialWrapper partial={MyPartial} />
+```
+
+**Required for all partials** - without this wrapper, SmartLink placeholders (`:product`, `:version?`) won't be converted properly.
+
 ## Smart Links
 
 Links automatically adapt to the current product and version context:
@@ -370,17 +381,48 @@ Standard Markdown tables with enhanced styling:
 
 ## Importing Partials
 
-Reuse content across multiple pages by importing partials:
+Reuse content across multiple pages by importing partials. **IMPORTANT:** All partials must be wrapped with `PartialWrapper` for proper SmartLink functionality.
+
+### Correct Usage:
 
 ```mdx
 import GitPartial from '../partials/_git.mdx';
 import SshKeysPartial from '../partials/_ssh_keys.mdx';
 
-<GitPartial />
+<PartialWrapper partial={GitPartial} />
 
 ## Next Steps
 
-<SshKeysPartial />
+<PartialWrapper partial={SshKeysPartial} />
+```
+
+### Why PartialWrapper is Required
+
+MDX partials imported as components don't inherit the component overrides from the parent page. Without `PartialWrapper`, SmartLink placeholders like `:product` and `:version?` won't be converted properly.
+
+**❌ Incorrect (will break SmartLink conversion):**
+```mdx
+<GitPartial />  <!-- Links with :product/:version won't work -->
+```
+
+**✅ Correct (SmartLinks work properly):**
+```mdx
+<PartialWrapper partial={GitPartial} />
+```
+
+### Nested Partials
+
+Partials that import other partials work automatically when using PartialWrapper:
+
+```mdx
+<!-- /src/docs/partials/_cloud_providers.mdx -->
+import AwsPartial from './_aws.mdx';
+
+<FilteredContentBox labels={["AWS", "GCP"]}>
+  <FilteredContent filter="AWS">
+    <PartialWrapper partial={AwsPartial} />
+  </FilteredContent>
+</FilteredContentBox>
 ```
 
 **Partial naming:** Always prefix with underscore (`_git.mdx`, `_ssh_keys.mdx`)

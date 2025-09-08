@@ -7,23 +7,23 @@ import LinodeStaticPartial from './_linode-static.mdx';
 <FilteredContentBox labels={["Amazon S3", "Azure", "DigitalOcean Spaces", "Google", "Linode"]}>
 
 <FilteredContent filter="Amazon S3">
-<AwsStaticPartial />
+<PartialWrapper partial={AwsStaticPartial} />
 </FilteredContent>
  
 <FilteredContent filter="Azure">
-<AzureStaticPartial />
+<PartialWrapper partial={AzureStaticPartial} />
 </FilteredContent>
 
 <FilteredContent filter="DigitalOcean Spaces">
-<DoStaticPartial />
+<PartialWrapper partial={DoStaticPartial} />
 </FilteredContent>
 
 <FilteredContent filter="Google">
-<GceStaticPartial />
+<PartialWrapper partial={GceStaticPartial} />
 </FilteredContent>
 
 <FilteredContent filter="Linode">
-<LinodeStaticPartial />
+<PartialWrapper partial={LinodeStaticPartial} />
 </FilteredContent>
 
 </FilteredContentBox>

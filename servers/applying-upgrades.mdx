@@ -12,7 +12,7 @@ Cloud 66 aims to make it easier to build **immutable** infrastructure. Building 
 
 When a new server is provisioned we automatically install the latest versions of packages. After the server is created we only auto-install packages that are marked as `security updates`. Cloud 66 doesn't (typically) automatically update other packages because it doesn't want to risk disrupting your existing application. However, depending on your configuration, we *may* update your packages each time you redeploy your app (see below).
 
-<DoNotConfigureServersManuallyPartial />
+<PartialWrapper partial={DoNotConfigureServersManuallyPartial} />
 
 ## Controlling package updates
 

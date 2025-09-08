@@ -41,46 +41,46 @@ Follow the instructions for your preferred cloud provider below to grant Cloud 6
 ## AWS (Amazon Web Services)
 
 <PerProduct includes={["rails", "deploy"]}>
-<AwsPartial />
+<PartialWrapper partial={AwsPartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
-<AwsStaticPartial />
+<PartialWrapper partial={AwsStaticPartial} />
 </PerProduct>
 
 ## Azure
 
 <PerProduct includes={["rails", "deploy"]}>
-<AzurePartial />
+<PartialWrapper partial={AzurePartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
-<AzureStaticPartial />
+<PartialWrapper partial={AzureStaticPartial} />
 </PerProduct>
 
 ## Digital Ocean
 
 <PerProduct includes={["rails", "deploy"]}>
-<DoPartial />
+<PartialWrapper partial={DoPartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
-<DoStaticPartial />
+<PartialWrapper partial={DoStaticPartial} />
 </PerProduct>
 
 ## Google Cloud (GCE)
 
 <PerProduct includes={["rails", "deploy"]}>
-<GcePartial />
+<PartialWrapper partial={GcePartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
-<GceStaticPartial />
+<PartialWrapper partial={GceStaticPartial} />
 </PerProduct>
 
 ## Hetzner Cloud
 <PerProduct includes={["rails", "deploy"]}>
-<HetznerPartial />
+<PartialWrapper partial={HetznerPartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
@@ -89,7 +89,7 @@ Hetzner does not currently support static site deployments.
 
 ## Latitude.sh
 <PerProduct includes={["rails", "deploy"]}>
-<LatitudeshPartial />
+<PartialWrapper partial={LatitudeshPartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
@@ -99,16 +99,16 @@ Latitude.sh does not currently support static site deployments.
 ## Linode
 
 <PerProduct includes={["rails", "deploy"]}>
-<LinodePartial />
+<PartialWrapper partial={LinodePartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
-<LinodeStaticPartial />
+<PartialWrapper partial={LinodeStaticPartial} />
 </PerProduct>
 
 ## OVH
 <PerProduct includes={["rails", "deploy"]}>
-<OvhPartial />
+<PartialWrapper partial={OvhPartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
@@ -116,11 +116,11 @@ OVH does not currently support static site deployments.
 </PerProduct>
 
 ## Packet
-<PacketPartial />
+<PartialWrapper partial={PacketPartial} />
 
 ## Vultr
 <PerProduct includes={["rails", "deploy"]}>
-<VultrPartial />
+<PartialWrapper partial={VultrPartial} />
 </PerProduct>
 
 <PerProduct includes={["sites"]}>
