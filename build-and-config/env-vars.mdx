@@ -1,6 +1,6 @@
 ---
 title: Managing environment variables
-products: ['rails', 'deploy']
+products: ['rails', 'deploy', 'sites']
 ---
 
 ## Overview
@@ -62,14 +62,14 @@ For a list of environment variables available in your application:
 
 Cloud 66 creates a number of default environment variables, which can be used in addition to those that you define. Depending on your application configuration, the environment variables available will differ.
 
+<PerProduct excludes={["sites"]}>
 ### Pre-defined environment variables
 
 There are some also special variables that are predefined by Cloud 66:
 
-**SERVER_NAME:** Is defined on each server and is only available inside the server
-
-**DOCKER_HOST_IP:** Is injected to each container and is only available inside containers
-
+- `SERVER_NAME` Is defined on each server and is only available inside the server
+- `DOCKER_HOST_IP` Is injected to each container and is only available inside containers
+</PerProduct>
 
 ## Assigning environment variables
 
@@ -101,7 +101,9 @@ You can also assign environment variables to an application that has already bee
 
 Be aware of the following while assigning environment variables:
 
+<PerProduct excludes={["sites"]}>
 - **Some environment variables cannot be modified** — For example, environment variables for your server IP addresses cannot be changed because they are automatically set and updated based on reported IP addresses.
+</PerProduct>
 
 ### Using AUTO GENERATE
 
@@ -156,6 +158,7 @@ This example sets the key to use the external web address of the application, an
 MY_KEY_1=_env(WEB_ADDRESS_EXT:192.168.0.1)
 ```
 
+<PerProduct excludes={["sites"]}>
 ### Referencing env vars in service.yml commands
 
 You can use environment variables in `service.yml` commands, as long as the variables are wrapped in `$( )`. For example:
@@ -168,6 +171,7 @@ services:
   ports:
   - container: 80
 ```
+</PerProduct>
 
 ### Intra-app referencing syntax
 
@@ -190,6 +194,7 @@ or
 This syntax still uses the term "stack" which in the process of being deprecated in Cloud 66. "Stack" means, for all intents and purposes, the same thing as "application".
 </Callout>
 
+<PerProduct excludes={["sites"]}>
 ### Intra-service referencing
 
 To refer to an environment variable in other services you can use
@@ -263,7 +268,7 @@ services:
    PGBOUNCER_LISTEN_PORT: 5439
 ```
 Read [our guide to using service.yml](/:product/:version?/build-and-config/docker-service-configuration) for more help.
-
+</PerProduct>
 
 ## Calling env vars in a Dockerfile
 
@@ -279,6 +284,27 @@ COPY . /myapp
 ENV MY_VARIABLE "$MY_VARIABLE"
 EXPOSE 3000
 CMD ["/myapp/main.rb"]
+```
+
+
+Note that the key name **must** be capitalized. 
+
+<PerProduct excludes={["sites"]}>
+For example the following:
+
+```docker
+ENV WEB_IP "$WEB_ADDRESS_INT"
+```
+
+...would pull the internal IP address of the application's webserver into the Dockerfile and assign it to a local variable named "WEB_IP". 
+</PerProduct>
+
+The environment variable you are calling **already exists** in your Cloud 66 application. If it doesn't, this call will result in a build error. 
+
+You can also use the following format if you don't need to set the output as a variable and just need the value of the key for another operation.
+
+```docker
+RUN echo $WEB_ADDRESS_INT
 ```
 
 ## Using environment variables in code
@@ -301,24 +327,6 @@ username: <%= ENV['DB_USER'] %>
 
 ```ruby
 working_directory "#{ENV['STACK_PATH']}"
-```
-
-## Calling an environment variable in a Dockerfile
-
-You can pull the value of an environment variable from your Cloud 66 account into a Dockerfile using the `ENV` command and the format `$NAME_OF_KEY`. Note that the key name **must** be capitalized. For example the following:
-
-```docker
-ENV WEB_IP "$WEB_ADDRESS_INT"
-```
-
-...would pull the internal IP address of the application's webserver into the Dockerfile and assign it to a local variable named "WEB_IP". 
-
-Note that this assumes that the environment variable you are calling **already exists** in your Cloud 66 application. If it doesn't, this call will result in a build error. 
-
-You can also use the following format if you don't need to set the output as a variable and just need the value of the key for another operation.
-
-```docker
-RUN echo $WEB_ADDRESS_INT
 ```
 
 ## Pulling binaries into your Dockerfile using env vars

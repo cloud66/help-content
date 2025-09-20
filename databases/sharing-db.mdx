@@ -3,9 +3,11 @@ title: Sharing databases between applications
 products: ['rails', 'deploy']
 ---
 
+<PerProduct includes={["rails"]}>
 <Callout type="warning" title="Do not run db:schema:load">
 Ensure that you **do not** select the option for `db:schema:load` during the build of your second application, as this could destroy the data on the first application.
 </Callout>
+</PerProduct>
 
 Firstly, you need to [open your firewall](/:product/:version?/security/firewall-rule) on the first application to allow your second application's web servers to access the database.
 
@@ -22,7 +24,7 @@ For example, your environment variables would be set like this:
 MYSQL_ADDRESS={{ APP[xyz].MYSQL_ADDRESS_INT }}
 MYSQL_DATABASE={{ APP[xyz].MYSQL_DATABASE }}
 ```
-
+<PerProduct includes={["rails"]}>
 Database credentials such as username and password are not available for cross-application referencing for security reasons. Instead, copy and paste them across as environment variables. Your database.yml would look something like this:
 
 ```yaml
@@ -31,4 +33,4 @@ username: \<%= ENV['MYSQL_USERNAME'] %\>
 password: \<%= ENV['MYSQL_PASSWORD'] %\>
 database: \<%= ENV['MYSQL_DATABASE'] %\>
 ```
-
+</PerProduct>
