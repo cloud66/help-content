@@ -58,4 +58,42 @@ All of your database usernames and passwords as well as its public IP address ca
 2. Click on the application you need the credentials for.
 2. Click on the **Data Sources** on the left-hand nav.
 3. Click on *Connection Info* to see all the details of the database server.
+
+## Connecting from your apps
+
+To connect to your database from any application, you can use environment variables. Cloud 66 creates a few of these for you and populates them with the necessary connection details.
+
+### Database name
+
+If your chosen database type supports named databases (like Postgres), a random database name will be generated for you. You can change this via the UI where you view your database connection information. This value is for your information only and is used in helpful connection strings and environment variables, but not used by Cloud 66.
+
+### Readonly environment variables
+
+For each deployed database on your cluster, we create a set of readonly environment variables that point to that specific database and its credentials. These variables are named in a consistent format, with the database name as a suffix.
+
+For example, if you add a Postgres database, you’ll see variables like:
+
+```
+POSTGRESQL_MARS_ADDRESS   -> The address of your database service within the cluster
+POSTGRESQL_MARS_USERNAME  -> A username your application can use to connect
+POSTGRESQL_MARS_PASSWORD  -> A password your application can use to connect
+POSTGRESQL_MARS_DATABASE  -> The database name (see above)
+POSTGRESQL_MARS_URL       -> A full DSN (connection string) including all of the above
+```
+
+### Default editable placeholders
+
+Most programming frameworks and libraries have standardized naming conventions for database connection strings. For example, in Rails, the MySQL database name is typically named `MYSQL_DATABASE`. To make it easier for your applications to connect to the database, we also create standard names for each of the variables and point them to the readonly version. This way you can change the variable name or override the value, if you need, while keeping the original variable values also accessible. This also helps in cases of switching databases from one to another.
+
+
+```
+POSTGRESQL_ADDRESS  => POSTGRESQL_MARS_ADDRESS
+POSTGRESQL_USERNAME => POSTGRESQL_MARS_USERNAME
+POSTGRESQL_PASSWORD => POSTGRESQL_MARS_PASSWORD
+POSTGRESQL_DATABASE => POSTGRESQL_MARS_DATABASE
+POSTGRESQL_URL      => POSTGRESQL_MARS_URL
+```
+
+Right now, these environment variables are only created during the initial creation of a new application. If you add/remove database connections from an existing application you will need to amend these variables yourself.
+
 </PerProduct>
