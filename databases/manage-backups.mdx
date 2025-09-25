@@ -1,6 +1,7 @@
 ---
 title: Restoring database backups
 products: ['rails', 'deploy', 'node']
+excludeVersions: ['3']
 ---
 
 ## Overview
@@ -10,7 +11,7 @@ There are two methods for restoring databases:
 * Automated via the Cloud 66 dashboard
 * Manually via command line
 
-We recommend using the [managed database backup service](/:product/:version?/databases/database-backups) to manage and restore database backups, but you can also manage them manually. This includes downloading the backup, decompressing it, moving it to another server and restoring it. 
+We recommend using the [managed database backup service](/:product/:version?/databases/database-backups) to manage and restore database backups, but you can also manage them manually. This includes downloading the backup, decompressing it, moving it to another server and restoring it.
 
 ## Automated database restore method
 
@@ -23,7 +24,7 @@ We recommend using the automated restore process to restore backups. To do this:
 5. Click on the name of the managed backup
 6. Find the backup you wish to restore in the list of recent backups, click the down arrow next to it and select *Restore this backup*
 7. Choose the database group on which you wish restore the database
-8. Click 
+8. Click
 
 Restoring a backup **will** disrupt the target database - we do not recommend restoring to a live database, particularly in production.
 
@@ -43,7 +44,7 @@ If you are using managed backups, you can retrieve your database backup by using
 
 ### 2. From your Cloud 66 Dashboard
 
-If you are using managed backups, you can download backups via your Cloud 66 Dashboard. To do so, open your application and click the link for your database backup in the Backups panel. 
+If you are using managed backups, you can download backups via your Cloud 66 Dashboard. To do so, open your application and click the link for your database backup in the Backups panel.
 
 This page lists your available database backups, and allows you to download and restore each one. Click the download icon and choose one of these options:
 
@@ -78,18 +79,18 @@ $ cat file.tar-aa file.tar-ab file.tar-ac > file_combined.tar
 
 Before manually restoring your data will need to decompress the backup file. The file will be in the `tar` format. To decompress it use:
 
-```bash 
-$ tar -xvf [tar_file] -C [folder_name] 
+```bash
+$ tar -xvf [tar_file] -C [folder_name]
 ```
 
 The -C option allows you to choose which folder to extract the files to.
 
-Once you have your files prepared, you can follow the guide for your specific backup format and engine (see below). 
+Once you have your files prepared, you can follow the guide for your specific backup format and engine (see below).
 
 ## Restoring a MySQL text backup
 
 <Callout type="info" title="We recommend automated backups">
-This is a method for *manually* restoring your MySQL text backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
+This is a method for *manually* restoring your MySQL text backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding.
 </Callout>
 
 **Step 1:** Run following command to flatten the folder
@@ -159,10 +160,10 @@ $ MySQL -u $MySQL_ADMIN_USERNAME -p$MySQL_ADMIN_PASSWORD $MySQL_DATABASE_NAME < 
 ## Restoring a MySQL Binary backup
 
 <Callout type="info" title="We recommend the automated method">
- This is a method for *manually* restoring your MySQL binary backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
+ This is a method for *manually* restoring your MySQL binary backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding.
 </Callout>
 
-You need Percona innobackupex to be able to restore a MySQL binary backup. Percona innobackupex is installed on your MySQL server if it is provisioned by Cloud66. If you need to install it on another server, [follow this guide](https://www.percona.com/doc/percona-xtrabackup/2.3/installation/apt_repo/). 
+You need Percona innobackupex to be able to restore a MySQL binary backup. Percona innobackupex is installed on your MySQL server if it is provisioned by Cloud66. If you need to install it on another server, [follow this guide](https://www.percona.com/doc/percona-xtrabackup/2.3/installation/apt_repo/).
 
 **Step 1:** Find the Percona backup folder. Run following command to find it:
 
@@ -217,7 +218,7 @@ $ sudo systemctl start MySQL
 ## Restoring a Postgres text backup
 
 <Callout type="info" title="We recommend the automated method">
- This is a method for *manually* restoring your Postgres text backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
+ This is a method for *manually* restoring your Postgres text backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding.
 </Callout>
 
 **Step 1:** Run following command to flatten the folder
@@ -283,7 +284,7 @@ $ pg -U $PG_APP_USERNAME --no-password $PG_DATABASE_NAME < /path/to/unarchived/f
 ## Restoring a Postgres binary backup
 
 <Callout type="info" title="We recommend the automated method">
- This is a method for *manually* restoring your Postgres binary backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
+ This is a method for *manually* restoring your Postgres binary backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding.
 </Callout>
 
 **Step 1:** You need to find the main backup folder in unarchived folder. Run following command to find it :
@@ -336,7 +337,7 @@ $ sudo systemctl start postgresql
 ## Restoring a Redis backup
 
 <Callout type="info" title="We recommend the automated method">
- This is a method for *manually* restoring your Redis backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
+ This is a method for *manually* restoring your Redis backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding.
 </Callout>
 
 **Step 1:** Run following command to flatten the folder
@@ -394,7 +395,7 @@ $ sudo systemctl redis.service start || sudo service redis start
 ## Restoring a MongoDB backup
 
 <Callout type="info" title="We recommend the automated method">
- This is a method for *manually* restoring your MongoDB backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding. 
+ This is a method for *manually* restoring your MongoDB backup - we only recommend this method if you cannot use the automated method described above. Please also ensure you have prepared your files before proceeding.
 </Callout>
 
 **Step 1:** Run following command to see if there is database folder in unarchived folder (Replace YOUR_DATABASE_NAME with correct value):
@@ -462,7 +463,7 @@ You can use automated database backups to migrate data between applications usin
 |Redis|Either|
 
 
-This only applies to migrations between applications - restores to the original database (i.e. in the same application) will work regardless of format. 
+This only applies to migrations between applications - restores to the original database (i.e. in the same application) will work regardless of format.
 
 To migrate data between applications:
 
@@ -471,4 +472,4 @@ To migrate data between applications:
 3. Click the down arrow next to the target database server and select **Import Database**
 4. Choose the source application and database (i.e. where you're pulling the backup from) and click *Import* - this will automatically "restore" the latest database backup to your new server.
 
-Remember to wait for the task to be completed before you start trying to use the database for anything. 
+Remember to wait for the task to be completed before you start trying to use the database for anything.

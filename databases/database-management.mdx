@@ -1,6 +1,7 @@
 ---
 title: Managing databases
 products: ['rails', 'deploy', 'node']
+excludeVersions: ['3']
 ---
 
 ## Overview
@@ -23,7 +24,7 @@ For Rack-based stacks, Cloud 66 automatically detects whether your application r
 When creating a Cloud 66 application, you can add as many databases as you need in your [service configuration](/:product/:version?/build-and-config/docker-service-configuration#database-configurations) during the application build.
 </PerProduct>
 
-After you have analyzed your code, ensure that your desired database type is displayed in the _About your app_ section of the analysis results. 
+After you have analyzed your code, ensure that your desired database type is displayed in the _About your app_ section of the analysis results.
 
 <PerProduct includes={["rails"]}>
 <Callout type="info" title="Using Active Record instead">
@@ -39,7 +40,7 @@ You can add databases to an existing application either by using [Database Group
 
 When we deploy a database we automatically generate the required users and passwords to allow authentication. You can find these values via your Dashboard in the [detail page of any database server](/:product/:version?/databases/connect-db-servers#finding-database-credentials). They will be available as environment variables and your application will be configured to use them.
 
-**MySQL** and **Postgres** databases managed by Cloud 66 automatically have the following users created: 
+**MySQL** and **Postgres** databases managed by Cloud 66 automatically have the following users created:
 
 - a Database Application user
 - a Database Admin user
@@ -55,7 +56,7 @@ If you switch to managing your passwords manually, be sure to update all of thes
 If you'd prefer to manage your users and password manually (i.e. your config files), you can [prevent your configs from being modified](/:product/:version?/databases/tamper-with-yaml).
 
 <Callout type="warning" title="Self-managed databases">
-The info above **does not apply** to external (self-managed) databases. See the [dedicated section below](#migrating-to-an-external-database) for more details. 
+The info above **does not apply** to external (self-managed) databases. See the [dedicated section below](#migrating-to-an-external-database) for more details.
 </Callout>
 
 ### Managing YAML configs
@@ -73,7 +74,7 @@ We will prioritise these configs as follows:
 3. The standard YAML config file
 
 <Callout type="warning" title="Self-managed databases">
- The info above **does not apply** to external (self-managed) databases. See the [dedicated section below](#migrating-to-an-external-database) for more details. 
+ The info above **does not apply** to external (self-managed) databases. See the [dedicated section below](#migrating-to-an-external-database) for more details.
 </Callout>
 
 ### External databases
@@ -98,13 +99,13 @@ This hook simply overwrites the standard config file with the config file of you
 <PerProduct includes={["rails"]}>
 ### Environment variables during deployment
 
-When you set up an application on Cloud 66, we detect its database type(s) (from your code) and generate a set of variables for things like `username` and `password` and `URL`. We only generate these "analyzed variables" **after** you have confirmed that we will be managing the database(s). 
+When you set up an application on Cloud 66, we detect its database type(s) (from your code) and generate a set of variables for things like `username` and `password` and `URL`. We only generate these "analyzed variables" **after** you have confirmed that we will be managing the database(s).
 
 You can see a list of these variables during application creation by clicking on the *Add Environment Variables* button (in the yellow **Review your Rails application** box) . You will see the list of analyzed variables for your database(s) at the top of the panel.
 
 For databases that we manage, we will generate all of these variables, and replace any existing variables you have in your YAML config files unless you [turn the auto-replacement feature off](/:product/:version?/databases/tamper-with-yaml). (You can also override the values of these variables manually, one by one, if you wish - see below)
 
-If your application uses an externally hosted (self-managed) database, **we will not generate any of the analysed variables**. If your config files rely on environment variables, you will need to set these manually before you deploy, or we will not be able to connect to your database. 
+If your application uses an externally hosted (self-managed) database, **we will not generate any of the analysed variables**. If your config files rely on environment variables, you will need to set these manually before you deploy, or we will not be able to connect to your database.
 
 ### Setting variables manually (overriding)
 
@@ -122,7 +123,7 @@ $ kubectl get namespaces
 $ kubectl -n <your-namespace> get svc
 ```
 
-This will show you all the services running, some of which will be your databases. 
+This will show you all the services running, some of which will be your databases.
 
 ### Service names for database groups
 
@@ -164,7 +165,7 @@ To connect to a database in Version 1 of Cloud 66 Container Management Service (
 
 ### No database (external)
 
-This option allows you to deploy your application without a database managed by Cloud 66, and is ideal for externally hosted databases. 
+This option allows you to deploy your application without a database managed by Cloud 66, and is ideal for externally hosted databases.
 
 <PerProduct includes={["rails"]}>
 For Rails apps, if you have a `url` set in your `database.yml` then we will assume that you are using an external DB. You will need to [set your own env vars](#environment-variables-during-deployment) during deployment, to ensure we can connect to it.
@@ -184,22 +185,22 @@ This option will automatically create a new server for your database and configu
 
 ## Upgrading your database
 
-Cloud 66 will not do in-place database upgrades, because this process may cause your application to stop working or may not be possible automatically. 
+Cloud 66 will not do in-place database upgrades, because this process may cause your application to stop working or may not be possible automatically.
 
 You have two options for upgrading your database through Cloud 66:
 
-1. Using [Database Groups](/:product/:version?/databases/attaching-multiple-databases) 
+1. Using [Database Groups](/:product/:version?/databases/attaching-multiple-databases)
 2. Cloning your entire application
 
 These options are described in full below.
 
 ### Upgrading databases using Groups
 
-To upgrade your database(s) using Groups: 
+To upgrade your database(s) using Groups:
 
 1. [Add a new Database Group](/:product/:version?/databases/attaching-multiple-databases#adding-a-database-group-to-an-app) to your application - this will automatically create a Group with the latest version of your chosen engine
 2. Migrate your data from your existing database to your new Group - using [database backups](/:product/:version?/databases/database-backups) is usually the quickest and easiest way
-3. Test that your application can connect to and read your new database 
+3. Test that your application can connect to and read your new database
 4. Switch your application configuration to use the new Group
 5. Remove the old Database Group
 
@@ -235,7 +236,7 @@ services:
 databases:
 - mysql
 
-``` 
+```
 </PerProduct>
 
 <PerProduct includes={["rails"]}>
@@ -243,7 +244,7 @@ databases:
 
 Cloud 66 chooses a server to perform the migrations - all other servers will wait until the migrations are finished before continuing with deployment. You can see which server performs the migrations in the application, and change it using the `c66.migrations.run` [reserved tag](/:product/:version?/servers/reserved-tags).
 
-You can control your Rails database migrations by setting the `run.deploy.command` option through application settings via 
+You can control your Rails database migrations by setting the `run.deploy.command` option through application settings via
 [Toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt) which gives you the option of running migrations or not.
 
 ```shell
@@ -254,7 +255,7 @@ When you have disabled `run.deploy.command` in [Application settings](/:product/
 
 ## The Strong Migration gem
 
-Sometimes operations can cause database migrations to lock the entire database for minutes at a time - even if the structural change is simple, or made to a relatively small table. If you'd like to understand the mechanisms behind this, we recommend reading this excellent [blog post](https://medium.com/doctolib/stop-worrying-about-postgresql-locks-in-your-rails-migrations-3426027e9cc9). 
+Sometimes operations can cause database migrations to lock the entire database for minutes at a time - even if the structural change is simple, or made to a relatively small table. If you'd like to understand the mechanisms behind this, we recommend reading this excellent [blog post](https://medium.com/doctolib/stop-worrying-about-postgresql-locks-in-your-rails-migrations-3426027e9cc9).
 
 To mitigate the potential for this to happen, we recommend including the [Strong Migration](https://github.com/ankane/strong_migrations) gem in your application. This will catch any potentially unsafe migrations and suggest how to avoid or reduce the risk.
 </PerProduct>
@@ -338,8 +339,8 @@ If you need to migrate a database managed by Cloud 66 to an external provider, y
 The exact migration process will differ widely depending on both the database used, and the host to which you are migrating your data, but all of them share the following steps:
 
 1. Switch off your application ([maintenance mode](/:product/:version?/deployment/using-maintenance-mode) is useful here)
-2. Migrate your data to the new host 
+2. Migrate your data to the new host
 3. Set up authentication credentials and connection details
 4. Add a [firewall rule](/:product/:version?/security/firewall-rule) to allow your app to reach the new data host (and vice versa)
-5. Turn your application back on 
+5. Turn your application back on
 6. Delete your defunct Cloud 66 database servers

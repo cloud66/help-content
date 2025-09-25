@@ -1,7 +1,7 @@
 ---
 title: Manually managing database configurations for Rails
 lead: "How to stop Cloud 66 from automatically updating configurations for managed databases"
-products: ['rails', 'deploy', 'node']
+products: ['rails']
 ---
 
 If your Rails application uses a MySQL, Postgres or MongoDB instance that is managed by Cloud 66, then we will (by default) automatically amend your database configuration file (specifically `database.yml` or `mongoid.yml`). If we don't detect a database configuration file, we will generate one.
@@ -18,7 +18,7 @@ If you have significantly customised your `database.yml` (for example with multi
 
 If you would prefer to manage these configurations manually you can achieve this using your Manifest file.
 
-This will prevent our system from making any automated changes to the configuration files (including `database.yml`). You can set this either globally, or per database. 
+This will prevent our system from making any automated changes to the configuration files (including `database.yml`). You can set this either globally, or per database.
 
 ### Example of global setting
 
@@ -30,7 +30,7 @@ rails:
 
 <Callout type="warning" title="Check your configs carefully">
 
-Adding this setting means that you need to ensure that the contents of your database configuration(s) are correct as Cloud 66 will no longer be able to update the file(s). 
+Adding this setting means that you need to ensure that the contents of your database configuration(s) are correct as Cloud 66 will no longer be able to update the file(s).
 
 </Callout>
 

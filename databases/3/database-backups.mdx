@@ -1,0 +1,62 @@
+---
+title: Backing up databases
+products: ['deploy']
+---
+
+## Overview
+
+Databases on Cloud 66 Deploy v3 can be backed up using managed backups and for the entire database. As backups are cluster level concerns, you can find them in the **Clusters** section of the Dashboard.
+
+### Managed backups
+
+To add backups to a database:
+
+1. Head to the **Clusters** section of the Dashboard.
+2. Select the cluster where your database is located.
+3. Click on the **Databases** on the left-hand nav.
+4. Select the database tab.
+5. Click on the **Add Backup** button.
+6. Choose the backup frequency and retention period.
+7. Click **Save**.
+
+If your database has replication enabled, you can choose to take the backup from the primary or replica of the database.
+
+## Restoring database backups
+
+Restoring backups involves creating a new database from the backup. Here are the steps:
+
+1. Head to the **Clusters** section of the Dashboard.
+2. Select the cluster where your database is located.
+3. Click on the **Databases** on the left-hand nav.
+4. Select the database tab.
+5. Click on the **Restore** button.
+6. Choose the backup you want to restore.
+7. Click **Restore**.
+
+## Pricing of managed backups
+
+We charge per GB (or part thereof) of data stored for managed backups. See our [pricing page](https://www.cloud66.com/pricing/) for the most up to date price.
+
+## Managed backup storage locations
+
+We store your managed backups in the closest possible AWS region to your servers. At the moment we store data in the following regions:
+
+* af-south-1
+* ap-east-1
+* ap-northeast-1
+* ap-northeast-2
+* ap-south-1
+* ap-southeast-1
+* ap-southeast-2
+* ca-central-1
+* eu-central-1
+* eu-north-1
+* eu-west-1
+* eu-west-2
+* eu-west-3
+* me-south-1
+* sa-east-1
+* us-east-1
+* us-east-2
+* us-west-1
+* us-west-2

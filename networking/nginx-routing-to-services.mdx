@@ -1,13 +1,14 @@
 ---
 title: Routing traffic to services using Nginx
 products: ['rails', 'deploy']
+excludeVersions: ['3']
 ---
 
 ## Overview
 
-You can configure NGINX to route traffic to different services in a containerized application, based on variables like DNS matches and ports, using a combination of the `service.yml` file and the NGINX Custom Config file. 
+You can configure NGINX to route traffic to different services in a containerized application, based on variables like DNS matches and ports, using a combination of the `service.yml` file and the NGINX Custom Config file.
 
-NGINX configurations for Cloud 66 applications use [templatized config files](/:product/:version?/custom-config/custom-config) (written in [Liquid template language](https://shopify.github.io/liquid/)), which are hydrated based on the underlying application and service configurations. 
+NGINX configurations for Cloud 66 applications use [templatized config files](/:product/:version?/custom-config/custom-config) (written in [Liquid template language](https://shopify.github.io/liquid/)), which are hydrated based on the underlying application and service configurations.
 
 The [service configuration](/:product/:version?/build-and-config/docker-service-configuration) options relevant to the NGINX configuration are the service's name, as well as its `ports` and `traffic_matches`.
 
@@ -24,14 +25,14 @@ http {
   upstream UPSTREAM_NAME {
     # ...
   }
-  
+
   server {
     # the port this server is listening on
     listen PORT;
-    
+
     # all DNS matches that have the same protocol + port + upstream + SSL certificate combination
     server_name DNS_MATCHES;
-    
+
     # list of server locations
     # currently we only generate one location at "/" that points to the service, but that might change in the future
     location / {
@@ -197,7 +198,7 @@ location {{ location.location }} {
 
 As per the previous example, you can use Liquid's `split` filter if you need to be more precise with matching.
 
-There are a couple of caveats to using the upstream name: 
+There are a couple of caveats to using the upstream name:
 
 1. The location variable is only available at the “location” point in the NGINX configuration, so you should ideally only use it to set location-level NGINX configuration.
 2. If you are running in a cluster, then you can potentially have two services with the same name running on two different applications, but which share the NGINX configuration because they are running on the same cluster. In this case, you need to include APPLICATION_UID in your `contains` statement if you want to target accurately.

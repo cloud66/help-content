@@ -2,6 +2,7 @@
 title: Seeding your database
 lead: "How to add seed data to your database(s)"
 products: ['rails', 'deploy', 'node']
+excludeVersions: ['3']
 ---
 
 ## Seed script
@@ -9,8 +10,8 @@ products: ['rails', 'deploy', 'node']
 Simply add a bash script to your repository that contains the script for seeding your database.
 
 <PerProduct includes={["rails"]}>
-This could be a *custom script*, a *custom rake command*, or the default Rails `rake db:seed command` depending on your requirements/implementation. 
-In our example, we will use the default Rails [rake db:seed command](https://edgeguides.rubyonrails.org/migrations#migrations-and-seed-data). 
+This could be a *custom script*, a *custom rake command*, or the default Rails `rake db:seed command` depending on your requirements/implementation.
+In our example, we will use the default Rails [rake db:seed command](https://edgeguides.rubyonrails.org/migrations#migrations-and-seed-data).
 
 Create the file `/.cloud66/dbseed.sh` as below:
 
@@ -40,7 +41,7 @@ PGPASSWORD=$DB_PASS psql -h localhost -U $DB_USER -d $DB_NAME -f /path/to/seed.s
 
 ## Deploy hook
 
-Add a deploy hook to execute the above script during the first deploy (on the first server only). 
+Add a deploy hook to execute the above script during the first deploy (on the first server only).
 
 Create the file `.cloud66/deploy_hooks.yml` as below (replacing *production* with your target environment).
 
@@ -52,14 +53,13 @@ production:
       target: rails # or deploy or a specific server group
       execute: true
       run_on: single_server
-      apply_during: build_only      
+      apply_during: build_only
 ```
 
 ## Note
 
-    
+
 The deploy hook example above will only execute during the _build_ for a new application. If you want to seed an existing application you could either
 
 *   Execute the seed command manually, or
 *   Change the `apply_during` specification of the deploy hook (could be used for DB data resets during subsequent testing deploys for instance)
-

@@ -1,5 +1,3 @@
-You can automatically provision and deploy to [Hetzner Cloud](https://www.hetzner.com/cloud) servers in any supported location via Cloud 66. You need to add a Hetzner Cloud API key to your Cloud 66 account in order to integrate them. On Hetzner API keys are specific to “projects”. To generate an API key:
-
 1. Log into your Hetzner Cloud dashboard
 2. Either add a new project or click on an existing one
 3. Click on the key (*Access*) in the left-hand navigation
@@ -9,9 +7,18 @@ You can automatically provision and deploy to [Hetzner Cloud](https://www.hetzn
 
 You will use this token to add Hetzner as a Deployment Target (see below).
 
-<Callout type="info" title="Custom disk sizes aren’t supported">
-Hetzner Cloud does not allow custom disk sizes for new instances. As such any disk size specified in your configuration files or via the Dashboard will be ignored by Hetzner.
-</Callout>
+<PerProduct includes={['deploy']} excludeVersions={['3']}>
+    <Callout type="info" title="Custom disk sizes aren’t supported">
+    Hetzner Cloud does not allow custom disk sizes for new instances. As such any disk size specified in your configuration files or via the Dashboard will be ignored by Hetzner.
+    </Callout>
+</PerProduct>
+
+<PerProduct includes={['deploy']}>
+    <Callout type="info" title="Support for Deploy v3">
+        Hetzner Cloud is supported in Deploy v3. Please see the [Deploy v3 documentation](/deploy/3/getting-started/deploy-v2-vs-v3/) for more information.
+    </Callout>
+</PerProduct>
+
 
 **Help with advanced Hetzner Cloud features:**
 

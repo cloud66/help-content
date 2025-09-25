@@ -100,11 +100,11 @@ Containers, at their most basic, are pieces of software (or “code”) bundled 
 
 There are many benefits to treating software applications this way. Containers are:
 
-* **Self-contained ---** Each container runs as an independent process or thread. This greatly reduces the chance of conflict with other applications using the same infrastructure.
-* **Less resource intensive ---** Because they only contain the minimum components required to function they do not consume unnecessary resources. This saves on infrastructure costs and can make applications faster for end users.
-* **Highly portable ---**  Containers are not dependent on specific server or environmental variables, so they can be quickly and easily deployed or moved between different server environments.
-* **Easily scalable ---** Containers can be initialised in milliseconds, so adding, moving or removing them is close to instant. And because they are self-contained, the need for time-consuming configuration changes is greatly reduced.
-* **Secure ---** Containers are highly abstracted and isolated from their environments as well as from other applications sharing those environments. This makes securing applications and implementing policies easier and cleaner.
+* **Self-contained** Each container runs as an independent process or thread. This greatly reduces the chance of conflict with other applications using the same infrastructure.
+* **Less resource intensive** Because they only contain the minimum components required to function they do not consume unnecessary resources. This saves on infrastructure costs and can make applications faster for end users.
+* **Highly portable**  Containers are not dependent on specific server or environmental variables, so they can be quickly and easily deployed or moved between different server environments.
+* **Easily scalable** Containers can be initialised in milliseconds, so adding, moving or removing them is close to instant. And because they are self-contained, the need for time-consuming configuration changes is greatly reduced.
+* **Secure** Containers are highly abstracted and isolated from their environments as well as from other applications sharing those environments. This makes securing applications and implementing policies easier and cleaner.
 
 Apart from these technical benefits, containers also make it easier for **development** and **operations** teams to work together more efficiently. Because the containers are abstracted from the underlying server environment, they allow developers to focus on writing good code, and operations engineers to focus on managing environments. This clean division of responsibility paradoxically allows for more flexibility and easier collaboration between teams.
 
@@ -126,7 +126,7 @@ At Cloud 66 we rely on Kubernetes - the market leading solution - to orchestrate
 
 ## BuildGrid and Build Minutes
 
-BuildGrid is Cloud 66's integrated Docker image builder. Whenever you build images from source code, or retag existing images, you make use of a metered resource called Build Minutes. All Cloud 66 accounts have a number of “free” Build Minutes per month.
+BuildGrid is Cloud 66's integrated container image builder. Whenever you build images from source code, or retag existing images, you make use of a metered resource called Build Minutes. All Cloud 66 accounts have a number of “free” Build Minutes per month.
 
 Learn more about Build Minutes, monthly allowances and overages in our [detailed guide](/:product/:version?/account/build-minutes).
 

@@ -1,0 +1,21 @@
+---
+title: Configuring database replication
+products: ['deploy']
+---
+
+## Overview
+
+Database replication involves configuring a master and replica database architecture, whereby the replica is an exact copy of the master at all times. This feature is supported for Postgres. Redis replication is supported via [Sentinel](https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/).
+
+## How to enable replication for your database
+
+1. Head to **Clusters** section of the dashboard.
+2. Select the cluster where your backup database is located.
+3. Click on **Databases** on the left sidebar.
+3. Select the database from the tab.
+4. Click on the **Enable Replication** button.
+5. Follow the prompts to configure the replication settings.
+
+<Callout type="info" title="Pool Size">
+    For replication to be available, the pool size must be at least 3 servers.
+</Callout>
