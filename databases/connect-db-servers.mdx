@@ -3,7 +3,7 @@ title: Connecting to database servers
 products: ['rails', 'deploy', 'node']
 ---
 
-<PerProduct includes={["deploy"]} excludeVersions={['3']}>
+<PerProduct includes={["rails", "deploy", "node"]} excludeVersions={['3']}>
 There are two ways to connect to your databases:
 
 * Accessing the server directly via SSH and then logging in using terminal commands
@@ -14,11 +14,11 @@ There are two ways to connect to your databases:
     You can connect your databases using any database client.
 </PerProduct>
 
-<PerProduct includes={["deploy"]}>
+<PerProduct includes={["rails", "deploy", "node"]}>
 If you need help connecting your application code to your database via a connection string, consult our [database management guide](/:product/:version?/databases/database-management).
 </PerProduct>
 
-<PerProduct includes={["deploy"]} excludeVersions={['3']}>
+<PerProduct includes={["rails", "deploy", "node"]} excludeVersions={['3']}>
 ## Via SSH
 
 You can connect directly into your database server and invoke a database console from there. To do that, please refer to our [SSH guide](/:product/:version?/servers/ssh-to-server) documentation.
@@ -34,7 +34,7 @@ Once the firewall is open you can use a database client from your local computer
 
 ## Finding database credentials
 
-<PerProduct includes={["deploy"]} excludeVersions={['3']}>
+<PerProduct includes={["rails", "deploy", "node"]} excludeVersions={['3']}>
 All of your database usernames and passwords as well as its public IP address can be found on the server pages in your Cloud 66 Dashboard. To find the credentials for a database:
 
 1. Log into your [Cloud 66 Dashboard](https://app.cloud66.com/)
