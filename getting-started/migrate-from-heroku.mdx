@@ -104,7 +104,7 @@ Don't forget to migrate your environment variables. You can dump them from Herok
 $ heroku config --app [app_name] --shell > heroku_env.txt
 ```
 
-This gives you a file with all your config vars in `KEY=value` format. You can then add these to your Cloud 66 application via the [environment variables](/:product/:version?/deployment/environment-variables) page on the dashboard, or using the [Cloud 66 toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt).
+This gives you a file with all your config vars in `KEY=value` format. You can then add these to your Cloud 66 application via the [environment variables](/:product/:version?/build-and-config/env-vars) page on the dashboard, or using the [Cloud 66 toolbelt](/:product/:version?/toolbelt/using-cloud66-toolbelt).
 
 <Callout type="warning" title="Review before copying">
 Don't blindly copy all Heroku env vars. Variables like `DATABASE_URL`, `REDIS_URL`, and add-on-specific credentials will be different on Cloud 66. Focus on your application-specific config (API keys, secrets, feature flags) and let Cloud 66 manage the infrastructure variables.
