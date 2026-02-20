@@ -43,7 +43,7 @@ load_balancer:
     vendor: digitalocean
     key_name: Default
   configuration:
-    httpchk: HEAD / HTTP/1.1\r\nHost:haproxy  #default value
+    httpchk: "HEAD / HTTP/1.1\r\nHost:haproxy"  #default value
     balance: roundrobin #default value
     errorfile_400: /etc/haproxy/errors/400.http
     errorfile_403: /etc/haproxy/errors/403.http
@@ -57,4 +57,4 @@ load_balancer:
 
 Load balancers periodically check the health of your servers by connecting to a URL endpoint. If the server responds with an HTTP 200 OK status, it is considered healthy. The `httpchk` setting allows you to specify which URL path should be checked.
 
-The default value is `HEAD / HTTP/1.1\r\nHost:haproxy` but you can customize it to any valid endpoint in your application that returns a 200 status when healthy.
+The default value is `httpchk: "HEAD / HTTP/1.1\r\nHost:haproxy"` but you can customize it to any valid endpoint in your application that returns a 200 status when healthy.
