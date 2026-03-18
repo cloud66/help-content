@@ -1,0 +1,45 @@
+---
+title: Node.js package managers for Rails/Rack apps
+description: "Cloud 66 automatically detects and runs the correct Node.js package manager for your Rails or Rack application based on the lockfile in your repository."
+lead: "Cloud 66 natively supports multiple Node.js package managers for classic (Rails/Rack) applications, automatically detecting the right one from your lockfile."
+products: ['rails']
+---
+
+## Overview
+
+Cloud 66 natively supports multiple Node.js package managers for Rails and Rack applications. Cloud 66 automatically detects and runs the correct package manager based on the lockfile in your repository — no additional configuration needed.
+
+## Supported package managers
+
+Cloud 66 detects the package manager by checking for a lockfile in the root of your repository. The following lockfiles are recognized:
+
+| Lockfile | Package manager |
+|---|---|
+| `yarn.lock` | Yarn (via Corepack) |
+| `bun.lock` / `bun.lockb` | Bun |
+| `pnpm-lock.yaml` | pnpm (via Corepack) |
+| `package-lock.json` | npm |
+
+<Callout type="info" title="Multiple lockfiles">
+If your repository contains multiple lockfiles (for example during a migration between package managers), Cloud 66 will use the first match in the priority order listed above. We recommend removing unused lockfiles to avoid confusion.
+</Callout>
+
+## Corepack support
+
+For new applications running **Node.js 19+**, Yarn and pnpm are managed through [Corepack](https://nodejs.org/api/corepack.html), the official Node.js tool for package manager version management. To take full advantage of this, add the standard `packageManager` field to your `package.json`:
+
+```json
+{
+  "packageManager": "yarn@4.1.0"
+}
+```
+
+Corepack will then use that exact version during deployment.
+
+<Callout type="info" title="Node version">
+You can control which version of Node.js is installed via the [manifest file](/:product/:version?/build-and-config/rails-node-version). Corepack support requires Node.js 19 or higher.
+</Callout>
+
+## Existing applications
+
+Existing applications continue to use Yarn installed via apt. If you would like automatic package manager detection enabled for your existing applications, please contact our [support team](mailto:support@cloud66.com).
