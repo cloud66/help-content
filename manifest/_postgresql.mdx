@@ -17,8 +17,6 @@ The following settings are available via the Manifest file :
 |`iam_instance_profile_name`|<Glyph icon="build" />|The name of the [IAM instance profile](/:product/:version?/build-and-config/advanced-cloud-configurations#using-iam-instance-profiles-with-your-servers) that should be used when provisioning this server.|AWS|
 |`instance_service_account_name`|<Glyph icon="build" />|The name of the [GCE Service Account](/:product/:version?/build-and-config/advanced-cloud-configurations#using-gce-service-accounts-with-cloud-66) that should be used when provisioning this server.|GCE|
 |`operating_system`|<Glyph icon="build" />|The version of Ubuntu to install on the server that hosts Postgres. Accepted values <OperatingSystemsWrapper showAll={true} humanReadable={false} />|All|
-|`postgis`|<Glyph icon="build" />|Specify whether to include [PostGIS](https://postgis.net/)|All|
-|`postgis / version`|<Glyph icon="build" />|Specify the version of PostGIS you want to install. Must be nested in `postgres` settings|All|
 |`root_disk_size`|<Glyph icon="build" />|Default size of root disk (in GB) for servers used by Postgres. Default value is `50`.|AWS, Azure, GCE|
 |`root_disk_type`|<Glyph icon="build" />|Disk type for servers used by Postgres, accepted values being `ssd` and `magnetic`. Default value is `ssd`.|AWS, GCE|
 | `tags` | <Glyph icon="build" /> | Append the listed tags to any servers created for this component. See our [tagging guide](/:product/:version?/servers/tagging-components) for more info on tag syntax and support. | AWS, Azure, DigitalOcean, Hetzner |
@@ -31,9 +29,8 @@ The following settings are available via the Manifest file :
 postgresql:
   configuration:
     iam_instance_profile_name: psql-perms
-    version: 9.3.4
+    version: 18
     encoding: ISO_8859_8
-    postgis: true
     root_disk_size: 100
     root_disk_type: ssd
 ```
@@ -41,10 +38,5 @@ postgresql:
 If you need help specifying multiple databases of the same type via your Manifest, please read our guide on [Database Groups](/:product/:version?/manifest/_database-groups).
 
 ## PostGIS
- 
-```yaml
-postgresql:
-  configuration:
-    postgis:
-      version: 2.1.1
-```
+
+PostGIS and pgvector are automatically installed and available on all Postgres servers running version 16 or later.

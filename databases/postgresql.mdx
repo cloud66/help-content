@@ -28,16 +28,16 @@ If you need to add custom users to a Postgres database group, follow [this guide
 
 When you initiate replication between two Postgres databases on Cloud 66, we setup [streaming replication](https://wiki.postgresql.org/wiki/Streaming_Replication) between the master and replica servers. Streaming replication is based on [log shipping](https://www.postgresql.org/docs/current/warm-standby/) between servers, which generally isn't possible between two servers running vastly different versions of Postgres.
 
-As such, we cannot establish replication between servers running different major release levels (e.g. 8.4 and 9.3). Though running replication between different minor release levels (e.g. 9.3 and 9.4) should work (because Postgres has a policy not to make changes to disk formats between minor releases), there are also cases where this won't work.
+As such, we cannot establish replication between servers running different major release levels (e.g. 16 and 18). Though running replication between different minor release levels (e.g. 18.0 and 18.1) should work (because Postgres has a policy not to make changes to disk formats between minor releases), there are also cases where this won't work.
 
-For example, if you setup replication between a master (on 9.3) and a replica (9.4), you may see this error on the replica server:
+For example, if you setup replication between a master (on 16) and a replica (18), you may see this error on the replica server:
 
 ```bash
 FATAL:  database files are incompatible with server
-DETAIL:  The data directory was initialized by Postgres version 9.3, which is not compatible with this version 9.4.x.
+DETAIL:  The data directory was initialized by Postgres version 16, which is not compatible with this version 18.x.
 ```
 
-In this case, you need to upgrade the data and libraries of the master server (9.3) with [pg_upgrade](https://www.postgresql.org/docs/9.4/static/pgupgrade/) before starting the replication.
+In this case, you need to upgrade the data and libraries of the master server (16) with [pg_upgrade](https://www.postgresql.org/docs/current/pgupgrade.html) before starting the replication.
 
 Remember that you can set the version of Postgres to install for your application by using a [manifest file](/:product/:version?/manifest/what-is-a-manifest-file), like so:
 
@@ -45,7 +45,7 @@ Remember that you can set the version of Postgres to install for your applicatio
 production:
     postgresql:
         configuration:
-            version: 9.3.6
+            version: 18
 ```
 
 
