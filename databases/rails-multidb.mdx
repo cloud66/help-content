@@ -94,20 +94,20 @@ You can further customise these databases using your [manifest](/:product/:versi
 
 You can use your app's `manifest.yml` file to further customise your databases - specifying different database versions within the same application, for example. This relies on Database Groups - we recommend reading our guide to Groups before customising your databases. 
 
-You can customise your databases by using (exactly) the same names in both configuration files. For example, if we revisit the example above with `animals` and `shapes`. If you wanted the `animals` database to use MySQL v5.7 and the `shapes` database to use MySQL v8.0 you would create a manifest file in `.cloud66/manifest.yml` that looked like this: 
+You can customise your databases by using (exactly) the same names in both configuration files. For example, if we revisit the example above with `animals` and `shapes`. If you wanted the `animals` database to use MySQL v8.0 and the `shapes` database to use MySQL v8.4 you would create a manifest file in `.cloud66/manifest.yml` that looked like this:
 
 ```yaml
 mysql:
   groups:
     animals:
       configuration:
-        version: 5.7
+        version: 8.0
     animals_replica:
       configuration:
-        version: 5.7
+        version: 8.0
     shapes:
       configuration:
-        version: 8.0
+        version: 8.4
 ```
 
 Any databases not explicitly mentioned in the manifest file will be ignored (and therefore use the default configurations).
