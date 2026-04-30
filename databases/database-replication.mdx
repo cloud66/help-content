@@ -6,6 +6,8 @@ title: Configuring database replication
 
 Database replication involves configuring a master and replica database architecture, whereby the replica is an exact copy of the master at all times. This feature is supported for MySQL, Postgres, Redis and MongoDB.
 
+For MySQL, Postgres and Redis you can also build a [cascading topology](#cascading-replication) where a replica streams from another replica rather than directly from the master.
+
 Database replication can be set up for a single application, between applications, or between database groups with various benefits:
 
 ### For a single application with one DB group
@@ -105,6 +107,54 @@ To enable replication via APN:
 
 You can enable replication via APN for existing replicas by following the same steps and making sure you check the box in step 5.
 
+## Cascading replication
+
+For **MySQL, Postgres and Redis** you can build a *cascading* replication topology — also called a chain — where a replica streams from another replica rather than directly from the primary. The simplest cascading chain has three servers: A &rarr; B &rarr; C, where B is both a replica of A and the source for C.
+
+<Callout type="info" title="Cascading is not supported for MongoDB">
+MongoDB replica sets manage replication internally and cannot be cascaded through the Cloud 66 Dashboard.
+</Callout>
+
+### Why cascading?
+
+- **Reduces load on the primary.** If you have many replicas, only one of them needs to stream directly from the primary; the others can stream from an intermediate.
+- **Geographic distribution.** Place an intermediate in each region so local replicas stream from it instead of repeatedly crossing regions.
+- **Tiered read replicas.** Group reporting or analytics replicas behind a dedicated intermediate so heavy queries don't compete with the primary's workload.
+
+### How to build a chain
+
+A cascading chain is built one hop at a time. To create A &rarr; B &rarr; C:
+
+1. Enable replication from A to B (the standard *Add Replica* or *Configure Replication* flow).
+2. Wait for the A &rarr; B replication to come up healthy.
+3. Enable replication on C, choosing **B** as the source database.
+
+When you enable replication on a server whose source is itself a replica, Cloud 66 automatically configures the chain — no extra setup is required on the intermediate server.
+
+You can also turn an existing flat primary into a cascading intermediate. Open the **Configure Replication** menu on a primary that already has its own downstream replicas and pick an upstream source: the existing replicas stay attached and the primary becomes a cascading intermediate.
+
+### Choosing a source database
+
+When you configure replication on a target server, the **Source Database** picker includes any eligible replica from another group as well as primaries. Selecting an existing replica as the source extends the chain through that server.
+
+### Limits
+
+- **Maximum chain depth: 16 hops.** Cloud 66 refuses to enable replication that would create a chain longer than 16 servers.
+- **No cycles.** A server cannot become a replica of one of its own downstream replicas.
+- **PostgreSQL 12 or later is required for cascading.** Older PostgreSQL versions are blocked at validation time. MySQL and Redis have no version restriction beyond what Cloud 66 already supports.
+
+### Promoting an intermediate replica
+
+When you promote a replica that has its own downstream replicas (for example B in A &rarr; B &rarr; C), the downstream subtree is preserved: C continues replicating from B without manual intervention. B is detached from its old upstream and reconfigured as an independent primary.
+
+### Disabling replication on a cascading intermediate
+
+Disabling replication on B in an A &rarr; B &rarr; C chain detaches B from A and reconfigures B as an independent primary. C continues replicating from B unchanged. To dismantle the whole chain, disable from the leaf upward (disable C first, then B).
+
+<Callout type="warning" title="Cannot import data into a replica">
+You cannot [import a backup](/:product/:version?/databases/attaching-multiple-databases#moving-data-between-database-groups) into a server that is currently a replica or a cascading intermediate — the imported data would either be overwritten by ongoing replication or fail outright due to read-only restrictions. Disable replication on the target server first, then import, then re-enable replication.
+</Callout>
+
 ## Disable database replication
 
 To disable replication between applications: 
@@ -113,6 +163,8 @@ To disable replication between applications:
 2. Click on **Data Sources** in the left-hand nav 
 3. Click on the replica database group in the sub-nav
 4. Select *Disable replication* and confirm to commence the disabling process.
+
+If you are disabling replication on a cascading intermediate, see [Disabling replication on a cascading intermediate](#disabling-replication-on-a-cascading-intermediate) above for the resulting topology.
 
 ## Re-synchronizing replica with master
 

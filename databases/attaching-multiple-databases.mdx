@@ -139,17 +139,23 @@ If you can't see the source database in the import list, ensure that you've set 
 For MySQL and Postgres databases, only text backups can be restored **between different applications**. Binary backups will only allow restoring within the same application. Bear in mind that text backups only contain the default <Hint caption="logical databases">i.e. the tables & data structures rather than the "physical" database server ([full definition](#logical-databases-vs-physical-databases) </Hint> for a database group.
 </Callout>
 
+<Callout type="warning" title="Cannot import into a replica or cascading intermediate">
+Import Database is refused on any server that is currently a replica — including a cascading intermediate. The import would either be silently overwritten by ongoing replication or fail outright due to read-only restrictions. Disable replication on the target server first, then import, then re-enable replication.
+</Callout>
+
 
 ## Replicating data between database groups
 
 You can set up replication between database groups of the **same type and compatible version**. You replicate between groups in the same application, or between applications. 
 
-Replication has the following rules:
+Replication between groups follows these rules:
 
-- A replication master in one group cannot be a replica of another group
-- A group with a single server can be the replica of a master from another group
+- A primary in one group **can** also be a replica of another group. This creates a [cascading replication chain](/:product/:version?/databases/database-replication#cascading-replication) — group A's primary streams to group B's primary, which in turn streams to group B's own replicas.
+- Cycles are not allowed: a server cannot end up replicating from one of its own downstream replicas.
+- The maximum chain depth is **16 hops**.
+- Cascading is supported for **MySQL, Postgres and Redis only**. MongoDB groups can be replicated but not cascaded.
 
-Essentially, as soon as a group has internal replication (between its own master and replicas) it can no longer be a replica of another group.
+When you scale up a group whose primary is itself a replica of another group, the new server is automatically added as a downstream replica of that primary, extending the chain.
 
 To set up replication *between* database groups:
 
