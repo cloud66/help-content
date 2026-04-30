@@ -163,13 +163,15 @@ When you configure replication on a target server, the **Source Database** picke
 - **No cycles.** A server cannot become a replica of one of its own downstream replicas.
 - **PostgreSQL 12 or later is required for cascading.** Older PostgreSQL versions are blocked at validation time. MySQL and Redis have no version restriction beyond what Cloud 66 already supports.
 
-### Promoting an intermediate replica
+### Stopping an intermediate from being a replica
 
-When you promote a replica that has its own downstream replicas (for example B in A &rarr; B &rarr; C), the downstream subtree is preserved: C continues replicating from B without manual intervention. B is detached from its old upstream and reconfigured as an independent primary.
+To take an intermediate out of a chain (for example B in A &rarr; B &rarr; C), [disable replication](#disable-database-replication) on it. B is detached from its upstream A and reconfigured as an independent primary. The downstream subtree is preserved — C continues replicating from B without any manual intervention.
 
-### Disabling replication on a cascading intermediate
+To dismantle a whole chain, work from the leaf upward: disable replication on C first, then B.
 
-Disabling replication on B in an A &rarr; B &rarr; C chain detaches B from A and reconfigures B as an independent primary. C continues replicating from B unchanged. To dismantle the whole chain, disable from the leaf upward (disable C first, then B).
+<Callout type="info" title="Not the same as `cx databases promote-replica`">
+You don't need the [`cx databases promote-replica`](/:product/:version?/toolbelt/databases-promote-replica) toolbelt command to stop an intermediate from being a replica — *Disable replication* in the Dashboard is enough, and it's chain-aware. `cx promote-replica` is a separate, destructive operation intended for in-group replicas; it doesn't apply here.
+</Callout>
 
 <Callout type="warning" title="Cannot import data into a replica">
 You cannot [import a backup](/:product/:version?/databases/attaching-multiple-databases#moving-data-between-database-groups) into a server that is currently a replica or a cascading intermediate — the imported data would either be overwritten by ongoing replication or fail outright due to read-only restrictions. Disable replication on the target server first, then import, then re-enable replication.
