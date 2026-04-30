@@ -6,6 +6,8 @@ title: Configuring database replication
 
 Database replication involves configuring a master and replica database architecture, whereby the replica is an exact copy of the master at all times. This feature is supported for MySQL, Postgres, Redis and MongoDB.
 
+For MySQL, Postgres and Redis you can also build a [cascading topology](#cascading-replication) where a replica streams from another replica rather than directly from the master.
+
 Database replication can be set up for a single application, between applications, or between database groups with various benefits:
 
 ### For a single application with one DB group
@@ -59,40 +61,60 @@ In the case that an environment variable contains multiple values, such as IP ad
 
 ## Enable database replication
 
-The process of enabling database replication varies slightly for a single application compared to replication between applications.
+There are two ways to set up replication on Cloud 66, and the choice has real consequences for what you can do later.
 
 <Callout type="warning" title="Enabling replication will disrupt live databases">
 Enabling database replication will disrupt the database serving your application during the replication configuration process. The disruption time depends entirely on your database type and size, and different databases may require a restart and/or a complete backup in order to warm-up the new server. This disruption will occur every time you scale your servers. 
 </Callout>
 
-### Single application
+### Recommended: replicate between database groups
 
-To enable replication for a single application, you need to scale up to create a replica:
+Create a new [database group](/:product/:version?/databases/attaching-multiple-databases) with one server and configure it as a replica of an existing group. The two groups can live in the same application or in different applications.
 
-1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard)
-2. Click on *Data Sources* in the left-hand nav 
-3. Click on the name of the database group you want to scale
-4. Click the *+ Add Replica* button
-5. Choose a size for the new server 
-6. Click Create Server
+This is the recommended approach for almost every use case, because it gives you:
 
-### Between database groups
+- **Enable and disable replication on demand** — replication is a relationship between two groups, not a structural property of one of them.
+- **Safe, reversible promotion via *Make Default*** — switching which group is the default just repoints your root environment variables (e.g. `MYSQL_ADDRESS`) at the new group. Nothing is destroyed and you can switch back at any time. See [setting a default group](/:product/:version?/databases/attaching-multiple-databases#understanding-default-database-groups).
+- **[Cascading chains](#cascading-replication)** — A &rarr; B &rarr; C topologies are built from between-group hops.
+- **Independent versions and configuration** — each group can run a different engine version (use a [manifest file](/:product/:version?/databases/attaching-multiple-databases#specifying-database-groups-via-manifest) to control name, version, and engine).
 
-Please see our [guide to database groups](/:product/:version?/databases/attaching-multiple-databases) for details on how this works.
+The full walkthrough — including the manifest snippet for naming and versioning a new group — lives in the [database groups guide](/:product/:version?/databases/attaching-multiple-databases#replicating-data-between-database-groups). The short version:
 
-### Between applications
+1. Open the application that will contain the replica from your [Dashboard](https://app.cloud66.com/dashboard).
+2. Click on **Data Sources** in the left-hand nav and add a new database group (or select an existing single-server group).
+3. Click the down arrow next to the database server and select **Configure Replication**.
+4. Choose the **source** database to replicate from and click *Ok*.
 
-To enable replication between applications, ensure that you have a secondary application deployed, and that its database server contains at least twice as much disk space as the size of your database backup. Then:
+### Legacy: scale a server group to add an in-group replica
 
-1. Open the application for the secondary application from your [Dashboard](https://app.cloud66.com/dashboard)
-2. Click on **Data Sources** in the left-hand nav 
-3. Click on the (intended) replica database group in the sub-nav
-4. Click the down arrow next to the target database server and select **Configure replication**
-5. Choose the **source** database to replicate from and click *Ok*
+When you click **+ Add Replica** on an existing database group, the new server joins that group as a replica of the group's primary. This was the only mechanism Cloud 66 offered before multiple database groups of the same type were supported, and it remains available — but it has trade-offs you should understand before choosing it.
+
+<Callout type="warning" title="In-group replicas come with hard limits">
+
+- **You cannot disable replication on an in-group replica** — replication is part of the group's structure, not a relationship you can switch off.
+- **Promoting an in-group replica is destructive and one-way.** It requires the [`cx databases promote-replica`](/:product/:version?/toolbelt/databases-promote-replica) toolbelt command, after which the existing primary **and any other replicas in the same group are no longer usable** and must be removed.
+- **You cannot make one in-group replica the "default"** — there's only one group, so the *Make Default* mechanism doesn't apply.
+
+If your goal is read scaling, an in-group replica is fine. If you're using replication for failover, migration, version upgrades, or anything you might want to reverse, prefer the between-groups approach above.
+
+</Callout>
+
+To add an in-group replica:
+
+1. Open the application from your [Dashboard](https://app.cloud66.com/dashboard).
+2. Click on **Data Sources** in the left-hand nav.
+3. Click on the name of the database group you want to scale.
+4. Click the *+ Add Replica* button.
+5. Choose a size for the new server.
+6. Click *Create Server*.
 
 ## Secure multi-cloud replication
 
 You can securely replicate data between databases hosted by different cloud providers over your [Application Private Network](https://help.cloud66.com/docs/security/using-application-private-networks). This allows you to stream data over the public internet without exposing it to malicious actors. 
+
+<Callout type="info" title="Between-group replication only">
+Secure multi-cloud replication via APN is only available for [between-group replication](#recommended-replicate-between-database-groups). It is not available for [in-group replicas](#legacy-scale-a-server-group-to-add-an-in-group-replica) created with *+ Add Replica*, because those replicas live alongside the primary in the same group and cloud.
+</Callout>
 
 To enable replication via APN:
 
@@ -105,6 +127,54 @@ To enable replication via APN:
 
 You can enable replication via APN for existing replicas by following the same steps and making sure you check the box in step 5.
 
+## Cascading replication
+
+For **MySQL, Postgres and Redis** you can build a *cascading* replication topology — also called a chain — where a replica streams from another replica rather than directly from the primary. The simplest cascading chain has three servers: A &rarr; B &rarr; C, where B is both a replica of A and the source for C.
+
+<Callout type="info" title="Cascading is not supported for MongoDB">
+MongoDB replica sets manage replication internally and cannot be cascaded through the Cloud 66 Dashboard.
+</Callout>
+
+### Why cascading?
+
+- **Reduces load on the primary.** If you have many replicas, only one of them needs to stream directly from the primary; the others can stream from an intermediate.
+- **Geographic distribution.** Place an intermediate in each region so local replicas stream from it instead of repeatedly crossing regions.
+- **Tiered read replicas.** Group reporting or analytics replicas behind a dedicated intermediate so heavy queries don't compete with the primary's workload.
+
+### How to build a chain
+
+A cascading chain is built one hop at a time. To create A &rarr; B &rarr; C:
+
+1. Enable replication from A to B (the standard *Add Replica* or *Configure Replication* flow).
+2. Wait for the A &rarr; B replication to come up healthy.
+3. Enable replication on C, choosing **B** as the source database.
+
+When you enable replication on a server whose source is itself a replica, Cloud 66 automatically configures the chain — no extra setup is required on the intermediate server.
+
+You can also turn an existing flat primary into a cascading intermediate. Open the **Configure Replication** menu on a primary that already has its own downstream replicas and pick an upstream source: the existing replicas stay attached and the primary becomes a cascading intermediate.
+
+### Choosing a source database
+
+When you configure replication on a target server, the **Source Database** picker includes any eligible replica from another group as well as primaries. Selecting an existing replica as the source extends the chain through that server.
+
+### Limits
+
+- **Maximum chain depth: 16 hops.** Cloud 66 refuses to enable replication that would create a chain longer than 16 servers.
+- **No cycles.** A server cannot become a replica of one of its own downstream replicas.
+- **PostgreSQL 12 or later is required for cascading.** Older PostgreSQL versions are blocked at validation time. MySQL and Redis have no version restriction beyond what Cloud 66 already supports.
+
+### Promoting an intermediate replica
+
+When you promote a replica that has its own downstream replicas (for example B in A &rarr; B &rarr; C), the downstream subtree is preserved: C continues replicating from B without manual intervention. B is detached from its old upstream and reconfigured as an independent primary.
+
+### Disabling replication on a cascading intermediate
+
+Disabling replication on B in an A &rarr; B &rarr; C chain detaches B from A and reconfigures B as an independent primary. C continues replicating from B unchanged. To dismantle the whole chain, disable from the leaf upward (disable C first, then B).
+
+<Callout type="warning" title="Cannot import data into a replica">
+You cannot [import a backup](/:product/:version?/databases/attaching-multiple-databases#moving-data-between-database-groups) into a server that is currently a replica or a cascading intermediate — the imported data would either be overwritten by ongoing replication or fail outright due to read-only restrictions. Disable replication on the target server first, then import, then re-enable replication.
+</Callout>
+
 ## Disable database replication
 
 To disable replication between applications: 
@@ -113,6 +183,8 @@ To disable replication between applications:
 2. Click on **Data Sources** in the left-hand nav 
 3. Click on the replica database group in the sub-nav
 4. Select *Disable replication* and confirm to commence the disabling process.
+
+If you are disabling replication on a cascading intermediate, see [Disabling replication on a cascading intermediate](#disabling-replication-on-a-cascading-intermediate) above for the resulting topology.
 
 ## Re-synchronizing replica with master
 

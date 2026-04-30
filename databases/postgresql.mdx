@@ -48,6 +48,15 @@ production:
             version: 18
 ```
 
+## Cascading replication for Postgres
+
+Cloud 66 supports [cascading replication](/:product/:version?/databases/database-replication#cascading-replication) (A &rarr; B &rarr; C chains) for Postgres. The intermediate server (B) is both a replica of the upstream primary and a streaming source for its downstream replicas.
+
+<Callout type="warning" title="Postgres 12 or later required">
+Cascading replication is only supported on **Postgres 12 and above**. On older versions Cloud 66 will refuse to enable a cascading topology at validation time. The flat primary/replica setup remains supported on all Postgres versions Cloud 66 still supports.
+</Callout>
+
+Postgres has supported cascading natively since version 9.1; the version floor here reflects the configuration mechanics Cloud 66 uses (`postgresql.auto.conf` + `standby.signal`) rather than a Postgres limitation.
 
 ## Changing the Postgres data directory
 
