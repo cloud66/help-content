@@ -24,6 +24,8 @@ The following settings are available via the Manifest file :
 
 ### Example YAML for MongoDB
 
+For the database group named `default` (the group Cloud 66 creates when you first add MongoDB to an application):
+
 ```yaml
 mongodb:
   configuration:
@@ -31,5 +33,21 @@ mongodb:
     root_disk_size: 100
     root_disk_type: ssd
 ```
+
+For any other database group, nest the configuration under the `groups:` block and refer to the group by its Dashboard name:
+
+```yaml
+mongodb:
+  groups:
+    <your-group-name>:
+      configuration:
+        version: 2.4.8
+        root_disk_size: 100
+        root_disk_type: ssd
+```
+
+<Callout type="info" title="The top-level form is not a global default">
+The top-level `mongodb: configuration:` form applies **only** to the group named `default` — it is not a fallback for groups that don't have an explicit configuration. Each group must be configured under its own name in the `groups:` block.
+</Callout>
 
 If you need help specifying multiple databases of the same type via your Manifest, please read our guide on [Database Groups](/:product/:version?/manifest/_database-groups).

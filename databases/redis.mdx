@@ -14,3 +14,9 @@ To add a Redis instance to your application:
 5. A drawer will open from the left, with configuration options for the server.
 6. Click *Add Server* to start the process
 
+## Redis replication
+
+Cloud 66 supports both standard primary/replica and [cascading replication](/:product/:version?/databases/database-replication#cascading-replication) (A &rarr; B &rarr; C chains) for Redis. Redis chains its replication streams natively via `REPLICAOF`, so an intermediate replica forwards its upstream's stream to its own downstream replicas without any additional configuration.
+
+For setup, limits, and the behaviour of promote/disable on a chain, see the [database replication guide](/:product/:version?/databases/database-replication#cascading-replication).
+

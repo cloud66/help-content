@@ -24,6 +24,34 @@ As such, if you delete a user from any logical Postgres database managed by Clou
 
 If you need to add custom users to a Postgres database group, follow [this guide](/:product/:version?/databases/adding-database#adding-users-to-logical-databases) on the subject. 
 
+## Specifying the Postgres version
+
+You can pin the version of Postgres to install for your application using a [manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
+
+For the database group named **`default`** (the group Cloud 66 creates when you first add Postgres to an application):
+
+```yaml
+production:
+    postgresql:
+        configuration:
+            version: 18
+```
+
+For any other database group, use the `groups:` block and refer to the group by name:
+
+```yaml
+production:
+    postgresql:
+        groups:
+            <your-group-name>:
+                configuration:
+                    version: 18
+```
+
+<Callout type="info" title="The top-level form is not a global default">
+The top-level `postgresql: configuration:` form applies **only** to the group named `default` — it is not a fallback for groups that don't have an explicit configuration. Each group must be configured under its own name in the `groups:` block.
+</Callout>
+
 ## Replicating data between Postgres versions
 
 When you initiate replication between two Postgres databases on Cloud 66, we setup [streaming replication](https://wiki.postgresql.org/wiki/Streaming_Replication) between the master and replica servers. Streaming replication is based on [log shipping](https://www.postgresql.org/docs/current/warm-standby/) between servers, which generally isn't possible between two servers running vastly different versions of Postgres.
@@ -39,15 +67,15 @@ DETAIL:  The data directory was initialized by Postgres version 16, which is not
 
 In this case, you need to upgrade the data and libraries of the master server (16) with [pg_upgrade](https://www.postgresql.org/docs/current/pgupgrade.html) before starting the replication.
 
-Remember that you can set the version of Postgres to install for your application by using a [manifest file](/:product/:version?/manifest/what-is-a-manifest-file), like so:
+## Cascading replication for Postgres
 
-```yaml
-production:
-    postgresql:
-        configuration:
-            version: 18
-```
+Cloud 66 supports [cascading replication](/:product/:version?/databases/database-replication#cascading-replication) (A &rarr; B &rarr; C chains) for Postgres. The intermediate server (B) is both a replica of the upstream primary and a streaming source for its downstream replicas.
 
+<Callout type="warning" title="Postgres 12 or later required">
+Cascading replication is only supported on **Postgres 12 and above**. On older versions Cloud 66 will refuse to enable a cascading topology at validation time. The flat primary/replica setup remains supported on all Postgres versions Cloud 66 still supports.
+</Callout>
+
+Postgres has supported cascading natively since version 9.1; the version floor here reflects the configuration mechanics Cloud 66 uses (`postgresql.auto.conf` + `standby.signal`) rather than a Postgres limitation.
 
 ## Changing the Postgres data directory
 

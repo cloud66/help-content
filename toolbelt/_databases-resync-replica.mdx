@@ -5,9 +5,13 @@ alias: database resync-replica
 products: ['rails', 'deploy']
 ---
 
-Re-syncs the specified replica database server with its master database server. From time-to-time your replica database may go out of sync with its master. This action attempts to re-sync your specified replica server. This can happen depending on many factors (such as DB size, frequency of change, networking between servers etc).
+Re-syncs the specified replica database server with its source. From time-to-time your replica database may go out of sync with its source. This action attempts to re-sync your specified replica server. This can happen depending on many factors (such as DB size, frequency of change, networking between servers etc).
 
 The server provided must have already been configured as a replication replica via the Cloud 66 UI. Providing the database type is optional and is only necessary for shared servers where we can’t automatically determine the target database type.
+
+<Callout type="info" title="Resync target in cascading chains">
+For replicas in a [cascading chain](/:product/:version?/databases/database-replication#cascading-replication), resync runs against the **immediate upstream** — not the root primary. For example, in A &rarr; B &rarr; C, resyncing C streams a fresh snapshot from B.
+</Callout>
 
 ```shell
 $ cx databases resync-replica --stack <application name> --dbtype <database type> <replica server name>
