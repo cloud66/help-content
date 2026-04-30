@@ -17,7 +17,9 @@ To add a MySQL group (instance) to your application:
 
 ## Choosing a MySQL version
 
-Cloud 66 supports MySQL **5.7**, **8.0**, and **8.4**. You can pin the version for your application using a [manifest file](/:product/:version?/manifest/what-is-a-manifest-file):
+Cloud 66 supports MySQL **5.7**, **8.0**, and **8.4**. You can pin the version for your application using a [manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
+
+For the database group named **`default`** (the group Cloud 66 creates when you first add MySQL to an application):
 
 ```yaml
 production:
@@ -25,6 +27,21 @@ production:
         configuration:
             version: "8.4"
 ```
+
+For any other database group, use the `groups:` block and refer to the group by name:
+
+```yaml
+production:
+    mysql:
+        groups:
+            <your-group-name>:
+                configuration:
+                    version: "8.4"
+```
+
+<Callout type="info" title="The top-level form is not a global default">
+The top-level `mysql: configuration:` form applies **only** to the group named `default` — it is not a fallback for groups that don't have an explicit configuration. Each group must be configured under its own name in the `groups:` block.
+</Callout>
 
 If you don't specify a version, Cloud 66 uses the most recent version it supports.
 
