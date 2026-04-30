@@ -44,6 +44,8 @@ To add a new database group to an existing application using the Dashboard:
 
 We will now build your new database server and alert you when it is ready.
 
+To control the **name, engine version, or other configuration** of the new group, see [Specifying database groups via manifest](#specifying-database-groups-via-manifest) below.
+
 ## Specifying database groups via manifest
 
 If you need more control over the configuration of your database groups (for example which version of a database engine to use) you can specify the database groups for an application using your Manifest file. 
@@ -113,6 +115,10 @@ To set a new default group in your Dashboard:
 3. Click the **Make Default** button at the top of the main panel 
 
 **We will not apply any changes in env vars to your application immediately.** They will only be applied when you next redeploy your stack (we recommend you do this immediately or as soon as possible).
+
+<Callout type="info" title="Make Default is the safe way to promote a replica">
+If your replica lives in its own database group, *Make Default* is the recommended way to promote it: your environment variables repoint at the new group on next deploy, the old primary stays untouched, and you can switch back at any time. This is the modern alternative to the [`cx databases promote-replica`](/:product/:version?/toolbelt/databases-promote-replica) toolbelt command — that command is one-way and destructive, and only applies to in-group replicas.
+</Callout>
 
 <PerProduct includes={["deploy"]}>
 This pattern also applies to the **service networking addresses** of your Cloud 66 components. For more details please read our [full guide on the subject](/:product/:version?/databases/database-management#service-names-for-database-groups).

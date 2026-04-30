@@ -7,6 +7,10 @@ products: ['rails', 'deploy']
 
 Promotes the specified replica database server to a standalone primary. The replica will be reconfigured as the new primary. Providing the database type is optional and is only necessary for shared servers where we can't automatically determine the target database type.
 
+<Callout type="info" title="Prefer Make Default for between-group replicas">
+This command is for **in-group replicas** (created with *+ Add Replica* on an existing database group). If your replica lives in its own database group instead, use the [Make Default](/:product/:version?/databases/attaching-multiple-databases#understanding-default-database-groups) button on the Dashboard — it repoints your environment variables at the new group on next deploy, leaves the old primary untouched, and is fully reversible. See [Enable database replication](/:product/:version?/databases/database-replication#enable-database-replication) for the trade-offs between the two approaches.
+</Callout>
+
 <Callout type="warning" title="Could result in downtime">
 This action could result in application downtime, it is advisable to choose a low traffic time to perform this action, and to place your application in maintenance mode.
 </Callout>
