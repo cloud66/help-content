@@ -112,6 +112,10 @@ To add an in-group replica:
 
 You can securely replicate data between databases hosted by different cloud providers over your [Application Private Network](https://help.cloud66.com/docs/security/using-application-private-networks). This allows you to stream data over the public internet without exposing it to malicious actors. 
 
+<Callout type="info" title="Between-group replication only">
+Secure multi-cloud replication via APN is only available for [between-group replication](#recommended-replicate-between-database-groups). It is not available for [in-group replicas](#legacy-scale-a-server-group-to-add-an-in-group-replica) created with *+ Add Replica*, because those replicas live alongside the primary in the same group and cloud.
+</Callout>
+
 To enable replication via APN:
 
 1. Log into your Dashboard an open the app that contains (or will contain) the replica DB (i.e. the target of the replication)
