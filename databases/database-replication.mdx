@@ -92,7 +92,7 @@ When you click **+ Add Replica** on an existing database group, the new server j
 <Callout type="warning" title="In-group replicas come with hard limits">
 
 - **You cannot disable replication on an in-group replica** — replication is part of the group's structure, not a relationship you can switch off.
-- **Promoting an in-group replica is destructive and one-way.** It requires the [`cx databases promote-replica`](/:product/:version?/toolbelt/databases-promote-replica) toolbelt command, after which the existing primary **and any other replicas in the same group are no longer usable** and must be removed.
+- **Promoting an in-group replica is destructive and one-way.** It requires the [`cx databases promote-replica`](/:product/:version?/toolbelt/_databases-promote-replica) toolbelt command, after which the existing primary **and any other replicas in the same group are no longer usable** and must be removed.
 - **You cannot make one in-group replica the "default"** — there's only one group, so the *Make Default* mechanism doesn't apply.
 
 If your goal is read scaling, an in-group replica is fine. If you're using replication for failover, migration, version upgrades, or anything you might want to reverse, prefer the between-groups approach above.
@@ -170,7 +170,7 @@ To take an intermediate out of a chain (for example B in A &rarr; B &rarr; C), [
 To dismantle a whole chain, work from the leaf upward: disable replication on C first, then B.
 
 <Callout type="info" title="Not the same as `cx databases promote-replica`">
-You don't need the [`cx databases promote-replica`](/:product/:version?/toolbelt/databases-promote-replica) toolbelt command to stop an intermediate from being a replica — *Disable replication* in the Dashboard is enough, and it's chain-aware. `cx promote-replica` is a separate, destructive operation intended for in-group replicas; it doesn't apply here.
+You don't need the [`cx databases promote-replica`](/:product/:version?/toolbelt/_databases-promote-replica) toolbelt command to stop an intermediate from being a replica — *Disable replication* in the Dashboard is enough, and it's chain-aware. `cx promote-replica` is a separate, destructive operation intended for in-group replicas; it doesn't apply here.
 </Callout>
 
 <Callout type="warning" title="Cannot import data into a replica">

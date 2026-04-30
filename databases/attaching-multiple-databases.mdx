@@ -117,7 +117,7 @@ To set a new default group in your Dashboard:
 **We will not apply any changes in env vars to your application immediately.** They will only be applied when you next redeploy your stack (we recommend you do this immediately or as soon as possible).
 
 <Callout type="info" title="Make Default is the safe way to promote a replica">
-If your replica lives in its own database group, *Make Default* is the recommended way to promote it: your environment variables repoint at the new group on next deploy, the old primary stays untouched, and you can switch back at any time. This is the modern alternative to the [`cx databases promote-replica`](/:product/:version?/toolbelt/databases-promote-replica) toolbelt command — that command is one-way and destructive, and only applies to in-group replicas.
+If your replica lives in its own database group, *Make Default* is the recommended way to promote it: your environment variables repoint at the new group on next deploy, the old primary stays untouched, and you can switch back at any time. This is the modern alternative to the [`cx databases promote-replica`](/:product/:version?/toolbelt/_databases-promote-replica) toolbelt command — that command is one-way and destructive, and only applies to in-group replicas.
 </Callout>
 
 <PerProduct includes={["deploy"]}>
