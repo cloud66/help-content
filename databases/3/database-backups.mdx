@@ -21,6 +21,12 @@ To add backups to a database:
 
 If your database has replication enabled, you can choose to take the backup from the primary or replica of the database.
 
+## Backup format
+
+Unlike on CSv2/Maestro, **backup format is not customer-configurable in CSv3**. The format is determined by the backup system that your database engine uses — for example, CNPG-managed Postgres clusters use Barman, which produces its own backup file layout. There is no equivalent of the `--backup-type binary|text` flag from the CSv2 toolbelt; Cloud 66 picks the format that the underlying system supports natively, and restore is always handled through the Dashboard or the v3 toolbelt rather than by reading the raw backup files.
+
+If you need a portable, engine-readable dump (for example, to migrate to a third-party Postgres host), use your database engine's standard export tooling (`pg_dump`, `mysqldump`, etc.) against the live database rather than relying on the managed backup files.
+
 ## Restoring database backups
 
 Restoring backups involves creating a new database from the backup. Here are the steps:
