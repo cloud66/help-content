@@ -50,7 +50,7 @@ Cloud 66 will now attempt to add a standard certificate based on your configurat
 **Cloudflare** users need to [add a Page Rule](/:product/:version?/security/troubleshooting-ssl#configuring-let-s-encrypt-with-cloudflare) to their Cloudflare configuration in order for the process described above to work.  If you run into any other problems, consult our [troubleshooting doc](/:product/:version?/security/troubleshooting-ssl).
 
 <Callout type="warning" title="Certificates require updates every 3 months">
-Let's Encrypt needs to be updated every 3 months, so you should keep this configuration in place to allow for automatic renewal. 
+Let's Encrypt needs to be updated every 3 months, so you should keep this configuration in place to allow for automatic renewal. For details on when auto-renewal runs and how to force a renewal manually, see [SSL auto-renewal](/:product/:version?/security/ssl-auto-renewal).
 </Callout>
 
 #### How standard certificates work
@@ -184,7 +184,7 @@ To set up your application:
 The challenge should now succeed. If it does not, read the rest of this guide. 
 
 <Callout type="warning" title="Let's Encrypt certs require updates every 3 months">
-Let's Encrypt needs to be updated every 3 months, so you should keep all configurations in place to allow for automatic renewal. 
+Let's Encrypt needs to be updated every 3 months, so you should keep all configurations in place to allow for automatic renewal. See [SSL auto-renewal](/:product/:version?/security/ssl-auto-renewal) for the renewal schedule and force-renewal procedure.
 </Callout>
 
 
