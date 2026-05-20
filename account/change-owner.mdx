@@ -4,26 +4,55 @@ title: Changing the account owner
 
 ## Overview
 
-Every Cloud 66 account has a single **owner** — the user with maximum permissions on every application in the account ([more on roles](/:product/:version?/account/team-accounts#user-roles-and-permissions)). The owner role can be transferred to another user, but the transfer is **not self-serve** from the Dashboard: it requires a request to Cloud 66 support.
+Every Cloud 66 account has a single **owner** — the user with maximum permissions on every application in the account ([more on roles](/:product/:version?/account/team-accounts#user-roles-and-permissions)).
 
-This is by design — ownership transfer affects billing responsibility and account control, so we ask for explicit confirmation from the current owner before reassigning the role.
+There is **no "transfer owner" button** in the Dashboard, and no single one-click action that reassigns ownership. Instead, depending on what you're actually trying to achieve, there are three different approaches. Work out which of the situations below matches yours, then follow the relevant route.
 
-## How to request a transfer
+Whichever approach fits, **the current account owner must confirm the change in writing** (a reply on your support thread is enough). The request usually comes from the person who will become the new owner, so we need the current owner to authorize it — this is a privilege change, so the confirmation is required even for friendly, internal handovers.
 
-1. The **current owner** opens a support request — either by [emailing support](mailto:support@cloud66.com) or by using the in-app help widget from the current owner's account.
-2. Include the following in the request:
-   - The Cloud 66 account name (or organization ID)
-   - The email address of the user who should become the new owner
-   - Written confirmation that you (the current owner) are authorizing the transfer
-3. Cloud 66 support will verify the request from the current owner's address and reassign the owner role.
+## Option 1: Move the applications to another account
 
-The new owner must already have a Cloud 66 user account and be a member of the team. If they aren't, [add them as a team member](/:product/:version?/account/team-accounts) first, then request the transfer.
+If the new owner already has — or can create — their own Cloud 66 account, you can transfer your applications across to it. This is a **self-service** flow you can run yourself, subject to some account and application criteria (for example, both accounts must have access to the same cloud provider account that hosts the applications). See [Transferring application ownership](/:product/:version?/account/application-transfer) for the full requirements and step-by-step procedure.
 
-<Callout type="info" title="What if the current owner is unavailable?">
-If the current owner has left the company or otherwise cannot make the request themselves, contact support and explain the situation. We will work with you to verify your authority over the account (typically through the registered billing contact or other organizational records) before processing the transfer. This takes longer than a standard transfer.
+Each application is transferred individually, so this route is more involved if you have many. Once the transfers are complete, the new account operates the workloads and the original account can be closed if it's no longer needed.
+
+This is the right choice when the new owner should have their **own distinct account and identity**.
+
+## Option 2: Rename the account's email address
+
+If the new owner doesn't yet use Cloud 66, support can change the email address on your existing account to theirs. The account and all of its applications stay exactly as they are — only the login and contact identity changes.
+
+This is usually the cleanest route, but it only works if **both** of the following are true:
+
+- The new email address does **not** already have its own applications on Cloud 66, and
+- The new email address is **not** already a member of another Cloud 66 organization.
+
+If the new owner already has their own Cloud 66 setup under that email, a rename would collide with it — use Option 1 instead.
+
+## Option 3: Route the account's email to the new owner with a "+" alias
+
+If the new owner mainly needs the account's notifications and invoices to reach their inbox (rather than a brand-new distinct identity), support can relabel the account's email using a "+" alias — for example `newowner+cloud66@example.com` — so mail routes to them while the account itself stays intact.
+
+This only works if the new owner's mail provider supports "+" sub-addressing. Gmail, Fastmail, and Microsoft 365 do; some corporate mail systems don't.
+
+<Callout type="warning" title="Don't use + aliases to create extra free accounts">
+Using "+" sub-addressing to register multiple Cloud 66 accounts under variations of the same email address is a breach of our Terms of Service and may result in account suspension without warning. This approach is only for keeping a single account's mail flowing to the right person — not for creating additional accounts.
 </Callout>
+
+## How to request the change
+
+For **Option 1**, you can run the [application transfer](/:product/:version?/account/application-transfer) yourself.
+
+For **Option 2 or 3**:
+
+1. The prospective new owner (or the current owner) contacts [support](mailto:support@cloud66.com).
+2. Tell us which of the situations above matches yours, along with the email address involved.
+3. The **current owner** confirms the change in writing on the same thread.
+4. Support makes the change and confirms once it's done.
+
+If none of the three options fit cleanly — for example, the new owner needs a separate clean identity but already has applications under the target email — contact support anyway and we'll work through the trade-offs with you.
 
 ## Related
 
-- [Managing teams and organizations](/:product/:version?/account/team-accounts) — adding team members and setting roles
-- [Service Accounts](/:product/:version?/account/service-accounts) — for API access; not a substitute for user ownership
+- [Transferring application ownership](/:product/:version?/account/application-transfer) — moving individual applications between accounts (Option 1)
+- [Managing teams and organizations](/:product/:version?/account/team-accounts) — roles and permissions
