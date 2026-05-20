@@ -6,52 +6,43 @@ title: Changing the account owner
 
 Every Cloud 66 account has a single **owner** — the user with maximum permissions on every application in the account ([more on roles](/:product/:version?/account/team-accounts#user-roles-and-permissions)).
 
-There is **no "transfer owner" button** in the Dashboard, and no single one-click action that reassigns ownership. Instead, depending on what you're trying to achieve, there are three approaches. The first two simply change the email and login identity on the existing account and are the simplest; the third — transferring your applications to a different account — is far more involved and is best kept as a last resort. Work through them in order and use the first one that fits.
+There's no dedicated "transfer owner" button in the Dashboard, but you can achieve the same result in one of three ways. The first two simply change the email and login identity on the existing account and take a moment to do yourself; the third moves your applications to a separate account and is mainly useful when the new owner wants a completely separate account of their own. Work through them in order and use the first one that fits.
 
-In every case, **the change is carried out by the current account owner** — either directly (in the case of an application transfer) or by asking our support team. A prospective new owner can't initiate the change themselves: because account ownership is a privileged position, the action has to be taken by whoever currently holds it. If you're not the current owner, ask them to make the request.
+In every case the change is made by the **current account owner**, and there's no support ticket required for the email-based options. A prospective new owner can't initiate the change themselves, since it's tied to whoever currently controls the account — so if you're not the current owner, ask them to make the change.
 
 ## Option 1: Rename the account's email address
 
-If the new owner doesn't yet have their own Cloud 66 presence, support can change the email address on the existing account to theirs. The account and all of its applications stay exactly as they are — only the login and contact identity changes. This is usually the simplest path and the one we'd suggest first, when it fits.
+If the email the new owner wants to use isn't already registered with Cloud 66, the current owner can simply change the account's email address to it under *Account Settings* (click your avatar, top-right → *Account Settings*). The account and all of its applications stay exactly as they are — only the login and contact identity changes. This is the simplest option, so try it first.
 
-It only works if **both** of the following are true:
+The only requirement is that the new email address isn't **already in use by another Cloud 66 account** — each account needs its own unique email address. This restriction exists purely to stop a single person quietly running several free accounts; for a genuine ownership handover it's not a problem. If the new owner's preferred email is already registered with Cloud 66, use Option 2 instead.
 
-- The new email address does **not** already have its own applications on Cloud 66, and
-- The new email address is **not** already a member of another Cloud 66 organization.
+## Option 2: Use another email under your control
 
-If the intended new owner already has Cloud 66 history under that email (their own apps, or membership of other organizations), a rename would either collide with it or risk losing that history — use Option 2 instead.
+If the new owner's main email is already registered with Cloud 66 (so Option 1 won't work), use a **different email address they control** instead. Any address that reaches them works — and the current owner changes the account's email to it under *Account Settings*, exactly as in Option 1.
 
-## Option 2: Route the account's email to the new owner with a "+" alias
+If they don't have a spare mailbox to hand, there's a handy trick: most mail providers support "+" sub-addressing, so an address like `newowner+evovia@example.com` still lands in the `newowner@example.com` inbox while counting as a distinct address on Cloud 66. Gmail, Fastmail, and Microsoft 365 support this; some corporate mail systems don't.
 
-If the new owner already has Cloud 66 history under their email (so Option 1 doesn't fit), support can relabel the account's email using a "+" alias — for example `newowner+evovia@example.com` — so mail still routes to their main inbox while the account itself stays intact. Ownership stays where it is; the new owner logs into the owner account only when an ownership-level action is needed, and uses their normal account for everything else.
-
-This only works if the new owner's mail provider supports "+" sub-addressing. Gmail, Fastmail, and Microsoft 365 do; some corporate mail systems don't.
-
-<Callout type="warning" title="Don't use + aliases to create extra free accounts">
-Using "+" sub-addressing to register multiple Cloud 66 accounts under variations of the same email address is a breach of our Terms of Service and may result in account suspension without warning. This approach is only for keeping a single account's mail flowing to the right person — not for creating additional accounts.
+<Callout type="info" title="One account per email address">
+Each Cloud 66 account needs its own unique email address. This is only to prevent one person running multiple free accounts under variations of the same address — using a separate or "+" address for a genuine ownership change is completely fine.
 </Callout>
 
 ## Option 3: Transfer the applications to another account
 
-This is the last-resort option: reach for it only when neither of the email-based approaches above works for your situation — for example, when the new owner genuinely needs a separate account and identity of their own. The applications are transferred one by one from the current account to the new owner's account. It's a **self-service** flow; see [Transferring application ownership](/:product/:version?/account/application-transfer) for the requirements and steps.
+If the new owner would rather have a completely separate account of their own, you can transfer your applications across to it instead, one at a time. This is a self-service flow — see [Transferring application ownership](/:product/:version?/account/application-transfer) for the requirements and steps.
 
-It's worth understanding why we keep this as a last resort. Moving applications between accounts touches a lot of moving parts — billing, DNS and failover groups, backups, server agents, and cloud-credential mappings — and carries restrictions (for example, the target account must have access to the same cloud credentials used by the existing servers, otherwise later operations such as load balancer changes can fail). None of that makes it unsafe, but it's enough extra complexity that the email-based options are almost always the better choice when they're available.
+It involves a few more steps than the email options, because moving applications between accounts also moves things like billing, DNS and failover groups, backups, server agents, and cloud-credential mappings (for example, the destination account needs access to the same cloud credentials as the existing servers). It's a well-trodden, safe process — just a little more hands-on — so it's usually worth trying the email options first.
 
 ## How to make the change
 
-These actions are always taken by the **current account owner**.
+All of these are done by the **current account owner**:
 
-For **Option 1 or 2**:
+- **Options 1 and 2** — change the account's email address under *Account Settings* (click your avatar, top-right → *Account Settings*).
+- **Option 3** — run the [application transfer](/:product/:version?/account/application-transfer) from the Dashboard.
 
-1. The **current owner** contacts [support](mailto:support@cloud66.com) from the email address on the account.
-2. Tell us which approach fits your situation, along with the email address involved.
-3. Support makes the change and confirms once it's done.
-
-For **Option 3**, the current owner runs the [application transfer](/:product/:version?/account/application-transfer) from the Dashboard.
-
-If you're not the current owner, ask them to start the process — support can only act on an ownership change at the current owner's request. If you're not sure which approach fits, contact support and we'll help you choose.
+If you're not the current owner, ask them to make the change. And if you're unsure which option fits, or you'd like us to handle it for you, [contact support](mailto:support@cloud66.com) and we'll help.
 
 ## Related
 
 - [Transferring application ownership](/:product/:version?/account/application-transfer) — moving individual applications between accounts (Option 3)
+- [Manage your account](/:product/:version?/account/account-management) — changing your account email and other settings
 - [Managing teams and organizations](/:product/:version?/account/team-accounts) — roles and permissions
