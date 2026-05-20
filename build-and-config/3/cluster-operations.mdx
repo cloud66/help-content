@@ -1,0 +1,155 @@
+---
+title: CSv3 cluster operations
+products: ['deploy']
+---
+
+## Overview
+
+This guide covers four cluster-level operations on a Cloud 66 Skycap v3 (CSv3) K3s cluster:
+
+- [Adding a node](#adding-a-node) — joining a fresh server to an existing cluster
+- [Resizing the cluster](#resizing-the-cluster) — increasing or decreasing the node count of a server pool
+- [Cordoning a node](#cordoning-a-node) — marking a node unschedulable while keeping running pods in place
+- [Draining a node](#draining-a-node) — evicting workloads from a node before removal
+
+<Callout type="info" title="All four operations are Dashboard-only">
+At present, CSv3 node management is exposed exclusively through the Cloud 66 Dashboard. There is no `cx` CLI command and no public REST API endpoint for add / resize / cordon / drain. If you need to script around them, you can still apply `kubectl cordon` / `kubectl drain` directly against your cluster using the kubeconfig you can download from the Dashboard, but the Cloud 66-side bookkeeping (timeline operations, scale-down deletion) only happens when triggered from the Dashboard.
+</Callout>
+
+All four operations are **asynchronous**. Triggering one creates a timeline operation that you can watch — they don't block the Dashboard.
+
+## Adding a node
+
+Adding a node means provisioning a new server in your cloud provider and joining it to the existing K3s cluster — either as an additional **manager** (HA control-plane node) or as a **worker** (running your application workloads).
+
+### How to add a node
+
+The exact navigation depends on whether you're adding a manager or a worker:
+
+- **Add a worker**: open your application in the Dashboard → cluster page → *Workers* tab → select the relevant server pool → click *Add servers* and set the new pool size.
+- **Add a manager (HA cluster)**: cluster page → *Scale up* on the cluster overview.
+
+### What Cloud 66 does behind the scenes
+
+1. Validates that no other scale operation is currently in flight on the same pool, and that the new size is compatible with any database replication requirements.
+2. Allocates fresh server records named `c66-<uid>-...` (or `c66-<uid>-mngr-...` for managers) and queues a `Scale up` timeline operation.
+3. Provisions the server in your cloud provider.
+4. Installs K3s on the new server via the upstream `get.k3s.io` installer.
+5. Fetches the join token from one of your existing managers — `server_join_token` for new managers, `agent_join_token` for new workers — and uses it to join the new node to the cluster.
+6. Uploads the K3s configuration to the new node.
+
+### Common failures
+
+If add-node fails, the timeline operation will show one of these errors:
+
+| Error message | What it means |
+|---------------|---------------|
+| `Cloud 66 cannot connect to at least one of your stack servers (with sudo permissions), deployment aborted, unable to continue` | SSH to one of your existing servers (where we need to fetch the join token) failed. Most commonly a firewall change, key rotation, or a server already in a bad state. |
+| `Cloud 66 cannot create all of your required servers` | The cloud provider rejected the server creation call. Quota, region availability, or credential problems. |
+| `Cannot fetch agent_join_token from the server (file not present)` or `agent_join_token on the server is empty` | The existing manager isn't running K3s correctly, so the token file is missing or empty. The cluster itself is in a degraded state — adding a node is not the fix; investigate the manager first. |
+| `Unable to create any servers in your cloud` | Every server allocation attempt failed at the cloud provider level. |
+| `We have created your servers, however there was an issue installing server components.` | Servers came up, but the post-install scaffolding step failed. The full underlying error is appended to this message. |
+
+<Callout type="warning" title="Failed scale-ups do not retry automatically">
+The provision job does not auto-retry. If a scale-up fails, the partially-created server records may need to be cleaned up before you try again. Open a support ticket if the timeline shows a half-finished scale-up.
+</Callout>
+
+## Resizing the cluster
+
+In CSv3, **"resize" means changing the number of nodes in a server pool**, not changing the size (CPU/RAM) of existing nodes.
+
+### Scale up
+
+Same procedure and code path as [Adding a node](#adding-a-node).
+
+### Scale down
+
+Cluster page → *Workers* tab → select the pool → reduce the server count, or remove individual servers from the pool.
+
+Behind the scenes Cloud 66 marks the targeted server records `marked_for_deletion: true` and queues per-server delete operations. Servers running database workloads are excluded from automatic scale-down to protect data; if you try to scale below the safe number you'll see:
+
+> `Can't scale down because there are still N servers running database workloads`
+
+To remove a database-hosting server you need to first migrate or remove the database workload from it.
+
+### Changing node size (vertical resize)
+
+In-place vertical resize is **not supported**. You can't grow an existing node from, say, 2 GB to 4 GB through Cloud 66. To increase node capacity:
+
+1. Add new nodes at the larger size to the relevant server pool.
+2. [Drain](#draining-a-node) the smaller nodes one at a time.
+3. Remove the smaller nodes from the pool.
+
+This horizontal pattern is the supported path for capacity upgrades.
+
+### Replication guard
+
+If any of your database services has replication enabled with a minimum-server requirement of 3, you cannot scale a pool below 3 servers. You'll see:
+
+> `You must first disable replication on all database services using this server pool`
+
+Disable replication on the affected services first, scale down, then re-enable replication.
+
+## Cordoning a node
+
+Cordoning marks a Kubernetes node as **unschedulable**: existing pods keep running, but no new pods will be scheduled onto it. This is the standard prelude to draining a node, or a way to take a node out of rotation temporarily without disturbing what's already on it.
+
+### How to cordon
+
+- **Per node**: cluster page → server detail → *Cordon*.
+- **Per pool**: cluster page → pool detail → *Cordon pool* (cordons every server in the pool).
+
+### What Cloud 66 does
+
+The Dashboard enqueues a `Cordon "<server-name>"` timeline operation, which runs `kubectl cordon <node-name>` against your cluster from Cloud 66's control plane. The operation has a 5-minute timeout.
+
+### Preconditions
+
+The cluster must have a **healthy control-plane manager reachable**. If no healthy manager can be found, the operation fails with:
+
+> `Unable to perform actions on the node as no healthy kubernetes control-plane could be found`
+
+Fix any unhealthy managers (typically by restoring SSH, restarting K3s, or replacing the manager) before retrying.
+
+### Live node status
+
+After the cordon completes, the Dashboard reflects the live Kubernetes node state — so you can verify cordon took effect by checking the node's status in the Dashboard, or by running `kubectl get nodes` with your downloaded kubeconfig.
+
+## Draining a node
+
+Draining a node **evicts the workloads running on it** (subject to PodDisruptionBudgets and grace periods) and cordons it in the same step. Drain when you want to take a node out of service before removing it from the pool.
+
+### How to drain
+
+- **Per node**: cluster page → server detail → *Drain*.
+- **Per pool**: cluster page → pool detail → *Drain pool* (drains every server in the pool independently).
+
+### What Cloud 66 does
+
+The Dashboard enqueues a `Drain "<server-name>"` timeline operation, which runs `kubectl drain` against the node with a **30-minute timeout** (the full operation can run up to ~35 minutes counting overhead).
+
+The drain follows standard Kubernetes semantics:
+
+- Pods covered by a PodDisruptionBudget will only be evicted if the PDB allows it.
+- Pods without controllers (i.e. bare `Pod` objects, not from a Deployment/StatefulSet/etc.) can block drain.
+- DaemonSet-managed pods are skipped by default.
+
+### Preconditions
+
+Same as cordon: a healthy control-plane manager must be reachable.
+
+### Common failures
+
+| Error message | What to check |
+|---------------|---------------|
+| `Failed to drain server <name>: <underlying error>` | The `kubectl drain` command surfaced an error. Most often a PDB violation or a pod that won't terminate. Inspect the underlying error message. |
+| `Drain "<name>" Timed Out` | A pod refused to evict within 30 minutes. Often a stuck terminating pod or a tight PDB. Reduce the workload's `terminationGracePeriodSeconds` or temporarily widen the PDB. |
+| `Unable to perform actions on the node as no healthy kubernetes control-plane could be found` | No reachable manager. Fix the manager before retrying. |
+
+If a drain times out you can also drop to `kubectl` directly with your downloaded kubeconfig and use `kubectl drain --force --grace-period=...` to override the defaults.
+
+## Related
+
+- [Configuring for high availability](/:product/:version?/build-and-config/configuring-for-high-availability) — initial HA cluster setup
+- [Database replication](/:product/:version?/databases/3/database-replication) — replication requirements that affect scale-down
+- [Kubernetes documentation — Safely drain a node](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/) — upstream reference for drain semantics
