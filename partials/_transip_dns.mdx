@@ -1,10 +1,10 @@
-TransIP requires your account **username**, an **API key**, and a **global key** setting. The API key is the private key from a TransIP *key pair*, which you create in the control panel.
+TransIP requires your account **username**, an **API key**, and a **global key** setting. The API key is the private key from a TransIP *key pair*, which you create in the control panel and upload to Cloud 66 as a file.
 
 1. Log into the [TransIP control panel](https://www.transip.eu/cp/) and go to **My account → API**
 2. Add a new **key pair** and give it a label (for example, `cloud66`)
-3. Choose how the key may be used:
-   - Allow it to be used from non-whitelisted IP addresses, and set **global key** to `yes` when you add it to Cloud 66, or
-   - Keep it restricted to whitelisted IPs, in which case you must whitelist the addresses Cloud 66 connects from (contact Cloud 66 support for these) and leave **global key** unset
-4. Copy the **private key** that TransIP shows after the key pair is created and keep it somewhere safe (it is shown only once)
+3. Decide how the key may be used, which sets the **global key** value in Cloud 66:
+   - To let Cloud 66 connect from any IP, allow the key to be used from non-whitelisted IP addresses and set **global key** to `yes` (the default).
+   - To keep the key restricted, set **global key** to `no` and whitelist the addresses Cloud 66 connects from (contact Cloud 66 support for these).
+4. Copy the **private key** TransIP shows after the key pair is created and save it to a file (it is shown only once).
 
-When adding TransIP to your Cloud 66 account, enter your TransIP **username** and paste the private key as the **API key** ([see above](#set-up-a-dns-provider)).
+When adding TransIP to your Cloud 66 account, enter your **username** and upload your private key file as the **API key** ([see above](#set-up-a-dns-provider)).
