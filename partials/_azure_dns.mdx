@@ -1,0 +1,8 @@
+Azure DNS requires a **service principal** (a Microsoft Entra ID, formerly Azure AD, app registration) with permission to manage your DNS zone. Cloud 66 needs five values: your subscription ID, tenant ID, client ID, client secret, and resource group.
+
+1. In the [Azure portal](https://portal.azure.com/), go to **Microsoft Entra ID → App registrations** and register a new application. This creates a service principal.
+2. Open the application's **Certificates & secrets** and create a new **client secret**, then copy its value (it is shown only once).
+3. On the resource group that contains your DNS zone, open **Access control (IAM)** and assign your service principal the **DNS Zone Contributor** role.
+4. Collect your **Subscription ID**, **Directory (tenant) ID**, **Application (client) ID**, the **client secret** value, and the **resource group** name.
+
+You can now add Azure DNS to your Cloud 66 account using these credentials ([see above](#set-up-a-dns-provider)).
