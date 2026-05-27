@@ -1,4 +1,5 @@
 import Route53DnsPartial from './_route53_dns.mdx';
+import AzureDnsPartial from './_azure_dns.mdx';
 import CloudflareDnsPartial from './_cloudflare_dns.mdx';
 import DigitaloceanDnsPartial from './_digitalocean_dns.mdx';
 import DnsimpleDnsPartial from './_dnsimple_dns.mdx';
@@ -12,11 +13,16 @@ import Ns1DnsPartial from './_ns1_dns.mdx';
 import OvhDnsPartial from './_ovh_dns.mdx';
 import Rfc2136DnsPartial from './_rfc2136_dns.mdx';
 import SakuracloudDnsPartial from './_sakuracloud_dns.mdx';
+import TransipDnsPartial from './_transip_dns.mdx';
 
-<FilteredContentBox labels={["Amazon Route53", "Cloudflare DNS", "DigitalOcean", "DNSimple", "DnsMadeEasy", "Gehirn", "Google Cloud DNS", "Hetzner DNS", "Linode DNS", "LuaDNS", "NS1", "OVH DNS", "RFC 2136", "SakuraCloud"]}>
+<FilteredContentBox labels={["Amazon Route53", "Azure DNS", "Cloudflare DNS", "DigitalOcean", "DNSimple", "DnsMadeEasy", "Gehirn", "Google Cloud DNS", "Hetzner DNS", "Linode DNS", "LuaDNS", "NS1", "OVH DNS", "RFC 2136", "SakuraCloud", "TransIP"]}>
 
 <FilteredContent filter="Amazon Route53">
 <PartialWrapper partial={Route53DnsPartial} />
+</FilteredContent>
+
+<FilteredContent filter="Azure DNS">
+<PartialWrapper partial={AzureDnsPartial} />
 </FilteredContent>
 
 <FilteredContent filter="Cloudflare DNS">
@@ -69,6 +75,10 @@ import SakuracloudDnsPartial from './_sakuracloud_dns.mdx';
 
 <FilteredContent filter="SakuraCloud">
 <PartialWrapper partial={SakuracloudDnsPartial} />
+</FilteredContent>
+
+<FilteredContent filter="TransIP">
+<PartialWrapper partial={TransipDnsPartial} />
 </FilteredContent>
 
 </FilteredContentBox>

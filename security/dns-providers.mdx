@@ -2,6 +2,7 @@
 title: Adding DNS providers
 ---
 
+import AzureDnsPartial from '../partials/_azure_dns.mdx';
 import CloudflareDnsPartial from '../partials/_cloudflare_dns.mdx';
 import DigitaloceanDnsPartial from '../partials/_digitalocean_dns.mdx';
 import DnsimpleDnsPartial from '../partials/_dnsimple_dns.mdx';
@@ -16,6 +17,7 @@ import OvhDnsPartial from '../partials/_ovh_dns.mdx';
 import Rfc2136DnsPartial from '../partials/_rfc2136_dns.mdx';
 import Route53DnsPartial from '../partials/_route53_dns.mdx';
 import SakuracloudDnsPartial from '../partials/_sakuracloud_dns.mdx';
+import TransipDnsPartial from '../partials/_transip_dns.mdx';
 
 
 ## Overview 
@@ -27,6 +29,10 @@ If your provider is not listed, consider using [RFC 2136](https://www.rfc-editor
 ## Instructions per DNS provider
 
 Each DNS provider has specific credentials that need to be created and then [added to your Cloud 66 account](/:product/:version?/security/ssl#step-1-set-up-a-dns-provider). Find your provider below for more details.
+
+### Azure
+
+<PartialWrapper partial={AzureDnsPartial} />
 
 ### Cloudflare
 
@@ -83,3 +89,7 @@ Each DNS provider has specific credentials that need to be created and then [add
 ### SakuraCloud
 
 <PartialWrapper partial={SakuracloudDnsPartial} />
+
+### TransIP
+
+<PartialWrapper partial={TransipDnsPartial} />
