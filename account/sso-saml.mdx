@@ -104,7 +104,7 @@ Your SAML Identity Provider (IdP) needs to be configured to recognize Cloud 66 a
 - An ACS URL
 - An Entity URL
 
-Some providers also require **Name Field Format** (also called NameID format). We only support email NameIDs - see below for the full definition.
+Cloud 66 also requires your IdP to send a custom **email attribute** in its SAML assertion. This attribute tells Cloud 66 which email address to sign the user in with (see below for details).
 
 Different IdPs have different names for the configuration URLs, here are some examples
 
@@ -120,8 +120,15 @@ The values for Cloud 66 are the same for all accounts:
 
 - ACS URL: `https://app.cloud66.com/users/saml/auth`
 - Entity URL: `https://app.cloud66.com/users/saml/metadata`
-- Name field format: `urn: oasis: names: tc: SAML: 1.1 :nameid-format: emailAddress` (or, if there’s a predefined list of options, select `email`)
 - If there’s an option for “Signed response” you should select / enable it
+
+<Callout type="info" title="Cloud 66 uses the email attribute, not the SAML NameID">
+Name this attribute `email`. Cloud 66 identifies users by it and does **not** read or validate the SAML NameID, so you don’t need to set a specific NameID format - just make sure your IdP sends the `email` attribute.
+</Callout>
+
+<Callout type="warning" title="Microsoft Entra ID uses a different attribute name">
+If your IdP is Microsoft Entra ID (formerly Azure AD), the attribute must be named `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` instead of `email`. Every other IdP uses `email`.
+</Callout>
 
 To configure your IdP: 
 
