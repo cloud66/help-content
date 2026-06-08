@@ -19,6 +19,22 @@ At present, CSv3 node management is exposed exclusively through the Cloud 66 Das
 
 All four operations are **asynchronous**. Triggering one creates a timeline operation that you can watch — they don't block the Dashboard.
 
+## Reduced vs High Availability
+
+A CSv3 cluster runs in one of two availability modes, set when you create it and shown on the cluster page:
+
+- **Reduced Availability (RA)** — your manager and worker roles share the same nodes, so the managers also run application workloads. It needs fewer servers and costs less, which suits development, testing, and smaller workloads, but it offers limited redundancy: a single shared manager is a single point of failure, and as the cluster grows the control plane competes with your app pods for resources. RA is **not recommended for production**.
+- **High Availability (HA)** — **three or more dedicated managers** (running only the control plane) plus one or more workers. This is the production-grade topology: it survives a manager node failure and keeps control-plane work off your application nodes.
+
+### When to move from RA to HA
+
+Move to HA when either is true:
+
+- **You need to survive a node failure.** A reduced-availability cluster can't — losing the shared manager takes the whole cluster down.
+- **The shared managers are under pressure.** Because managers also run workloads in RA, the control plane can end up competing with your app — showing up as slow `kubectl` or Dashboard responses, scheduling lag, or etcd slow-write warnings. Dedicated managers remove that contention.
+
+To upgrade, use **Upgrade to High Availability** on the cluster page (see [Upgrading to high availability](#upgrading-to-high-availability)). Cloud 66 provisions the dedicated managers and migrates your workloads onto the worker nodes; it's a guided flow with some manual steps.
+
 ## Adding a node
 
 Adding a node means provisioning a new server in your cloud provider and joining it to your K3s cluster — most commonly a **worker** (which runs your application workloads). Adding **manager** nodes (the control-plane nodes — CSv3's term for what older Maestro docs call *masters*) works differently; see [Upgrading to high availability](#upgrading-to-high-availability) below.
