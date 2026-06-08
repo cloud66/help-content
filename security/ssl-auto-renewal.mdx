@@ -12,9 +12,9 @@ This page covers:
 
 - [When auto-renewal runs](#renewal-schedule)
 - [Forcing an immediate renewal attempt](#forcing-a-renewal)
-- [DNS-01 / Cloudflare-specific failures](#dns-01--cloudflare-troubleshooting)
+- [DNS-01 and Cloudflare-specific failures](#dns-01-and-cloudflare-troubleshooting)
 
-For setup of Let's Encrypt certificates see [Adding SSL certificates](/:product/:version?/security/ssl). For HTTP-01 challenge problems see [Troubleshooting SSL certificates](/:product/:version?/security/troubleshooting-ssl).
+Standard (non-wildcard) certificates validate over the **HTTP-01** challenge; wildcard certificates use **DNS-01**, which is what this page's troubleshooting section covers. For certificate setup see [Adding SSL certificates](/:product/:version?/security/ssl); for HTTP-01 problems see [Troubleshooting SSL certificates](/:product/:version?/security/troubleshooting-ssl).
 
 ## Renewal schedule
 
@@ -24,10 +24,10 @@ What this means in practice:
 
 - The first renewal attempt happens 30 days before expiry, on the next Monday or Thursday at 14:00 UTC.
 - If that attempt fails (e.g. transient DNS issue, upstream Let's Encrypt error), the scheduler retries on the next scheduled run.
-- With twice-weekly runs and a 30-day window, you get up to **8 attempts** before the cert actually expires — but that only helps if the underlying problem (DNS, Cloudflare proxy, account scope) is fixed in between.
+- With twice-weekly runs over a 30-day window, that's up to roughly 8 scheduled attempts before the cert actually expires — but that only helps if the underlying problem (DNS, Cloudflare proxy, account scope) is fixed in between.
 
 <Callout type="info" title="Schedule windows are UTC">
-14:00 UTC is 10:00 EDT / 07:00 PDT / 15:00 CET. If you're monitoring renewals from your dashboard, expect new audit-log entries to land in those windows.
+The 14:00 schedule is UTC year-round (it doesn't shift with daylight saving). If you're monitoring renewals from your dashboard, expect renewal activity in the timeline during those windows.
 </Callout>
 
 ## Forcing a renewal
@@ -56,15 +56,13 @@ Updating the certificate configuration kicks off a fresh renewal attempt outside
 Let's Encrypt enforces [rate limits](https://letsencrypt.org/docs/rate-limits/) per registered domain. Avoid repeated force-renewals on the same domain in a short window; you can be locked out of issuance for up to a week.
 </Callout>
 
-## DNS-01 / Cloudflare troubleshooting
+## DNS-01 and Cloudflare troubleshooting
 
 [Wildcard certificates](/:product/:version?/security/ssl#wildcard-certificates) use the DNS-01 challenge — Let's Encrypt asks Cloud 66 to add a TXT record to your domain via the [DNS provider](/:product/:version?/security/dns-providers) you registered. The most common failures aren't with Cloud 66 or Let's Encrypt; they're at the DNS provider side.
 
-### Cloudflare proxy is enabled on the domain
+### Cloudflare API token permissions and scope
 
-If the domain whose TXT record is being verified is **proxied** (the orange cloud is on in Cloudflare's DNS panel), the TXT record will still resolve from public DNS, but some Cloudflare configurations can intercept or delay propagation. For DNS-01 specifically, the proxy setting doesn't directly block TXT lookups, but a misconfigured Cloudflare account can.
-
-If renewals are failing only on Cloudflare-managed domains, check:
+On DNS-01, failures on Cloudflare-managed domains are almost always the API token rather than the orange-cloud proxy — a proxied record still resolves from public DNS, and the proxy doesn't block the TXT lookups Let's Encrypt makes. So if renewals are failing only on Cloudflare-managed domains, check the API token you registered with Cloud 66 first:
 
 1. The Cloudflare API token you registered with Cloud 66 has both **Zone:Read** and **DNS:Edit** permissions on the relevant zone.
 2. The token's **Zone Resources** scope includes the specific zone — a token scoped to a different zone will fail silently with a permission error.
