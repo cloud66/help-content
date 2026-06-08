@@ -42,7 +42,7 @@ This sequence:
 4. Waits 30 seconds.
 5. Sends `KILL` if the process is still running.
 
-Adjust the wait values to match your worst-case job duration. Note that Sidekiq's own `-t` (timeout) setting also bounds how long `TERM` will wait; the `stop_sequence` wait should be at least as long as Sidekiq's `-t`, otherwise `KILL` will fire before Sidekiq finishes its graceful shutdown.
+Adjust the wait values to match your worst-case job duration. Note that Sidekiq's own `-t` (timeout, default 25s) controls how long Sidekiq keeps working on in-flight jobs after it receives `TERM` before it re-queues whatever is left and exits. Your `stop_sequence` wait after `TERM` should be at least as long as `-t`, otherwise `KILL` will fire while Sidekiq is still draining.
 
 ## Related
 
