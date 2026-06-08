@@ -14,7 +14,7 @@ This page covers:
 - [Forcing an immediate renewal attempt](#forcing-a-renewal)
 - [DNS-01 and Cloudflare-specific failures](#dns-01-and-cloudflare-troubleshooting)
 
-Standard (non-wildcard) certificates validate over the **HTTP-01** challenge; wildcard certificates use **DNS-01**, which is what this page's troubleshooting section covers. For certificate setup see [Adding SSL certificates](/:product/:version?/security/ssl); for HTTP-01 problems see [Troubleshooting SSL certificates](/:product/:version?/security/troubleshooting-ssl).
+Standard (non-wildcard) certificates validate over the **HTTP-01** challenge; wildcard certificates use **DNS-01**, which is what this page's troubleshooting section covers. For certificate setup see [Adding SSL certificates](/:product/:version?/security/ssl); for HTTP-01 problems see [Troubleshooting SSL certificates](/:product/:version?/security/troubleshooting-ssl). If your standard certificate sits behind a Cloudflare proxy, see [Configuring Let's Encrypt with Cloudflare](/:product/:version?/security/ssl#configuring-lets-encrypt-with-cloudflare) — the orange-cloud proxy affects HTTP-01, not the DNS-01 flow below.
 
 ## Renewal schedule
 
@@ -84,7 +84,7 @@ To check whether the challenge record was actually created during the last renew
 dig +short TXT _acme-challenge.<your-domain>
 ```
 
-If the record is missing during a renewal window, the failure is on the DNS provider side. If the record is present but renewal still fails, it's a propagation timing issue (Let's Encrypt queried before the record was visible) and the next scheduled run will likely succeed.
+If the record is missing during a renewal window, check the application timeline first to confirm Cloud 66 actually attempted the DNS write — a missing record can mean the write was never made (e.g. an invalid API token) as well as the provider dropping it. Once you've confirmed a write was attempted, the failure is on the DNS provider or credential side. If the record is present but renewal still fails, it's a propagation timing issue (Let's Encrypt queried before the record was visible) and the next scheduled run will likely succeed.
 
 ## Related
 
