@@ -13,7 +13,7 @@ If you would like more flexibility over the signals used to control the processe
 ```yaml
 procfile_metadata:
   worker:
-    stop_sequence: ttin, 120, term, 5, kill
+    stop_sequence: tstp, 120, term, 30, kill
   web:
     restart_signal: usr1
     stop_sequence: usr1, 30, kill
@@ -21,7 +21,13 @@ procfile_metadata:
     restart_on_deploy: false
 ```
 
-In this example, a process called `worker` is stopped using a `TTIN` signal first. After waiting for 120 seconds, if the process is still running, a `TERM` signal will be sent. If it is still running after 5 seconds, it will be killed.
+In this example, a process called `worker` is stopped using a `TSTP` signal first. After waiting for 120 seconds, if the process is still running, a `TERM` signal will be sent. If it is still running after 30 seconds, it will be killed.
+
+<Callout type="warning" title="Use TSTP, not TTIN, for graceful Sidekiq drains">
+If your worker process is Sidekiq, the signal that puts it into "quiet mode" (finish current jobs, stop fetching new ones) is `TSTP` — supported since Sidekiq 5.0. `TTIN` only logs thread backtraces and does **not** stop job fetching, so using `TTIN` in a `stop_sequence` leaves Sidekiq pulling new jobs throughout the wait window. `USR1` was the legacy signal for quiet mode and has been deprecated in favour of `TSTP` since Sidekiq 5.0. This is about Sidekiq quiet mode only — `USR1`/`USR2` remain the correct phased-restart signals for web servers like Puma and Unicorn, as in the `web` example above.
+
+For a worked example see [Long-running Sidekiq jobs across deploys](/:product/:version?/build-and-config/long-running-sidekiq-across-deploys).
+</Callout>
 
 As for `web` or `custom_web` processes, you can specify a `restart_signal` which will be sent to the process serving web. This is useful for web servers that can do "phased" or zero-downtime restarts.
 
