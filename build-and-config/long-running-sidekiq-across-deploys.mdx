@@ -1,5 +1,6 @@
 ---
 title: Long-running Sidekiq jobs across deploys
+description: "Use procfile_metadata stop_sequence to drain Sidekiq gracefully across deploys so long-running jobs finish instead of being killed mid-execution."
 products: ['rails', 'deploy']
 ---
 
@@ -18,7 +19,7 @@ Sidekiq's signal semantics changed across versions. The signals that matter for 
 | `TSTP` | Quiet mode — finish current jobs, stop fetching new ones | The signal you want for graceful drain |
 | `TERM` | Graceful shutdown — wait up to `-t` timeout, then exit | Final shutdown signal |
 | `TTIN` | Dumps thread backtraces to the log | Diagnostic only; does **not** stop fetching |
-| `USR1` | Quiet mode (Sidekiq ≤ 6 only) | Deprecated in Sidekiq 7.0; use `TSTP` instead |
+| `USR1` | Legacy quiet-mode signal, superseded by `TSTP` | Deprecated in favour of `TSTP` since Sidekiq 5.0; avoid in new config |
 | `KILL` | Immediate termination | Last resort |
 
 If you use `TTIN` in a `stop_sequence` — as some older examples show — Sidekiq keeps pulling new jobs throughout the wait window, which defeats the point of waiting.
