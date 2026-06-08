@@ -38,7 +38,7 @@ The whole flow runs as a `Scale up` timeline operation you can watch:
 1. Cloud 66 checks that no other scale operation is already running on the pool, and that the new size is compatible with your database replication requirements.
 2. A new server is provisioned with your cloud provider.
 3. Kubernetes (K3s) is installed on it.
-4. The new server joins your existing cluster — as a manager (control-plane node) or a worker, depending on what you chose.
+4. The new server joins your existing cluster as a worker.
 5. Once it reports healthy, the node is available for scheduling.
 
 ### Common failures
@@ -145,7 +145,7 @@ Same as cordon: a healthy control-plane manager must be reachable.
 
 | Error message | What to check |
 |---------------|---------------|
-| `Failed to drain server <name>: <underlying error>` | The `kubectl drain` command surfaced an error. Most often a PDB violation or a pod that won't terminate. Inspect the underlying error message. |
+| `Drain "<name>" Failed` (timeline title; the detail line reads `Failed to drain server <name>: <underlying error>`) | The `kubectl drain` command surfaced an error. Most often a PDB violation or a pod that won't terminate. Open the timeline entry and inspect the detail line for the underlying error. |
 | `Drain "<name>" Timed Out` | A pod refused to evict within 30 minutes. Often a stuck terminating pod or a tight PDB. For your own application pods, reduce the workload's `terminationGracePeriodSeconds` or temporarily widen the PDB. |
 | `Unable to perform actions on the node as no healthy kubernetes control-plane could be found` | No reachable manager. Fix the manager before retrying. |
 
