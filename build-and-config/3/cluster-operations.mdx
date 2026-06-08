@@ -30,14 +30,15 @@ The exact navigation depends on whether you're adding a manager or a worker:
 - **Add a worker**: open your application in the Dashboard → cluster page → *Workers* tab → select the relevant server pool → click *Add servers* and set the new pool size.
 - **Add a manager (HA cluster)**: cluster page → *Scale up* on the cluster overview.
 
-### What Cloud 66 does behind the scenes
+### What happens when you add a node
 
-1. Validates that no other scale operation is currently in flight on the same pool, and that the new size is compatible with any database replication requirements.
-2. Allocates fresh server records named `c66-<uid>-...` (or `c66-<uid>-mngr-...` for managers) and queues a `Scale up` timeline operation.
-3. Provisions the server in your cloud provider.
-4. Installs K3s on the new server via the upstream `get.k3s.io` installer.
-5. Fetches the join token from one of your existing managers — `server_join_token` for new managers, `agent_join_token` for new workers — and uses it to join the new node to the cluster.
-6. Uploads the K3s configuration to the new node.
+The whole flow runs as a `Scale up` timeline operation you can watch:
+
+1. Cloud 66 checks that no other scale operation is already running on the pool, and that the new size is compatible with your database replication requirements.
+2. A new server is provisioned with your cloud provider.
+3. Kubernetes (K3s) is installed on it.
+4. The new server joins your existing cluster — as a manager (control-plane node) or a worker, depending on what you chose.
+5. Once it reports healthy, the node is available for scheduling.
 
 ### Common failures
 
@@ -52,7 +53,7 @@ If add-node fails, the timeline operation will show one of these errors:
 | `We have created your servers, however there was an issue installing server components.` | Servers came up, but the post-install scaffolding step failed. The full underlying error is appended to this message. |
 
 <Callout type="warning" title="Failed scale-ups do not retry automatically">
-The provision job does not auto-retry. If a scale-up fails, the partially-created server records may need to be cleaned up before you try again. Open a support ticket if the timeline shows a half-finished scale-up.
+A failed scale-up does not retry automatically. If a scale-up fails, any partially-created servers may need to be cleaned up before you try again. Open a support ticket if the timeline shows a half-finished scale-up.
 </Callout>
 
 ## Resizing the cluster
@@ -67,7 +68,7 @@ Same procedure and code path as [Adding a node](#adding-a-node).
 
 Cluster page → *Workers* tab → select the pool → reduce the server count, or remove individual servers from the pool.
 
-Behind the scenes Cloud 66 marks the targeted server records `marked_for_deletion: true` and queues a single delete operation covering all of them. Servers running database workloads are excluded from automatic scale-down to protect data; if you try to scale below the safe number you'll see:
+Cloud 66 marks the selected servers for removal and deletes them in a single operation. Servers running database workloads are excluded from automatic scale-down to protect data; if you try to scale below the safe number you'll see:
 
 > `Can't scale down because there are still N servers running database workloads`
 
