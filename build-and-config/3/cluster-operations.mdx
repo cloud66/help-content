@@ -1,5 +1,6 @@
 ---
 title: CSv3 cluster operations
+description: "Add, resize, cordon, and drain nodes on a Cloud 66 CSv3 (K3s) cluster from the Dashboard, including the timeline error messages you may hit and how to fix them."
 products: ['deploy']
 ---
 
@@ -66,7 +67,7 @@ Same procedure and code path as [Adding a node](#adding-a-node).
 
 Cluster page → *Workers* tab → select the pool → reduce the server count, or remove individual servers from the pool.
 
-Behind the scenes Cloud 66 marks the targeted server records `marked_for_deletion: true` and queues per-server delete operations. Servers running database workloads are excluded from automatic scale-down to protect data; if you try to scale below the safe number you'll see:
+Behind the scenes Cloud 66 marks the targeted server records `marked_for_deletion: true` and queues a single delete operation covering all of them. Servers running database workloads are excluded from automatic scale-down to protect data; if you try to scale below the safe number you'll see:
 
 > `Can't scale down because there are still N servers running database workloads`
 
