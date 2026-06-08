@@ -21,14 +21,15 @@ All four operations are **asynchronous**. Triggering one creates a timeline oper
 
 ## Adding a node
 
-Adding a node means provisioning a new server in your cloud provider and joining it to the existing K3s cluster — either as an additional **manager** (HA control-plane node) or as a **worker** (running your application workloads).
+Adding a node means provisioning a new server in your cloud provider and joining it to your K3s cluster — most commonly a **worker** (which runs your application workloads). Adding **manager** nodes (the control-plane nodes — CSv3's term for what older Maestro docs call *masters*) works differently; see [Upgrading to high availability](#upgrading-to-high-availability) below.
 
-### How to add a node
+### How to add a worker
 
-The exact navigation depends on whether you're adding a manager or a worker:
+Open your application in the Dashboard → cluster page → *Workers* tab → select the relevant server pool → click *Add servers* and set the new pool size.
 
-- **Add a worker**: open your application in the Dashboard → cluster page → *Workers* tab → select the relevant server pool → click *Add servers* and set the new pool size.
-- **Add a manager (HA cluster)**: cluster page → *Scale up* on the cluster overview.
+### Upgrading to high availability
+
+A CSv3 cluster starts with a single shared manager. You don't add managers one at a time — moving to a fault-tolerant three-manager control plane is a separate **Upgrade to High Availability** action on the cluster page (not *Scale up*). It's a guided flow with both automated and manual steps; follow the prompts in the dashboard.
 
 ### What happens when you add a node
 
@@ -68,7 +69,7 @@ Same procedure and code path as [Adding a node](#adding-a-node).
 
 Cluster page → *Workers* tab → select the pool → reduce the server count, or remove individual servers from the pool.
 
-Cloud 66 marks the selected servers for removal and deletes them in a single operation. Servers running database workloads are excluded from automatic scale-down to protect data; if you try to scale below the safe number you'll see:
+Cloud 66 marks the selected servers for removal and deletes them in a single operation. Servers running database workloads are excluded from automatic scale-down to protect data; if the servers you're removing host databases, you'll see:
 
 > `Can't scale down because there are still N servers running database workloads`
 
@@ -86,7 +87,7 @@ This horizontal pattern is the supported path for capacity upgrades.
 
 ### Replication guard
 
-If any of your database services has replication enabled with a minimum-server requirement of 3, you cannot scale a pool below 3 servers. You'll see:
+If any of your database services has replication enabled with a minimum-server requirement of 3, you cannot scale a pool below 3 servers — this applies whenever replication needs a three-server floor, regardless of which servers you pick. You'll see:
 
 > `You must first disable replication on all database services using this server pool`
 
@@ -115,7 +116,7 @@ Fix any unhealthy managers (typically by restoring SSH, restarting K3s, or repla
 
 ### Live node status
 
-After the cordon completes, the Dashboard reflects the live Kubernetes node state — so you can verify cordon took effect by checking the node's status in the Dashboard, or by running `kubectl get nodes` with your downloaded kubeconfig.
+After the cordon completes, the Dashboard updates to show the node as cordoned — so you can verify it took effect there, or by running `kubectl get nodes` with your downloaded kubeconfig.
 
 ## Draining a node
 
@@ -145,7 +146,7 @@ Same as cordon: a healthy control-plane manager must be reachable.
 | Error message | What to check |
 |---------------|---------------|
 | `Failed to drain server <name>: <underlying error>` | The `kubectl drain` command surfaced an error. Most often a PDB violation or a pod that won't terminate. Inspect the underlying error message. |
-| `Drain "<name>" Timed Out` | A pod refused to evict within 30 minutes. Often a stuck terminating pod or a tight PDB. Reduce the workload's `terminationGracePeriodSeconds` or temporarily widen the PDB. |
+| `Drain "<name>" Timed Out` | A pod refused to evict within 30 minutes. Often a stuck terminating pod or a tight PDB. For your own application pods, reduce the workload's `terminationGracePeriodSeconds` or temporarily widen the PDB. |
 | `Unable to perform actions on the node as no healthy kubernetes control-plane could be found` | No reachable manager. Fix the manager before retrying. |
 
 If a drain times out you can also drop to `kubectl` directly with your downloaded kubeconfig and use `kubectl drain --force --grace-period=...` to override the defaults.
