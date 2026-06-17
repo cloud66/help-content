@@ -2,6 +2,7 @@
 title: CSv3 cluster operations
 description: "Add, resize, cordon, and drain nodes on a Cloud 66 CSv3 (K3s) cluster from the Dashboard, including the timeline error messages you may hit and how to fix them."
 products: ['deploy']
+includeVersions: ['3']
 ---
 
 ## Overview
@@ -169,5 +170,5 @@ If a drain times out you can also drop to `kubectl` directly with your downloade
 
 ## Related
 
-- [Database replication](/:product/:version?/databases/3/database-replication) — replication requirements that affect scale-down
+- [Database replication](/:product/:version?/databases/database-replication) — replication requirements that affect scale-down
 - [Kubernetes documentation — Safely drain a node](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/) — upstream reference for drain semantics

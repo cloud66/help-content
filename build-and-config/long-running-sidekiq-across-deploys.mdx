@@ -8,7 +8,7 @@ products: ['rails', 'deploy']
 
 When you deploy, Cloud 66 restarts your background processes — including Sidekiq workers. If a Sidekiq job is mid-execution when its worker is restarted, the job is interrupted and (depending on its retry settings) may be retried, abandoned, or lost. For long-running jobs this is a real risk: a job that takes 90 seconds will rarely finish in the few seconds between a `TERM` signal and a forced `KILL`.
 
-The fix is to tell Cloud 66's process manager how to drain Sidekiq gracefully: first signal Sidekiq to stop fetching new jobs but keep working on the ones already in flight, then give it enough time to finish, and only then send `TERM` and `KILL`. This is configured via `procfile_metadata.stop_sequence` in your [manifest file](/:product/:version?/manifest/manifest).
+The fix is to tell Cloud 66's process manager how to drain Sidekiq gracefully: first signal Sidekiq to stop fetching new jobs but keep working on the ones already in flight, then give it enough time to finish, and only then send `TERM` and `KILL`. This is configured via `procfile_metadata.stop_sequence` in your [manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
 
 ## Which signal does what
 
