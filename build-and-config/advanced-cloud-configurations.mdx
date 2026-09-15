@@ -22,6 +22,35 @@ Instance profiles are a way to set specific roles on new servers that you spin u
 
 You can use your instance profiles via Cloud 66 by calling them in the [manifest file](/:product/:version?/manifest/what-is-a-manifest-file) of your application. You can set a different profile for each component of an application (e.g. MySQL or Redis). We will then use that profile whenever we provision a server for that component.
 
+### Required AWS permissions
+
+Attaching an instance profile requires three permissions on the IAM user behind your [cloud key](https://app.cloud66.com/clouds):
+
+- `iam:PassRole`
+- `ec2:AssociateIamInstanceProfile`
+- `ec2:ReplaceIamInstanceProfileAssociation`
+
+All three are already granted by our [recommended minimum policy](https://help.cloud66.com/c66_aws_iam_policy.json), where the two EC2 actions are covered by `ec2:*`. If you have narrowed that policy to suit your own security requirements, check that these survived. Instance profiles are the only feature that needs `iam:PassRole`, so it is an easy one to drop.
+
+<Callout type="warning" title="Missing permissions fail at provisioning time">
+If any of these are absent, the server fails to provision rather than launching without the profile. Your manifest is not checked against your AWS permissions beforehand, so the error appears during deployment.
+</Callout>
+
+### Profiles are applied when a server is created
+
+An instance profile is attached at the moment a server is created, not during later deployments. Adding `iam_instance_profile_name` to your manifest will therefore have no effect on servers that already exist, and redeploying will not apply it.
+
+This also applies to a scale-up that fails partway. If the server was created but the operation did not finish, retrying reuses that existing server, so the profile is never attached to it.
+
+To apply a profile to a server that is already running, either:
+
+1. Attach the role directly in the AWS console. Select the instance under *EC2*, then *Actions* → *Security* → *Modify IAM role*, and choose your profile. This takes effect immediately and does not require a restart.
+2. Remove the server and scale up again. Any new server is created with the profile attached.
+
+<Callout type="warning" title="Replacing a server disrupts traffic">
+The second option replaces a running server, so we recommend trying it on a staging environment first, or scheduling it outside business hours if the server is serving live traffic.
+</Callout>
+
 ## Cloud 66 Security Groups on AWS
 
 Whenever we provision servers for a new application on AWS, we configure separate AWS Security Groups for each type of server (e.g. application servers or database servers).
