@@ -1,0 +1,423 @@
+---
+title: CSv3 template values
+description: "Reference for the cloud66 values in CSv3 application templates: how Cloud 66 renders templates with ytt, substitutes values and links templates to services."
+products: ['deploy']
+includeVersions: ['3']
+---
+
+## Overview
+
+Every CSv3 application is defined by a set of **templates**: the Kubernetes manifests (Deployments, Services, ConfigMaps, Secrets and so on) that Cloud 66 renders and applies to your cluster on every deployment. You manage them in the Dashboard under your application's *Settings* → *Templates*, either by uploading YAML files or by connecting a GitHub repo.
+
+A template can be plain Kubernetes YAML, or it can use [ytt](https://carvel.dev/ytt/) expressions to pull in values that Cloud 66 manages for you, such as a service's image, its replica count, or your application's environment variables and secrets:
+
+```yaml
+spec:
+  replicas: #@ cloud66.service.replicas
+```
+
+This page covers:
+
+- [How Cloud 66 renders a template](#how-cloud-66-renders-a-template)
+- [Substituting values](#substituting-values) into your templates
+- [Linking a template to a service](#linking-a-template-to-a-service) with an annotation
+- The [values reference](#values-reference): everything available under `cloud66.app` and `cloud66.service`
+- [A complete example](#a-complete-example) and [troubleshooting](#troubleshooting)
+
+## How Cloud 66 renders a template
+
+On every deployment Cloud 66 takes a snapshot of your application's current state (its namespace, environment variables, secrets and services) and renders each template against it:
+
+1. A template with no ytt expression in it (no `#@` and no `(@= ... @)`) is applied exactly as written.
+2. Any other template is rendered with ytt. Cloud 66 hands the snapshot to your template as a struct called `cloud66`, so you never declare or load data values yourself.
+3. Cloud 66 stamps every rendered resource with its [tracking annotations and labels](#what-cloud-66-adds-to-your-resources), then applies the result to your cluster with `kubectl apply`.
+
+<Callout type="info" title="Values only land where you reference them">
+Cloud 66 never rewrites a field on its own. If a template hardcodes `replicas: 3`, scaling the service in the Dashboard changes nothing on the cluster. The new count reaches the cluster only if the template says `replicas: #@ cloud66.service.replicas`.
+</Callout>
+
+Things to know about the rendering environment:
+
+- The `cloud66` struct is already defined. Reference it directly.
+- The ytt modules `base64`, `json`, `yaml`, `struct` and `template` are already loaded. Loading them again in your template is harmless.
+- Plain `#` YAML comments are fine: ytt is run so that it ignores comments it doesn't recognise.
+- `(@= ... @)` text templating is switched on automatically for any template that uses it. You don't need to add `#@yaml/text-templated-strings` yourself.
+- When you upload a file with several YAML documents (separated by `---`), each document becomes its own template. Documents produced inside a ytt block (between `#@ for` or `#@ if` and its `#@ end`) stay together in one template.
+
+### What Cloud 66 adds to your resources
+
+Cloud 66 adds the same two entries, as both annotations and labels, to every resource it renders:
+
+```yaml
+metadata:
+  annotations:
+    cloud66.com/source: cloud66
+    cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+  labels:
+    cloud66.com/source: cloud66
+    cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+```
+
+They are added to the resource's own `metadata` and to its pod template (`spec.template.metadata`, or `spec.jobTemplate.spec.template.metadata` for a CronJob). Cloud 66 uses them to keep track of the resources it manages, so don't set or remove them yourself.
+
+<Callout type="info" title="Expect one restart on the first deployment">
+Because pod templates are stamped too, a workload that was already running before Cloud 66 managed it (for example on an imported application) restarts once, on its first deployment through Cloud 66.
+</Callout>
+
+## Substituting values
+
+### Whole values
+
+Use `#@` to set a field to a value. The value keeps its type: `replicas` renders as a number, `image` as a string.
+
+```yaml
+spec:
+  replicas: #@ cloud66.service.replicas
+  template:
+    spec:
+      containers:
+        - name: #@ cloud66.service.resourceName
+          image: #@ cloud66.service.image
+```
+
+### Inside strings and keys
+
+Use `(@= ... @)` to place a value inside a larger string, or to template a key:
+
+```yaml
+metadata:
+  name: (@= cloud66.service.resourceName @)-config
+```
+
+Text templating only accepts strings. Wrap numbers in `str()`, or build the whole string in a `#@` expression instead:
+
+```yaml
+data:
+  replicas: (@= str(cloud66.service.replicas) @)
+  internalUrl: #@ "http://{}.{}.svc.cluster.local".format(cloud66.service.resourceName, cloud66.app.namespace)
+```
+
+### Conditions and loops
+
+`#@ if/end` and `#@ for/end` apply to the single YAML node that follows them. Apply list values such as `commands`, `args` and `ports` with a loop, inside a condition when the field should be left out for an empty list. This sets a container's `command` and `args` only when the service has them:
+
+```yaml
+          #@ if/end cloud66.service.commands:
+          command:
+            #@ for/end command in cloud66.service.commands:
+            - #@ command
+          #@ if/end cloud66.service.args:
+          args:
+            #@ for/end arg in cloud66.service.args:
+            - #@ arg
+```
+
+And this renders one port entry per service port:
+
+```yaml
+  ports:
+    #@ for/end port in cloud66.service.ports:
+    - targetPort: #@ port.targetPort
+      port: #@ port.port
+      protocol: #@ port.protocol
+      name: #@ port.name
+```
+
+To wrap several nodes, or a whole document, use the block form and close it with `#@ end`:
+
+```yaml
+#@ if cloud66.service.ports:
+apiVersion: v1
+kind: Service
+# ...
+#@ end
+```
+
+### Looking up a single variable
+
+`cloud66.app.envVars` and `cloud66.app.secrets` are lists, which makes them easy to loop over. To pick out one entry by its key, define a small function at the top of the template:
+
+```yaml
+#@ def env_var(key):
+#@   for envVar in cloud66.app.envVars:
+#@     if envVar.key == key:
+#@       return envVar.value
+#@     end
+#@   end
+#@   return None
+#@ end
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cdn-settings
+  namespace: #@ cloud66.app.namespace
+data:
+  assetHost: #@ env_var("ASSET_HOST")
+```
+
+For everything else ytt can do, see the [ytt documentation](https://carvel.dev/ytt/docs/latest/).
+
+## Linking a template to a service
+
+`cloud66.app` is available in every template. `cloud66.service` is only available in a template that is **linked to a service**, and it holds the values of that one service.
+
+To link a template, add the `cloud66.com/service` annotation with the service's uid to the template's top-level `metadata.annotations`:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    cloud66.com/service: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+  name: #@ cloud66.service.resourceName
+  namespace: #@ cloud66.app.namespace
+```
+
+The rules:
+
+- **Top-level metadata only.** Cloud 66 reads the link from the template's own `metadata.annotations`. The templates Cloud 66 generates repeat the annotation on the pod template, but on its own that copy links nothing.
+- **A literal uid.** The link is read before the template is rendered, so the value can't be a ytt expression.
+- **One link per template.** A template is a single YAML document, so in a multi-document file every document that uses `cloud66.service` needs its own annotation. Any kind of resource can be linked: a Deployment, its Service, a ConfigMap and so on.
+- **The service must exist.** A template whose uid doesn't match a service of this application is rejected.
+
+Linking is also what groups a template with its service in the Dashboard: the *Associations* column of the templates table shows which service each template belongs to.
+
+### Finding a service's uid
+
+A service uid looks like `service-` followed by 32 hexadecimal characters. To find it:
+
+- **In the Dashboard:** open *Settings* → *Templates* and open any template that Cloud 66 generated for the service, such as its Deployment. The `cloud66.com/service` annotation holds the uid. Cloud 66 only generates templates on clusters it created; on an external cluster, use the MCP server.
+- **Through the MCP server:** the service tools of the [Cloud 66 MCP server](/:product/:version?/mcp/tools-reference) return each service's `uid`.
+
+<Callout type="info" title="Generated templates are working examples">
+The templates Cloud 66 generates for your application use these same values, so they are a good starting point for your own. They may also reference values that aren't listed on this page. Those are internal and can change without notice, so rely only on the values documented here.
+</Callout>
+
+## Values reference
+
+### `cloud66.app`
+
+Available in every template.
+
+| Value | Type | Description |
+|-------|------|-------------|
+| `namespace` | string | The Kubernetes namespace of the application. Set it as the `metadata.namespace` of every namespaced resource (see [Namespaces](#namespaces)). |
+| `envVars` | list | The application's [environment variables](/:product/:version?/build-and-config/env-vars). Each entry has a `key` and a `value`. |
+| `secrets` | list | The application's [Secrets](/:product/:version?/security/managing-secrets), sorted by key: account-level Secrets merged with application-level ones, where the application level wins. Each entry has a `key`, a plain-text `value`, and `value64`, the same value base64-encoded and ready for the `data` of a Kubernetes Secret. |
+| `buildgridImagePullCredentials` | string | Credentials for the image registries of Cloud 66's build service (BuildGrid), as a base64-encoded `.dockerconfigjson`. Always present, whether or not a service pulls from those registries. See [Pulling images built by Cloud 66](#pulling-images-built-by-cloud-66). |
+
+### `cloud66.service`
+
+Available in templates [linked to a service](#linking-a-template-to-a-service).
+
+| Value | Type | Description |
+|-------|------|-------------|
+| `name` | string | The name of the service. |
+| `resourceName` | string | The name to give the service's Kubernetes resources. It is the service name, followed by `-` and the `variantTag` when there is one. Use it for resource names, container names and selector labels. |
+| `variantTag` | string | The tag of the service variant being rendered. It is empty for a service's default variant, and it is already part of `resourceName` when set. |
+| `image` | string | The image to run, including its tag. For a service that Cloud 66 builds from Git it is `*applied-after-build*` until the deployment's build has produced the image, so never hardcode it. |
+| `replicas` | number | The number of replicas the service is scaled to. |
+| `kind` | string | The workload kind chosen for the service: `Deployment` or `DaemonSet`. |
+| `ports` | list | One entry per port of the service, in the shape of a Kubernetes Service port: `name` (a unique name generated by Cloud 66), `port`, `targetPort` (both the container port) and `protocol` (`TCP` or `UDP`). |
+| `baseCommand` | string | The service's command, exactly as entered. Empty when the service uses the image's default command. |
+| `commands` | list | The first word of the command as a one-element list, for a container's `command`. Empty when there is no command. Apply it with a loop (see [Conditions and loops](#conditions-and-loops)). |
+| `args` | list | The remaining words of the command, split the way a shell would split them, for a container's `args`. Empty when there are none. Apply it with a loop as well. |
+| `restartTrigger` | string | A timestamp that changes whenever you restart the service from the Dashboard. See [Restarting a service](#restarting-a-service). |
+
+## Using the values
+
+### Namespaces
+
+An application manages resources in its own namespace only. Cloud 66 applies your templates without a `-n` flag, so set `metadata.namespace` on every namespaced resource:
+
+```yaml
+metadata:
+  namespace: #@ cloud66.app.namespace
+```
+
+Writing the namespace out literally works too. Templates synced from a Git repo or imported in bulk are rejected when a resource has no namespace, targets a different namespace, or computes it with any expression other than `cloud66.app.namespace`.
+
+### Restarting a service
+
+*Restart* in the Dashboard works by changing `cloud66.service.restartTrigger`. The workload only restarts if that value is part of its pod template, so render it into a pod template annotation of every linked workload:
+
+```yaml
+spec:
+  template:
+    metadata:
+      annotations:
+        cloud66.com/restart-trigger: #@ cloud66.service.restartTrigger
+```
+
+A linked workload without this annotation ignores the restart button. Note that changing a ConfigMap or a Secret doesn't restart the pods that use it either.
+
+### Environment variables and secrets
+
+The application's environment variables are rendered into a ConfigMap and its Secrets into a Kubernetes Secret, and containers load both with `envFrom`. On a cluster created by Cloud 66, every application already has these two templates: a ConfigMap called `c66-env-vars` and a Secret called `c66-secrets`. On an external cluster nothing is generated, so add them yourself:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: #@ cloud66.app.namespace
+  name: c66-env-vars
+data:
+  #@ for/end envVar in cloud66.app.envVars:
+  (@= envVar.key @): (@= envVar.value @)
+```
+
+```yaml
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  namespace: #@ cloud66.app.namespace
+  name: c66-secrets
+data:
+  #@ for/end secret in cloud66.app.secrets:
+  (@= secret.key @): (@= secret.value64 @)
+```
+
+### Pulling images built by Cloud 66
+
+When Cloud 66 builds a service from Git, the image is stored in a Cloud 66 registry. Clusters created by Cloud 66 can already pull from it. On an external cluster (a Kubernetes cluster you run yourself and connect to Cloud 66), render the credentials into an image pull Secret:
+
+```yaml
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/dockerconfigjson
+metadata:
+  name: c66-pull-secret
+  namespace: #@ cloud66.app.namespace
+data:
+  .dockerconfigjson: #@ cloud66.app.buildgridImagePullCredentials
+```
+
+Then name it in the pod spec of each workload that runs a Cloud 66-built image:
+
+```yaml
+    spec:
+      imagePullSecrets:
+        - name: c66-pull-secret
+```
+
+## A complete example
+
+This is the Deployment template that Cloud 66 generates for a service, trimmed to the parts that use the values documented on this page. It is linked to the service, rendered only when the service's kind is `Deployment`, and controlled from the Dashboard (image, scaling, command and restarts):
+
+```yaml
+#@ if cloud66.service.kind == "Deployment":
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    cloud66.com/service: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+  name: #@ cloud66.service.resourceName
+  namespace: #@ cloud66.app.namespace
+spec:
+  replicas: #@ cloud66.service.replicas
+  selector:
+    matchLabels:
+      app: #@ cloud66.service.resourceName
+  template:
+    metadata:
+      annotations:
+        cloud66.com/service: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+        cloud66.com/restart-trigger: #@ cloud66.service.restartTrigger
+      labels:
+        app: #@ cloud66.service.resourceName
+    spec:
+      containers:
+        - name: #@ cloud66.service.resourceName
+          image: #@ cloud66.service.image
+          #@ if/end cloud66.service.commands:
+          command:
+            #@ for/end command in cloud66.service.commands:
+            - #@ command
+          #@ if/end cloud66.service.args:
+          args:
+            #@ for/end arg in cloud66.service.args:
+            - #@ arg
+#@ end
+```
+
+With a service called `web`, set to 3 replicas of `ghcr.io/acme-corp/storefront-web:2.4.1` and the command `bundle exec puma -C config/puma.rb`, Cloud 66 renders and applies:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    cloud66.com/service: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+    cloud66.com/source: cloud66
+    cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+  name: web
+  namespace: storefront
+  labels:
+    cloud66.com/source: cloud66
+    cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      annotations:
+        cloud66.com/service: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+        cloud66.com/restart-trigger: "2026-09-18T09:31:36.000Z"
+        cloud66.com/source: cloud66
+        cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+      labels:
+        app: web
+        cloud66.com/source: cloud66
+        cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+    spec:
+      containers:
+      - name: web
+        image: ghcr.io/acme-corp/storefront-web:2.4.1
+        command:
+        - bundle
+        args:
+        - exec
+        - puma
+        - -C
+        - config/puma.rb
+```
+
+The generated Kubernetes Service template, linked to the same service and rendered only when the service has ports:
+
+```yaml
+#@ if cloud66.service.ports:
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud66.com/service: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+  name: #@ cloud66.service.resourceName
+  namespace: #@ cloud66.app.namespace
+spec:
+  selector:
+    app: #@ cloud66.service.resourceName
+  ports:
+    #@ for/end port in cloud66.service.ports:
+    - targetPort: #@ port.targetPort
+      port: #@ port.port
+      protocol: #@ port.protocol
+      name: #@ port.name
+#@ end
+```
+
+## Troubleshooting
+
+To check a template before you deploy, open it under *Settings* → *Templates* and choose *Download rendered template* from the *More* menu. Cloud 66 renders the template against your application's current values and gives you the result, or tells you why it failed to render.
+
+A template that is rejected when you upload or sync it usually carries a `cloud66.com/service` annotation whose uid doesn't match any service of this application.
+
+These are the rendering errors you are most likely to meet:
+
+| Error message | What it means |
+|---------------|---------------|
+| `struct has no .service field or method` | The template references `cloud66.service` but isn't linked to a service. Add the `cloud66.com/service` annotation to its top-level `metadata.annotations`. |
+| `cannot set non-string value (int64), consider using str(...) to convert to string` | A `(@= ... @)` expression produced a number. Wrap it in `str()`, or use a `#@` expression instead. |
+| `struct has no .<name> field or method` | The template references a value that doesn't exist. Check the spelling against the [values reference](#values-reference); names are case-sensitive. |
