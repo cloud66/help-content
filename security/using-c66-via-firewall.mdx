@@ -21,7 +21,7 @@ In order to manage your servers we need full access to two TCP ports from specif
 - Port `6443` from our entire range of [authorized IP addresses](#cloud-66s-authorized-ip-addresses) (see below).
 </PerProduct>
 
-<PerProduct includes={["deploy"]} includeVersions={["2"]}>
+<PerProduct includes={["deploy"]} excludeVersions={['1', '3']}>
 If your cluster is behind a [deployment gateway](/:product/:version?/deployment/deployment-gateway#kubernetes-clusters-behind-a-gateway-server), open ports `22` and `6443` on your gateway server instead, and have it forward port `6443` to your cluster's master server.
 </PerProduct>
 
