@@ -43,10 +43,10 @@ After the deployment is finished you can invalidate the gateway or leave it unti
 $ cx gateways close --name aws_bastion
 ```
 
-<PerProduct includes={["deploy"]}>
+<PerProduct includes={["deploy"]} includeVersions={["2"]}>
 ## Kubernetes clusters behind a gateway server
 
-You can build a Kubernetes cluster whose servers sit in a private subnet with no public IP address. Cloud 66 reaches the servers over SSH through your gateway, the same way it does for any other application. It also needs to reach the Kubernetes API of your cluster on port `6443`, so your gateway server has to forward that port to the cluster's master server.
+On Deploy v2, you can build a Kubernetes cluster whose servers sit in a private subnet with no public IP address. Cloud 66 reaches the servers over SSH through your gateway, the same way it does for any other application. It also needs to reach the Kubernetes API of your cluster on port `6443`, so your gateway server has to forward that port to the cluster's master server.
 
 <Callout type="info" title="Clusters with more than one master server">
 With a single master server, your gateway forwards port `6443` to that master's port `6443`. With more than one, forward to port `6444` on one of the masters instead, so Cloud 66's requests are spread across all of them. See [Forward port 6443 to the master server](#forward-port-6443-to-the-master-server).
