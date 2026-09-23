@@ -43,6 +43,88 @@ After the deployment is finished you can invalidate the gateway or leave it unti
 $ cx gateways close --name aws_bastion
 ```
 
+<PerProduct includes={["deploy"]}>
+## Kubernetes clusters behind a gateway server
+
+You can build a Kubernetes cluster whose servers sit in a private subnet with no public IP address. Cloud 66 reaches the servers over SSH through your gateway, the same way it does for any other application. It also needs to reach the Kubernetes API of your cluster on port `6443`, so your gateway server has to forward that port to the cluster's master server.
+
+<Callout type="warning" title="One master server per gateway">
+A cluster behind a gateway is supported with a single master server. Your gateway forwards port `6443` to that master's private IP address.
+</Callout>
+
+### Before you start
+
+- The gateway server needs a public IP address. We recommend an Elastic IP (or your cloud's equivalent), so the address survives if you ever replace the gateway server.
+- The private subnet needs outbound internet access, for example through a NAT gateway. Your servers download packages and pull your images while they are built and deployed.
+- Your gateway server's firewall (security group) must allow ports `22` and `6443` from our [authorized IP addresses](/:product/:version?/security/using-c66-via-firewall#cloud-66s-authorized-ip-addresses).
+- Your cluster servers' firewall (security group) must allow ports `22` and `6443` from your gateway server. Allowing the gateway's security group, rather than its IP address, means a replacement gateway keeps its access.
+
+### Create the cluster
+
+1. Define your gateway and open it:
+
+```shell
+$ cx gateways add --name aws_bastion --address 1.1.1.1 --username ec2-user --private-ip 10.0.1.10
+$ cx gateways open --name aws_bastion --key /tmp/gateway.pem
+```
+
+2. Start creating a new cluster and fill in the form as usual, choosing your VPC and your private subnet.
+3. Instead of clicking **Create Cluster**, click **Advanced deployment**. This opens the manifest for your cluster. Add a `gateway` section at the top level, alongside `cluster` rather than inside it:
+
+```yaml
+gateway:
+  name: aws_bastion
+  username: ec2-user
+
+cluster:
+  configuration:
+    vpc_id: vpc-xxxxxxxx
+    subnet_id: subnet-xxxxxxxx
+  ...
+```
+
+4. Click **Create cluster from manifest**. Your servers are created without a public IP address, and Cloud 66 connects to them through your gateway from the first step of the build.
+
+### Forward port 6443 to the master server
+
+The build installs Kubernetes on your master server and then needs to reach its API through your gateway. As soon as your master server has been created, find its private IP address on the server's page in your dashboard, and forward port `6443` on your gateway server to it. For example, with `socat` on the gateway server:
+
+```shell
+$ sudo dnf install -y socat   # or: sudo apt-get install -y socat
+$ sudo tee /etc/systemd/system/kube-api-forward.service <<'EOF'
+[Unit]
+Description=Forward the Kubernetes API to the cluster master server
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/socat TCP-LISTEN:6443,fork,reuseaddr TCP:10.0.2.20:6443
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+$ sudo systemctl enable --now kube-api-forward
+```
+
+Replace `10.0.2.20` with your master server's private IP address. The connection is forwarded as-is, so the traffic stays encrypted end to end.
+
+If Cloud 66 can't reach the Kubernetes API through your gateway, the deployment stops with *Unable to reach the Kubernetes API of this cluster through its deployment gateway*. Check the forward is running and that both firewalls allow port `6443`, then deploy again.
+
+### Deploying applications to the cluster
+
+Applications you deploy to the cluster use the cluster's gateway automatically. You don't need a `gateway` section in the application's manifest, but the gateway must be open while you deploy.
+
+### Replacing servers
+
+- **If you replace the master server**, it gets a new private IP address. Update the address in your forward on the gateway server and restart it (`sudo systemctl restart kube-api-forward`).
+- **If you replace the gateway server**, set up the same forward on the new server. If the new gateway keeps the same public IP address (for example by moving the Elastic IP), nothing else changes. If its address changes, contact our [support team](mailto:support@cloud66.com) so we can update your gateway, rather than removing and adding it again.
+
+### Limitations
+
+- The browser-based shell isn't available for servers behind a gateway. Use `cx ssh --gateway-key` instead (see below).
+- Your downloaded kubeconfig file points at your gateway server, so `kubectl` works from anywhere your gateway allows port `6443` from.
+</PerProduct>
+
 ## Adding servers behind an on-premises gateway
 
 You can add [registered servers](/:product/:version?/servers/registered-servers#register-a-server) to Cloud 66 via an on-premises gateway server as long as:
