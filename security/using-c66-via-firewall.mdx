@@ -21,6 +21,10 @@ In order to manage your servers we need full access to two TCP ports from specif
 - Port `6443` from our entire range of [authorized IP addresses](#cloud-66s-authorized-ip-addresses) (see below).
 </PerProduct>
 
+<PerProduct includes={["deploy"]} excludeVersions={['1', '3']}>
+If your cluster is behind a [deployment gateway](/:product/:version?/deployment/deployment-gateway#kubernetes-clusters-behind-a-gateway-server), open only port `22` on your gateway server instead. Cloud 66 reaches both SSH and the Kubernetes API on your cluster servers through it, and opens ports `22` and `6443` on them to your gateway's private IP address.
+</PerProduct>
+
 <PerProduct includes={["rails"]}>
 - Port `22` from our entire range of [authorized IP addresses](#cloud-66s-authorized-ip-addresses) (see below).
 - Port `3022` from our IP address `159.89.253.143` (this IP is static)
