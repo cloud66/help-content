@@ -1,0 +1,47 @@
+---
+category: toolbelt
+title: gateways update
+products: ['rails', 'deploy']
+excludeVersions: ['1', '3']
+---
+
+Changes the name, address, username or private IP address of a gateway. Use it when you replace your gateway server, instead of removing the gateway and adding it again.
+
+Only the options you pass are changed. The gateway's key stays as it is, and so does whether the gateway is open or closed. Kubernetes clusters behind the gateway follow a new address automatically.
+
+```shell
+$ cx gateways update --name <gateway name> [--new-name <new name>] [--address <gateway address>] [--username <gateway username>] [--private-ip <private ip of gateway>]
+```
+
+You need at least one option besides `--name`. If you're using an older version of toolbelt, run `cx update` first.
+
+#### Options
+
+| Argument | Required? | Default | Description |
+|  ---  |  ---  |  ---  |  ---  |
+| `--name <gateway name>` | yes | — | The name of the gateway to change |
+| `--new-name <new name>` | no | — | A new name for the gateway. Update the `gateway` section of your manifests to match |
+| `--address <gateway address>` | no | — | The new public IP address of the gateway |
+| `--username <gateway username>` | no | — | The new username for accessing the gateway |
+| `--private-ip <private ip of gateway>` | no | — | The new private IP address to use to access the network behind the gateway |
+
+#### Examples
+
+Point the gateway at a replacement server with a new public and private IP address:
+
+```shell
+$ cx gateways update --name aws_bastion --address 1.1.1.2 --private-ip 10.0.1.11
+```
+
+Rename a gateway:
+
+```shell
+$ cx gateways update --name aws_bastion --new-name aws_bastion_eu
+```
+
+If the new gateway server uses a different key, close the gateway and open it again with the new key:
+
+```shell
+$ cx gateways close --name aws_bastion
+$ cx gateways open --name aws_bastion --key /tmp/new-gateway.pem
+```
