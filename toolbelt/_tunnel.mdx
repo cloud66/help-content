@@ -1,7 +1,7 @@
 ---
 category: toolbelt
 title: tunnel
-products: ['rails']
+products: ['rails', 'deploy']
 ---
 
 Opens an SSH tunnel between your local machine and the remote server on a specific port. This is useful when connecting to remote databases or other services using local tools.
@@ -13,9 +13,7 @@ Opens an SSH tunnel between your local machine and the remote server on a specif
 3. Starts an SSH tunnel between your machine and the server on the given ports
 4. Closes the tunnel when you exit the Toolbelt (Ctrl-C)
 
-<PerProduct includes={["rails"]}>
-Applications using gateways (Bastion servers) are not supported.
-</PerProduct>
+If the server is behind a [deployment gateway](/:product/:version?/deployment/deployment-gateway) (bastion server), pass the gateway's key with `--gateway-key`. The tunnel then goes through your gateway to the server's private IP address. If you're using an older version of toolbelt, run `cx update` first.
 
 If a role is specified the command will connect to the first server with that role.
 
@@ -37,6 +35,8 @@ $ cx tunnel --stack <application name> --server <server name> | <server IP> | <s
 | `--server <server name> \| <server ip> \| <server role>` | either/or | — | Name or IP or role of the server to access |
 | `-local, -l <local port>` | no | — | Local port for the tunnel |
 | `-remote, -r <remote port>` | yes | — | Remote port for the tunnel |
+| `--gateway-key <path to gateway key>` | only behind a gateway | — | Path to the private key for the gateway server |
+| `--identity-file, -i <path to private key>` | no | — | Path to the private key for your own SSH access to the server |
 
 #### Examples
 
@@ -44,4 +44,10 @@ $ cx tunnel --stack <application name> --server <server name> | <server IP> | <s
 $ cx tunnel -s mystack --server lion --local 3307 --remote 3306
 $ cx tunnel -s mystack --server 52.65.34.98 --local 3307 --remote 3306
 $ cx tunnel -s mystack --server web -l 3307 -r 3306
+```
+
+Reach the Kubernetes API of a cluster behind a gateway, for use with the kubeconfig file you download for the cluster:
+
+```shell
+$ cx tunnel -s mycluster --server kubes_master --gateway-key ~/.ssh/bastion_key -l 6443 -r 6443
 ```

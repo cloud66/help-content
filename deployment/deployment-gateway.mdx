@@ -102,7 +102,13 @@ Applications you deploy to the cluster use the cluster's gateway automatically. 
 
 ### Using kubectl with your cluster
 
-The kubeconfig file you download for a cluster behind a gateway points at `https://127.0.0.1:6443`. To use it, first open an SSH tunnel to your master server through your gateway, and keep it running while you use `kubectl`. The download menu shows the exact command for your cluster, for example:
+The kubeconfig file you download for a cluster behind a gateway points at `https://127.0.0.1:6443`. To use it, first open a tunnel to your master server through your gateway, and keep it running while you use `kubectl`. The easiest way is [toolbelt](/:product/:version?/toolbelt/_tunnel):
+
+```shell
+$ cx tunnel -s "My Cluster" --server kubes_master --gateway-key /tmp/gateway.pem -l 6443 -r 6443
+```
+
+If you don't use toolbelt, open the tunnel with `ssh` instead. The download menu shows the exact command for your cluster, for example:
 
 ```shell
 $ ssh -N -o ExitOnForwardFailure=yes -L 6443:10.0.2.20:6443 ec2-user@1.1.1.1
@@ -112,8 +118,12 @@ Here `10.0.2.20` is your master server's private IP address and `1.1.1.1` is you
 
 ### Replacing servers
 
-- **If you replace the master server**, it gets a new private IP address. Cloud 66 picks up the new address automatically. For `kubectl`, download your kubeconfig again and use the new address in your tunnel.
-- **If you replace the gateway server**, make sure the new server meets the requirements in [Before you start](#before-you-start). Cloud 66 knows your gateway by both its public and private IP addresses. A new server usually gets a new private IP address even when you move the Elastic IP to it. If either address changes, contact our [support team](mailto:support@cloud66.com) so we can update your gateway, rather than removing and adding it again.
+- **If you replace the master server**, it gets a new private IP address. Cloud 66 picks up the new address automatically. For `kubectl`, download your kubeconfig again and restart your tunnel. `cx tunnel` finds the new address by itself; with `ssh`, use the new address shown in the download menu.
+- **If you replace the gateway server**, make sure the new server meets the requirements in [Before you start](#before-you-start). Cloud 66 knows your gateway by both its public and private IP addresses. A new server usually gets a new private IP address even when you move the Elastic IP to it. If either address changes, update your gateway with [`cx gateways update`](/:product/:version?/toolbelt/_gateways-update) rather than removing and adding it again:
+
+```shell
+$ cx gateways update --name aws_bastion --address 1.1.1.2 --private-ip 10.0.1.11
+```
 
 ### Limitations
 
