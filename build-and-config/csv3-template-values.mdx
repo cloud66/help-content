@@ -52,13 +52,15 @@ Cloud 66 adds the same two entries, as both annotations and labels, to every res
 metadata:
   annotations:
     cloud66.com/source: cloud66
-    cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+    cloud66.com/catalog: web
   labels:
     cloud66.com/source: cloud66
-    cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+    cloud66.com/catalog: web
 ```
 
 They are added to the resource's own `metadata` and to its pod template (`spec.template.metadata`, or `spec.jobTemplate.spec.template.metadata` for a CronJob). Cloud 66 uses them to keep track of the resources it manages, so don't set or remove them yourself.
+
+For a template linked to a service, `cloud66.com/catalog` is the service's `cloud66.service.resourceName` (`web` in the example above). For a template with no link, it is `standalone`.
 
 <Callout type="info" title="Expect one restart on the first deployment">
 Because pod templates are stamped too, a workload that was already running before Cloud 66 managed it (for example on an imported application) restarts once, on its first deployment through Cloud 66.
@@ -350,12 +352,12 @@ metadata:
   annotations:
     cloud66.com/service: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
     cloud66.com/source: cloud66
-    cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+    cloud66.com/catalog: web
   name: web
   namespace: storefront
   labels:
     cloud66.com/source: cloud66
-    cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+    cloud66.com/catalog: web
 spec:
   replicas: 3
   selector:
@@ -367,11 +369,11 @@ spec:
         cloud66.com/service: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
         cloud66.com/restart-trigger: "2026-09-18T09:31:36.000Z"
         cloud66.com/source: cloud66
-        cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+        cloud66.com/catalog: web
       labels:
         app: web
         cloud66.com/source: cloud66
-        cloud66.com/catalog: service-5f2c8a1e9b3d4c7f8a6e0b1d2c3f4a5b
+        cloud66.com/catalog: web
     spec:
       containers:
       - name: web
