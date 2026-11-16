@@ -125,3 +125,26 @@ OVH does not currently support static site deployments.
 <PerProduct includes={["sites"]}>
 Vultr does not currently support static site deployments.
 </PerProduct>
+
+## Removing Cloud 66's access
+
+You can remove Cloud 66's access to your cloud account at any time, in two places.
+
+**In Cloud 66:** go to *Account Settings → Clouds & Integrations* and delete the cloud account. You can't delete it while applications, clusters or image registries still use it, so remove those first.
+
+**In your cloud provider:** delete or revoke the credential you gave Cloud 66. This removes access immediately, even if the cloud account is still listed in Cloud 66.
+
+| Provider | How to revoke the credential |
+| --- | --- |
+| AWS | In IAM, deactivate and delete the access key, or delete the `cloud66` IAM user |
+| Azure | In the Azure portal, open your app registration and delete its client secret under *Certificates & secrets* |
+| DigitalOcean | Go to *API → Tokens* and delete the token |
+| Google Cloud | In *IAM & Admin → Service accounts*, delete the service account's key, or delete the service account |
+| Hetzner Cloud | In your project, go to *Security → API tokens* and delete the token |
+| Linode | Go to *My Profile → API Tokens* and revoke the token |
+| OVHcloud | Revoke the API access you granted Cloud 66 when you connected your project |
+| Vultr | Go to *Account → API* and regenerate the API key, or disable API access |
+
+<Callout type="warning" title="Removing access doesn't delete your servers">
+Servers that Cloud 66 created keep running in your cloud account, and your provider keeps billing you for them. If you're stopping using Cloud 66, delete your applications and clusters in Cloud 66 first so it can remove their servers, then revoke the credential. Otherwise, delete the servers yourself in your cloud provider's console.
+</Callout>
