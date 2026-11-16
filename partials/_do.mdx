@@ -1,4 +1,13 @@
-Cloud 66 supports DigitalOcean API v2, which uses OAuth to authenticate requests. If you choose Digital Ocean as a deployment target (see below) you'll be redirected to the DigitalOcean Ocean site, where you need to **authenticate and approve Cloud 66**. Once confirmed you will be redirected back to Cloud 66, where you can deploy your application to your DigitalOcean account.
+Cloud 66 connects to your DigitalOcean account with a personal access token. To create one:
+
+1. Log into the [DigitalOcean control panel](https://cloud.digitalocean.com/)
+2. Click *API* in the left-hand navigation, then open the *Tokens* tab
+3. Click *Generate New Token* and give it a name (e.g. Cloud 66)
+4. Set *Expiration* to *No expiry*. If the token expires, Cloud 66 can no longer manage your servers until you add a new one.
+5. Under *Scopes*, choose *Full Access*
+6. Click *Generate Token* and copy the token (DigitalOcean only shows it once)
+
+You will paste this token into the *Personal access token* field when you add DigitalOcean as a deployment target.
 
 You can use Cloud 66 to provision and deploy your code to servers (droplets) in any [DigitalOcean region](https://docs.digitalocean.com/products/platform/availability-matrix/).
 
