@@ -47,9 +47,80 @@ If you don't specify a version, Cloud 66 uses the most recent version it support
 
 ## Replicating data between MySQL versions
 
-When you initiate replication between two MySQL databases on Cloud 66, we set up streaming replication between the primary and replica servers. Streaming replication relies on a compatible binary log format between the two servers, which generally isn't possible between two servers running vastly different versions of MySQL.
+When you set up replication between two MySQL databases on Cloud 66, we copy the primary's data to the replica with a binary backup, and then keep the replica up to date from the primary's binary log. Both steps depend on the MySQL version, so the versions of the two servers decide whether replication is possible.
 
-As such, we cannot establish replication between servers running different major release levels (e.g. 5.7 and 8.0). Replication between different minor release levels (e.g. 8.0.32 and 8.0.36) should work, but you should run matching versions wherever possible.
+| Source (primary) | Replica | Can they replicate? |
+|---|---|---|
+| 8.0 | 8.0 | Yes |
+| 8.4 | 8.4 | Yes |
+| 8.0 | 8.4, in a different database group | Yes. This is how you [upgrade from MySQL 8.0 to 8.4](#upgrading-from-mysql-80-to-84-by-replication) |
+| 8.4 | 8.0 | No. MySQL can't replicate from a newer release series to an older one |
+| 5.7 | 8.0 or 8.4 | No |
+
+When both servers are on the same release series (for example 8.0.36 and 8.0.45), run the same patch version on both wherever possible. The replica must never be on an older patch version than its source, because MySQL can't start on data written by a newer version.
+
+When you choose a source in the **Configure Replication** panel, any server that can't be a source because of its MySQL version is listed there with the reason.
+
+## Upgrading from MySQL 8.0 to 8.4 by replication
+
+A MySQL 8.4 server can replicate from a MySQL 8.0 server in another database group. Cloud 66 copies the 8.0 data to the 8.4 server, and MySQL 8.4 upgrades that copy when it first starts. From then on, every change made on 8.0 is applied on 8.4. Your 8.0 database is not changed and keeps serving your application until you switch over, so the only downtime is the switch itself.
+
+To move from MySQL 5.7 to 8.4, first move to 8.0 using [database groups and backups](/:product/:version?/databases/database-management#upgrading-your-database). MySQL only supports upgrading one release series at a time.
+
+### Before you start
+
+- **The source must run MySQL 8.0 and have a [managed backup](/:product/:version?/databases/database-backups).**
+- **The 8.4 server must be in its own database group.** A group runs one MySQL version, so you can't add an 8.4 replica to an 8.0 group.
+- **The 8.4 group must keep `mysql_native_password` enabled.** This is the default. The users copied from 8.0 sign in with it. If your manifest sets `authentication_plugin: caching_sha2_password` for the 8.4 group, replication from 8.0 is refused.
+- **Everything on the 8.4 server is deleted** when replication starts, including its databases and users. Use a new, empty group.
+- **The 8.4 server needs outbound access to Percona's package repository** (`repo.percona.com`). It downloads Percona XtraBackup 8.0 from there to restore the 8.0 backup.
+
+<Callout type="warning" title="The upgrade is one-way">
+MySQL can't replicate from 8.4 back to 8.0. After you switch your application to the 8.4 group, changes written there are not copied to the 8.0 group.
+</Callout>
+
+### Set up the 8.4 replica
+
+1. Add the new group to your [manifest file](/:product/:version?/manifest/what-is-a-manifest-file) and pin it to MySQL 8.4. The group name here is `upgrade`:
+
+   ```yaml
+   production:
+       mysql:
+           groups:
+               default:
+                   configuration:
+                       version: "8.0"
+               upgrade:
+                   configuration:
+                       version: "8.4"
+   ```
+
+   A manifest can't have other keys alongside `groups`. If your manifest configures MySQL with the top-level `mysql: configuration:` form, move that configuration under `groups: default:` as shown here.
+
+2. [Add a MySQL database group](/:product/:version?/databases/attaching-multiple-databases#adding-a-database-group-to-an-app) with the same name to your application, and wait for its server to be ready.
+3. Click on **Data Sources** in the left-hand nav and select the new group.
+4. Click the down arrow next to the database server and select **Configure Replication**.
+5. Choose your MySQL 8.0 server as the **source**. The panel confirms that this pair is an upgrade.
+6. Click *Set Up Replication*.
+
+The first sync takes longer than replication between two servers on the same version: after the data is copied, MySQL 8.4 upgrades it before it starts replicating. Wait until the replica is shown as healthy.
+
+While it replicates, the 8.4 server is read-only. You can test read queries against it using the group's own environment variables (for example `MYSQL_UPGRADE_ADDRESS`).
+
+<Callout type="info" title="Statements that MySQL 8.4 no longer supports">
+Replication stops if a statement that MySQL 8.4 has removed runs on the 8.0 source, for example `FLUSH HOSTS` or `GRANT SET_USER_ID`. Avoid running administrative statements like these on the source during the upgrade. If replication stops, [resync the replica](/:product/:version?/databases/database-replication#re-synchronizing-replica-with-master).
+</Callout>
+
+### Switch your application to MySQL 8.4
+
+1. Stop writes to your database, for example by putting your application in [maintenance mode](/:product/:version?/deployment/using-maintenance-mode).
+2. Check that the replica is healthy and has caught up with the source.
+3. [Disable replication](/:product/:version?/databases/database-replication#disable-database-replication) on the 8.4 group. The 8.4 server becomes an independent database that accepts writes.
+4. Open the 8.4 group and click **Make Default**. See [default database groups](/:product/:version?/databases/attaching-multiple-databases#understanding-default-database-groups).
+5. Redeploy your application, so that it picks up the new environment variables.
+6. Take your application out of maintenance mode.
+
+Once you are satisfied that your application works on MySQL 8.4, you can remove the 8.0 group.
 
 ## Cascading replication for MySQL
 

@@ -204,6 +204,10 @@ To upgrade your database(s) using Groups:
 4. Switch your application configuration to use the new Group
 5. Remove the old Database Group
 
+<Callout type="info" title="MySQL 8.0 to 8.4: replicate instead of moving a backup">
+To upgrade from MySQL 8.0 to 8.4, you can set the new 8.4 Group to replicate from your 8.0 Group. The new Group stays up to date until you switch, so the only downtime is the switch itself. See [Upgrading from MySQL 8.0 to 8.4 by replication](/:product/:version?/databases/mysql#upgrading-from-mysql-80-to-84-by-replication).
+</Callout>
+
 ### Cloning your application
 
 You can make a new instance of your application by [cloning it](/:product/:version?/cloud-66-101/adding-updating-deleting#clone-an-application). We will provision new components for your application, which will use the latest versions by default. Be sure to check that you have not locked any component versions using your [Manifest file](/:product/:version?/manifest/what-is-a-manifest-file).
