@@ -87,10 +87,15 @@ MySQL can't replicate from 8.4 back to 8.0. After you switch your application to
    production:
        mysql:
            groups:
+               default:
+                   configuration:
+                       version: "8.0"
                upgrade:
                    configuration:
                        version: "8.4"
    ```
+
+   A manifest can't have other keys alongside `groups`. If your manifest configures MySQL with the top-level `mysql: configuration:` form, move that configuration under `groups: default:` as shown here.
 
 2. [Add a MySQL database group](/:product/:version?/databases/attaching-multiple-databases#adding-a-database-group-to-an-app) with the same name to your application, and wait for its server to be ready.
 3. Click on **Data Sources** in the left-hand nav and select the new group.
